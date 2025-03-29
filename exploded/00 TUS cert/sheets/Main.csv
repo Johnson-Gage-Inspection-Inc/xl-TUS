@@ -69,7 +69,7 @@ Ver. 12.14.21,,TUS Worksheet for,,,,"=CONCATENATE(D9,Comparison_Report!S24,""0""
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,=TUS_Worksheet!C$13,1,"=IF(B72="""","""",C72)",,,,,,,,,,"=IF(Access_Data!B$27="""",0,Access_Data!B$27)","=IF(Access_Data!$B$29="""",0,Access_Data!$B$29)","=IF(ISERROR(Access_Data!$B$31),0,Access_Data!$B$31)",,,,,,,,,,,,,
+,=TUS_Worksheet!C$13,1,"=IF(B72="""","""",C72)",,,,,,,,,,"=IF(Access_Data!B$27="""",0,Access_Data!B$27)","=IF(Access_Data!$B$29="""",0,Access_Data!$B$29)","=IFERROR(Access_Data!$B$31,0)",,,,,,,,,,,,,
 ,=TUS_Worksheet!D$13,2,"=IF(B73="""","""",C73)",,,,,,,,,,"=IF(Access_Data!C$27="""",0,Access_Data!C$27)","=IF(Access_Data!$C$29="""",0,Access_Data!$C$29)","=IF(ISERROR(Access_Data!$C$31),0,Access_Data!$C$31)",,,,,,,,,,,,,
 ,=TUS_Worksheet!E$13,3,"=IF(B74="""","""",C74)",,,,,,,,,,"=IF(Access_Data!D$27="""",0,Access_Data!D$27)","=IF(Access_Data!$D$29="""",0,Access_Data!$D$29)","=IF(ISERROR(Access_Data!$D$31),0,Access_Data!$D$31)",,,,,,,,,,,,,
 ,=TUS_Worksheet!F$13,4,"=IF(B75="""","""",C75)",,,,,,,,,,"=IF(Access_Data!E$27="""",0,Access_Data!E$27)","=IF(Access_Data!$E$29="""",0,Access_Data!$E$29)","=IF(ISERROR(Access_Data!$E$31),0,Access_Data!$E$31)",,,,,,,,,,,,,
