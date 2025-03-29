@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: explode-excel
+        name: Explode Excel files into sheets and M scripts
+        entry: python explode_excel.py
+        language: system
+        types: [binary]
+        files: \.xls[mx]|\.xltm$
