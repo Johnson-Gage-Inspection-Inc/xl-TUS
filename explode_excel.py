@@ -3,7 +3,7 @@ import zipfile
 import csv
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from openpyxl import load_workbook
+import openpyxl
 
 def extract_m_scripts(xlsx_path: Path, output_dir: Path):
     with zipfile.ZipFile(xlsx_path, 'r') as zipf:
@@ -27,18 +27,21 @@ def extract_m_scripts(xlsx_path: Path, output_dir: Path):
                     f.write(m_code)
 
 def export_sheets_with_formulas(xlsx_path: Path, output_dir: Path):
-    wb = load_workbook(xlsx_path, data_only=False, keep_links=False)
+    wb = openpyxl.load_workbook(xlsx_path, data_only=False, keep_links=False)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     for sheet in wb.worksheets:
+        def get_formula_or_value(cell: openpyxl.cell.cell.Cell):
+            if cell.data_type == 'f':
+                return cell.value if isinstance(cell.value, str) else cell.value.text
+            else:
+                return cell.value
+
         csv_path = output_dir / f"{sheet.title}.csv"
         with open(csv_path, 'w', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
             for row in sheet.iter_rows(values_only=False):
-                writer.writerow([
-                    cell.value if cell.data_type == 'f' else cell.value
-                    for cell in row
-                ])
+                writer.writerow([get_formula_or_value(cell) for cell in row])
 
 def main():
     for path_str in sys.argv[1:]:
