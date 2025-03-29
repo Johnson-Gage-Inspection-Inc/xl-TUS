@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Run explode_excel.py",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/explode_excel.py",
+        "args": ["00 TUS cert.xltm"],
+        "console": "integratedTerminal"
+      }
+    ]
+  }
+  
