@@ -1,0 +1,35 @@
+DAQBook Info,,,,Num Points,,Wire Type,,,,Traceability Numbers (Wire),,Traceability Numbers (DaqBooks),,Packet Content,,Load Type,,Spec Class,,Sheets to Print,,Number of Rows per Test Time,,WireSets,,Hygrometers,,Condition,,TUS Type,,Inspector List
+J1,DAQBOOK/2005,807408,"""J"" IRON-CONSTANTAN",40,,"""J""","""J"" IRON-CONSTANTAN",,,836/277169,,55429AT,,,,Hot,,N/A,,Packet_Content,,"=IF(Main!D32 = 10, 5, IF(Main!D32 = 30, 15, IF(Main!D32 = 40, 20, 0)))",,J01-J24,,,,Used,,Initial,,Nick Nolte
+J2,DAQBOOK/2005,806337,"""J"" IRON-CONSTANTAN",40,,"""K""","""K"" CHROMEL-ALUMEL",,,U187370,,56414AT,,Certification,,SIM Load Hot,,Class C Per AMS,,CERT,,,,J101-J110,,,,New,,Reinitial,,Mike Ragonese
+J3,DAQBOOK/2005,807705,"""J"" IRON-CONSTANTAN",40,,"""N""","""N"" NICROSIL-NISIL",,,56414AT,,58056AT,,Comparison Readings Summary,,Cold,,Class B Per BAC,,Comparison_Report,,,,J111-J120,,,,,,Periodic,,Dan Turkali
+K2,DAQBOOK/2000,236720,"""K"" CHROMEL-ALUMEL",40,,,,,,283372,,59179AT,,Data Acquisition System Certification,,Salt,,,,TUS_Worksheet,,,,J201-J214,,,,,,,,Joey Craig
+K3,DAQBOOK/2005,807621,"""K"" CHROMEL-ALUMEL",40,,,,,,W207672,,,,Interpolated Correction Factors,,Freezer,,,,Interp,,,,J301-J314,,,,,,,,Matt Coleman
+K4,DAQBOOK/2005,807409,"""K"" CHROMEL-ALUMEL",40,,,,,,,,,,Recorder Chart,,Tank,,,,Data_Sheet,,,,J501-J514,,,,,,,,James Haven
+K5,DAQBOOK/2005,808005,"""K"" CHROMEL-ALUMEL",28,,,,,,,,,,Supplemental Temperature Results,,Hot Form Press,,,,"=IF(AND(Main!D17<>"""",Main!D17>14),""Data_Sheet_15_28"","""")",,,,J601-J610,,,,,,Atmosphere Used,,Jesse Regehr
+K6,DAQBOOK/2005,808173,"""K"" CHROMEL-ALUMEL",40,,,,,,,,,,Temperature Uniformity Survey Results,,,,,,"=IF(AND(Main!D17<>"""",Main!D17>28),""Data_Sheet_29_40"","""")",,,,J701-J710,,,,,,Air,,Joey Knutson
+N1,DAQBOOK/2005,807702,"""N"" NICROSIL-NISIL",28,,,,,,,,,,Thermocouple Layout,,,,,,,,,,J801-J816,,,,,,Vacuum,,Ryan Byars
+N2,DAQBOOK/2005,808004,"""N"" NICROSIL-NISIL",28,,,,,,,,,,Thermocouple Wire Certification,,,,,,,,,,High Temp J,,,,,,Salt,,
+,,,,,,,,,,,,,,TUS Worksheet,,,,,,,,,,K01-K16,,,,,,Liquid,,
+,,,,,,,,,,,,,,Packet Contents,,,,,,,,,,K101 - K110,,,,,,Argon,,
+,,,,,,,,,,,,,,,,,,,,,,,,K201-K214,,,,,,Nitrogen,,
+,,,,,,,,,,,,,,,,,,,,,,,,K301-K314,,,,,,Heat Sinks,,
+,,,,,,,,,,,,,,,,,,,,,,,,K401-K416,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,K421-K432,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,K521-K534,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,K601-K610,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,K701-K710,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,K801-K816,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,K901-K910,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,High Temp K,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,Ultra High Temp K,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,N01-N16,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,N101-N112,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,N21-N34,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,Ultra High Temp N,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,SAT Probes,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,TP120 Probes,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,LTS3,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,SBP Set 1,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,SBP Set 2,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,ENV1,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,Customer,,,,,,,,
