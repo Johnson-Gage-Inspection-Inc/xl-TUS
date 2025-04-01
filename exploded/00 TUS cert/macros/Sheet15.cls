@@ -38,11 +38,11 @@ Sub populateSF()
             sZ = ""
         End If
                 
-        rPos(i).value = "NV0" & sZ & i & "__c"
-        rThermo(i).value = "ResultText0" & sZ & i & "__c"
-        rLow(i).value = "Result0" & sZ & i & "__c"
-        rHigh(i).value = "Tol0" & sZ & i & "__c"
-        rAvg(i).value = "Avg0" & sZ & i & "__c"
+        rPos(i).Value = "NV0" & sZ & i & "__c"
+        rThermo(i).Value = "ResultText0" & sZ & i & "__c"
+        rLow(i).Value = "Result0" & sZ & i & "__c"
+        rHigh(i).Value = "Tol0" & sZ & i & "__c"
+        rAvg(i).Value = "Avg0" & sZ & i & "__c"
         
         rPos(i).Offset(2, 0).Formula = "=IF(ISBLANK(Main!O" & 4 + i & "),"""",Main!N" & 4 + i & ")"
         rThermo(i).Offset(2, 0).Formula = "=IF(ISBLANK(Main!O" & 4 + i & "),"""",Main!O" & 4 + i & ")"

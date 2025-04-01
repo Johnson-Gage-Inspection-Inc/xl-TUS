@@ -54,7 +54,6 @@ Private Sub Worksheet_Calculate()
         'Pre event settings
         Application.EnableEvents = False
         Application.ScreenUpdating = False
-        Worksheets("Access_Data").Unprotect Password:="JGIPyro"
            
         'Assign values to ranges
         Set setPoint = Range("A1")
@@ -104,8 +103,8 @@ Private Sub Worksheet_Calculate()
         'Clear values over number of points
         Do While a_counter <= 40
             h = a_counter
-            oPt(h).value = ""
-            timePt(h).value = ""
+            oPt(h).Value = ""
+            timePt(h).Value = ""
             a_counter = a_counter + 1
         Loop
         
@@ -116,28 +115,28 @@ Private Sub Worksheet_Calculate()
             ptColumn = 0
             
             'Reset Flag to Zero
-            oPt(h).value = 0
-            timePt(h).value = ""
+            oPt(h).Value = 0
+            timePt(h).Value = ""
             
             'Mark if High or Low in Tolerance
             If (hy(h) = "" Or ly(h) = "") Then
-                oPt(h).value = "Dropped"
+                oPt(h).Value = "Dropped"
             Else
                 If Round(hy(h), 1) = Round(high, 1) Then
-                    oPt(h).value = "High"
+                    oPt(h).Value = "High"
                 End If
                 
                 If Round(ly(h), 1) = Round(low, 1) Then
-                    oPt(h).value = "Low"
+                    oPt(h).Value = "Low"
                 End If
                 
                 'Mark if High or Low out of Tolerance
                 If Round(ly(h), 1) < lowOOT Then
-                    oPt(h).value = "Out of Tol - LOW"
+                    oPt(h).Value = "Out of Tol - LOW"
                 End If
                 
                 If Round(hy(h), 1) > highOOT Then
-                    oPt(h).value = "Out of Tol - HIGH"
+                    oPt(h).Value = "Out of Tol - HIGH"
                 End If
             
                 'Get the time from the High or Low Temp for the given point
@@ -181,7 +180,7 @@ Private Sub Worksheet_Calculate()
                         Next iRow
                     End If
                 Else
-                    timePt(h).value = ""
+                    timePt(h).Value = ""
                 End If
             End If
             
@@ -204,7 +203,6 @@ Private Sub Worksheet_Calculate()
     'Reset all normal functions
     Application.EnableEvents = True
     Application.ScreenUpdating = True
-    Worksheets("Access_Data").Protect Password:="JGIPyro"
     
 error_Alert:
     If Err Then
@@ -214,7 +212,6 @@ error_Alert:
         'Reset Worksheet
         Application.EnableEvents = True
         Application.ScreenUpdating = True
-        Worksheets("Access_Data").Protect Password:="JGIPyro"
     End If
     
 End Sub

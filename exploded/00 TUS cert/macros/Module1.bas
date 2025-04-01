@@ -11,68 +11,24 @@ Function GetRootDrive(Optional aPath As String) As String
 End Function
 
 'User Defined Function for checking if a variable is in an array
-Function IsInArray(stringToBeFound As String, arr As Variant) As Boolean
-  IsInArray = (UBound(Filter(arr, stringToBeFound)) > -1)
+Function IsInArray(valueToFind As Variant, arr As Variant) As Boolean
+  On Error Resume Next
+  IsInArray = Not IsError(Application.Match(valueToFind, arr, 0))
 End Function
-
 
 Function QRound(num_to_round As Double) As Double
-    'Bankers Rounding using Quality Conditons
-    
-    'Condition 1: Are there two numbers afer the decimal point?
-    'Condition 2: Is the last number a five?
-    'Condition 3: Is the first number to the right of the decimal point even?
-        
-    'Define Variables
-    Dim iNumOfDecPlaces, isEven As Integer
-    Dim dDecimalNum, dFirstDecimalPlace, dSecondDecimalPlace As Double
-        
-    'Calculate number of decimal points
-    iNumOfDecPlaces = Len(CStr(num_to_round)) - InStr(CStr(num_to_round), ".")
-    
-    QRound = dFirstDecimalPlace
-    
-    'Check for condition 1
-    If iNumOfDecPlaces < 2 Or iNumOfDecPlaces > 2 Then
-        QRound = Round(num_to_round, 1)
-        Exit Function
-    End If
-    
-    'Extract first and second digit from decimal
-    dDecimalNum = num_to_round - Int(num_to_round)
-    dFirstDecimalPlace = CDec(Mid(CStr(dDecimalNum), 3, 1))
-    dSecondDecimalPlace = CDec(Mid(CStr(dDecimalNum), 4, 1))
-    
-    'Calculate if first decimal value is even or odd
-    isEven = (dFirstDecimalPlace Mod 2) - 1
-    
-    'Check for condition 2
-    If dSecondDecimalPlace = 5 Then
-        'Check for condition 3
-        If isEven = -1 Then
-            QRound = Round(num_to_round / 0.2, 0) * 0.2
-        Else
-            QRound = Round(num_to_round, 1)
-            Exit Function
-        End If
-    Else
-        QRound = Round(num_to_round, 1)
-    End If
-    
+    ' Banker's rounding (Round to even)
+    QRound = Round(num_to_round, 1)
 End Function
-
 
 Sub Read_External_Workbook()
 
     'Check for errors
-    On Error GoTo error_Alert
+    On Error GoTo HandleError
     
     'Stop Screen Updates
     Application.ScreenUpdating = False
     Application.EnableEvents = False
-    
-    'Unlock Worksheet
-    Worksheets("Standards_Import").Unprotect Password:="JGIPyro"
      
     'Define Object for Target Workbook
     Dim strPath As String, strFile(6) As String, strFileDeDupped(6) As String
@@ -89,7 +45,7 @@ Sub Read_External_Workbook()
     Dim Source_Workbook As Workbook, Source_Worksheet As Worksheet, Target_Workbook As Workbook, Target_Worksheet As Worksheet
             
     'Assign the Workbook Path
-    strPath = GetRootDrive(ThisWorkbook.Path) & "\Wires_Daqbook\"
+    strPath = GetRootDrive(ThisWorkbook.path) & "\Wires_Daqbook\"
     
     'Set Target Workbook
     Set Target_Workbook = ThisWorkbook
@@ -158,7 +114,7 @@ Sub Read_External_Workbook()
     'Get Test Temps and process CF from Source
     For i = 0 To 5
         'Label the spreadsheet with the correct temp and also assign the temp to the correct processing value
-        iDBCertTemps(i) = Source_Worksheet.Range("A" & 42 + i).value
+        iDBCertTemps(i) = Source_Worksheet.Range("A" & 42 + i).Value
         Set rDBCertTestTemp(i) = Target_Worksheet.Cells(1, 16 + i)
         rDBCertTestTemp(i) = iDBCertTemps(i)
     
@@ -174,7 +130,7 @@ Sub Read_External_Workbook()
                 For x = 0 To 5
                     Set rDBPointsS(c) = Source_Worksheet.Cells(42 + i, 2 + x)
                     Set rDBPointsT(c) = Target_Worksheet.Cells(2 + x, 16 + i)
-                    rDBPointsT(c).value = WorksheetFunction.Round((rDBPointsS(c).value - iDBCertTemps(i)) * -1, 2)
+                    rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
                 Next
             End If
     
@@ -182,7 +138,7 @@ Sub Read_External_Workbook()
                 For x = 0 To 5
                     Set rDBPointsS(c) = Source_Worksheet.Cells(50 + i, 2 + x)
                     Set rDBPointsT(c) = Target_Worksheet.Cells(8 + x, 16 + i)
-                    rDBPointsT(c).value = WorksheetFunction.Round((rDBPointsS(c).value - iDBCertTemps(i)) * -1, 2)
+                    rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
                 Next
             End If
             
@@ -192,14 +148,14 @@ Sub Read_External_Workbook()
                     For x = 0 To 1
                         Set rDBPointsS(c) = Source_Worksheet.Cells(60 + i, 2 + x)
                         Set rDBPointsT(c) = Target_Worksheet.Cells(14 + x, 16 + i)
-                        rDBPointsT(c).value = WorksheetFunction.Round((rDBPointsS(c).value - iDBCertTemps(i)) * -1, 2)
+                        rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
                     Next
                 Else
                     'If number of points in not 14
                     For x = 0 To 5
                         Set rDBPointsS(c) = Source_Worksheet.Cells(60 + i, 2 + x)
                         Set rDBPointsT(c) = Target_Worksheet.Cells(14 + x, 16 + i)
-                        rDBPointsT(c).value = WorksheetFunction.Round((rDBPointsS(c).value - iDBCertTemps(i)) * -1, 2)
+                        rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
                     Next
                 End If
             End If
@@ -208,7 +164,7 @@ Sub Read_External_Workbook()
                 For x = 0 To 5
                     Set rDBPointsS(c) = Source_Worksheet.Cells(68 + i, 2 + x)
                     Set rDBPointsT(c) = Target_Worksheet.Cells(20 + x, 16 + i)
-                    rDBPointsT(c).value = WorksheetFunction.Round((rDBPointsS(c).value - iDBCertTemps(i)) * -1, 2)
+                    rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
                 Next
             End If
             
@@ -218,14 +174,14 @@ Sub Read_External_Workbook()
                     For x = 0 To 3
                         Set rDBPointsS(c) = Source_Worksheet.Cells(78 + i, 2 + x)
                         Set rDBPointsT(c) = Target_Worksheet.Cells(26 + x, 16 + i)
-                        rDBPointsT(c).value = WorksheetFunction.Round((rDBPointsS(c).value - iDBCertTemps(i)) * -1, 2)
+                        rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
                     Next
                 Else
                     'If number of points is not 28
                     For x = 0 To 5
                         Set rDBPointsS(c) = Source_Worksheet.Cells(78 + i, 2 + x)
                         Set rDBPointsT(c) = Target_Worksheet.Cells(26 + x, 16 + i)
-                        rDBPointsT(c).value = WorksheetFunction.Round((rDBPointsS(c).value - iDBCertTemps(i)) * -1, 2)
+                        rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
                     Next
                 End If
             End If
@@ -234,7 +190,7 @@ Sub Read_External_Workbook()
                 For x = 0 To 5
                     Set rDBPointsS(c) = Source_Worksheet.Cells(86 + i, 2 + x)
                     Set rDBPointsT(c) = Target_Worksheet.Cells(32 + x, 16 + i)
-                    rDBPointsT(c).value = WorksheetFunction.Round((rDBPointsS(c).value - iDBCertTemps(i)) * -1, 2)
+                    rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
                 Next
             End If
             
@@ -242,7 +198,7 @@ Sub Read_External_Workbook()
                 For x = 0 To 3
                     Set rDBPointsS(c) = Source_Worksheet.Cells(96 + i, 2 + x)
                     Set rDBPointsT(c) = Target_Worksheet.Cells(38 + x, 16 + i)
-                    rDBPointsT(c).value = WorksheetFunction.Round((rDBPointsS(c).value - iDBCertTemps(i)) * -1, 2)
+                    rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
                 Next
             End If
         Next
@@ -265,9 +221,9 @@ Sub Read_External_Workbook()
 
     'Check and see how many wirelots need to be processed
     Do While c < 6
-        If wireLotRange(c).value <> "" Then
+        If wireLotRange(c).Value <> "" Then
             intWireLotAmt = intWireLotAmt + 1
-            wireLotNames(c) = Trim(wireLotRange(c).value)
+            wireLotNames(c) = Trim(wireLotRange(c).Value)
         End If
         c = c + 1
     Loop
@@ -359,8 +315,8 @@ Sub Read_External_Workbook()
 
             'Check to see if this is the first run
             If c = 0 Then
-                Target_Worksheet.Range("C1:G1").value = Source_Worksheet.Range("D650:H650").value
-                Target_Worksheet.Range("H1:L1").value = Source_Worksheet.Range("D656:H656").value
+                Target_Worksheet.Range("C1:G1").Value = Source_Worksheet.Range("D650:H650").Value
+                Target_Worksheet.Range("H1:L1").Value = Source_Worksheet.Range("D656:H656").Value
             Else
                 If bWireLotMatch = False Then
                     d = c
@@ -370,18 +326,18 @@ Sub Read_External_Workbook()
             End If
 
             'Update Target File
-            If IsInArray(Source_Worksheet.Range("B651").value, wireLot) Then
-                Target_Worksheet.Range("A" & 3 + (d)).value = Source_Worksheet.Range("B651").value
-                Target_Worksheet.Range("C" & 3 + (d) & ":G" & 3 + (d)).value = Source_Worksheet.Range("K653:O653").value
-                Target_Worksheet.Range("H" & 3 + (d) & ":L" & 3 + (d)).value = Source_Worksheet.Range("K660:O660").value
+            If IsInArray(Source_Worksheet.Range("B651").Value, wireLot) Then
+                Target_Worksheet.Range("A" & 3 + (d)).Value = Source_Worksheet.Range("B651").Value
+                Target_Worksheet.Range("C" & 3 + (d) & ":G" & 3 + (d)).Value = Source_Worksheet.Range("K653:O653").Value
+                Target_Worksheet.Range("H" & 3 + (d) & ":L" & 3 + (d)).Value = Source_Worksheet.Range("K660:O660").Value
             Else
                 d = d - 1
             End If
             
-            If IsInArray(Source_Worksheet.Range("B691").value, wireLot) And Source_Worksheet.Range("B691").value <> 0 Then
-                Target_Worksheet.Range("A" & 4 + (d)).value = Source_Worksheet.Range("B691").value
-                Target_Worksheet.Range("C" & 4 + (d) & ":G" & 4 + (d)).value = Source_Worksheet.Range("K693:O693").value
-                Target_Worksheet.Range("H" & 4 + (d) & ":L" & 4 + (d)).value = Source_Worksheet.Range("K700:O700").value
+            If IsInArray(Source_Worksheet.Range("B691").Value, wireLot) And Source_Worksheet.Range("B691").Value <> 0 Then
+                Target_Worksheet.Range("A" & 4 + (d)).Value = Source_Worksheet.Range("B691").Value
+                Target_Worksheet.Range("C" & 4 + (d) & ":G" & 4 + (d)).Value = Source_Worksheet.Range("K693:O693").Value
+                Target_Worksheet.Range("H" & 4 + (d) & ":L" & 4 + (d)).Value = Source_Worksheet.Range("K700:O700").Value
             Else
                 bWireLotMatch = False
             End If
@@ -398,41 +354,24 @@ Sub Read_External_Workbook()
     'Call the Wire Correction sub
     Call Write_Wire_Correction_Factors
 
-    'Start Screen Updates
+CleanExit:
     Application.ScreenUpdating = True
     Application.EnableEvents = True
-    
-    'Password protect worksheet
-    Worksheets("Standards_Import").Protect Password:="JGIPyro"
+    Exit Sub
 
-error_Alert:
-    If Err Then
-        'Output Error Message
-        MsgBox Err.Description
-
-        'Start Screen Updates
-        Application.ScreenUpdating = True
-        Application.EnableEvents = True
-        
-        'Password protect worksheet
-        Worksheets("Standards_Import").Protect Password:="JGIPyro"
-        
-    End If
-    
+HandleError:
+    MsgBox Err.Description & Chr(13) & "Error Number: " & Err.Number, vbExclamation
+    Resume CleanExit
 End Sub
 
 Sub Write_Wire_Correction_Factors()
 
     'Check for errors
-    On Error GoTo error_Alert2
+    On Error GoTo HandleError
     
     'Stop Screen Updates
     Application.ScreenUpdating = False
     Application.EnableEvents = False
-    
-    'Unprotect worksheets
-    Worksheets("TUS_Worksheet").Unprotect Password:="JGIPyro"
-    Worksheets("Interp").Unprotect Password:="JGIPyro"
     
     'Define all variables
     Dim MyDictionary As Object
@@ -466,7 +405,7 @@ Sub Write_Wire_Correction_Factors()
     Next
     
     'Get number of rows
-    iRow = wsStandards.Cells(Columns.Count, 1).End(xlUp).Row - 2
+    iRow = wsStandards.Cells(Columns.count, 1).End(xlUp).Row - 2
     
     'Re Dim variables to proper sizes
     ReDim rWireLot(iRow)
@@ -497,7 +436,7 @@ Sub Write_Wire_Correction_Factors()
     ''**************Error Checking - Number of Points*********************
     If iNumPointsTotalInWireData <> iNumOfTestPoints Then
         MsgBox "The number of points used does not equal the number of test points in the survey."
-        wsMain.Range("J56").value = "Wire Usage Does NOT Equal Number of Test Points - Message will go away when you Re-Run the Data Import"
+        wsMain.Range("J56").Value = "Wire Usage Does NOT Equal Number of Test Points - Message will go away when you Re-Run the Data Import"
         Exit Sub
     Else
         wsMain.Range("J56").ClearContents
@@ -524,26 +463,17 @@ Sub Write_Wire_Correction_Factors()
     
     'Get cell location of lower and upper range
     c = 0
-    If intTestTemp < rTempTested(0).value Then
-        MsgBox rTempTested(0).value & " is below the lowest certified temp for the wires you have chosen. Choose different wires."
-        
-        'Reset Worksheet
-        Application.ScreenUpdating = True
-        Application.EnableEvents = True
-        
-        'Password Protect Worksheet
-        Worksheets("TUS_Worksheet").Protect Password:="JGIPyro"
-        Worksheets("Interp").Protect Password:="JGIPyro"
-        
-        Exit Sub
+    If intTestTemp < rTempTested(0).Value Then
+        MsgBox rTempTested(0).Value & " is below the lowest certified temp for the wires you have chosen. Choose different wires."
+        Resume CleanExit
     End If
     
     Do While c < (iColumn)
         If intTestTemp >= rTempTested(c) Then
             intLowCellNum = rTempTested(c).Column
-            intLowTemp = rTempTested(c).value
+            intLowTemp = rTempTested(c).Value
             intHighCellNum = rTempTested(c).Offset(0, 1).Column
-            intHighTemp = rTempTested(c).Offset(0, 1).value
+            intHighTemp = rTempTested(c).Offset(0, 1).Value
         End If
         c = c + 1
     Loop
@@ -551,7 +481,7 @@ Sub Write_Wire_Correction_Factors()
     'Calculate Correction Factor
     For i = LBound(rWireLot) To (UBound(rWireLot) - 1)
         'Label the Wirelot in New Interp Sheet
-        ws.Range("B" & 11 + i).value = rWireLot(i)
+        ws.Range("B" & 11 + i).Value = rWireLot(i)
         
         'Get the Values for the wirelot (Low Temp CF and High Temp CF)
         dLowCF = wsStandards.Cells(rWireLot(i).Row, intLowCellNum)
@@ -583,30 +513,15 @@ Sub Write_Wire_Correction_Factors()
     
     'Call Daqbook Correction Sub
     Call Write_Daqbook_Correction_Factors
-      
-    'Start Screen Updates
+
+CleanExit:
     Application.ScreenUpdating = True
     Application.EnableEvents = True
-    
-    'Password Protect Worksheet
-    Worksheets("TUS_Worksheet").Protect Password:="JGIPyro"
-    Worksheets("Interp").Protect Password:="JGIPyro"
-    
-error_Alert2:
-    If Err Then
-        'Output Error Message
-        MsgBox "Wire Correction " & Err.Description
-        
-        'Reset Worksheet
-        Application.ScreenUpdating = True
-        Application.EnableEvents = True
-        
-        'Password Protect Worksheet
-        Worksheets("TUS_Worksheet").Protect Password:="JGIPyro"
-        Worksheets("Interp").Protect Password:="JGIPyro"
-        
-    End If
-    
+    Exit Sub
+
+HandleError:
+    MsgBox "Wire Correction " & Err.Description
+    Resume CleanExit
 End Sub
 
 
@@ -642,11 +557,11 @@ Private Sub Write_Daqbook_Correction_Factors()
     For c = 0 To 5
         If intTestTemp > rTempTested(c) Then
             intLowCellNum = rTempTested(c).Column
-            intLowTemp = rTempTested(c).value
+            intLowTemp = rTempTested(c).Value
             intHighCellNum = rTempTested(c).Offset(0, 1).Column
-            intHighTemp = rTempTested(c).Offset(0, 1).value
+            intHighTemp = rTempTested(c).Offset(0, 1).Value
             intMidCellNum = rTempMidTested(c + 1).Column
-            intMidTemp = rTempMidTested(c + 1).value
+            intMidTemp = rTempMidTested(c + 1).Value
         End If
     Next
     
@@ -689,25 +604,25 @@ Private Sub Write_Daqbook_Correction_Factors()
     'Write correction factor
     For i = 0 To iNumOfTestPoints - 1
 
-        If wsMain.Shapes("Check Box 5").ControlFormat.value = 1 Then
+        If wsMain.Shapes("Check Box 5").ControlFormat.Value = 1 Then
              'Put Correction factor
             dCF = wsStandards.Cells(16 + i, cfTempCell)
-            rDBPoints(i).value = WorksheetFunction.Round(dCF, 10)
+            rDBPoints(i).Value = WorksheetFunction.Round(dCF, 10)
         End If
         
-        If wsMain.Shapes("Check Box 6").ControlFormat.value = 1 Then
+        If wsMain.Shapes("Check Box 6").ControlFormat.Value = 1 Then
              'Put Correction factor
             dCF = wsStandards.Cells(30 + i, cfTempCell)
-            rDBPoints(i).value = WorksheetFunction.Round(dCF, 10)
+            rDBPoints(i).Value = WorksheetFunction.Round(dCF, 10)
         End If
         
-        If wsMain.Shapes("Check Box 6").ControlFormat.value <> 1 And wsMain.Shapes("Check Box 5").ControlFormat.value <> 1 Then
+        If wsMain.Shapes("Check Box 6").ControlFormat.Value <> 1 And wsMain.Shapes("Check Box 5").ControlFormat.Value <> 1 Then
             'Put Correction factor
             dCF = wsStandards.Cells(2 + i, cfTempCell)
-            rDBPoints(i).value = WorksheetFunction.Round(dCF, 10)
+            rDBPoints(i).Value = WorksheetFunction.Round(dCF, 10)
         End If
         
-        If wsMain.Shapes("Check Box 6").ControlFormat.value = 1 And wsMain.Shapes("Check Box 5").ControlFormat.value = 1 Then
+        If wsMain.Shapes("Check Box 6").ControlFormat.Value = 1 And wsMain.Shapes("Check Box 5").ControlFormat.Value = 1 Then
             MsgBox "You can not check both CF offset boxes at the same time. Please uncheck one or both boxes and click Recalculate Correction Factors Button."
             Exit For
         End If

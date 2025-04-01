@@ -36,7 +36,7 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Set rTargetInspDD = wsTarget.Range("D7")
         
     'Initization Settings
-    On Error GoTo Whoa
+    On Error GoTo HandleError
     
     'Check to see if the list has changed
     If Not Intersect(Target, Columns(34)) Is Nothing Then
@@ -44,13 +44,12 @@ Private Sub Worksheet_Change(ByVal Target As Range)
         'Stop Events
         Application.ScreenUpdating = False
         Application.EnableEvents = False
-        wsTarget.Unprotect Password:="JGIPyro"
         
         'Populate Target Company Cell
-        If rTargetCompanyCell.value <> "" Or Not (IsEmpty(rTargetCompanyCell.value)) Then
+        If rTargetCompanyCell.Value <> "" Or Not (IsEmpty(rTargetCompanyCell.Value)) Then
             
             'Get number of rows
-            iLastRowCompany = wsSource.Range("B2", wsSource.Range("B2").End(xlDown)).Rows.Count
+            iLastRowCompany = wsSource.Range("B2", wsSource.Range("B2").End(xlDown)).Rows.count
             
             'Set ranges
             Set rSourceCompanyNames = wsSource.Range("B2:B" & iLastRowCompany + 1)
@@ -66,7 +65,7 @@ Private Sub Worksheet_Change(ByVal Target As Range)
             For Each r In rSourceCompanyNames
                 
                 'Get the value of the cell
-                v = r.value
+                v = r.Value
                 
                 'Check to see if v is empty
                 If v <> "" Then
@@ -81,8 +80,8 @@ Private Sub Worksheet_Change(ByVal Target As Range)
                         iCompanyListPointer = iCompanyListPointer + 1
                         
                         'Populate Company List for Drop Down
-                        wsSource.Range("K" & iCompanyListPointer).value = CStr(v)
-                        wsSource.Range("J" & iCompanyListPointer).value = r.Offset(, 1).value
+                        wsSource.Range("K" & iCompanyListPointer).Value = CStr(v)
+                        wsSource.Range("J" & iCompanyListPointer).Value = r.Offset(, 1).Value
                                         
                     Else
                     
@@ -121,7 +120,7 @@ Private Sub Worksheet_Change(ByVal Target As Range)
         If rTargetInspCell <> "" Or Not IsEmpty(rTargetInspCell) Then
             
             'Get number of rows
-            iLastRowInsp = wsSource.Range("N2", wsSource.Range("N2").End(xlDown)).Rows.Count
+            iLastRowInsp = wsSource.Range("N2", wsSource.Range("N2").End(xlDown)).Rows.count
             
             'Set ranges
             Set rSourceInspNames = wsSource.Range("O2:O" & iLastRowInsp + 1)
@@ -152,20 +151,14 @@ Private Sub Worksheet_Change(ByVal Target As Range)
         
     End If
     
-    'Restart Events
-    Application.EnableEvents = True
-    Application.ScreenUpdating = True
-    wsTarget.Protect Password:="JGIPyro"
 
-            
-LetsContinue:
-    Application.EnableEvents = True
+CleanExit:
     Application.ScreenUpdating = True
-    wsTarget.Protect Password:="JGIPyro"
+    Application.EnableEvents = True
     Exit Sub
-    
-Whoa:
-    MsgBox Err.Description
-    Resume LetsContinue
+
+HandleError:
+    MsgBox Err.Description & Chr(13) & "Error Number: " & Err.Number, vbExclamation
+    Resume CleanExit
 End Sub
 

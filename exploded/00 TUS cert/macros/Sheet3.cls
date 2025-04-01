@@ -19,12 +19,9 @@ Private Sub Worksheet_Calculate()
     'Pre event settings
     Application.EnableEvents = False
     Application.ScreenUpdating = False
-    Worksheets("Data_Sheet").Unprotect Password:="JGIPyro"
-    Worksheets("Data_Sheet_15_28").Unprotect Password:="JGIPyro"
-    Worksheets("Data_Sheet_29_40").Unprotect Password:="JGIPyro"
     
     'Check for errors
-    On Error GoTo error_Alert
+    On Error GoTo HandleError
     
     'Define all variables
     Dim beginRow As Range, endRow As Range, changeRow(16) As Range
@@ -56,24 +53,13 @@ Private Sub Worksheet_Calculate()
         x1 = x1 + 1
     Loop
     
-    'Post Event Settings
-    Application.EnableEvents = True
+CleanExit:
     Application.ScreenUpdating = True
-    Worksheets("Data_Sheet").Protect Password:="JGIPyro"
-    Worksheets("Data_Sheet_15_28").Protect Password:="JGIPyro"
-    Worksheets("Data_Sheet_29_40").Protect Password:="JGIPyro"
-    
-error_Alert:
-    If Err Then
-        'Output Error Message
-        MsgBox Err.Description & Chr(13) & Err.Number
-        
-        'Reset Worksheet
-        Application.ScreenUpdating = True
-        Application.EnableEvents = True
-        Worksheets("Data_Sheet").Protect Password:="JGIPyro"
-        Worksheets("Data_Sheet_15_28").Protect Password:="JGIPyro"
-        Worksheets("Data_Sheet_29_40").Protect Password:="JGIPyro"
-    End If
+    Application.EnableEvents = True
+    Exit Sub
+
+HandleError:
+    MsgBox Err.Description & Chr(13) & "Error Number: " & Err.Number, vbExclamation
+    Resume CleanExit
 End Sub
 

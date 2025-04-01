@@ -11,8 +11,8 @@ Option Explicit
 
 Private Sub Worksheet_Change(ByVal Target As Range)
     If Intersect(Target, Range("D19, G19, J19, M19, D31, G31, J31, M31")) Is Nothing Then Exit Sub
-    
-    Worksheets("Comparison_Report").Unprotect Password:="JGIPyro"
+
+    On Error GoTo HandleError
     Application.EnableEvents = False
     Application.ScreenUpdating = False
     
@@ -84,20 +84,14 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Else
         r8.NumberFormat = "0.0°F"
     End If
-    
+
+CleanExit:
     Application.ScreenUpdating = True
     Application.EnableEvents = True
-    Worksheets("Comparison_Report").Protect Password:="JGIPyro"
+    Exit Sub
 
-error_Alert:
-    If Err Then
-        'Output Error Message
-        MsgBox Err.Description & Chr(13) & Err.Number
-        
-        'Reset Worksheet
-        Application.ScreenUpdating = True
-        Application.EnableEvents = True
-        Worksheets("Comparison_Report").Protect Password:="JGIPyro"
-    End If
+HandleError:
+    MsgBox Err.Description & Chr(13) & "Error Number: " & Err.Number, vbExclamation
+    Resume CleanExit
 End Sub
 
