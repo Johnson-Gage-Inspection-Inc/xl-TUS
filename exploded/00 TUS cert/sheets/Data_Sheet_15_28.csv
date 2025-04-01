@@ -7,7 +7,7 @@
 ,Operator:,=Main!D7,,,,,,Survey Start Time:,=Main!$D$30,,,Survey is Underlined,,,,
 ,,,,,,,,,,,,,,,,
 ,,,,,,,,"=IF(Main!K15=""SIM Load Hot"",Main!N59,"""")",,,,,,,,
-,,,,,,,,"=IF(AND(Main!E60 <> """", Main!K60 <>""""),Main!N60,IF(AND(Main!E61<>"""",Main!K61<>""""),Main!N61,""""))",,,,,,,,
+,,,,,,,,"=IF(OR(Main!E60="""",Main!K60=""""),IF(OR(Main!E61="""",Main!K61=""""),"""",Main!N61),Main!N60)",,,,,,,,
 ,,,,,,,,,,,,,,,,
 ,=DaqBook_RAW_Data!Q2,"=IF(ISBLANK(DaqBook_RAW_Data!R2),"""",15)","=IF(ISBLANK(DaqBook_RAW_Data!S2),"""",16)","=IF(ISBLANK(DaqBook_RAW_Data!T2),"""",17)","=IF(ISBLANK(DaqBook_RAW_Data!U2),"""",18)","=IF(ISBLANK(DaqBook_RAW_Data!V2),"""",19)","=IF(ISBLANK(DaqBook_RAW_Data!W2),"""",20)","=IF(ISBLANK(DaqBook_RAW_Data!X2),"""",21)","=IF(ISBLANK(DaqBook_RAW_Data!Y2),"""",22)","=IF(ISBLANK(DaqBook_RAW_Data!Z2),"""",23)","=IF(ISBLANK(DaqBook_RAW_Data!AA2),"""",24)","=IF(ISBLANK(DaqBook_RAW_Data!AB2),"""",25)","=IF(ISBLANK(DaqBook_RAW_Data!AC2),"""",26)","=IF(ISBLANK(DaqBook_RAW_Data!AD2),"""",27)","=IF(ISBLANK(DaqBook_RAW_Data!AE2),"""",28)",
 ,,,,,,,,,,,,"=IF(ISBLANK(DaqBook_RAW_Data!AB3),"""",DaqBook_RAW_Data!AB3)","=IF(ISBLANK(DaqBook_RAW_Data!AC3),"""",DaqBook_RAW_Data!AC3)","=IF(ISBLANK(DaqBook_RAW_Data!AD3),"""",DaqBook_RAW_Data!AD3)",,
