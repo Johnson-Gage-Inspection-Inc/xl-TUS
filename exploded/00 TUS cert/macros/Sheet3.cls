@@ -12,9 +12,7 @@ Option Explicit
 Private Sub Worksheet_Calculate()
     
     'Check for data
-    If Worksheets("Data_Sheet").Range("B16") = "" Then
-        Exit Sub
-    End If
+    If Worksheets("Data_Sheet").Range("B16") = "" Then Exit Sub
     
     'Pre event settings
     Application.EnableEvents = False
@@ -23,36 +21,24 @@ Private Sub Worksheet_Calculate()
     'Check for errors
     On Error GoTo HandleError
     
-    'Define all variables
-    Dim beginRow As Range, endRow As Range, changeRow(16) As Range
-    Dim hold1 As Double, hold2 As Double
-    Dim x1 As Long, x2 As Long, amountChar1 As Long, amountChar2 As Long
-            
-    'Assign cell locations to variables
-    Set beginRow = Range("P1")
-    Set endRow = Range("P2")
-        
-    'See how many char are in the address, is always A so this checks for two or three digits
-    amountChar1 = Len(beginRow)
-    amountChar2 = Len(endRow)
-    
     'Clear the underlining
     Worksheets("Data_Sheet").Range("B12:P903").Font.Underline = False
     Worksheets("Data_Sheet_15_28").Range("B12:P903").Font.Underline = False
     Worksheets("Data_Sheet_29_40").Range("B12:P903").Font.Underline = False
     
     'Assign the starting row and ending row
-    x1 = Right(beginRow, amountChar1 - 1)
-    x2 = Right(endRow, amountChar2 - 1)
+    Dim x1 As Long, x2 As Long
+    x1 = CLng(Mid(Range("P1").Value, 2))
+    x2 = CLng(Mid(Range("P2").Value, 2))
 
     'Underline the survey data
-    Do While x1 <= x2
-        Worksheets("Data_Sheet").Rows(x1).Font.Underline = True
-        Worksheets("Data_Sheet_15_28").Rows(x1).Font.Underline = True
-        Worksheets("Data_Sheet_29_40").Rows(x1).Font.Underline = True
-        x1 = x1 + 1
-    Loop
-    
+    Dim i As Long
+    For i = x1 To x2
+        Worksheets("Data_Sheet").Rows(i).Font.Underline = True
+        Worksheets("Data_Sheet_15_28").Rows(i).Font.Underline = True
+        Worksheets("Data_Sheet_29_40").Rows(i).Font.Underline = True
+    Next i
+
 CleanExit:
     Application.ScreenUpdating = True
     Application.EnableEvents = True

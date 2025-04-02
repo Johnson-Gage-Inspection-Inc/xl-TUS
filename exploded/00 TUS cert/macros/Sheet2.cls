@@ -17,13 +17,13 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Application.ScreenUpdating = False
     Dim iCells As Variant, rRanges As Variant
     
-        iCells = Array("D19", "G19", "J19", "M19", "D31", "G31", "J31", "M31")
+    iCells = Array("D19", "G19", "J19", "M19", "D31", "G31", "J31", "M31")
     rRanges = Array("D10:D18", "G10:G18", "J10:J18", "M10:M18", _
                     "D22:D30", "G22:G30", "J22:J30", "M22:M30")
     
     Dim i As Long
     For i = 0 To UBound(iCells)
-        With Range(rRanges(idx))
+        With Range(rRanges(i))
             .NumberFormat = IIf(Range(iCells(i)).Value = 0, "0°F", "0.0°F")
         End With
     Next i
