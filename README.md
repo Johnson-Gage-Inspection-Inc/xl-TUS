@@ -19,7 +19,7 @@ The goal of the TUS process is to validate and certify that each industrial oven
 2. **Data Collection**
    - Thermocouples are installed in specific locations per the furnace layout.
    - The **DAQBook** logs temperature readings during the test cycle.
-   - These raw logs are saved in `DaqBook_RAW_Data`.
+   - These raw logs are pasted into in `DaqBook_RAW_Data`.
 
 3. **Data Processing & Analysis**
    - **Correction factors** are applied from `Standards_Info` and `Standards_Import`.
