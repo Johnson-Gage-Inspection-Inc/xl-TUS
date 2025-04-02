@@ -12,17 +12,13 @@ Option Explicit
 Sub populateSF()
 
     Dim rPos(40) As Range, rThermo(40) As Range, rLow(40) As Range, rHigh(40) As Range, rAvg(40) As Range
-    Dim i As Long
-    Dim sC As String, sP As String, sT As String, sL As String, sH As String, sA As String, sZ As String
-    Dim sRLow As String, sRHigh As String, sRA
-    Dim wb As Workbook
-    Dim ws As Worksheet
-    
+    Dim sZ As String
     
     Application.EnableEvents = False
     Application.ScreenUpdating = False
     
     'Initialize the individual cell variables for output grid
+    Dim i As Long
     For i = 1 To 40
         
         Set rPos(i) = Cells(1, 25 + (i * 5))
