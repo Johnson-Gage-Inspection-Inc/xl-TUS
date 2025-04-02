@@ -26,7 +26,7 @@ Private Sub Worksheet_Calculate()
     'Define all variables
     Dim beginRow As Range, endRow As Range, changeRow(16) As Range
     Dim hold1 As Double, hold2 As Double
-    Dim x1 As Integer, x2 As Integer, amountChar1 As Integer, amountChar2 As Integer
+    Dim x1 As Long, x2 As Long, amountChar1 As Long, amountChar2 As Long
             
     'Assign cell locations to variables
     Set beginRow = Range("P1")

@@ -12,7 +12,7 @@ Option Explicit
 Sub populateSF()
 
     Dim rPos(40) As Range, rThermo(40) As Range, rLow(40) As Range, rHigh(40) As Range, rAvg(40) As Range
-    Dim i As Integer
+    Dim i As Long
     Dim sC As String, sP As String, sT As String, sL As String, sH As String, sA As String, sZ As String
     Dim sRLow As String, sRHigh As String, sRA
     Dim wb As Workbook
@@ -23,8 +23,7 @@ Sub populateSF()
     Application.ScreenUpdating = False
     
     'Initialize the individual cell variables for output grid
-    i = 1
-    Do While i <= 40
+    For i = 1 To 40
         
         Set rPos(i) = Cells(1, 25 + (i * 5))
         Set rThermo(i) = Cells(1, 26 + (i * 5))
@@ -32,11 +31,7 @@ Sub populateSF()
         Set rHigh(i) = Cells(1, 28 + (i * 5))
         Set rAvg(i) = Cells(1, 29 + (i * 5))
         
-        If i < 10 Then
-            sZ = "0"
-        Else
-            sZ = ""
-        End If
+        sZ = IIf(i < 10, "0", "")
                 
         rPos(i).Value = "NV0" & sZ & i & "__c"
         rThermo(i).Value = "ResultText0" & sZ & i & "__c"
@@ -49,9 +44,7 @@ Sub populateSF()
         rLow(i).Offset(2, 0).Formula = "=IF(Main!N" & 71 + i & "=0,"""", Round(Main!N" & 71 + i & ",1))"
         rHigh(i).Offset(2, 0).Formula = "=IF(Main!O" & 71 + i & "=0,"""", Round(Main!O" & 71 + i & ",1))"
         rAvg(i).Offset(2, 0).Formula = "=IF(Main!P" & 71 + i & "=0,"""", Round(Main!P" & 71 + i & ",1))"
-        
-        i = i + 1
-    Loop
+    Next i
     
 
     Application.EnableEvents = True

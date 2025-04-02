@@ -11,13 +11,13 @@ Public Sub ExportVisualBasicCode()
     Const Padding = 24
 
     Dim VBComponent As Object
-    Dim count As Integer
+    Dim count As Long
     Dim path As String
     Dim directory As String
     Dim extension As String
     Dim fso As Object
-    Dim totalComponents As Integer
-    Dim progress As Integer
+    Dim totalComponents As Long
+    Dim progress As Long
 
     Set fso = CreateObject("Scripting.FileSystemObject")
     directory = ActiveWorkbook.path & "\exploded\00 TUS cert\macros"

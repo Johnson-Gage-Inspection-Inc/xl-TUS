@@ -18,13 +18,13 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Dim r, aCell As Range, rFurnaceList As Range, wireSetForSF(6) As Range, searchedSFId(6) As Range
     Dim sSearchString As String, sRangeName As String, sFurnaceList As String, sTmp As String, sArr() As String
     Dim v As Variant
-    Dim i As Integer, iHold As Integer
+    Dim i As Long, iHold As Long
 
     Dim wbTarget As Workbook:  Set wbTarget = ThisWorkbook
     Dim c As Collection:       Set c = New Collection
     Dim sDDString As String:   sDDString = ""
     Dim wsSource As Worksheet: Set wsSource = wbTarget.Worksheets("Furnace_Data")
-    Dim iLastRow As Integer:   iLastRow = wsSource.Range("B2").End(xlDown).Row - 1
+    Dim iLastRow As Long:      iLastRow = wsSource.Range("B2").End(xlDown).Row - 1
     Dim rSourceNames As Range: Set rSourceNames = wsSource.Range("B2:B" & iLastRow)
     Dim wsTarget As Worksheet: Set wsTarget = wbTarget.Worksheets("Main")
     Dim rFurnaceDD As Range:   Set rFurnaceDD = wsTarget.Range("D6")

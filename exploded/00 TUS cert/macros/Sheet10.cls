@@ -16,8 +16,8 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Dim rTempList As Range, rCompanyList As Range, rHandheldList As Range
 
     'Set Workbook/Worksheet variables
-    Dim wb As Workbook:         Set wb = ThisWorkbook
-    Dim wsTarget As Worksheet:  Set wsTarget = wb.Worksheets("Main")
+    Dim wb As Workbook:              Set wb = ThisWorkbook
+    Dim wsTarget As Worksheet:       Set wsTarget = wb.Worksheets("Main")
 
     'Set Ranges
     Dim rTargetCompanyCell As Range: Set rTargetCompanyCell = Me.Range("B2")
@@ -38,11 +38,11 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Application.EnableEvents = False
 
     'Populate Target Company Cell
-    If rTargetCompanyCell.Value <> "" Or Not (IsEmpty(rTargetCompanyCell.Value)) Then
-        Dim iLastRowCompany As Integer:     iLastRowCompany = Me.Range("B2").End(xlDown).Row - 1
+    If rTargetCompanyCell.Value <> "" Or Not IsEmpty(rTargetCompanyCell) Then
+        Dim iLastRowCompany As Long:        iLastRowCompany = Me.Range("B2").End(xlDown).Row - 1
         Dim rSourceCompanyNames As Range:   Set rSourceCompanyNames = Me.Range("B2:B" & iLastRowCompany + 1)
         Dim c As Collection:                Set c = New Collection
-        Dim iCompanyListPointer As Integer: iCompanyListPointer = 0
+        Dim iCompanyListPointer As Long:    iCompanyListPointer = 0
         Dim dict As Object:                 Set dict = CreateObject("Scripting.Dictionary") ' Late binding
         Dim v As String
         
@@ -67,7 +67,7 @@ Private Sub Worksheet_Change(ByVal Target As Range)
 
     'Populate Inspector Cell
     If rTargetInspCell <> "" Or Not IsEmpty(rTargetInspCell) Then
-        Dim iLastRowInsp As Integer:    iLastRowInsp = Me.Range("N2").End(xlDown).Row - 1
+        Dim iLastRowInsp As Long:    iLastRowInsp = Me.Range("N2").End(xlDown).Row - 1
         Dim rSourceInspNames As Range:  Set rSourceInspNames = Me.Range("O2:O" & iLastRowInsp + 1)
 
         'Create Inspector Named Range

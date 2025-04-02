@@ -36,8 +36,8 @@ Sub Read_External_Workbook()
     Dim rDBDate As Range, rDBName As Range, rDBPointsS() As Range, rDBPointsT() As Range, rDBCertTestTemp(6) As Range, rDBPointNum(40) As Range
     Dim wireLotRange(6) As Range
     Dim wireLot(6) As String, wireLotLetter(6) As String, wireLotNames(6) As String, wireLotNumber(6) As String
-    Dim charNumber As Integer, charNumberB As Integer, charNumberA As Integer, d As Integer, iDBNumPoints As Integer, iDBCertTemps(6) As Integer
-    Dim c As Integer, intWireLotAmt As Integer, intDistWireLotAmt As Integer, i As Integer, x As Integer, intDistNumFileNames As Integer, intDistNumUsedWireLots As Integer
+    Dim charNumber As Long, charNumberB As Long, charNumberA As Long, d As Long, iDBNumPoints As Long, iDBCertTemps(6) As Long
+    Dim c As Long, intWireLotAmt As Long, intDistWireLotAmt As Long, i As Long, x As Long, intDistNumFileNames As Long, intDistNumUsedWireLots As Long
     Dim k As Long
     Dim bWireLotMatch As Boolean
     Dim v As Variant, v2 As Variant
@@ -375,9 +375,9 @@ Sub Write_Wire_Correction_Factors()
     
     'Define all variables
     Dim MyDictionary As Object
-    Dim intTestTemp As Integer, intLowTemp As Integer, intHighTemp As Integer, c As Integer, intLowCellNum As Integer, intLastPoint As Integer
-    Dim intHighCellNum As Integer, d As Integer, iColumn As Integer, iRow As Integer, iHoldR As Integer, iHoldC As Integer
-    Dim i As Integer, iNumOfTestPoints As Integer, iNumPointsTotalInWireData As Integer
+    Dim intTestTemp As Long, intLowTemp As Long, intHighTemp As Long, c As Long, intLowCellNum As Long, intLastPoint As Long
+    Dim intHighCellNum As Long, d As Long, iColumn As Long, iRow As Long, iHoldR As Long, iHoldC As Long
+    Dim i As Long, iNumOfTestPoints As Long, iNumPointsTotalInWireData As Long
     Dim rCF() As Range, rTempTested() As Range, rWireLot() As Range, rWireLotMain(6) As Range, rNumPointsMain(6) As Range
     Dim rWirePoints(40) As Range
     Dim rLowTemp As Range, rHighTemp As Range, rCheckTemps As Range
@@ -528,8 +528,8 @@ End Sub
 Private Sub Write_Daqbook_Correction_Factors()
 
     'Define all variables
-    Dim intTestTemp As Integer, intLowTemp As Integer, intHighTemp As Integer, c As Integer, intLowCellNum As Integer, intLastPoint As Integer, intMidCellNum As Integer, intMidTemp As Integer
-    Dim intHighCellNum As Integer, d As Integer, i As Integer, iNumOfTestPoints As Integer, cfTemp As Integer, cfTempCell As Integer
+    Dim intTestTemp As Long, intLowTemp As Long, intHighTemp As Long, c As Long, intLowCellNum As Long, intLastPoint As Long, intMidCellNum As Long, intMidTemp As Long
+    Dim intHighCellNum As Long, d As Long, i As Long, iNumOfTestPoints As Long, cfTemp As Long, cfTempCell As Long
     Dim rCF() As Range, rTempTested(6) As Range, rTempMidTested(5) As Range
     Dim rDBPoints(40) As Range
     Dim ws As Worksheet, wsStandards As Worksheet, wsMain As Worksheet, wsTUSWork As Worksheet

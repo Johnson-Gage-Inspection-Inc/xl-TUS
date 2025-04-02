@@ -16,8 +16,8 @@ Sub Printselection()
     Dim printSheets As Variant
     Dim i As Long: i = 0
     Dim k As Long
-    Dim te As Integer
-    Dim TestCol As Integer
+    Dim te As Long
+    Dim TestCol As Long
         
     'Set print area for each of the Data sheets
     TestCol = 2   '<<< 1=A, 2=B, 3=C, etc
@@ -69,12 +69,12 @@ Sub Printselection()
 End Sub
 
 '~~> Function required to find the list from Col B
-Function FindRange(FirstRange As Range, StrSearch As String, iOffset As Integer) As String
+Function FindRange(FirstRange As Range, StrSearch As String, iOffset As Long) As String
 
     Dim aCell As Range, bCell As Range, oRange As Range, rListStart As Range, rHold As Range
     Dim ExitLoop As Boolean
     Dim strTemp As String
-    Dim i As Integer
+    Dim i As Long
     
     'Find the first cell with the same company anme
     Set aCell = FirstRange.Find(what:=StrSearch, LookIn:=xlValues, _
