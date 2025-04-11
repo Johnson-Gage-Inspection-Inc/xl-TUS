@@ -13,10 +13,11 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     
     'Setup Worksheet
     On Error GoTo HandleError
+
     
     'Initialize variables
-    Dim r, aCell As Range, rFurnaceList As Range, wireSetForSF(6) As Range, searchedSFId(6) As Range
-    Dim sSearchString As String, sFurnaceList As String, sTmp As String, sArr() As String
+    Dim r, aCell As Range, wireSetForSF(6) As Range, searchedSFId(6) As Range
+    Dim sSearchString As String, sTmp As String, sArr() As String
     Dim v As Variant
     Dim i As Long, iHold As Long
 
@@ -41,21 +42,9 @@ Private Sub Worksheet_Change(ByVal Target As Range)
             GoTo CleanExit
         End If
 
-        'Find the Range for th list
-        sFurnaceList = FindRange(rSourceNames, sSearchString, 2)
-
-        'Reactivate the Target worksheet
-        wsTarget.Activate
-
-        'Create Named Range
-        Set rFurnaceList = wsSource.Range(sFurnaceList)
-        wbTarget.Names.Add Name:="FurnaceList", RefersTo:=rFurnaceList
-
-        'Clear previous Drop Down list
-        Range("D6:H6").ClearContents: rFurnaceDD.Validation.Delete
-
-        '~~> Create the DV List
-        ApplyValidation rFurnaceDD, "=FurnaceList"
+        If Not Intersect(Target, Me.Range("D5")) Is Nothing Then
+            ActiveWorkbook.Connections("Query - ClientAssets_GetAssetsByClientCompanyId").Refresh
+        End If
     End If
 
     If Not Intersect(Target, Range("D48:I48")) Is Nothing Then
