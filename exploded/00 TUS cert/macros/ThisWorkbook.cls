@@ -21,6 +21,7 @@ Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
             .Value = "Ver. " & Format(Now, "mm.dd.yy")
         End With
         ExportVisualBasicCode
+        ExportAllQueryMCode
     
         GoHome
     End If

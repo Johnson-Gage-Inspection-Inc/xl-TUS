@@ -13,18 +13,20 @@ Public Sub ExportVisualBasicCode()
     Dim VBComponent As Object
     Dim count As Long
     Dim path As String
-    Dim directory As String
+    Dim exportPath As String
     Dim extension As String
     Dim fso As Object
     Dim totalComponents As Long
     Dim progress As Long
+    Dim fileBaseName As String
+    fileBaseName = Left(ThisWorkbook.Name, InStrRev(ThisWorkbook.Name, ".") - 1)
 
     Set fso = CreateObject("Scripting.FileSystemObject")
-    directory = ActiveWorkbook.path & "\exploded\00 TUS cert\macros"
+    exportPath = ActiveWorkbook.path & "\exploded\" & fileBaseName & "\macros"
     count = 0
 
-    If Not fso.FolderExists(directory) Then
-        Call fso.CreateFolder(directory)
+    If Not fso.FolderExists(exportPath) Then
+        Call fso.CreateFolder(exportPath)
     End If
 
     totalComponents = ActiveWorkbook.VBProject.VBComponents.count
@@ -48,7 +50,7 @@ Public Sub ExportVisualBasicCode()
         On Error Resume Next
         Err.Clear
 
-        path = directory & "\" & VBComponent.Name & extension
+        path = exportPath & "\" & VBComponent.Name & extension
         Call VBComponent.Export(path)
 
         If Err.Number <> 0 Then
@@ -61,7 +63,7 @@ Public Sub ExportVisualBasicCode()
         On Error GoTo 0
     Next
 
-    Application.StatusBar = "? Successfully exported " & CStr(count) & " VBA files to " & directory
+    Application.StatusBar = "? Successfully exported " & CStr(count) & " VBA files to " & exportPath
     Application.OnTime Now + TimeSerial(0, 0, 5), "ClearStatusBar"
 End Sub
 
