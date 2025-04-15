@@ -1,0 +1,21 @@
+curl ^"https://jgiquality.qualer.com/GlobalAssetManager/Asset_Read^" ^
+  -H ^"accept: */*^" ^
+  -H ^"accept-language: en-US,en;q=0.9^" ^
+  -H ^"cache-control: no-cache, must-revalidate^" ^
+  -H ^"clientrequesttime: 2025-04-11T14:32:15^" ^
+  -H ^"content-type: application/x-www-form-urlencoded; charset=UTF-8^" ^
+  -b ^"cf_52662_id=8feb6fae-08a8-4031-b248-5c3beae42dee; _fuid=OWQzZGNjZWMtYTQ0YS00ZmE1LWFhNjEtNTdjY2NkZjJmZGEy; __utmz=147229740.1712691456.1.1.utmcsr=(direct)^|utmccn=(direct)^|utmcmd=(none); MFS0DK=0:::2; MFS0L9X=25574900-bed2-4f25-abe9-7b7083035441:::2; ajs_anonymous_id=98eaa4c6-dc04-4beb-bd79-ad1ccc81e8b3; _gcl_au=1.1.828456653.1737671505; mp_bfb01c59d1531c4cf9cd86439423aa91_mixpanel=^%^7B^%^22distinct_id^%^22^%^3A^%^20^%^22^%^24device^%^3A194954af6a6667-0a446c1984141-26011851-13c680-194954af6a6667^%^22^%^2C^%^22^%^24device_id^%^22^%^3A^%^20^%^22194954af6a6667-0a446c1984141-26011851-13c680-194954af6a6667^%^22^%^2C^%^22^%^24initial_referrer^%^22^%^3A^%^20^%^22^%^24direct^%^22^%^2C^%^22^%^24initial_referring_domain^%^22^%^3A^%^20^%^22^%^24direct^%^22^%^2C^%^22__mps^%^22^%^3A^%^20^%^7B^%^7D^%^2C^%^22__mpso^%^22^%^3A^%^20^%^7B^%^22^%^24initial_referrer^%^22^%^3A^%^20^%^22^%^24direct^%^22^%^2C^%^22^%^24initial_referring_domain^%^22^%^3A^%^20^%^22^%^24direct^%^22^%^7D^%^2C^%^22__mpus^%^22^%^3A^%^20^%^7B^%^7D^%^2C^%^22__mpa^%^22^%^3A^%^20^%^7B^%^7D^%^2C^%^22__mpu^%^22^%^3A^%^20^%^7B^%^7D^%^2C^%^22__mpr^%^22^%^3A^%^20^%^5B^%^5D^%^2C^%^22__mpap^%^22^%^3A^%^20^%^5B^%^5D^%^7D; _ga=GA1.2.170579144.1737671505; _ga_MQDQ7SCNEK=GS1.1.1738115170.2.0.1738115201.29.0.2017288033; Qualer.Employee.Login.SessionId=726377e5221d4da3996eccbc6afccc69; __RequestVerificationToken_L3NoYXJlZC1zZWN1cmVk0=PfCPK2Kwkqd_SOBzI4IijynQz7BwvXkeiji9bGI6PLnVJYjjkhc9CojuLwff6D1xDJ_uBe1dZOHV2k3ksjtLmNwFY3A1; GUID=^\^"6a619d4a-370b-4ded-b92e-665aecf9b115^\^"; __utmc=147229740; __utma=147229740.1552134142.1712691456.1744323856.1744396344.95; Qualer.auth=597E14183A968CB325A36ED423DA4EAFC334AFE403DA184D53AD32075F5B827FCA36A4572B1FC2F108E06624E0F7A975DCD26D15BF19AEC929358DD6DD1F9772B392A6C8D8B391E998F9557ACEE0DD5916891F00832509CB78936DDD25A68D51A1401F8522563432D3C7D8580A888F176C9B3F71B877489E2E9C282C906EC22BEFE4B6B4BBBB1AA2BD56452EBF38236A5E9A996F; __utmt_UA-62779523-2=1; __utmb=147229740.13.10.1744396344; RT=^\^"z=1^&dm=qualer.com^&si=af85b7fd-c8e6-4bf3-be4c-5dda7bdadc29^&ss=m9d4jkny^&sl=3c^&tt=5rh7^&bcn=https^%^3A^%^2F^%^2Fmetrics.qualer.com^%^2Fapi^%^2Fmetrics^\^"; ASP.NET_SessionId=g21gdpjnrergqmkwyupiywgk^" ^
+  -H ^"origin: https://jgiquality.qualer.com^" ^
+  -H ^"pragma: no-cache^" ^
+  -H ^"priority: u=1, i^" ^
+  -H ^"referer: https://jgiquality.qualer.com/clients/assets^" ^
+  -H ^"sec-ch-ua: ^\^"Google Chrome^\^";v=^\^"135^\^", ^\^"Not-A.Brand^\^";v=^\^"8^\^", ^\^"Chromium^\^";v=^\^"135^\^"^" ^
+  -H ^"sec-ch-ua-mobile: ?0^" ^
+  -H ^"sec-ch-ua-platform: ^\^"Windows^\^"^" ^
+  -H ^"sec-fetch-dest: empty^" ^
+  -H ^"sec-fetch-mode: cors^" ^
+  -H ^"sec-fetch-site: same-origin^" ^
+  -H ^"user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36^" ^
+  -H ^"x-requested-with: XMLHttpRequest^" ^
+  --data-raw ^"sort=^&page=1^&pageSize=20000^&group=^&filter=^&categoryIds=491^&categoryIds=2736^&categoryIds=1810^&categoryIds=25^&categoryIds=88^&assetsFilter=AllAssets^&search=^&filterProductId=^&filterAgreementId=^&__RequestVerificationToken=rwlGmSijlNipRtXFFEtOa5ZlrTMmG2tkSQqpDmuRCw9wM7DTiaH4W0d-iX18pFojAkBDmSVqfqaFOlgx6vFoSo5PloXB_mZapqwovW3Vfdoc5WMT0^" ^
+  > ^"Client_Asset_Read.json^"
