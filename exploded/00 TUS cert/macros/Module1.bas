@@ -215,7 +215,7 @@ Sub Read_External_Workbook()
     Next i
 
     x = 0
-    For Each v In obj.keys()
+    For Each v In obj.Keys()
        wireLot(x) = v
        x = x + 1
     Next v
@@ -271,7 +271,7 @@ Sub Read_External_Workbook()
         obj2(strFile(i)) = 1
     Next i
 
-    For Each v2 In obj2.keys()
+    For Each v2 In obj2.Keys()
        strFileDeDupped(x) = v2
        x = x + 1
     Next v2
@@ -610,4 +610,21 @@ Private Sub Write_Daqbook_Correction_Factors()
 
 End Sub
 
+Function GetUniqueValues(ByRef inputArray() As String) As Collection
+    Dim dict As Object
+    Dim i As Long
+    Set dict = CreateObject("Scripting.Dictionary")
+
+    For i = LBound(inputArray) To UBound(inputArray)
+        If Trim(inputArray(i)) <> "" Then
+            dict(Trim(inputArray(i))) = 1
+        End If
+    Next i
+
+    Set GetUniqueValues = New Collection
+    Dim key As Variant
+    For Each key In dict.Keys
+        GetUniqueValues.Add key
+    Next key
+End Function
 

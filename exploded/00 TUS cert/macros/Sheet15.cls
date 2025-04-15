@@ -12,6 +12,7 @@ Option Explicit
 Public Sub UpdateClientAssets(sCustomerName As String)
     If Trim$(sCustomerName) = "" Then
         ThisWorkbook.Worksheets("Main").Range("D6:H6").ClearContents
+        TruncateClientAssetsTable
         Exit Sub
     End If
 
@@ -21,3 +22,11 @@ Public Sub UpdateClientAssets(sCustomerName As String)
 
     Application.OnTime Now + TimeValue("00:00:02"), "FinalizeClientAssetsProtection"
 End Sub
+
+Private Sub TruncateClientAssetsTable()
+    Dim lo As ListObject
+    Set lo = Me.ListObjects("ClientAssets_GetAssetsByClientCompanyId_1")
+    If lo.DataBodyRange Is Nothing Then Exit Sub ' Already empty
+    lo.DataBodyRange.Rows.Delete
+End Sub
+
