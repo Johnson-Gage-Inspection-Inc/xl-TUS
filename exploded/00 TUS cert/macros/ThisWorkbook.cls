@@ -8,13 +8,11 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Private Sub Workbook_Open()
-    ' Only apply protection if not a template (.xltm)
-    If LCase(Right(ThisWorkbook.Name, 5)) <> ".xltm" Then
-        Call ProtectAllSheets
-    End If
+    ' Protect sheets with UserInterfaceOnly:=True
+    ProtectAllSheets
 End Sub
 Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
-    Call ProtectAllSheets
+    ProtectAllSheets
 
     If LCase(Right(ThisWorkbook.Name, 5)) = ".xltm" Then
         With ThisWorkbook.Sheets("Main").Range("A1")
@@ -36,12 +34,9 @@ Private Sub GoHome()
         ActiveWindow.ScrollRow = 1
         ActiveWindow.ScrollColumn = 1
 End Sub
-
 Private Sub ProtectAllSheets()
     Dim ws As Worksheet
     For Each ws In ThisWorkbook.Worksheets
-        If Not ws.ProtectContents Then
-            ws.Protect Password:="JGIPyro", UserInterfaceOnly:=True
-        End If
+        ws.Protect Password:="JGIPyro", UserInterfaceOnly:=True
     Next ws
 End Sub
