@@ -9,3 +9,15 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Option Explicit
 
+Public Sub UpdateClientAssets(sCustomerName As String)
+    If Trim$(sCustomerName) = "" Then
+        ThisWorkbook.Worksheets("Main").Range("D6:H6").ClearContents
+        Exit Sub
+    End If
+
+    Me.Unprotect Password:="JGIPyro"
+
+    ThisWorkbook.Connections("Query - ClientAssets_GetAssetsByClientCompanyId").Refresh
+
+    Application.OnTime Now + TimeValue("00:00:02"), "FinalizeClientAssetsProtection"
+End Sub

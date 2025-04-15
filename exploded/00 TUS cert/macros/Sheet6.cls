@@ -13,38 +13,28 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     
     'Setup Worksheet
     On Error GoTo HandleError
-
     
     'Initialize variables
     Dim r, aCell As Range, wireSetForSF(6) As Range, searchedSFId(6) As Range
-    Dim sSearchString As String, sTmp As String, sArr() As String
+    Dim sTmp As String, sArr() As String
     Dim v As Variant
     Dim i As Long, iHold As Long
 
-    Dim wbTarget As Workbook:  Set wbTarget = ThisWorkbook
-    Dim c As Collection:       Set c = New Collection
-    Dim sDDString As String:   sDDString = ""
-    Dim wsSource As Worksheet: Set wsSource = wbTarget.Worksheets("Furnace_Data")
-    Dim iLastRow As Long:      iLastRow = wsSource.Range("B2").End(xlDown).Row - 1
-    Dim rSourceNames As Range: Set rSourceNames = wsSource.Range("B2:B" & iLastRow)
-    Dim wsTarget As Worksheet: Set wsTarget = wbTarget.Worksheets("Main")
-    Dim rFurnaceDD As Range:   Set rFurnaceDD = wsTarget.Range("D6")
+    Dim wbTarget As Workbook:   Set wbTarget = ThisWorkbook
+    Dim c As Collection:        Set c = New Collection
+    Dim sDDString As String:    sDDString = ""
+    Dim sSearchString As String: sSearchString = Me.Range("D5").Value
+    Dim wsSource As Worksheet:  Set wsSource = wbTarget.Worksheets("Furnace_Data")
+    Dim iLastRow As Long:       iLastRow = wsSource.Range("B2").End(xlDown).Row - 1
+    Dim rSourceNames As Range:  Set rSourceNames = wsSource.Range("B2:B" & iLastRow)
+    Dim wsTarget As Worksheet:  Set wsTarget = wbTarget.Worksheets("Main")
+    Dim rFurnaceDD As Range:    Set rFurnaceDD = wsTarget.Range("D6")
     
     Application.EnableEvents = False
     Application.ScreenUpdating = False
     '~~> Capturing change in cell D5
     If Not Intersect(Target, Range("D5")) Is Nothing Then
-        sSearchString = Range("D5").Value
-
-        'Check to make sure there is a company selected, if not, reset worksheet
-        If Trim$(sSearchString) = "" Then
-            Range("D6:H6").ClearContents
-            GoTo CleanExit
-        End If
-
-        If Not Intersect(Target, Me.Range("D5")) Is Nothing Then
-            ActiveWorkbook.Connections("Query - ClientAssets_GetAssetsByClientCompanyId").Refresh
-        End If
+        Call Sheet15.UpdateClientAssets(sSearchString)
     End If
 
     If Not Intersect(Target, Range("D48:I48")) Is Nothing Then

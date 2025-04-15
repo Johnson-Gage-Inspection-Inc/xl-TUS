@@ -36,7 +36,21 @@ Private Sub GoHome()
 End Sub
 Private Sub ProtectAllSheets()
     Dim ws As Worksheet
+    Dim lo As ListObject
+
     For Each ws In ThisWorkbook.Worksheets
-        ws.Protect Password:="JGIPyro", UserInterfaceOnly:=True
+        ' Unlock all table ranges to allow queries/macros to write
+        For Each lo In ws.ListObjects
+            lo.Range.Locked = False
+        Next lo
+
+        ' Re-protect with UserInterfaceOnly
+        ws.Unprotect Password:="JGIPyro"
+        ws.Protect Password:="JGIPyro", _
+                    UserInterfaceOnly:=True, _
+                    AllowFiltering:=True, _
+                    AllowSorting:=False, _
+                    AllowUsingPivotTables:=False
     Next ws
 End Sub
+

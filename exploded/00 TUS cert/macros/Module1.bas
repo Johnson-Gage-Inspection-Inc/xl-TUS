@@ -31,10 +31,9 @@ Sub Read_External_Workbook()
     Application.EnableEvents = False
      
     'Define Object for Target Workbook
-    Dim strPath As String, strFile(6) As String, strFileDeDupped(6) As String
+    Dim strFile(6) As String, strFileDeDupped(6) As String
     Dim strFileHold1 As String, strFileHold2 As String, strFileHold3 As String, strDBFileName As String
     Dim rDBDate As Range, rDBName As Range, rDBPointsS() As Range, rDBPointsT() As Range, rDBCertTestTemp(6) As Range, rDBPointNum(40) As Range
-    Dim wireLotRange(6) As Range
     Dim wireLot(6) As String, wireLotLetter(6) As String, wireLotNames(6) As String, wireLotNumber(6) As String
     Dim charNumber As Long, charNumberB As Long, charNumberA As Long, d As Long, iDBNumPoints As Long, iDBCertTemps(6) As Long
     Dim c As Long, intWireLotAmt As Long, intDistWireLotAmt As Long, i As Long, x As Long, intDistNumFileNames As Long, intDistNumUsedWireLots As Long
@@ -42,22 +41,13 @@ Sub Read_External_Workbook()
     Dim bWireLotMatch As Boolean
     Dim v As Variant, v2 As Variant
     Dim obj As Object, obj2 As Object
-    Dim Source_Workbook As Workbook, Source_Worksheet As Worksheet, Target_Workbook As Workbook, Target_Worksheet As Worksheet
-            
+    Dim Source_Workbook As Workbook, Source_Worksheet As Worksheet, Target_Worksheet As Worksheet
+
     'Assign the Workbook Path
-    strPath = GetRootDrive(ThisWorkbook.path) & "\Wires_Daqbook\"
+    Dim strPath As String: strPath = GetRootDrive(ThisWorkbook.path) & "\Wires_Daqbook\"
     
     'Set Target Workbook
-    Set Target_Workbook = ThisWorkbook
-    Set Target_Worksheet = Target_Workbook.Worksheets("Standards_Import")
-    
-    'Initialize the wirelot information from Main page
-    Set wireLotRange(0) = Worksheets("Main").Cells(55, 4)
-    Set wireLotRange(1) = Worksheets("Main").Cells(55, 5)
-    Set wireLotRange(2) = Worksheets("Main").Cells(55, 6)
-    Set wireLotRange(3) = Worksheets("Main").Cells(55, 7)
-    Set wireLotRange(4) = Worksheets("Main").Cells(55, 8)
-    Set wireLotRange(5) = Worksheets("Main").Cells(55, 9)
+    Set Target_Worksheet = ThisWorkbook.Worksheets("Standards_Import")
     
     '=======================================================================================
     'Start Daqbook Data ====================================================================
@@ -67,26 +57,16 @@ Sub Read_External_Workbook()
     Set rDBDate = Worksheets("Main").Range("D14")
     
     Select Case rDBName
-        Case "J1"
-            iDBNumPoints = Worksheets("Standards_Info").Range("E2")
-        Case "J2"
-            iDBNumPoints = Worksheets("Standards_Info").Range("E3")
-        Case "J3"
-            iDBNumPoints = Worksheets("Standards_Info").Range("E4")
-        Case "K2"
-            iDBNumPoints = Worksheets("Standards_Info").Range("E5")
-        Case "K3"
-            iDBNumPoints = Worksheets("Standards_Info").Range("E6")
-        Case "K4"
-            iDBNumPoints = Worksheets("Standards_Info").Range("E7")
-        Case "K5"
-            iDBNumPoints = Worksheets("Standards_Info").Range("E8")
-        Case "K6"
-            iDBNumPoints = Worksheets("Standards_Info").Range("E9")
-        Case "N1"
-            iDBNumPoints = Worksheets("Standards_Info").Range("E10")
-        Case "N2"
-            iDBNumPoints = Worksheets("Standards_Info").Range("E11")
+        Case "J1":  iDBNumPoints = Worksheets("Standards_Info").Range("E2")
+        Case "J2":  iDBNumPoints = Worksheets("Standards_Info").Range("E3")
+        Case "J3":  iDBNumPoints = Worksheets("Standards_Info").Range("E4")
+        Case "K2":  iDBNumPoints = Worksheets("Standards_Info").Range("E5")
+        Case "K3":  iDBNumPoints = Worksheets("Standards_Info").Range("E6")
+        Case "K4":  iDBNumPoints = Worksheets("Standards_Info").Range("E7")
+        Case "K5":  iDBNumPoints = Worksheets("Standards_Info").Range("E8")
+        Case "K6":  iDBNumPoints = Worksheets("Standards_Info").Range("E9")
+        Case "N1":  iDBNumPoints = Worksheets("Standards_Info").Range("E10")
+        Case "N2":  iDBNumPoints = Worksheets("Standards_Info").Range("E11")
     End Select
     
     'Set Array Size for Cells on source and target worksheets
@@ -215,18 +195,17 @@ Sub Read_External_Workbook()
     'Start WireLot Data ====================================================================
 
     'Set holding ints to 0
-    c = 0
     intWireLotAmt = 0
-    
 
     'Check and see how many wirelots need to be processed
-    Do While c < 6
-        If wireLotRange(c).Value <> "" Then
-            intWireLotAmt = intWireLotAmt + 1
-            wireLotNames(c) = Trim(wireLotRange(c).Value)
-        End If
-        c = c + 1
-    Loop
+    For c = 0 To 5
+        With Worksheets("Main").Cells(55, 4 + c)
+            If .Value <> "" Then
+                intWireLotAmt = intWireLotAmt + 1
+                wireLotNames(c) = Trim(.Value)
+            End If
+        End With
+    Next c
 
     'Remove duplicate lot numbers and create array for getting files
     Set obj = CreateObject("Scripting.Dictionary")
