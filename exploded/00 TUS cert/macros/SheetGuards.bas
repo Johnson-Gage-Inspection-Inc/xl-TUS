@@ -22,10 +22,9 @@ Public Function IsViewOnlySheet(ws As Worksheet) As Boolean
     Set comp = ThisWorkbook.VBProject.VBComponents(ws.CodeName)
     vbCode = comp.CodeModule.Lines(1, comp.CodeModule.CountOfLines)
 
-    IsViewOnlySheet = (InStr(1, vbCode, "Call EnforceReadOnlyTables", vbTextCompare) > 0)
+    IsViewOnlySheet = (InStr(1, vbCode, "EnforceSheetIsViewOnly", vbTextCompare) > 0)
     Exit Function
 
 Fail:
     IsViewOnlySheet = False
 End Function
-
