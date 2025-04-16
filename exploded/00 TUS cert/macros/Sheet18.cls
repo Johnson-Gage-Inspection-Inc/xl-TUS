@@ -8,4 +8,6 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Option Explicit
-
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+    Call EnforceSheetIsViewOnly(Me)
+End Sub
