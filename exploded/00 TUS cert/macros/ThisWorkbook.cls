@@ -36,16 +36,15 @@ Private Sub GoHome()
 End Sub
 Private Sub ProtectAllSheets()
     Dim ws As Worksheet
-    Dim lo As ListObject
 
     For Each ws In ThisWorkbook.Worksheets
-        ' Re-protect with UserInterfaceOnly
-        ws.Unprotect Password:="JGIPyro"
-        ws.Protect Password:="JGIPyro", _
-                    UserInterfaceOnly:=True, _
-                    AllowFiltering:=True, _
-                    AllowSorting:=False, _
-                    AllowUsingPivotTables:=False
+        If Not IsViewOnlySheet(ws) Then
+            ws.Unprotect Password:="JGIPyro"
+            ws.Protect Password:="JGIPyro", _
+                        UserInterfaceOnly:=True, _
+                        AllowFiltering:=True, _
+                        AllowSorting:=False, _
+                        AllowUsingPivotTables:=False
+        End If
     Next ws
 End Sub
-
