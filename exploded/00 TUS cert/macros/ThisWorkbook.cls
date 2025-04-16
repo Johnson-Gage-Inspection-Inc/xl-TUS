@@ -18,8 +18,12 @@ Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
         With ThisWorkbook.Sheets("Main").Range("A1")
             .Value = "Ver. " & Format(Now, "mm.dd.yy")
         End With
-        ExportVisualBasicCode
-        ExportAllQueryMCode
+        If ThisWorkbook.VBProject.Protection = 0 Then
+            ExportVisualBasicCode
+            ExportAllQueryMCode
+        Else
+            MsgBox "VBA project is locked. To export code, unlock it in the VBA editor first (Alt+F11), then save again.", vbExclamation, "Export Skipped"
+        End If
     
         GoHome
     End If
