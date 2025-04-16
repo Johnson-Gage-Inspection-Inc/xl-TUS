@@ -36,10 +36,11 @@ Private Sub GoHome()
 End Sub
 Private Sub ProtectAllSheets()
     Dim ws As Worksheet
-
     For Each ws In ThisWorkbook.Worksheets
-        If Not IsViewOnlySheet(ws) Then
-            ws.Unprotect Password:="JGIPyro"
+        ws.Unprotect Password:="JGIPyro"
+        If IsViewOnlySheet(ws) Then
+            ws.Visible = xlSheetVeryHidden
+        Else
             ws.Protect Password:="JGIPyro", _
                         UserInterfaceOnly:=True, _
                         AllowFiltering:=True, _

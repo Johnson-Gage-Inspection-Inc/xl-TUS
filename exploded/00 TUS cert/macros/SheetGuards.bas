@@ -14,17 +14,16 @@ Public Sub EnforceSheetIsViewOnly(sh As Worksheet)
     End If
 End Sub
 Public Function IsViewOnlySheet(ws As Worksheet) As Boolean
-    Dim vbCode As String
-    Dim comp As Object
+    Dim lo As ListObject
 
-    On Error GoTo Fail
+    On Error Resume Next
 
-    Set comp = ThisWorkbook.VBProject.VBComponents(ws.CodeName)
-    vbCode = comp.CodeModule.Lines(1, comp.CodeModule.CountOfLines)
+    For Each lo In ws.ListObjects
+        If lo.SourceType <> xlSrcRange Then
+            IsViewOnlySheet = True
+            Exit Function
+        End If
+    Next lo
 
-    IsViewOnlySheet = (InStr(1, vbCode, "EnforceSheetIsViewOnly", vbTextCompare) > 0)
-    Exit Function
-
-Fail:
     IsViewOnlySheet = False
 End Function
