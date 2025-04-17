@@ -18,7 +18,7 @@ Public Sub UpdateClientAssets(sCustomerName As String)
 End Sub
 Private Sub TruncateClientAssetsTable()
     Dim lo As ListObject
-    Set lo = Me.ListObjects("ClientAssets_GetAssetsByClientCompanyId_1")
+    Set lo = Me.ListObjects("ClientAssets")
     If lo.DataBodyRange Is Nothing Then Exit Sub ' Already empty
     lo.DataBodyRange.Rows.Delete
 End Sub
