@@ -38,6 +38,10 @@ Private Sub GoHome()
 End Sub
 Private Sub ProtectAllSheets()
     Dim ws As Worksheet
+    
+    Application.ScreenUpdating = False
+    Application.EnableEvents = False
+
     For Each ws In ThisWorkbook.Worksheets
         ws.Unprotect Password:="JGIPyro"
         If IsViewOnlySheet(ws) Then
@@ -50,4 +54,8 @@ Private Sub ProtectAllSheets()
                         AllowUsingPivotTables:=False
         End If
     Next ws
+
+    Application.EnableEvents = True
+    Application.ScreenUpdating = True
 End Sub
+
