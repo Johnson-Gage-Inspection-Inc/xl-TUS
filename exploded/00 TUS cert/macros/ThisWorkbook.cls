@@ -20,10 +20,8 @@ Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
         End With
         If ThisWorkbook.VBProject.Protection = 0 Then
             ExportVisualBasicCode
-            ExportAllQueryMCode
-        Else
-            MsgBox "VBA project is locked. To export code, unlock it in the VBA editor first (Alt+F11), then save again.", vbExclamation, "Export Skipped"
         End If
+        ExportAllQueryMCode
     
         GoHome
     End If
