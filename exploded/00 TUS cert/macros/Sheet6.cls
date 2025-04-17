@@ -23,7 +23,6 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Dim wbTarget As Workbook:   Set wbTarget = ThisWorkbook
     Dim c As Collection:        Set c = New Collection
     Dim sDDString As String:    sDDString = ""
-    Dim sSearchString As String: sSearchString = Me.Range("D5").Value
     Dim wsSource As Worksheet:  Set wsSource = wbTarget.Worksheets("Furnace_Data")
     Dim iLastRow As Long:       iLastRow = wsSource.Range("B2").End(xlDown).Row - 1
     Dim rSourceNames As Range:  Set rSourceNames = wsSource.Range("B2:B" & iLastRow)
@@ -32,9 +31,15 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     
     Application.EnableEvents = False
     Application.ScreenUpdating = False
-    '~~> Capturing change in cell D5
+
+    ' Company Name
     If Not Intersect(Target, Range("D5")) Is Nothing Then
-        Call Sheet15.UpdateClientAssets(sSearchString)
+        Call Sheet15.UpdateClientAssets(Range("D5").Value)
+    End If
+    
+    ' Client Asset Id
+    If Not Intersect(Target, Range("D6:H6")) Is Nothing Then
+        Call Sheet22.UpdateClientAssetAttributes
     End If
 
     If Not Intersect(Target, Range("D48:I48")) Is Nothing Then
