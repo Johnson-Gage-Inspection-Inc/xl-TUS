@@ -14,6 +14,7 @@ Public Sub UpdateClientAssets(sCustomerName As String)
         TruncateClientAssetsTable
         Exit Sub
     End If
+    ThisWorkbook.Connections("Query - ClientAssets").Refresh
     ThisWorkbook.Connections("Query - ClientAssets_GetAssetsByClientCompanyId").Refresh
 End Sub
 Private Sub TruncateClientAssetsTable()
