@@ -29,12 +29,22 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Dim wsTarget As Worksheet:  Set wsTarget = wbTarget.Worksheets("Main")
     Dim rFurnaceDD As Range:    Set rFurnaceDD = wsTarget.Range("D6")
     
-    Application.EnableEvents = False
     Application.ScreenUpdating = False
+    Application.EnableEvents = False
 
     ' Company Name
-    If Not Intersect(Target, Range("D5")) Is Nothing Then
-        Call Sheet15.UpdateClientAssets(Range("D5").Value)
+    ' If Not Intersect(Target, Range("D5")) Is Nothing Then
+    '     Call Sheet15.UpdateClientAssets(Range("D5").Value)
+    ' End If
+    
+    ' Daqbook Tag
+    If Not Intersect(Target, Range("D9")) Is Nothing Then
+        Call Sheet38.UpdateDaqbookServiceRecords
+    End If
+    
+    ' Work Item Number
+    If Not Intersect(Target, Range("K14")) Is Nothing Then
+        Call Sheet25.UpdateServiceOrderItems
     End If
     
     ' Client Asset Id

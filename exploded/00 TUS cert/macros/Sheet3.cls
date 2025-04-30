@@ -8,7 +8,6 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Option Explicit
-
 Private Sub Worksheet_Calculate()
     
     'Check for data
@@ -48,4 +47,3 @@ HandleError:
     MsgBox Err.Description & Chr(13) & "Error Number: " & Err.Number, vbExclamation
     Resume CleanExit
 End Sub
-
