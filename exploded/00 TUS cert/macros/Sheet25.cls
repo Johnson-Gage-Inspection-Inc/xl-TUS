@@ -25,5 +25,6 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     ThisWorkbook.Connections("Query - AssetId").Refresh
     ThisWorkbook.Connections("Query - ClientCompanyId").Refresh
     Sheet27.UpdateClientAsset
-    Sheet22.UpdateClientAssetAttributes
+    Sheet30.UpdateServiceOrder
+    ' Sheet22.UpdateClientAssetAttributes  ' Uncomment me once assets have attributes
 End Sub
