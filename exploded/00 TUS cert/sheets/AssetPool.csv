@@ -1,71 +1,70 @@
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,
+AssetId,SerialNumber,AssetUser,AssetTag,AssetName,AssetDescription,AssetMaker,RootCategoryName,CategoryName,Department,Notes,ManufacturerPartNumber,ProductName,ProductDescription,ProductManufacturer
+1235344,12799,Pyro,RAD1,Radiometer - PMA2100 - 12799,"Radiometer Model PMA2100 S/N 12799, used with detector Model PMA2110 S/N 012903",Solar Light,Spectrometers,Spectroradiometer,,Calibrate in solar light at frequency of 315 to 415 nanometers. Adjust instrument offset per results.,PMA2100,Solar Light’s versatile NIST-Traceable Model PMA2100 Radiometer is designed for scientific professionals,Solar Light’s versatile NIST-Traceable Model PMA2100 Radiometer is designed for scientific professionals,Solar Light
+1235345,RCK1,Electrical Dept Calibrates this,RCK1,Resistor Calibration Kit - Atlas Ci3000 Weather-Ometer Calibration Kit - RCK1,Atlas Weather-Ometer Ci3000 Calibration Kit; including four plugs with resistors and extension cord.,Atlas,Resistance / Impedance Meters,Resistance Tester,,WP700000 or per calibrating body,Ci3000,Atlas Ci3000 Weather-Ometer/ Fade-Ometer,,Atlas Copco
+1235388,355114,Pyrometry Dept. Field Standard,PRG3,"Pressure Gage, Digital - Crystal Digital 500PSIXP2I - 355114",A digital pressure gage used for field calibrations from 0-500psi,Crystal,Pressure & Vacuum Meters,Digital Vacuum/Pressure Gauge,,per calibrating body,500PSIXP2i,Crystal 500PSIXP2i Digital Test Gauge,,Crystal Engineering
+1235400,K201-K214,,K200SET,"Thermocouple Wire Set - ""K"" Chromel-Alumel - K201-K214","A Type ""K"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermocouple WIre,TC Wire,,WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235401,K801-K816,Pyro,K800SET,"Thermocouple Wire Set - ""K"" Chromel-Alumel - K801-K816","A Type ""K"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermocouple WIre,TC Wire,Pyrometry Department,WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235402,K901-K910,Pyro,K900SET,"Thermocouple Wire Set - ""K"" Chromel-Alumel - K901-K910","A Type ""K"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235403,1611086,Matt Coleman,FC9,"Calibrator, Digital - Fluke 726 Field Potentiometer - 1611806",Field Calibrator used for testing of Temperature and Electrical instrumentation.,Fluke,Multimeters & Calibrators,Electrical Calibrator,,"Per WP4100. Calibrate input and output for J, K, T, N, T/Cs, mA, and VDC. Calibrate output only for PT100.",726,Multifunction Calibrator,Multifunction Calibrator,Fluke
+1235416,THG4,Peyton Ensey,THG4,ACU-RITE No. 00325 Thermo-Hygrometer,ACU-RITE No. 00325 Thermo-Hygrometer,AcuRite,Humidity Instruments,Digital Hygrometer & Thermometer,Dimensional Laboratory - South,WP4003,00325,Model 00325 Indoor Temperature and Humidity Monitor,,AcuRite
+1235426,807408,,J1,Data Acquisition System - DAQBOOK/2005,"DaqBook 2005, with connections for 40 type ""J"" thermocouples.",IOtech,DAQ Modules,Data Acquisition System,Pyrometry Department,Per WP4102. Calibrate against primary or secondary standard instrument.,DaqBook/2005,IOT DaqBook/2005 Multifunction Data Acquisition System,,IOtech
+1235428,T16,Pyrometry - Karsten Blyseth,T16,"Sportline 228 Stopwatch, Timer (KB)","Sportline 228 Stopwatch, Timer (KB)",Sportline,Timers & Stopwatches,Stopwatch,Pyrometry Department,WP600001,228,Sportline 228 Stopwatch,,Sportline
+1235444,SAT Probes,Pyro,SAT1,Thermocouple Probe Set - - SAT Probes,"Set of sheathed ""N"" probes for SATs. To be recalibrated or replaced quarterly.  SAT0325A, SAT0325B, SAT0325C, SAT0325D, SAT0325E, SAT0325F, SAT0325G, SAT0325H, SAT0325I",Unidentified,Thermometers,Thermocouple Probe,,WP4007,GENERIC 3464,Thermocouple Probe,,Unidentified
+1235489,JGI1196,Pyrometry,THG25,"Acu-Rite No. 00309SBDI Thermo-Hygrometer, Digital","Acu-Rite No. 00309SBDI Thermo-Hygrometer, Digital",AcuRite,Humidity Instruments,Digital Hygrometer & Thermometer,Pyrometry Department,WP4003,00309SBDI,AR 00309SBDI Benchtop Temperature and Humidity Chamber,,AcuRite
+1235498,K701-K710,,K700SET,"Thermocouple Wire Set - ""K"" Chromel-Alumel - K701-K710","A Type ""K"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,,Thermocouple WIre,Pyrometry Department,WP4007,GENERIC 3435,Thermocouple WIre,,Unidentified
+1235500,K521-K534,,K520SET,"Thermocouple Wire Set - ""K"" Chromel-Alumel - K521-K534","A Type ""K"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermocouple WIre,TC Wire,,WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235501,SBP Set 2,Pyrometry Department,SBP2,Thermocouple Probes - Salt Bath - SBP Set 2,"A Type ""N"" Thermocouple wire set S/N's 26A-E, 210A-210E  used for Temperature Uniformity Surveys.",Salt Bath,Thermometers,Thermocouple Probe,,WP4007,GENERIC 3464,Thermocouple Probe,,Unidentified
+1235502,J101-J110,,J100SET,"Thermocouple Wire Set - ""J"" Iron-Constantan - J101-J110","A Type ""J"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235503,TP120 Probes,Pyrometry Department,TP120,"Thermocouple Probes - ""J"" Iron-Constantan - TP120 Probes","A Type ""J"" thermocouples used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Thermocouple Probe,,WP4007,GENERIC 3464,Thermocouple Probe,,Unidentified
+1235504,J501-J514,,J500SET,"Thermocouple Wire Set - ""J"" Iron-Constantan - J501-J514","A Type ""J"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235505,J111-J120,,J111SET,"Thermocouple Wire Set - ""J"" Iron-Constantan - J111-J120","A Type ""J"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235506,J601-J610,,J600SET,"Thermocouple Wire Set - ""J"" Iron-Constantan - J601-J610","A Type ""J"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,In accordance with JGI WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235507,K401-K416,,K400SET,"Thermocouple Wire Set - ""K"" Chromel-Alumel - K401-K416","A Type ""K"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235508,K01-K16,,K00SET,"Thermocouple Wire Set - ""K"" Chromel-Alumel - K01-K16","A Type ""K"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235509,K601-K610,,K600SET,"Thermocouple Wire Set - ""K"" Chromel-Alumel - K601-K610","A Type ""K"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermocouple WIre,TC Wire,,WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235510,J701-J710,,J700SET,"Thermocouple Wire Set - ""J"" Iron-Constantan - J701-J710","A Type ""J"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235517,THG22,Matt Coleman,THG22,"Seoh Thermometer/Hygrometer, Digital","Seoh Thermometer/Hygrometer, Digital",Seoh,Humidity Instruments,Digital Hygrometer & Thermometer,Pyrometry Department,WP4003,GENERIC 116,Digital Hygrometer & Thermometer,Generic Digital Hygrometer & Thermometer,Unidentified
+1235522,49742247MV,Kevin Ferrante,FC10,"Calibrator, Digital - Fluke 726 Field Potentiometer - 2916025",Field Calibrator used for testing of Temperature and Electrical instrumentation.,Fluke,Multimeters & Calibrators,Process Calibrator,,"Per WP4100. Calibrate input and output for J, K, T, N, T/Cs, mA, and VDC. Calibrate output only for PT100.",726,Fluke 726 Precision Multifunction Process Calibrator,,Fluke
+1235526,N101-N112,,N100SET,"Thermocouple Wire Set - ""N"" Nicrosil-Nisil - N101-N112","A Type ""N"" thermocouple wire set used for Temperature Uniformity Surveys. Made from N20-2-T wire.",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235540,,,N/A,"Thermocouple Wire Spools - CBL-20-JJ-FEP-FEP-NC, CBL-20-JJ-G-G-NC -","Type ""J"" Special limits insulated thermocouple wire rolls used for field pyrometry.",Unidentified,Thermocouple WIre,TC Wire,Pyrometry Department,Per WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235543,808005,,K5,Data Acquisition System - DAQBOOK/2005,"Daqbook 2005 with 28 type ""K"" Thermocouples. S/N 808005 U/N K5",IOtech,DAQ Modules,Data Acquisition System,Pyrometry Department,Calibrate against any primary or secondary standard instrument and in accordance with WP4100.,DaqBook/2005,IOT DaqBook/2005 Multifunction Data Acquisition System,,IOtech
+1235555,029531,Pyrometry,T2,SPER 810035C Stopwatch / Timer,SPER 810035C Stopwatch / Timer,SPER,Timers & Stopwatches,Stopwatch,Pyrometry Department,WP600001,810035,SS 810035 Digital Stop Watch,,Sper Scientific
+1235561,808004,,N2,Data Acquisition System - DAQBOOK/2000 - 808004,"Daqbook 2000 with connections for 14 type ""N"" thermocouples. S/N 808004 U/N N2",IOtech,DAQ Modules,Data Acquisition System,Pyrometry Department,Calibrate against primary or secondary standard instrument and In accordance with WP4102.,DaqBook/2005,IOT DaqBook/2005 Multifunction Data Acquisition System,,IOtech
+1235563,T15,Matt C,T15,Timer - Sportline,Stop watch Sportline,Sportline,Timers & Stopwatches,Stopwatch,Pyrometry Department,WP600001,228,Sportline 228 Stopwatch,,Sportline
+1235564,SBP Set 1,,SBP1,Thermocouple Probes - Salt Bath - SBP Set 1,"A Type ""N"" Thermocouple wire set S/N's 06A/B/C/D/E/F, 10A/B/C/D/E used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Thermocouple Probe,,WP4007,GENERIC 3464,Thermocouple Probe,,Unidentified
+1235567,,,N/A,Thermocouple Wire Spools - CBL-20-KK-SG(YWRD)-SG(TYW)-NC -,"Type ""K"" Special limits insulated thermocouple wire rolls used for field pyrometry.",Unidentified,Thermocouple WIre,TC Wire,Pyrometry Department,Per WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235569,1880060,Joey Craig,FC6,"Calibrator, Digital - Fluke 726 Field Potentiometer - 1880060",Field Calibrator used for testing of Temperature and Electrical instrumentation.,Fluke,Multimeters & Calibrators,Process Calibrator,,"Per WP4100. Calibrate input and output for J, K, T, N, T/Cs, mA, and VDC. Calibrate output only for PT100.",726,Fluke 726 Precision Multifunction Process Calibrator,,Fluke
+1235587,,,N/A,Thermocouple Wire Spools - CBL-20-KK-FEP-FEP-NC -,"Type ""K"" Special limits insulated thermocouple wire rolls used for field pyrometry.",Unidentified,Thermocouple WIre,TC Wire,Pyrometry Department,Per WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235590,J801-J816,,TWJ80,"Thermocouple Wire Set - ""J"" Iron-Constantan - J801-J816","A Type ""J"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235598,THG19,Kevin Ferrante,THG19,"ACU-RITE No. 00309SBDI Thermo-Hygrometer, Digital","ACU-RITE No. 00309SBDI Thermo-Hygrometer, Digital",AcuRite,Humidity Instruments,Digital Hygrometer & Thermometer,,WP4003,00309SBDI,AR 00309SBDI Benchtop Temperature and Humidity Chamber,,AcuRite
+1235610,L271 (JC),Joe Craig,T4,Timer - Sportline 2787 - L271 (JC),Stopwatch M/N Sportline 2787 S/N L271 ID: JC,Sportline,Timers & Stopwatches,Stopwatch,Pyrometry Department,WP600001,2787,Sportimeter Model 2787,,Sportline
+1235622,808173,,K6,Data Acquisition System - DAQBOOK/2005 - 808173,"Daqbook 2005 with 40 type ""K"" Thermocouples. S/N 808173 U/N K6",IOtech,DAQ Modules,Data Acquisition System,Pyrometry Department,Calibrate against any primary or secondary standard instrument and in accordance with WP4100.,DaqBook/2005,IOT DaqBook/2005 Multifunction Data Acquisition System,,IOtech
+1235626,9728087,Mike Ragonese,FC7,"Calibrator, Digital - Fluke 726 Field Potentiometer - 9728087",Field Calibrator used for testing of Temperature and Electrical instrumentation.,Fluke,Multimeters & Calibrators,Process Calibrator,,"WP4100. Calibrate input and output for J, K, T, N, T/Cs, mA, and VDC. Calibrate output only for PT100.",726,Fluke 726 Precision Multifunction Process Calibrator,,Fluke
+1235630,807705,,J3,Data Acquisition System - DAQBOOK/2005 - 807705,"DaqBook 2005, with connections for 40 type ""J"" thermocouples.",IOtech,DAQ Modules,Data Acquisition System,Pyrometry Department,Per WP4102. Calibrate against primary or secondary standard instrument.,DaqBook/2005,IOT DaqBook/2005 Multifunction Data Acquisition System,,IOtech
+1235639,9546011,Ryan Byars,FC14,"Calibrator, Digital - Fluke 726 Field Calibrator, Digital - 9546011",Field Calibrator used for testing of Temperature and Electrical instrumentation.,Fluke,Multimeters & Calibrators,Process Calibrator,Pyrometry Department,WP4100,726,Fluke 726 Precision Multifunction Process Calibrator,,Fluke
+1235646,J201-J214,,J200SET,"Thermocouple Wire Set - ""J"" Iron-Constantan - J201-J214","A type ""J"" thermocouple wire set used for temperature uniformity surveys",Unidentified,Thermocouple WIre,TC Wire,,WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235659,J301-J314,,J300SET,"Thermocouple Wire Set - ""J"" Iron-Constantan - J301-J314","A Type ""J"" thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235660,J01-J24,,J00SET,"Thermocouple Wire Set - ""J"" Iron-Constantan - J01-J24","A Type ""J"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235661,K301-K314,,K300 SET,"Thermocouple Wire Set - ""K"" Chromel-Alumel - K301-K314","A Type ""K"" Thermocouple wire set used for Temperature Uniformity Surveys.",Unidentified,Thermocouple WIre,TC Wire,,WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235664,,,N/A,Thermocouple Wire Spools - K20-2-HC -,"Type ""K"" Special Limits Wire",Unidentified,Thermocouple WIre,TC Wire,Pyrometry Department,Per WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235673,N01-N16,,N00SET,"Thermocouple Wire Set - ""N"" Nicrosil-Nisil - N01-N16","A Type ""N"" thermocouple wire set used for Temperature Uniformity Surveys. Made from N20-2-T wire.",Unidentified,Thermocouple WIre,TC Wire,Pyrometry Department,WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235677,,,N/A,Thermocouple Wire Spools - J20-2-TT -,"Type ""J"" Special limits Teflon Tape insulated thermocouple wire used for field pyrometry.",Unidentified,Thermocouple WIre,TC Wire,Pyrometry Department,Per WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235682,806337,,J2,Data Acquisition System - DAQBOOK/2005 - 806337,"DaqBook 2005, with connections for 40 type ""J"" thermocouples.",IOtech,DAQ Modules,Data Acquisition System,Pyrometry Department,Calibrate against primary or secondary standard instrument in accordance with WP4102.,DaqBook/2005,IOT DaqBook/2005 Multifunction Data Acquisition System,,IOtech
+1235686,807409,,K4,Data Acquisition System - DAQBOOK/2005 - 807409,"DaqBook 2005, with connections for 40 type ""K"" thermocouples",IOtech,DAQ Modules,Data Acquisition System,Pyrometry Department,Calibrate against primary or secondary standard instrument in accordance with WP4102.,DaqBook/2005,IOT DaqBook/2005 Multifunction Data Acquisition System,,IOtech
+1235688,,,N/A,Thermocouple Wire Spools - J20-2-HG -,"Type ""J"" Special limits High Temp insulated thermocouple wire used for field pyrometry.",Unidentified,Thermocouple WIre,TC Wire,,Per WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235704,T101-T108,,T100SET,"Thermocouple Wire Set - ""T"" Copper-Constantan - T101-T108","Thermocouple Wire Set - ""T"" Copper-Constantan - T101-T108",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235709,,,,Thermocouple Wire Spools - T20-2-T -,"Type ""T"" special limits teflon insulated wire for field pyrometry",Unidentified,Thermocouple WIre,TC Wire,Pyrometry Department,WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235743,2266208,James Haven,FC13,"Calibrator, Digital - Fluke 726 Field Potentiometer - 2266208",Field Calibrator used for testing of Temperature and Electrical instrumentation.,Fluke,Multimeters & Calibrators,Process Calibrator,,WP4102,726,Fluke 726 Precision Multifunction Process Calibrator,,Fluke
+1235767,High Temp J,,,"Thermocouple Wire Set - ""J"" Iron-Constantan - High Temp J",,Unidentified,Thermocouple WIre,TC Wire,,,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235768,Ultra High Temp K,,,"Thermocouple Wire Set - ""K"" Chromel-Alumel - Ultra High Temp K",,Unidentified,Thermocouple WIre,TC Wire,Pyrometry Department,,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235769,Ultra High Temp N,,,"Thermocouple Wire Set - ""N"" Nicrosil-Nisil - Ultra High Temp N",,Unidentified,Thermocouple WIre,TC Wire,Pyrometry Department,,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235770,ENV101,,ENV101 SET,"Thermocouple Wire Set - ""J"" Iron-Constantan - ENV1","Thermocouple wire set, protected set per AMS 2750G, 3.1.7.5",Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1235772,High Temp K,,,"Thermocouple Wire Set - ""K"" Chromel-Alumel - High Temp K",,Unidentified,Thermocouple WIre,TC Wire,,,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+1235777,K101 - K110,,K100SET,"Thermocouple Wire Set - ""K"" Chromel-Alumel - K101 - K110",Set of K low-temp thermocouple wires.,Unidentified,Thermometers,Temperature Sensor,Pyrometry Department,WP4007,GENERIC 1622,Temperature Sensor,Generic Temperature Sensor,Unidentified
+1446161,4029712,Jesse Regehr,FC15,"Calibrator, Digital - Fluke 726 Field Potentiometer - 4029712",Field Calibrator used for testing of Temperature and Electrical instrumentation.,Fluke,Multimeters & Calibrators,Electrical Calibrator,Pyrometry Department,,726,Multifunction Calibrator,Multifunction Calibrator,Fluke
+2336905,9491050,Nick Nolte,FC17,"Calibrator, Digital - Fluke 726 Field Potentiometer - 3359057",Field Calibrator used for testing of Temperature and Electrical instrumentation.,Fluke,Multimeters & Calibrators,Electrical Calibrator,Pyrometry Department,WP4102,726,Multifunction Calibrator,Multifunction Calibrator,Fluke
+2550412,3101177,Danny Turkali,FC18,"Calibrator, Digital - Fluke 726 Field Potentiometer",Field Calibrator used for testing of Temperature and Electrical instrumentation,Fluke,Multimeters & Calibrators,Process Calibrator,Pyrometry Department,"Per WP4100. Calibrate input and output for J, K, T, N, T/Cs, mA, and VDC. Calibrate output only for PT100.",726,Fluke 726 Precision Multifunction Process Calibrator,,Fluke
+2635568,N21-N34,,N20SET,"Thermocouple Wire Set - ""N"" Nicrosil-Nisil - N21-N34","A Type ""N"" thermocouple wire set used for Temperature Uniformity Surveys. Made from N20-2-T wire.",Unidentified,Thermocouple WIre,TC Wire,Pyrometry Department,WP4007,Generic 3436,Thermocouple Wire TC Wire,Generic 3436 TC Wire,Unidentified
+2701517,9482035,Joey Knutson,FC19,"Calibrator, Digital - Fluke 726 Field Potentiometer - 2916025",Field Calibrator used for testing of Temperature and Electrical instrumentation.,Fluke,Multimeters & Calibrators,Process Calibrator,Pyrometry Department,"Per WP4100. Calibrate input and output for J, K, T, N, T/Cs, mA, and VDC. Calibrate output only for PT100.",726,Fluke 726 Precision Multifunction Process Calibrator,,Fluke
+2822437,test,,test,Test Asset (Not real),Not a real asset,Unidentified,,Furnaces,,,GENERIC 2736,Furnaces,,Unidentified
+2822784,THG23,Ed Johnson,THG23,Unni Weather Station Indoor Outdoor Thermometer,Unni Weather Station Indoor Outdoor Thermometer,unni,,Humidity Instruments,Pyrometry Department,WP4003,UN0585CS,unni Weather Station Indoor Outdoor Thermometer,unni Weather Station Indoor Outdoor Thermometer,unni
