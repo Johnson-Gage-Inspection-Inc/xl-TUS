@@ -13,7 +13,7 @@ Public checkVal1 As Double
 Private Sub Worksheet_Calculate()
 
     'Check for errors ..
-    On Error GoTo HandleError
+    ' On Error GoTo HandleError
     
     'Define all variables
     Dim hy(40) As Range, ly(40) As Range, oPt(40) As Range
