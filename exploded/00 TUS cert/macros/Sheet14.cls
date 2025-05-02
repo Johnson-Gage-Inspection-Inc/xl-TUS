@@ -7,10 +7,10 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
-Sub Write_Wire_Correction_Factors()
+Public Sub Write_Wire_Correction_Factors()
 
     'Check for errors
-    On Error GoTo HandleError
+    ' On Error GoTo HandleError
     
     'Stop Screen Updates
     Application.ScreenUpdating = False
@@ -47,7 +47,12 @@ Sub Write_Wire_Correction_Factors()
     Next
     
     'Get number of rows
-    iRow = wsStandards.Cells(Columns.count, 1).End(xlUp).Row - 2
+    iRow = wsStandards.Cells(Columns.count, 1).End(xlUp).row - 2 ' FIXME: Evaluates to -1
+    
+    If iRow < 1 Then
+        MsgBox "Is Standards_Import empty?"
+        Exit Sub
+    End If
     
     'Re Dim variables to proper sizes
     ReDim rWireLot(iRow)
@@ -120,8 +125,8 @@ Sub Write_Wire_Correction_Factors()
         Me.Range("B" & 11 + i).Value = rWireLot(i)
         
         'Get the Values for the wirelot (Low Temp CF and High Temp CF)
-        dLowCF = wsStandards.Cells(rWireLot(i).Row, intLowCellNum)
-        dHighCF = wsStandards.Cells(rWireLot(i).Row, intHighCellNum)
+        dLowCF = wsStandards.Cells(rWireLot(i).row, intLowCellNum)
+        dHighCF = wsStandards.Cells(rWireLot(i).row, intHighCellNum)
         
         'Do the Math
         dTempSpread = intHighTemp - intLowTemp

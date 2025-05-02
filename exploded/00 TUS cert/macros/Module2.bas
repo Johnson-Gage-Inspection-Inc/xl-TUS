@@ -23,19 +23,19 @@ Sub Printselection()
     TestCol = 2   '<<< 1=A, 2=B, 3=C, etc
     
     Worksheets("Data_Sheet").Activate
-    For k = ActiveSheet.UsedRange.Rows.count To ActiveSheet.UsedRange.Row Step -1
+    For k = ActiveSheet.UsedRange.Rows.count To ActiveSheet.UsedRange.row Step -1
         If Cells(k, TestCol).Value <> "" Then Exit For
     Next k
     ActiveSheet.PageSetup.PrintArea = "A1:P" & k
     
     Worksheets("Data_Sheet_15_28").Activate
-    For k = ActiveSheet.UsedRange.Rows.count To ActiveSheet.UsedRange.Row Step -1
+    For k = ActiveSheet.UsedRange.Rows.count To ActiveSheet.UsedRange.row Step -1
         If Cells(k, TestCol).Value <> "" Then Exit For
     Next k
     ActiveSheet.PageSetup.PrintArea = "A1:P" & k
 
     Worksheets("Data_Sheet_29_40").Activate
-    For k = ActiveSheet.UsedRange.Rows.count To ActiveSheet.UsedRange.Row Step -1
+    For k = ActiveSheet.UsedRange.Rows.count To ActiveSheet.UsedRange.row Step -1
         If Cells(k, TestCol).Value <> "" Then Exit For
     Next k
     ActiveSheet.PageSetup.PrintArea = "A1:P" & k

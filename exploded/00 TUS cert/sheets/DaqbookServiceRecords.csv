@@ -1,39 +1,39 @@
 Name,Value
-AssetId,
-AssetServiceRecordId,
-ServiceScheduleSegmentId,
+AssetId,1235686
+AssetServiceRecordId,7918175
+ServiceScheduleSegmentId,187508
 ForwardSegmentId,
-ForwardNextService,
-ServiceOrderNumber,
-CustomOrderNumber,
-OrderItemNumber,
-CertificateNumber,
-ResultStatus,
-AsFoundResult,
-AsLeftResult,
-ServiceDate,
-SerialNumber,
-AssetTag,
+ForwardNextService,False
+ServiceOrderNumber,69536
+CustomOrderNumber,56561-069536
+OrderItemNumber,1
+CertificateNumber,K40225
+ResultStatus,Done
+AsFoundResult,NotAvailable
+AsLeftResult,NotAvailable
+ServiceDate,2025-02-03 00:00:00
+SerialNumber,807409
+AssetTag,K4
 AssetUser,
 AssetTagChange,
 AssetUserChange,
-ServiceNotes,
+ServiceNotes,Found in tolerance. No adjustment required. See attached Datasheets for details.
 SerialNumberChange,
-DueDate,
-NextServiceDate,
-ProviderTechnician,
-ProviderPhone,
-ProviderCompany,
-ServiceLevel,
+DueDate,2025-01-30 00:00:00
+NextServiceDate,2025-05-03 00:00:00
+ProviderTechnician,Kevin Ferrante
+ProviderPhone,316-943-7532
+ProviderCompany,Field Inspection
+ServiceLevel,Calibration
 ServiceLevelCode,
-NextServiceLevel,
+NextServiceLevel,3 Month Calibration
 NextServiceLevelCode,
-AssetName,
-AssetDescription,
-PartsCharge,
-PartsChargeBeforeDiscount,
-ServiceCharge,
-RepairsCharge,
-Guid,
-SegmentName,
-ScheduleName,
+AssetName,Data Acquisition System - DAQBOOK/2005 - 807409
+AssetDescription,"DaqBook 2005, with connections for 40 type ""K"" thermocouples"
+PartsCharge,0
+PartsChargeBeforeDiscount,0
+ServiceCharge,392.75
+RepairsCharge,0
+Guid,00000000-0000-0000-0000-000000000000
+SegmentName,3 Month Calibration
+ScheduleName,JGI Calibration PyroMechanical

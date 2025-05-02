@@ -9,7 +9,6 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Option Explicit
 Public checkVal1 As Double
-
 Private Sub Worksheet_Calculate()
 
     'Check for errors ..
@@ -122,7 +121,7 @@ Private Sub Worksheet_Calculate()
             End If
 
             'Get Column Information
-            colToSearch = oPt(i).Row - 36
+            colToSearch = oPt(i).row - 36
 
             If colToSearch < 15 Then
                 ptColumn = i + 1
