@@ -23,9 +23,6 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Dim wbTarget As Workbook:   Set wbTarget = ThisWorkbook
     Dim c As Collection:        Set c = New Collection
     Dim sDDString As String:    sDDString = ""
-    Dim wsSource As Worksheet:  Set wsSource = wbTarget.Worksheets("Furnace_Data")
-    Dim iLastRow As Long:       iLastRow = wsSource.Range("B2").End(xlDown).Row - 1
-    Dim rSourceNames As Range:  Set rSourceNames = wsSource.Range("B2:B" & iLastRow)
     Dim wsTarget As Worksheet:  Set wsTarget = wbTarget.Worksheets("Main")
     Dim rFurnaceDD As Range:    Set rFurnaceDD = wsTarget.Range("D6")
     
