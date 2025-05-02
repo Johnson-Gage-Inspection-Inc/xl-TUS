@@ -31,10 +31,10 @@ Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
     Application.ScreenUpdating = True
 End Sub
 Private Sub GoHome()
-        Sheets("Main").Select
-        Range("D3").Select
-        ActiveWindow.ScrollRow = 1
-        ActiveWindow.ScrollColumn = 1
+    Sheets("Main").Select
+    Range("D3").Select
+    ActiveWindow.ScrollRow = 1
+    ActiveWindow.ScrollColumn = 1
 End Sub
 Private Sub ProtectAllSheets()
     Dim ws As Worksheet
