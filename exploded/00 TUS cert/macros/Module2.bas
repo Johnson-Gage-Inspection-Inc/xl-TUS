@@ -1,5 +1,4 @@
 Attribute VB_Name = "Module2"
-
 Sub Printselection()
     
     'Check for errors

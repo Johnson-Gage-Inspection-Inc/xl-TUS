@@ -151,9 +151,6 @@ Public Sub Write_Wire_Correction_Factors()
             intLastPoint = intLastPoint + d
         End If
     Next
-    
-    'Call Daqbook Correction Sub
-    Call Write_Daqbook_Correction_Factors
 
 CleanExit:
     Application.ScreenUpdating = True
@@ -163,104 +160,4 @@ CleanExit:
 HandleError:
     MsgBox "Wire Correction " & Err.Description
     Resume CleanExit
-End Sub
-
-Private Sub Write_Daqbook_Correction_Factors()
-
-    'Define all variables
-    Dim intTestTemp As Long, intLowTemp As Long, intHighTemp As Long, c As Long, intLowCellNum As Long, intLastPoint As Long, intMidCellNum As Long, intMidTemp As Long
-    Dim intHighCellNum As Long, d As Long, i As Long, iNumOfTestPoints As Long, cfTemp As Long, cfTempCell As Long
-    Dim rCF() As Range, rTempTested(6) As Range, rTempMidTested(5) As Range
-    Dim rDBPoints(40) As Range
-    Dim wsStandards As Worksheet, wsMain As Worksheet, wsTUSWork As Worksheet
-    Dim dTempSpreadMid As Double, dCF As Double
-
-    'Assign Variables
-    Set wsStandards = ThisWorkbook.Worksheets("Standards_Import")
-    Set wsMain = ThisWorkbook.Worksheets("Main")
-    Set wsTUSWork = ThisWorkbook.Worksheets("TUS_Worksheet")
-    intTestTemp = wsMain.Range("D16")
-    iNumOfTestPoints = wsMain.Range("D17")
-
-    
-    For c = 0 To 5
-        'Put test temps in array
-        Set rTempTested(c) = wsStandards.Cells(1, 16 + c)
-        'Put midpoints into array
-        Set rTempMidTested(c) = wsStandards.Cells(1, 26 + c)
-        'Find temp range as compared to test temps
-        If intTestTemp > rTempTested(c) Then
-            intLowCellNum = rTempTested(c).Column
-            intLowTemp = rTempTested(c).Value
-            intHighCellNum = rTempTested(c).Offset(0, 1).Column
-            intHighTemp = rTempTested(c).Offset(0, 1).Value
-            intMidCellNum = rTempMidTested(c + 1).Column
-            intMidTemp = rTempMidTested(c + 1).Value
-        End If
-    Next
-    
-    'Find Midpoint and then calculate closest temp
-    dTempSpreadMid = (intHighTemp - intLowTemp) / 2
-    
-    If intTestTemp = (dTempSpreadMid + intLowTemp) Then
-        cfTemp = intMidTemp
-        cfTempCell = intMidCellNum
-    Else
-        If intTestTemp > (dTempSpreadMid + intLowTemp) Then
-            cfTemp = intHighTemp
-            cfTempCell = intHighCellNum
-        Else
-            cfTemp = intLowTemp
-            cfTempCell = intLowCellNum
-        End If
-    End If
-        
-    'Clear old information
-    wsTUSWork.Range("C11:P11").ClearContents
-    wsTUSWork.Range("C17:P17").ClearContents
-    wsTUSWork.Range("C23:P23").ClearContents
-    
-    'Write the CF to the TUS Survey worksheet
-    For c = 0 To 39
-        If c < 14 Then
-            Set rDBPoints(c) = wsTUSWork.Cells(11, 3 + c)
-        End If
-
-        If c > 13 And c < 28 Then
-            Set rDBPoints(c) = wsTUSWork.Cells(17, 3 + (c - 14))
-        End If
-
-        If c > 27 Then
-            Set rDBPoints(c) = wsTUSWork.Cells(23, 3 + (c - 28))
-        End If
-    Next
-    
-    'Write correction factor
-    For i = 0 To iNumOfTestPoints - 1
-
-        If wsMain.Shapes("Check Box 5").ControlFormat.Value = 1 Then
-             'Put Correction factor
-            dCF = wsStandards.Cells(16 + i, cfTempCell)
-            rDBPoints(i).Value = WorksheetFunction.Round(dCF, 10)
-        End If
-        
-        If wsMain.Shapes("Check Box 6").ControlFormat.Value = 1 Then
-             'Put Correction factor
-            dCF = wsStandards.Cells(30 + i, cfTempCell)
-            rDBPoints(i).Value = WorksheetFunction.Round(dCF, 10)
-        End If
-        
-        If wsMain.Shapes("Check Box 6").ControlFormat.Value <> 1 And wsMain.Shapes("Check Box 5").ControlFormat.Value <> 1 Then
-            'Put Correction factor
-            dCF = wsStandards.Cells(2 + i, cfTempCell)
-            rDBPoints(i).Value = WorksheetFunction.Round(dCF, 10)
-        End If
-        
-        If wsMain.Shapes("Check Box 6").ControlFormat.Value = 1 And wsMain.Shapes("Check Box 5").ControlFormat.Value = 1 Then
-            MsgBox "You can not check both CF offset boxes at the same time. Please uncheck one or both boxes and click Recalculate Correction Factors Button."
-            Exit For
-        End If
-        
-    Next
-
 End Sub

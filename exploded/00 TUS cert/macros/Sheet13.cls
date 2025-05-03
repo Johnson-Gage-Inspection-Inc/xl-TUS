@@ -8,8 +8,11 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Public Sub Read_External_Workbook()
+
+    ThisWorkbook.Connections("Query - DaqbookOffsets").Refresh
+
     'Check for errors
-    ' On Error GoTo HandleError
+    On Error GoTo HandleError
     
     'Stop Screen Updates
     Application.ScreenUpdating = False
@@ -17,155 +20,19 @@ Public Sub Read_External_Workbook()
      
     'Define Object for Target Workbook
     Dim strFile(6) As String, strFileDeDupped(6) As String
-    Dim strFileHold1 As String, strFileHold2 As String, strFileHold3 As String, strDBFileName As String
-    Dim rDBDate As Range, rDBName As Range, rDBPointsS() As Range, rDBPointsT() As Range, rDBCertTestTemp(6) As Range, rDBPointNum(40) As Range
+    Dim strFileHold1 As String, strFileHold2 As String, strFileHold3 As String
     Dim wireLot(6) As String, wireLotLetter(6) As String, wireLotNames(6) As String, wireLotNumber(6) As String
-    Dim charNumber As Long, charNumberB As Long, charNumberA As Long, d As Long, iDBNumPoints As Long, iDBCertTemps(6) As Long
-    Dim c As Long, intWireLotAmt As Long, intDistWireLotAmt As Long, i As Long, x As Long, intDistNumFileNames As Long, intDistNumUsedWireLots As Long
-    Dim k As Long
+    Dim charNumber As Long, charNumberB As Long, charNumberA As Long
+    Dim c As Long, i As Long, x As Long, d As Long
+    Dim intWireLotAmt As Long, intDistWireLotAmt As Long, intDistNumFileNames As Long, intDistNumUsedWireLots As Long
     Dim bWireLotMatch As Boolean
     Dim v As Variant, v2 As Variant
     Dim obj As Object, obj2 As Object
     Dim Source_Workbook2 As Workbook
-    Dim Source_Worksheet1 As Worksheet, Source_Worksheet2 As Worksheet, Standards_Import As Worksheet
+    Dim Source_Worksheet2 As Worksheet
 
     'Assign the Workbook Path
     Dim strPath As String: strPath = GetRootDrive(ThisWorkbook.path) & "\Wires_Daqbook\"
-    
-    '=======================================================================================
-    'Start Daqbook Data ====================================================================
-
-    'Initialize the DaqBook information from Main Page
-    Set rDBName = Worksheets("Main").Range("D9")
-    Set rDBDate = Worksheets("Main").Range("D14")
-    
-    Select Case rDBName
-        Case "J1":  iDBNumPoints = Worksheets("Standards_Info").Range("E2")
-        Case "J2":  iDBNumPoints = Worksheets("Standards_Info").Range("E3")
-        Case "J3":  iDBNumPoints = Worksheets("Standards_Info").Range("E4")
-        Case "K2":  iDBNumPoints = Worksheets("Standards_Info").Range("E5")
-        Case "K3":  iDBNumPoints = Worksheets("Standards_Info").Range("E6")
-        Case "K4":  iDBNumPoints = Worksheets("Standards_Info").Range("E7")
-        Case "K5":  iDBNumPoints = Worksheets("Standards_Info").Range("E8")
-        Case "K6":  iDBNumPoints = Worksheets("Standards_Info").Range("E9")
-        Case "N1":  iDBNumPoints = Worksheets("Standards_Info").Range("E10")
-        Case "N2":  iDBNumPoints = Worksheets("Standards_Info").Range("E11")
-    End Select
-    
-    'Set Array Size for Cells on source and target worksheets
-    ReDim rDBPointsS(iDBNumPoints)
-    ReDim rDBPointsT(iDBNumPoints)
-    
-    'Get filename for Daqbook and check and make sure file exists
-    strDBFileName = strPath & rDBDate & ".xlsm"
-    
-    '**************Error Checking - Can't find Daqbook file*********************
-    If Len(Dir(strDBFileName)) <> 0 Then
-        strFile(c) = Trim(strFileHold1)
-    End If
-    
-    'Clear all cells before we import information
-    Me.Columns("O:U").ClearContents
-    
-    'Open Daqbook File
-    Set Source_Worksheet1 = ThisWorkbook.Worksheets("DaqbookCertData")
-    
-    'Get Test Temps and process CF from Source
-    For i = 0 To 5
-        'Label the spreadsheet with the correct temp and also assign the temp to the correct processing value
-        iDBCertTemps(i) = Source_Worksheet1.Range("A" & 43 + i).Value
-        Set rDBCertTestTemp(i) = Me.Cells(1, 16 + i)
-        rDBCertTestTemp(i) = iDBCertTemps(i)
-    
-        'Process each channel per given test temp
-        For c = 0 To (iDBNumPoints - 1)
-        
-            'Label the Points
-            Set rDBPointNum(c) = Me.Cells(2 + c, 15)
-            rDBPointNum(c) = c + 1
-            
-            'Get the values
-            If c < 6 Then
-                For x = 0 To 5
-                    Set rDBPointsS(c) = Source_Worksheet1.Cells(43 + i, 2 + x)
-                    Set rDBPointsT(c) = Me.Cells(2 + x, 16 + i)
-                    rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
-                Next
-            End If
-    
-            If c > 5 And c < 12 And c < iDBNumPoints Then
-                For x = 0 To 5
-                    Set rDBPointsS(c) = Source_Worksheet1.Cells(51 + i, 2 + x)
-                    Set rDBPointsT(c) = Me.Cells(8 + x, 16 + i)
-                    rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
-                Next
-            End If
-            
-            If c > 11 And c < 18 And c < iDBNumPoints Then
-                'If number of points is 14
-                If iDBNumPoints = 14 Then
-                    For x = 0 To 1
-                        Set rDBPointsS(c) = Source_Worksheet1.Cells(61 + i, 2 + x)
-                        Set rDBPointsT(c) = Me.Cells(14 + x, 16 + i)
-                        rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
-                    Next
-                Else
-                    'If number of points in not 14
-                    For x = 0 To 5
-                        Set rDBPointsS(c) = Source_Worksheet1.Cells(61 + i, 2 + x)
-                        Set rDBPointsT(c) = Me.Cells(14 + x, 16 + i)
-                        rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
-                    Next
-                End If
-            End If
-    
-            If c > 17 And c < 24 And c < iDBNumPoints Then
-                For x = 0 To 5
-                    Set rDBPointsS(c) = Source_Worksheet1.Cells(69 + i, 2 + x)
-                    Set rDBPointsT(c) = Me.Cells(20 + x, 16 + i)
-                    rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
-                Next
-            End If
-            
-            If c > 23 And c < 30 And c < iDBNumPoints Then
-                If iDBNumPoints = 28 Then
-                    'If number of points is 28
-                    For x = 0 To 3
-                        Set rDBPointsS(c) = Source_Worksheet1.Cells(79 + i, 2 + x)
-                        Set rDBPointsT(c) = Me.Cells(26 + x, 16 + i)
-                        rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
-                    Next
-                Else
-                    'If number of points is not 28
-                    For x = 0 To 5
-                        Set rDBPointsS(c) = Source_Worksheet1.Cells(79 + i, 2 + x)
-                        Set rDBPointsT(c) = Me.Cells(26 + x, 16 + i)
-                        rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
-                    Next
-                End If
-            End If
-            
-            If c > 29 And c < 36 And c < iDBNumPoints Then
-                For x = 0 To 5
-                    Set rDBPointsS(c) = Source_Worksheet1.Cells(87 + i, 2 + x)
-                    Set rDBPointsT(c) = Me.Cells(32 + x, 16 + i)
-                    rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
-                Next
-            End If
-            
-            If c > 35 And c < iDBNumPoints Then
-                For x = 0 To 3
-                    Set rDBPointsS(c) = Source_Worksheet1.Cells(97 + i, 2 + x)
-                    Set rDBPointsT(c) = Me.Cells(38 + x, 16 + i)
-                    rDBPointsT(c).Value = WorksheetFunction.Round((rDBPointsS(c).Value - iDBCertTemps(i)) * -1, 2)
-                Next
-            End If
-        Next
-    Next
-    
-    'END DaqBOOK Data ======================================================================
-    '=======================================================================================
-                
                 
     '=======================================================================================
     'Start WireLot Data ====================================================================

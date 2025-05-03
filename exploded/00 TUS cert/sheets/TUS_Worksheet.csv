@@ -1,28 +1,228 @@
-,,,,,Temperature Uniformity Survey Worksheet,,,,,,,,,Form 4005-1,,,,,
+,,,,,DaqbookOffsets[Point]erature Uniformity Survey Worksheet,,,,,,,,,Form 4005-1,,,,,
 ,,,,,,,,,,,,,,Orig. 9-17-07,,,,,
 "Johnson Gage & Inspection, Inc.",,,,,,,,,,,,,,,,,,,
-Temperature Uniformity Results,,,,,,,,,,,,,,,,,,,
+DaqbookOffsets[Point]erature Uniformity Results,,,,,,,,,,,,,,,,,,,
 Date:,=Main!D3,,,,,,,Customer: ,=Main!D5,,,,,,,,,,
-Unit: ,=Main!D6,,,,,,,Temperature: ,=Main!D16,,,,,,,,,,
+Unit: ,=Main!D6,,,,,,,DaqbookOffsets[Point]erature: ,=Temperature,,,,,,,,,,
 Operator:,=Main!D7,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
 ,,1,2,3,4,5,6,7,8,9,10,11,12,13,14,,,,
-,Inst. CFs:,,,,,,,,,,,,,,,,,,
+,Inst. CFs:,"=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(C10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(D10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(E10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(F10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(G10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(H10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(I10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(J10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(K10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(L10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(M10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(N10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(O10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(P10, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)",,,,
 ,T/C CFs:,,,,,,,,,,,,,,,,,,
-,Cumulative CFs:,"=IF(OR(C11="""",C12=""""),"""",SUM(C11:C12)&""°F"")","=IF(OR(D11="""",D12=""""),"""",SUM(D11:D12)&""°F"")","=IF(OR(E11="""",E12=""""),"""",SUM(E11:E12)&""°F"")","=IF(OR(F11="""",F12=""""),"""",SUM(F11:F12)&""°F"")","=IF(OR(G11="""",G12=""""),"""",SUM(G11:G12)&""°F"")","=IF(OR(H11="""",H12=""""),"""",SUM(H11:H12)&""°F"")","=IF(OR(I11="""",I12=""""),"""",SUM(I11:I12)&""°F"")","=IF(OR(J11="""",J12=""""),"""",SUM(J11:J12)&""°F"")","=IF(OR(K11="""",K12=""""),"""",SUM(K11:K12)&""°F"")","=IF(OR(L11="""",L12=""""),"""",SUM(L11:L12)&""°F"")","=IF(OR(M11="""",M12=""""),"""",SUM(M11:M12)&""°F"")","=IF(OR(N11="""",N12=""""),"""",SUM(N11:N12)&""°F"")","=IF(OR(O11="""",O12=""""),"""",SUM(O11:O12)&""°F"")","=IF(OR(P11="""",P12=""""),"""",SUM(P11:P12)&""°F"")",,,,
+,Cumulative CFs:,"=IF(OR(C11="""",C12=""""),"""",SUM(C11:C12))","=IF(OR(D11="""",D12=""""),"""",SUM(D11:D12))","=IF(OR(E11="""",E12=""""),"""",SUM(E11:E12))","=IF(OR(F11="""",F12=""""),"""",SUM(F11:F12))","=IF(OR(G11="""",G12=""""),"""",SUM(G11:G12))","=IF(OR(H11="""",H12=""""),"""",SUM(H11:H12))","=IF(OR(I11="""",I12=""""),"""",SUM(I11:I12))","=IF(OR(J11="""",J12=""""),"""",SUM(J11:J12))","=IF(OR(K11="""",K12=""""),"""",SUM(K11:K12))","=IF(OR(L11="""",L12=""""),"""",SUM(L11:L12))","=IF(OR(M11="""",M12=""""),"""",SUM(M11:M12))","=IF(OR(N11="""",N12=""""),"""",SUM(N11:N12))","=IF(OR(O11="""",O12=""""),"""",SUM(O11:O12))","=IF(OR(P11="""",P12=""""),"""",SUM(P11:P12))",,,,
 ,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 ,,15,16,17,18,19,20,21,22,23,24,25,26,27,28,,,,
-,Inst. CFs:,,,,,,,,,,,,,,,,,,
+,Inst. CFs:,"=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(C16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(D16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(E16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(F16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(G16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(H16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(I16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(J16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(K16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(L16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(M16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(N16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(O16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(P16, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)",,,,
 ,T/C CFs:,,,,,,,,,,,,,,,,,,
-,Cumulative CFs:,"=IF(OR(C17="""",C18=""""),"""",SUM(C17:C18)&""°F"")","=IF(OR(D17="""",D18=""""),"""",SUM(D17:D18)&""°F"")","=IF(OR(E17="""",E18=""""),"""",SUM(E17:E18)&""°F"")","=IF(OR(F17="""",F18=""""),"""",SUM(F17:F18)&""°F"")","=IF(OR(G17="""",G18=""""),"""",SUM(G17:G18)&""°F"")","=IF(OR(H17="""",H18=""""),"""",SUM(H17:H18)&""°F"")","=IF(OR(I17="""",I18=""""),"""",SUM(I17:I18)&""°F"")","=IF(OR(J17="""",J18=""""),"""",SUM(J17:J18)&""°F"")","=IF(OR(K17="""",K18=""""),"""",SUM(K17:K18)&""°F"")","=IF(OR(L17="""",L18=""""),"""",SUM(L17:L18)&""°F"")","=IF(OR(M17="""",M18=""""),"""",SUM(M17:M18)&""°F"")","=IF(OR(N17="""",N18=""""),"""",SUM(N17:N18)&""°F"")","=IF(OR(O17="""",O18=""""),"""",SUM(O17:O18)&""°F"")","=IF(OR(P17="""",P18=""""),"""",SUM(P17:P18)&""°F"")",,,,
+,Cumulative CFs:,"=IF(OR(C17="""",C18=""""),"""",SUM(C17:C18))","=IF(OR(D17="""",D18=""""),"""",SUM(D17:D18))","=IF(OR(E17="""",E18=""""),"""",SUM(E17:E18))","=IF(OR(F17="""",F18=""""),"""",SUM(F17:F18))","=IF(OR(G17="""",G18=""""),"""",SUM(G17:G18))","=IF(OR(H17="""",H18=""""),"""",SUM(H17:H18))","=IF(OR(I17="""",I18=""""),"""",SUM(I17:I18))","=IF(OR(J17="""",J18=""""),"""",SUM(J17:J18))","=IF(OR(K17="""",K18=""""),"""",SUM(K17:K18))","=IF(OR(L17="""",L18=""""),"""",SUM(L17:L18))","=IF(OR(M17="""",M18=""""),"""",SUM(M17:M18))","=IF(OR(N17="""",N18=""""),"""",SUM(N17:N18))","=IF(OR(O17="""",O18=""""),"""",SUM(O17:O18))","=IF(OR(P17="""",P18=""""),"""",SUM(P17:P18))",,,,
 ,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 .,,29,30,31,32,33,34,35,36,37,38,39,40,,,,,,
-,Inst. CFs:,,,,,,,,,,,,,,,,,,
+,Inst. CFs:,"=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(C22, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(D22, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(E22, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(F22, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(G22, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(H22, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(I22, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(J22, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(K22, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(L22, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(M22, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)","=_xlfn.XLOOKUP(
+  TEXT(Temperature, ""0""),
+  DaqbookOffsets[#Headers],
+  _xlfn.XLOOKUP(N22, INDEX(DaqbookOffsets[Point], 0), DaqbookOffsets[]),
+  ""No match""
+)",,,,,,
 ,T/C CFs:,,,,,,,,,,,,,,,,,,
-,Cumulative CFs:,"=IF(OR(C23="""",C24=""""),"""",SUM(C23:C24)&""°F"")","=IF(OR(D23="""",D24=""""),"""",SUM(D23:D24)&""°F"")","=IF(OR(E23="""",E24=""""),"""",SUM(E23:E24)&""°F"")","=IF(OR(F23="""",F24=""""),"""",SUM(F23:F24)&""°F"")","=IF(OR(G23="""",G24=""""),"""",SUM(G23:G24)&""°F"")","=IF(OR(H23="""",H24=""""),"""",SUM(H23:H24)&""°F"")","=IF(OR(I23="""",I24=""""),"""",SUM(I23:I24)&""°F"")","=IF(OR(J23="""",J24=""""),"""",SUM(J23:J24)&""°F"")","=IF(OR(K23="""",K24=""""),"""",SUM(K23:K24)&""°F"")","=IF(OR(L23="""",L24=""""),"""",SUM(L23:L24)&""°F"")","=IF(OR(M23="""",M24=""""),"""",SUM(M23:M24)&""°F"")","=IF(OR(N23="""",N24=""""),"""",SUM(N23:N24)&""°F"")",,,,,,
+,Cumulative CFs:,"=IF(OR(C23="""",C24=""""),"""",SUM(C23:C24))","=IF(OR(D23="""",D24=""""),"""",SUM(D23:D24))","=IF(OR(E23="""",E24=""""),"""",SUM(E23:E24))","=IF(OR(F23="""",F24=""""),"""",SUM(F23:F24))","=IF(OR(G23="""",G24=""""),"""",SUM(G23:G24))","=IF(OR(H23="""",H24=""""),"""",SUM(H23:H24))","=IF(OR(I23="""",I24=""""),"""",SUM(I23:I24))","=IF(OR(J23="""",J24=""""),"""",SUM(J23:J24))","=IF(OR(K23="""",K24=""""),"""",SUM(K23:K24))","=IF(OR(L23="""",L24=""""),"""",SUM(L23:L24))","=IF(OR(M23="""",M24=""""),"""",SUM(M23:M24))","=IF(OR(N23="""",N24=""""),"""",SUM(N23:N24))",,,,,,
 ,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 Expendable Wire Data,,,,,,,Additional Information about this TUS,,,,,,,,,,,,
