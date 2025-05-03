@@ -1,0 +1,47 @@
+Name,Value
+CompanyId,57283
+AssetId,1270490
+SerialNumber,OVEN NO. 13
+AssetUser,
+AssetTag,"W-CPI-4143, TUS"
+EquipmentId,
+AssetStatus,1
+AssetName,"Chrome Plus, Oven No. 13, W-CPI-4143, TUS"
+AssetDescription,"Chrome Plus, Oven No. 13, W-CPI-4143, TUS"
+AssetMaker,COL-MET
+Location,Production
+RoomNumber,
+Barcode,
+LegacyIdentifier,
+RootCategoryName,Thermometers
+CategoryName,Thermometer
+Class,
+CustodianEmail,
+CustodianName,
+Department,
+Station,
+Notes,
+DocumentNumber,
+DocumentSection,
+CumulativeServiceCost,4130
+ProductId,150962
+ManufacturerPartNumber,GENERIC 2354
+ProductName,Thermometers
+ProductDescription,
+ProductManufacturer,Unidentified
+SiteName,Main Location
+SiteId,96854
+Condition,
+Criticality,
+Pool,
+PurchaseDate,
+PurchaseCost,
+LifeSpanMonths,
+ActivationDate,
+DepreciationBasis,
+DepreciationMethod,1
+RetirementDate,
+SalvageValue,
+RetirmentReason,
+CompositeParentId,
+CompositeChildCount,0
