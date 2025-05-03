@@ -3,7 +3,7 @@
 ,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,
 ,,Temperature Uniformity Survey Results,,,,,,,,,,,,,,,,,,,,
-,,,,"=IF(Main!K14="""","""",CONCATENATE(""Report Number: "",Main!K14,Main!D24))",,,,,,,,,,,,,,,,,,
+,,,,"=IF(Main!K14="""","""",CONCATENATE(""Report Number: "", WorkItemNumber))",,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,"=CONCATENATE(""Page "",Main!L9,"" of "",Main!L10)",,,,,
 ,,,,,,,,,,Form Number:  ,='Header Info'!AX2,,,,,,,,,,,
 Customer:  ,=Main!D5,,,,,,,,,Calibration Method:  ,='Header Info'!AY2,,,,,,,,,,,
