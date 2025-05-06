@@ -7,6 +7,9 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+    Call EnforceSheetIsViewOnly(Me)
+End Sub
 Public Sub Read_External_Workbook()
 
     ThisWorkbook.Connections("Query - DaqbookOffsets").Refresh
