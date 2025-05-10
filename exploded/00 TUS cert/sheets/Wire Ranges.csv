@@ -1,0 +1,9 @@
+Type,Min,Max
+ENV,-100,450
+J,-50,450
+N,70,500
+K,70,450
+J High,70,1000
+K High,200,1850
+N Ultra High,700,2200
+K Ultra High,700,2200

@@ -51,25 +51,31 @@ Private Sub Worksheet_Change(ByVal Target As Range)
 
     If Not Intersect(Target, Range("D48:I48")) Is Nothing Then
 
-        'Set variables and populate variables
+        ' Reset output
         Range("L47:L52").ClearContents
-
+        sTmp = ""
+        
+        ' Build hyphen-separated string of unique SF IDs from K47:K52
         For i = 0 To 5
-            Set wireSetForSF(i) = Range("L" & 47 + (i))
-            Set searchedSFId(i) = Range("K" & 47 + (i))
-            If searchedSFId(i) <> "" And InStr(sTmp, Trim(searchedSFId(i))) = 0 Then
-                sTmp = sTmp & searchedSFId(i) & "-"
+            Set wireSetForSF(i) = Range("L" & 47 + i)
+            Set searchedSFId(i) = Range("K" & 47 + i)
+            
+            v = Trim(searchedSFId(i).Value)
+            If v <> "" And InStr("-" & sTmp & "-", "-" & v & "-") = 0 Then
+                sTmp = sTmp & v & "-"
             End If
         Next i
-
-        'Create Array with SF IDs
-        If Len(sTmp) > 0 Then sTmp = Left(sTmp, Len(sTmp) - 1)
-        sArr = Split(sTmp, "-")
-
-        'Put IDs in slots
-        For i = 0 To UBound(sArr)
-            wireSetForSF(i).Value = sArr(i)
-        Next i
+        
+        ' Trim final dash and split into array
+        If Len(sTmp) > 0 Then
+            sTmp = Left(sTmp, Len(sTmp) - 1)
+            sArr = Split(sTmp, "-")
+        
+            ' Output to L47:L52
+            For i = 0 To UBound(sArr)
+                wireSetForSF(i).Value = sArr(i)
+            Next i
+        End If
 
     End If
     
