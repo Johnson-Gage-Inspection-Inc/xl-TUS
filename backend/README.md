@@ -1,0 +1,1 @@
+The `/backend/` folder serves as a sub-respoitory for the server-side logic.
