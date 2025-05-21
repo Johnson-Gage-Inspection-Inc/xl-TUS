@@ -1,4 +1,0 @@
-flask
-requests
-python-dotenv
-git+https://github.com/Johnson-Gage-Inspection-Inc/qualer-sdk-python.git@c948da4d34efaad2543557c961fe52d91cace7ee
