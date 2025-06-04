@@ -12,7 +12,7 @@ Option Explicit
 Private Sub Worksheet_Change(ByVal Target As Range)
     
     'Setup Worksheet
-    On Error GoTo HandleError
+    ' On Error GoTo HandleError
     
     'Initialize variables
     Dim r, aCell As Range, wireSetForSF(6) As Range, searchedSFId(6) As Range
@@ -41,12 +41,7 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     
     ' Work Item Number
     If Not Intersect(Target, Range("K14")) Is Nothing Then
-        Call Sheet25.UpdateServiceOrderItems
-    End If
-    
-    ' Client Asset Id
-    If Not Intersect(Target, Range("D6:H6")) Is Nothing Then
-        Call Sheet22.UpdateClientAssetAttributes
+        Call Sheet25.UpdateWorkItemDetails
     End If
 
     If Not Intersect(Target, Range("D48:I48")) Is Nothing Then

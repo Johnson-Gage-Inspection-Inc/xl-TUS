@@ -1,39 +1,39 @@
 Name,Value
-AssetId,1235426
-AssetServiceRecordId,8035840
-ServiceScheduleSegmentId,187508
-ForwardSegmentId,
-ForwardNextService,False
-ServiceOrderNumber,72024
-CustomOrderNumber,56561-072024
-OrderItemNumber,1
-CertificateNumber,J10325
-ResultStatus,Done
-AsFoundResult,NotAvailable
-AsLeftResult,NotAvailable
-ServiceDate,2025-03-31 00:00:00
-SerialNumber,807408
-AssetTag,J1
-AssetUser,
-AssetTagChange,
-AssetUserChange,
-ServiceNotes,Found in tolerance. No adjustment required. See attached Datasheets for details.
-SerialNumberChange,
-DueDate,2025-03-24 00:00:00
-NextServiceDate,2025-06-30 00:00:00
-ProviderTechnician,Kevin Ferrante
-ProviderPhone,316-943-7532
-ProviderCompany,Field Inspection
-ServiceLevel,Calibration
-ServiceLevelCode,
-NextServiceLevel,3 Month Calibration
-NextServiceLevelCode,
-AssetName,Data Acquisition System - DAQBOOK/2005
-AssetDescription,"DaqBook 2005, with connections for 40 type ""J"" thermocouples."
-PartsCharge,0
-PartsChargeBeforeDiscount,0
-ServiceCharge,392.75
-RepairsCharge,0
-Guid,00000000-0000-0000-0000-000000000000
-SegmentName,3 Month Calibration
-ScheduleName,JGI Calibration PyroMechanical
+as_found_result,NotAvailable
+as_left_result,NotAvailable
+asset_description,"DaqBook 2005, with connections for 40 type ""J"" thermocouples."
+asset_id,1235682
+asset_name,Data Acquisition System - DAQBOOK/2005 - 806337
+asset_service_record_id,8188236
+asset_tag,J2
+asset_tag_change,
+asset_user,
+asset_user_change,
+certificate_number,J20525
+custom_order_number,56561-073949
+due_date,45788
+forward_next_service,False
+forward_segment_id,
+guid,00000000-0000-0000-0000-000000000000
+next_service_date,45881
+next_service_level,3 Month Calibration
+next_service_level_code,
+order_item_number,1
+parts_charge,0
+parts_charge_before_discount,0
+provider_company,Field Inspection
+provider_phone,316-943-7532
+provider_technician,Kevin Ferrante
+repairs_charge,0
+result_status,Done
+schedule_name,JGI Calibration PyroMechanical
+segment_name,3 Month Calibration
+serial_number,806337
+serial_number_change,
+service_charge,392.75
+service_date,45789
+service_level,Calibration
+service_level_code,
+service_notes,Found in tolerance. No adjustment required. See attached Datasheets for details.
+service_order_number,73949
+service_schedule_segment_id,187508

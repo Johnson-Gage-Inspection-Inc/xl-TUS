@@ -47,3 +47,19 @@ HandleError:
     MsgBox Err.Description & Chr(13) & "Error Number: " & Err.Number, vbExclamation
     Resume CleanExit
 End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

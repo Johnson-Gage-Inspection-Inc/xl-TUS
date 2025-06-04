@@ -1,8 +1,8 @@
-AssetId,SerialNumber,AssetTag,AssetDescription,Notes,ManufacturerPartNumber
+asset_id,serial_number,asset_tag,asset_description,notes,manufacturer_part_number
 1235426,807408,J1,"DaqBook 2005, with connections for 40 type ""J"" thermocouples.",Per WP4102. Calibrate against primary or secondary standard instrument.,DaqBook/2005
 1235682,806337,J2,"DaqBook 2005, with connections for 40 type ""J"" thermocouples.",Calibrate against primary or secondary standard instrument in accordance with WP4102.,DaqBook/2005
 1235630,807705,J3,"DaqBook 2005, with connections for 40 type ""J"" thermocouples.",Per WP4102. Calibrate against primary or secondary standard instrument.,DaqBook/2005
 1235686,807409,K4,"DaqBook 2005, with connections for 40 type ""K"" thermocouples",Calibrate against primary or secondary standard instrument in accordance with WP4102.,DaqBook/2005
 1235543,808005,K5,"Daqbook 2005 with 28 type ""K"" Thermocouples. S/N 808005 U/N K5",Calibrate against any primary or secondary standard instrument and in accordance with WP4100.,DaqBook/2005
 1235622,808173,K6,"Daqbook 2005 with 40 type ""K"" Thermocouples. S/N 808173 U/N K6",Calibrate against any primary or secondary standard instrument and in accordance with WP4100.,DaqBook/2005
-1235561,808004,N2,"Daqbook 2000 with connections for 14 type ""N"" thermocouples. S/N 808004 U/N N2",Calibrate against primary or secondary standard instrument and In accordance with WP4102.,DaqBook/2005
+1235561,808004,N2,"Daqbook 2000 with connections for 28 type ""N"" thermocouples. S/N 808004 U/N N2",Calibrate against primary or secondary standard instrument and In accordance with WP4102.,DaqBook/2005

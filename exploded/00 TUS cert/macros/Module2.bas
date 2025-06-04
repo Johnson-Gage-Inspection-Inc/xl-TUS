@@ -114,8 +114,3 @@ Function FindRange(FirstRange As Range, StrSearch As String, iOffset As Long) As
         
     End If
 End Function
-
-
-
-
-

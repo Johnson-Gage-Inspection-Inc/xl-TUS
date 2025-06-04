@@ -8,23 +8,17 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Option Explicit
-Public Sub UpdateServiceOrderItems()
-    TruncateServiceOrderItemsTable
-    ThisWorkbook.Connections("Query - ServiceOrderItems").Refresh
+Public Sub UpdateWorkItemDetails()
+    ' TruncateWorkItemDetailsTable
+    ThisWorkbook.Connections("Query - WorkItemDetails").Refresh
 End Sub
-Private Sub TruncateServiceOrderItemsTable()
+Private Sub TruncateWorkItemDetailsTable()
     Dim lo As ListObject
-    Set lo = Me.ListObjects("ServiceOrderItems")
+    Set lo = Me.ListObjects("WorkItemDetails")
     If lo.DataBodyRange Is Nothing Then Exit Sub ' Already empty
     lo.DataBodyRange.Rows.Delete
 End Sub
 Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     Call EnforceSheetIsViewOnly(Me)
 End Sub
-Private Sub Worksheet_Change(ByVal Target As Range)
-    ThisWorkbook.Connections("Query - AssetId").Refresh
-    ThisWorkbook.Connections("Query - ClientCompanyId").Refresh
-    Sheet27.UpdateClientAsset
-    Sheet30.UpdateServiceOrder
-    ' Sheet22.UpdateClientAssetAttributes  ' Uncomment me once assets have attributes
-End Sub
+
