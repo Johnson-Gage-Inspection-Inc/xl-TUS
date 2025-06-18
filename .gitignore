@@ -8,3 +8,4 @@
 ~$*.xltm
 ~$*.xltx
 venv
+examples/*
