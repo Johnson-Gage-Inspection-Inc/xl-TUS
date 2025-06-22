@@ -50,7 +50,8 @@ Private Sub Worksheet_Calculate()
     End If
 
     'Assign values to variables
-    Dim hold1 As Double:    hold1 = SafeSum(Range("A1:B2") + Range("B10:O25") + Range("V10:AI25") + Range("AP10:BA25"))
+    Dim hold1 As Double:
+    hold1 = SafeSum(Range("A1:B2")) + SafeSum(Range("B10:O25")) + SafeSum(Range("V10:AI25")) + SafeSum(Range("AP10:BA25"))
     
     'Check to see if anything has changed **** Don't know if this is needed ****
     If hold1 = checkVal1 Then
