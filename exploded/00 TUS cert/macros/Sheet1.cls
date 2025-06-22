@@ -7,6 +7,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
+
 Option Explicit
 Public checkVal1 As Double
 Function SafeSum(rng As Range) As Double
@@ -65,20 +66,17 @@ Private Sub Worksheet_Calculate()
     'Assign values to ranges
     Dim setPoint As Range:  Set setPoint = Range("A1")
     Dim high As Range:      Set high = Range("F34")
-    Dim tusTol As Range:    Set tusTol = Range("A2")
-
-    'Initialize high and low values
-    Dim lowOOT As Double:       lowOOT = setPoint - tusTol
-    Dim highOOT As Double:      highOOT = setPoint + tusTol
+    Dim tusTol As Range:    Set tusTol = Range("A2")    'Initialize high and low values
+    Dim lowOOT As Double:       lowOOT = setPoint.Value - tusTol.Value
+    Dim highOOT As Double:      highOOT = setPoint.Value + tusTol.Value
     Dim a_counter As Long:      a_counter = 1
     Dim colToSearch As Long:    colToSearch = 0
-    
-    'Get lowest temperature for the survey depending on the number of points
-    If numPoints < 15 Then
+      'Get lowest temperature for the survey depending on the number of points
+    If numPoints.Value < 15 Then
         low = WorksheetFunction.Min(low1st)
-    ElseIf numPoints > 14 And numPoints < 29 Then
+    ElseIf numPoints.Value > 14 And numPoints.Value < 29 Then
         low = WorksheetFunction.Min(low1st, low2nd)
-    ElseIf numPoints > 28 Then
+    ElseIf numPoints.Value > 28 Then
         low = WorksheetFunction.Min(low1st, low2nd, low3rd)
     End If
    
@@ -102,31 +100,27 @@ Private Sub Worksheet_Calculate()
     For i = 1 To 40
         oPt(i).Value = ""
         timePt(i).Value = ""
-    Next i
-
-    'Process individual values
-    For i = 1 To numPoints
+    Next i    'Process individual values
+    For i = 1 To numPoints.Value
         ptColumn = 0
         
         'Reset Flag to Zero
         oPt(i).Value = 0
         timePt(i).Value = ""
-        
-        'Mark if High or Low in Tolerance
-        If (hy(i) = "" Or ly(i) = "") Then
+          'Mark if High or Low in Tolerance
+        If (IsEmpty(hy(i).Value) Or IsEmpty(ly(i).Value) Or hy(i).Value = "" Or ly(i).Value = "") Then
             oPt(i).Value = "Dropped"
         Else
-            
-            'Mark if High or Low out of Tolerance
-            If Round(ly(i), 1) < lowOOT Then
+              'Mark if High or Low out of Tolerance
+            If Round(ly(i).Value, 1) < lowOOT Then
                 oPt(i).Value = "Out of Tol - LOW"
-            ElseIf Round(hy(i), 1) > highOOT Then
+            ElseIf Round(hy(i).Value, 1) > highOOT Then
                 oPt(i).Value = "Out of Tol - HIGH"
             End If
 
-            If Round(hy(i), 1) = Round(high, 1) Then
+            If Round(hy(i).Value, 1) = Round(high.Value, 1) Then
                 oPt(i).Value = "High"
-            ElseIf Round(ly(i), 1) = Round(low, 1) Then
+            ElseIf Round(ly(i).Value, 1) = Round(low, 1) Then
                 oPt(i).Value = "Low"
             Else
                 timePt(i).Value = ""
@@ -143,19 +137,17 @@ Private Sub Worksheet_Calculate()
             ElseIf colToSearch > 28 Then
                 ptColumn = i + 13
             End If
-            
-            If Right(oPt(i), 3) = "Low" Then
+              If Right(oPt(i).Value, 3) = "Low" Then
                 timePt(i) = FindTimePoint(low, "Low", ptColumn, timeStp)
-            ElseIf Right(oPt(i), 4) = "High" Then
-                timePt(i) = FindTimePoint(high, "High", ptColumn, timeStp)
+            ElseIf Right(oPt(i).Value, 4) = "High" Then
+                timePt(i) = FindTimePoint(high.Value, "High", ptColumn, timeStp)
             End If
 
         End If
 NextPoint:
     Next i
-    
-    'Process total deviation
-    totalDevCell = IIf(Sgn(x1) = Sgn(x2), x1 - x2, Abs(x1) + Abs(x2))
+      'Process total deviation
+    totalDevCell.Value = IIf(Sgn(x1.Value) = Sgn(x2.Value), x1.Value - x2.Value, Abs(x1.Value) + Abs(x2.Value))
         
 CleanExit:
     Application.ScreenUpdating = True
@@ -178,5 +170,6 @@ Function FindTimePoint(targetValue As Variant, suffix As String, col As Long, ti
         End If
     Next iRow
 End Function
+
 
 
