@@ -1,12 +1,19 @@
 Ver. 06.21.25,,TUS Worksheet for,,,,"=CONCATENATE(D9,TEXT(D3,""mmddyy""),""0"",D24)",,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,Calibration Date:,,,,,,,Temperature Uniformity Information,,,,Thermocouple Info,,,,,,,,,,,,,,,
-,,Condition:,"=IFERROR(VLOOKUP(""Condition"",#REF!,2,FALSE),"""")",,,,,,Highest Deviation:,,"=IF(ISERROR(Access_Data!$D$33),0,Access_Data!$D$33)",,Point #,T/C Name,ALERTS,,TEMP,TIME,,,,,,,,,,
+,,Condition:,=Condition,,,,,,Highest Deviation:,,"=IF(ISERROR(Access_Data!$D$33),0,Access_Data!$D$33)",,Point #,T/C Name,ALERTS,,TEMP,TIME,,,,,,,,,,
 ,,Customer:,=companyName,,,,,"=VLOOKUP(D5,customers_table[],5,FALSE)",Lowest Deviation:,,"=IF(ISERROR(Access_Data!$D$33),0,Access_Data!$H$33)",,1,,"=IF(Access_Data!$K37=0,"""",Access_Data!$K37)",,"=IF(Access_Data!$K37<>0,IF(RIGHT($P5,3)=""Low"",Access_Data!$L37,IF(RIGHT($P5,4)=""High"",Access_Data!$J37,"""")),"""")","=IF(Access_Data!$M37<>0,Access_Data!$M37,"""")",,,,,"=IF(O5="""","""",1)",,,,,
 ,,Unit:,"=VLOOKUP(""assetName"",WorkItemDetails[],2,FALSE)",,,,,,Total Deviation:,,"=IF(ISERROR(Access_Data!$A$52),0,Access_Data!$A$52)",,2,,"=IF(Access_Data!$K38=0,"""",Access_Data!$K38)",,"=IF(Access_Data!$K38<>0,IF(RIGHT($P6,3)=""Low"",Access_Data!$L38,IF(RIGHT($P6,4)=""High"",Access_Data!$J38,"""")),"""")","=IF(Access_Data!$M38<>0,Access_Data!$M38,"""")",,,,,"=IF(O6="""","""",1)",,,,,
 ,,Operator:,,,,,,,,,,,3,,"=IF(Access_Data!$K39=0,"""",Access_Data!$K39)",,"=IF(Access_Data!$K39<>0,IF(RIGHT($P7,3)=""Low"",Access_Data!$L39,IF(RIGHT($P7,4)=""High"",Access_Data!$J39,"""")),"""")","=IF(Access_Data!$M39<>0,Access_Data!$M39,"""")",,,,,"=IF(O7="""","""",1)",,,,,
 ,,,,,"=IF(N49="""",""CHECK TUNING CONSTANTS"","""")",,,,,,,,4,,"=IF(Access_Data!$K40=0,"""",Access_Data!$K40)",,"=IF(Access_Data!$K40<>0,IF(RIGHT($P8,3)=""Low"",Access_Data!$L40,IF(RIGHT($P8,4)=""High"",Access_Data!$J40,"""")),"""")","=IF(Access_Data!$M40<>0,Access_Data!$M40,"""")",,,,,"=IF(O8="""","""",1)",,,,,
-,,DaqBook:,,"=IFERROR(LOOKUP(Main!$D$9,Daqbooks[asset_tag],Daqbooks[asset_id]),"""")",,,,,,,,,5,,"=IF(Access_Data!$K41=0,"""",Access_Data!$K41)",,"=IF(Access_Data!$K41<>0,IF(RIGHT($P9,3)=""Low"",Access_Data!$L41,IF(RIGHT($P9,4)=""High"",Access_Data!$J41,"""")),"""")","=IF(Access_Data!$M41<>0,Access_Data!$M41,"""")",,,,,"=IF(O9="""","""",1)",,,,,
+,,DaqBook:,,"=IFERROR(
+  _xlfn.XLOOKUP(
+    Main!$D$9,
+    _xlfn._xlws.FILTER(AssetPool[asset_tag], AssetPool[root_category_name]=""DAQ Modules""),
+    _xlfn._xlws.FILTER(AssetPool[asset_id], AssetPool[root_category_name]=""DAQ Modules"")
+  ),
+  """"
+)",,,,,,,,,5,,"=IF(Access_Data!$K41=0,"""",Access_Data!$K41)",,"=IF(Access_Data!$K41<>0,IF(RIGHT($P9,3)=""Low"",Access_Data!$L41,IF(RIGHT($P9,4)=""High"",Access_Data!$J41,"""")),"""")","=IF(Access_Data!$M41<>0,Access_Data!$M41,"""")",,,,,"=IF(O9="""","""",1)",,,,,
 ,,,,,,"=IF(OR(ISNA(Access_Data!D33),ISBLANK(D19),ISBLANK(D16)),"""",IF(OR(ABS(Access_Data!D33)>D19,ABS(Access_Data!H33)>D19),""!!!!! OVEN IS OOT !!!!!"",""""))",,,,,,,6,,"=IF(Access_Data!$K42=0,"""",Access_Data!$K42)",,"=IF(Access_Data!$K42<>0,IF(RIGHT($P10,3)=""Low"",Access_Data!$L42,IF(RIGHT($P10,4)=""High"",Access_Data!$J42,"""")),"""")","=IF(Access_Data!$M42<>0,Access_Data!$M42,"""")",,,,,"=IF(O10="""","""",1)",,,,,
 ,,Daqbook SN:,"=VLOOKUP(""serial_number"",DaqbookServiceRecord[], 2, FALSE)",,,"=IF(OR(ISBLANK(D3),ISBLANK(D13)),"""",IF(D13<D3,""!!!!! DAQBOOK IS OUT OF CERTIFICATION !!!!!"",""""))",,,,,,,7,,"=IF(Access_Data!$K43=0,"""",Access_Data!$K43)",,"=IF(Access_Data!$K43<>0,IF(RIGHT($P11,3)=""Low"",Access_Data!$L43,IF(RIGHT($P11,4)=""High"",Access_Data!$J43,"""")),"""")","=IF(Access_Data!$M43<>0,Access_Data!$M43,"""")",,,,,"=IF(O11="""","""",1)",,,,,
 ,,DaqBook Date Tested:,"=VLOOKUP(""service_date"",DaqbookServiceRecord[], 2, FALSE)",,,"=IF(Access_Data!$B$52=1,""!!!!! OVEN OVERSHOT IN POINTS 1-14 !!!!!"","""")",,,,,,,8,,"=IF(Access_Data!$K44=0,"""",Access_Data!$K44)",,"=IF(Access_Data!$K44<>0,IF(RIGHT($P12,3)=""Low"",Access_Data!$L44,IF(RIGHT($P12,4)=""High"",Access_Data!$J44,"""")),"""")","=IF(Access_Data!$M44<>0,Access_Data!$M44,"""")",,,,,"=IF(O12="""","""",1)",,,,,
