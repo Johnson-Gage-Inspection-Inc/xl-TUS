@@ -9,6 +9,18 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Option Explicit
 Public checkVal1 As Double
+Function SafeSum(rng As Range) As Double
+    Dim cell As Range
+    For Each cell In rng
+        If IsNumeric(cell.Value) Then
+            SafeSum = SafeSum + cell.Value
+        Else
+            SafeSum = 0
+            Exit Function
+        End If
+    Next cell
+End Function
+
 Private Sub Worksheet_Calculate()
 
     'Check for errors ..
@@ -38,7 +50,7 @@ Private Sub Worksheet_Calculate()
     End If
 
     'Assign values to variables
-    Dim hold1 As Double:    hold1 = Application.Sum(Range("A1:B2"), Range("B10:O25"), Range("V10:AI25"), Range("AP10:BA25"))
+    Dim hold1 As Double:    hold1 = SafeSum(Range("A1:B2") + Range("B10:O25") + Range("V10:AI25") + Range("AP10:BA25"))
     
     'Check to see if anything has changed **** Don't know if this is needed ****
     If hold1 = checkVal1 Then

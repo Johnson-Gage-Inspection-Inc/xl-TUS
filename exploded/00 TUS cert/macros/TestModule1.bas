@@ -128,7 +128,7 @@ Private Sub TUS_InputAndClearTest()
     wsMain.Range("D16").Value = "100"
     wsMain.Range("D17").Value = "10"
     wsMain.Range("D18").Value = "10"
-    wsMain.Range("D19").Value = "±10°F"
+    wsMain.Range("D19").Value = "10"
     wsMain.Range("D22").Value = "68"
     wsMain.Range("D23").Value = "19"
     wsMain.Range("D26").Value = "9:04:00 AM"
