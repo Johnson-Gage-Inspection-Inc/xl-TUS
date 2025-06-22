@@ -1,12 +1,11 @@
 Attribute VB_Name = "SheetGuards"
 Option Explicit
 Public Sub EnforceSheetIsViewOnly(sh As Worksheet)
-    Exit Sub ' Remove for production/beta testing
+    ' Exit Sub ' Remove for production/beta testing
     Dim msg As String
     On Error Resume Next
     msg = "This sheet is protected. Use the interface on the Main sheet."
 
-    ' Basic override logic — adjust to your environment
     If Not Application.UserName Like "*Admin*" Then
         Application.EnableEvents = False
         sh.Range("A1").Select
