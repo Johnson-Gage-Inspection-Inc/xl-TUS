@@ -10,10 +10,10 @@ Attribute VB_Exposed = True
 Option Explicit
 
 Private Sub Worksheet_Change(ByVal Target As Range)
-    
+
     'Setup Worksheet
-    On Error GoTo HandleError
-    
+    ' On Error GoTo HandleError
+
     'Initialize variables
     Dim r, aCell As Range, wireSetForSF(6) As Range, searchedSFId(6) As Range
     Dim sTmp As String, sArr() As String
@@ -29,24 +29,15 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Application.ScreenUpdating = False
     Application.EnableEvents = False
 
-    ' Company Name
-    ' If Not Intersect(Target, Range("D5")) Is Nothing Then
-    '     Call Sheet15.UpdateClientAssets(Range("D5").Value)
-    ' End If
-    
     ' Daqbook Tag
     If Not Intersect(Target, Range("D9")) Is Nothing Then
         Call Sheet38.UpdateDaqbookServiceRecords
+        ThisWorkbook.Connections("Query - DaqbookOffsets").Refresh
     End If
     
     ' Work Item Number
     If Not Intersect(Target, Range("K14")) Is Nothing Then
-        Call Sheet25.UpdateServiceOrderItems
-    End If
-    
-    ' Client Asset Id
-    If Not Intersect(Target, Range("D6:H6")) Is Nothing Then
-        Call Sheet22.UpdateClientAssetAttributes
+        Call Sheet25.UpdateWorkItemDetails
     End If
 
     If Not Intersect(Target, Range("D48:I48")) Is Nothing Then

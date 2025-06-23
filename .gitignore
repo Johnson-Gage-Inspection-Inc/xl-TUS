@@ -7,3 +7,6 @@
 ~$*.xlt
 ~$*.xltm
 ~$*.xltx
+venv
+examples/*
+backend/*

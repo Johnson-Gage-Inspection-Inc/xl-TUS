@@ -24,6 +24,7 @@ Sub ExportAllQueryMCode()
         Set f = fso.CreateTextFile(exportPath & "\" & q.Name & ".m", True, True)
         f.Write mCode
         f.Close
+        Debug.Print q.Name & " exported"
     Next q
 End Sub
 

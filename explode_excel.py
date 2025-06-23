@@ -23,8 +23,19 @@ def export_sheets_with_formulas(xlsx_path: Path, output_dir: Path):
             for row in sheet.iter_rows(values_only=False):
                 writer.writerow([get_formula_or_value(cell) for cell in row])
 
+def delete_existing():
+    path = 'exploded/00 TUS cert/sheets'
+    for child in Path(path).glob('*'):
+        if child.is_file():
+            child.unlink()
+        elif child.is_dir():
+            for subchild in child.glob('**/*'):
+                if subchild.is_file():
+                    subchild.unlink()
+            child.rmdir()
 
 def main():
+    delete_existing()
     for path_str in sys.argv[1:]:
         path = Path(path_str)
         if path.suffix.lower() not in {
