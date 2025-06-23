@@ -11,10 +11,6 @@ Function IsInArray(valueToFind As Variant, arr As Variant) As Boolean
   On Error Resume Next
   IsInArray = Not IsError(Application.Match(valueToFind, arr, 0))
 End Function
-Function QRound(num_to_round As Double) As Double
-    ' Banker's rounding (Round to even)
-    QRound = Round(num_to_round, 1)
-End Function
 Function GetUniqueValues(ByRef inputArray() As String) As Collection
     Dim dict As Object
     Dim i As Long
