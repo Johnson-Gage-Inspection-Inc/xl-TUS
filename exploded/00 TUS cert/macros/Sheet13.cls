@@ -11,28 +11,3 @@ Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     Call EnforceSheetIsViewOnly(Me)
 End Sub
 
-Public Sub RefreshWireCorrectionData()
-
-    On Error GoTo HandleError
-
-    Application.ScreenUpdating = False
-    Application.EnableEvents = False
-
-    ' Refresh Power Query connection (loads corrected offsets)
-    ThisWorkbook.Connections("Query - DaqbookOffsets").Refresh
-
-    ' Optional: do post-processing like formatting or export
-    ' If Sheet14.Write_Wire_Correction_Factors is still needed, leave this in:
-    Call Sheet14.Write_Wire_Correction_Factors
-
-CleanExit:
-    Application.ScreenUpdating = True
-    Application.EnableEvents = True
-    Exit Sub
-
-HandleError:
-    MsgBox Err.Description & vbCrLf & "Error Number: " & Err.Number, vbExclamation
-    Resume CleanExit
-
-End Sub
-
