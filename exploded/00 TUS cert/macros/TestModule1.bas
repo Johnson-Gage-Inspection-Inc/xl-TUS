@@ -90,3 +90,33 @@ End Sub
 Private Sub ClearDAQBookInputs()
     wsDaqBook.Range("A2:K38").ClearContents
 End Sub
+
+'@TestMethod("Main Sheet Logic")
+Private Sub TCAlerts_ContainsNoDropped()
+    On Error GoTo TestFail
+
+    Dim i As Long
+    For i = 5 To 14
+        Dim val As Variant
+        val = wsMain.Range("P" & i).Value
+        
+        Assert.AreNotEqual "Dropped", val, "Expected P" & i & " not to contain 'Dropped'"
+        Select Case i
+            Case 6: Assert.AreEqual "High", val, "Expected P6 to be High"
+            Case 8: Assert.AreEqual "Low", val, "Expected P8 to be Low"
+            Case Else: Assert.AreEqual "", val, "Expected P8 to be null"
+        End Select
+    Next i
+
+    Assert.Succeed
+
+TestExit:
+    '@Ignore UnhandledOnErrorResumeNext
+    On Error Resume Next
+    Exit Sub
+
+TestFail:
+    Assert.Fail "Test raised an error: #" & Err.Number & " - " & Err.Description
+    Resume TestExit
+End Sub
+
