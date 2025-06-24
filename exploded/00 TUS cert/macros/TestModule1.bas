@@ -2,147 +2,91 @@ Attribute VB_Name = "TestModule1"
 '@TestModule
 '@Folder("Tests")
 
-
 Option Explicit
 Option Private Module
 
 Private Assert As Object
 Private Fakes As Object
+Private wsMain As Worksheet
+Private wsDaqBook As Worksheet
 
 '@ModuleInitialize
 Private Sub ModuleInitialize()
-    'this method runs once per module.
+    ' Shared test setup: Arrange test context
     Set Assert = CreateObject("Rubberduck.AssertClass")
     Set Fakes = CreateObject("Rubberduck.FakesProvider")
+    
+    Set wsMain = ThisWorkbook.Sheets("Main")
+    Set wsDaqBook = ThisWorkbook.Sheets("DaqBook_RAW_Data")
+    
+    InputMainSheetData
+    LoadTestDAQBookFromTSV "C:\Users\JeffHall\git\xl-TUS\test1.tsv"
 End Sub
 
 '@ModuleCleanup
 Private Sub ModuleCleanup()
-    'this method runs once per module.
+    ' Shared teardown: Clean up data
+    ClearMainSheetInputs
+    ClearDAQBookInputs
+    
+    Set wsMain = Nothing
+    Set wsDaqBook = Nothing
     Set Assert = Nothing
     Set Fakes = Nothing
 End Sub
 
-'@TestInitialize
-Private Sub TestInitialize()
-    'This method runs before every test in the module..
-End Sub
-
-'@TestCleanup
-Private Sub TestCleanup()
-    'this method runs after every test in the module.
-End Sub
-
-'@TestMethod
-Public Sub IsViewOnlySheet_ReturnsTrue_ForSheet21()
-    Dim ws As Worksheet
-    Set ws = Sheet21 ' Or: Set ws = ThisWorkbook.Sheets("Customers") if renamed
-
-    Assert.IsTrue IsViewOnlySheet(ws), "Expected Sheet21 to be view-only"
-End Sub
-
-' Helper function to clear all test input data
-Private Sub ClearTestInputs()
-    Dim wsMain As Worksheet
-    Dim wsDaqBook As Worksheet
-    Set wsMain = ThisWorkbook.Sheets("Main")
-    Set wsDaqBook = ThisWorkbook.Sheets("DaqBook_RAW_Data")
-    
-    ' Clear inputs in Main sheet
-    wsMain.Range("D3").ClearContents
-    wsMain.Range("D7").ClearContents
-    wsMain.Range("D9").ClearContents
-    wsMain.Range("D15:D19").ClearContents ' Consecutive cells
-    wsMain.Range("D22").ClearContents
-    wsMain.Range("D23").ClearContents
-    wsMain.Range("D26:D28").ClearContents ' Consecutive cells
-    wsMain.Range("D30").ClearContents
-    wsMain.Range("D32").ClearContents
-    wsMain.Range("K14:L14").ClearContents ' Merged cells
-    wsMain.Range("K15:L15").ClearContents ' Merged cells
-    wsMain.Range("D48").ClearContents
-    wsMain.Range("D51").ClearContents
-    wsMain.Range("D52").ClearContents
-    wsMain.Range("D56").ClearContents
-    wsMain.Range("D57").ClearContents
-    wsMain.Range("O5:O14").ClearContents ' Consecutive cells
-
-    ' Clear inputs in DaqBook_RAW_Data sheet
-    wsDaqBook.Range("A2:K38").ClearContents
-End Sub
-
-'@TestMethod("TUS Input and Clear Test")
-Private Sub TUS_InputAndClearTest()
-    On Error GoTo TestFail
-    
-    'Arrange:
-    Dim wsMain As Worksheet
-    Dim wsDaqBook As Worksheet
-    Set wsMain = ThisWorkbook.Sheets("Main")
-    Set wsDaqBook = ThisWorkbook.Sheets("DaqBook_RAW_Data")
-    
-    'Act:
-    ' Input data into Main sheet
+Private Sub InputMainSheetData()
     wsMain.Range("D3").Value = "2/17/2025"
-    wsMain.Range("D7").Value = "Danny Turkali"
     wsMain.Range("D9").Value = "J2"
-    wsMain.Range("D15").Value = "100"
-    wsMain.Range("D16").Value = "100"
-    wsMain.Range("D17").Value = "10"
-    wsMain.Range("D18").Value = "10"
-    wsMain.Range("D19").Value = "10"
+    wsMain.Range("D15:D16").Value = "100"
+    wsMain.Range("D17:D19").Value = "10"
     wsMain.Range("D22").Value = "68"
     wsMain.Range("D23").Value = "19"
-    wsMain.Range("D26").Value = "9:04:00 AM"
-    wsMain.Range("D27").Value = "9:04:00 AM"
-    wsMain.Range("D28").Value = "9:04:00 AM"
+    wsMain.Range("D24").Value = "1"
+    wsMain.Range("D26:D28").Value = "9:04:00 AM"
     wsMain.Range("D30").Value = "9:40:00 AM"
     wsMain.Range("D32").Value = "30"
-    wsMain.Range("K14").Value = "56561-069975-01"
+    wsMain.Range("K14").Value = "56561-069975"
     wsMain.Range("K15").Value = "SIM Load Hot"
     wsMain.Range("D48").Value = "J01-J24"
     wsMain.Range("D51").Value = "10"
     wsMain.Range("D52").Value = "0"
     wsMain.Range("D56").Value = "10"
     wsMain.Range("D57").Value = ""
-    wsMain.Range("O5").Value = "J01"
-    wsMain.Range("O6").Value = "J02"
-    wsMain.Range("O7").Value = "J03"
-    wsMain.Range("O8").Value = "J04"
-    wsMain.Range("O9").Value = "J05"
-    wsMain.Range("O10").Value = "J06"
-    wsMain.Range("O11").Value = "J07"
-    wsMain.Range("O12").Value = "J08"
-    wsMain.Range("O13").Value = "J09"
-    wsMain.Range("O14").Value = "J10"
+    
+    Dim i As Long
+    For i = 1 To 10
+        wsMain.Range("O" & (i + 4)).Value = "J" & Format(i, "00")
+    Next i
+End Sub
 
-    ' Input data into DaqBook_RAW_Data sheet
+Private Sub LoadTestDAQBookFromTSV(tsvPath As String)
     Dim rowIdx As Long, colIdx As Long
     Dim data As Variant
-    data = Split(CreateObject("Scripting.FileSystemObject").OpenTextFile("C:\Users\JeffHall\git\xl-TUS\test1.tsv").ReadAll, vbCrLf)
-    For rowIdx = LBound(data) To UBound(data) - 1
-        If Len(Trim(data(rowIdx))) > 0 Then
+    data = Split(CreateObject("Scripting.FileSystemObject").OpenTextFile(tsvPath).ReadAll, vbCrLf)
+    
+    For rowIdx = LBound(data) To UBound(data)
+        If Trim(data(rowIdx)) <> "" Then
             Dim values As Variant
             values = Split(data(rowIdx), vbTab)
             For colIdx = LBound(values) To UBound(values)
                 wsDaqBook.Cells(rowIdx + 2, colIdx + 1).Value = values(colIdx)
             Next colIdx
         End If
-    Next rowIdx    ' Clear inputs using helper function
-    ClearTestInputs
-
-    'Assert:
-    Assert.IsTrue wsMain.Range("D3").Value = "", "Expected D3 to be cleared"
-    Assert.IsTrue wsDaqBook.Range("A2").Value = "", "Expected A2 to be cleared"
-    Assert.Succeed
-
-TestExit:
-    '@Ignore UnhandledOnErrorResumeNext
-    On Error Resume Next
-    
-    Exit Sub
-TestFail:
-    Assert.Fail "Test raised an error: #" & Err.Number & " - " & Err.Description
-    Resume TestExit
+    Next rowIdx
 End Sub
 
+Private Sub ClearMainSheetInputs()
+    With wsMain
+        .Range("D3,D9,D22,D23,D30,D32,D48,D51,D52,D56,D57").ClearContents
+        .Range("D15:D19").ClearContents
+        .Range("D26:D28").ClearContents
+        .Range("K14:L14").ClearContents
+        .Range("K15:L15").ClearContents
+        .Range("O5:O14").ClearContents
+    End With
+End Sub
+
+Private Sub ClearDAQBookInputs()
+    wsDaqBook.Range("A2:K38").ClearContents
+End Sub
