@@ -6,7 +6,7 @@
         "type": "debugpy",
         "request": "launch",
         "program": "${workspaceFolder}/explode_excel.py",
-        "args": ["00 TUS cert.xltm"],
+        "args": ["New TUS (Beta).xltm"],
         "console": "integratedTerminal"
       }
     ]

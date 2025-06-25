@@ -1,7 +1,7 @@
 Attribute VB_Name = "SheetGuards"
 Option Explicit
 Public Sub EnforceSheetIsViewOnly(sh As Worksheet)
-    ' Exit Sub ' Remove for production/beta testing
+    ' Exit Sub ' Uncomment this line for development mode
     Dim msg As String
     On Error Resume Next
     msg = "This sheet is protected. Use the interface on the Main sheet."
