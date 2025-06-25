@@ -53,11 +53,40 @@ Private Sub InputMainSheetData()
     wsMain.Range("D52").Value = "0"
     wsMain.Range("D56").Value = "10"
     wsMain.Range("D57").Value = ""
-    
+
     Dim i As Long
     For i = 1 To 10
         wsMain.Range("O" & (i + 4)).Value = "J" & Format(i, "00")
     Next i
+
+    ' Set up temperature test data in B37:G40
+    wsMain.Range("B37").Value = 10
+    wsMain.Range("C37").Value = "Controller"
+    wsMain.Range("D37").Value = 374
+    wsMain.Range("E37").Value = 375
+    wsMain.Range("F37").Value = 375
+    wsMain.Range("G37").Value = 375
+
+    wsMain.Range("B38").Value = 10
+    wsMain.Range("C38").Value = "Recorder 1"
+    wsMain.Range("D38").Value = 375.8
+    wsMain.Range("E38").Value = 375.8
+    wsMain.Range("F38").Value = 375.8
+    wsMain.Range("G38").Value = 375.8
+
+    wsMain.Range("B39").Value = 7
+    wsMain.Range("C39").Value = "Rec 2 High"
+    wsMain.Range("D39").Value = 372.8
+    wsMain.Range("E39").Value = 372.7
+    wsMain.Range("F39").Value = 372.9
+    wsMain.Range("G39").Value = 372.8
+
+    wsMain.Range("B40").Value = 5
+    wsMain.Range("C40").Value = "Rec 3 Low"
+    wsMain.Range("D40").Value = 372.5
+    wsMain.Range("E40").Value = 372.6
+    wsMain.Range("F40").Value = 372.8
+    wsMain.Range("G40").Value = 372.8
 End Sub
 
 Private Sub LoadTestDAQBookFromTSV(tsvPath As String)
@@ -84,6 +113,7 @@ Private Sub ClearMainSheetInputs()
         .Range("K14:L14").ClearContents
         .Range("K15:L15").ClearContents
         .Range("O5:O14").ClearContents
+        .Range("B37:L44").ClearContents
     End With
 End Sub
 
@@ -119,4 +149,5 @@ TestFail:
     Assert.Fail "Test raised an error: #" & Err.Number & " - " & Err.Description
     Resume TestExit
 End Sub
+
 
