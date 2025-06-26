@@ -122,7 +122,7 @@ Private Sub ClearMainSheetInputs()
 End Sub
 
 Private Sub ClearDAQBookInputs()
-    wsDaqBook.Range("A2:K38").ClearContents
+    wsDaqBook.Range("A3:K38").ClearContents
 End Sub
 
 '@TestMethod("Main Sheet Logic")
