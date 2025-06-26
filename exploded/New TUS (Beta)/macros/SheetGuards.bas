@@ -4,9 +4,9 @@ Public Sub EnforceSheetIsViewOnly(sh As Worksheet)
     ' Exit Sub ' Uncomment this line for development mode
     Dim msg As String
     On Error Resume Next
-    msg = "This sheet is protected. Use the interface on the Main sheet."
 
     If Not Application.UserName Like "*Admin*" Then
+        msg = "The sheet '" & sh.Name & "' is protected. Use the interface on the Main sheet."
         Application.EnableEvents = False
         sh.Range("A1").Select
         MsgBox msg, vbInformation

@@ -12,6 +12,7 @@ Private wsDaqBook As Worksheet
 
 '@ModuleInitialize
 Private Sub ModuleInitialize()
+    Application.ScreenUpdating = False
     ' Shared test setup: Arrange test context
     Set Assert = CreateObject("Rubberduck.AssertClass")
     Set Fakes = CreateObject("Rubberduck.FakesProvider")
@@ -21,10 +22,12 @@ Private Sub ModuleInitialize()
     
     InputMainSheetData
     LoadTestDAQBookFromTSV "C:\Users\JeffHall\git\xl-TUS\test1.tsv"
+    Application.ScreenUpdating = True
 End Sub
 
 '@ModuleCleanup
 Private Sub ModuleCleanup()
+    Application.ScreenUpdating = False
     ' Shared teardown: Clean up data
     ClearMainSheetInputs
     ClearDAQBookInputs
@@ -33,6 +36,7 @@ Private Sub ModuleCleanup()
     Set wsDaqBook = Nothing
     Set Assert = Nothing
     Set Fakes = Nothing
+    Application.ScreenUpdating = True
 End Sub
 
 Private Sub InputMainSheetData()
