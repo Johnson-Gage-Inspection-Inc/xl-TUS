@@ -20,8 +20,21 @@ def export_sheets_with_formulas(xlsx_path: Path, output_dir: Path):
         csv_path = output_dir / f"{sheet.title}.csv"
         with open(csv_path, 'w', newline='', encoding='utf-8') as f:
             writer = csv.writer(f)
-            for row in sheet.iter_rows(values_only=False):
-                writer.writerow([get_formula_or_value(cell) for cell in row])
+            rows = [
+                [get_formula_or_value(cell) for cell in row]
+                for row in sheet.iter_rows(values_only=False)
+            ]
+            writer.writerows(rows)
+
+        # After writing, check if all rows are just commas
+        with open(csv_path, 'r+', encoding='utf-8') as f:
+            content = f.read()
+            if all(
+                not any(cell.strip() for cell in line.split(','))
+                for line in content.splitlines()
+            ):
+                f.seek(0)
+                f.truncate()
 
 def delete_existing():
     path = 'exploded/00 TUS cert/sheets'
