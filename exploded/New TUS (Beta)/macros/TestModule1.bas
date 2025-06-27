@@ -12,7 +12,6 @@ Private wsDaqBook As Worksheet
 
 '@ModuleInitialize
 Private Sub ModuleInitialize()
-    Application.ScreenUpdating = False
     ' Shared test setup: Arrange test context
     Set Assert = CreateObject("Rubberduck.AssertClass")
     Set Fakes = CreateObject("Rubberduck.FakesProvider")
@@ -20,6 +19,7 @@ Private Sub ModuleInitialize()
     Set wsMain = ThisWorkbook.Sheets("Main")
     Set wsDaqBook = ThisWorkbook.Sheets("DaqBook_RAW_Data")
     
+    Application.ScreenUpdating = False
     InputMainSheetData
     LoadTestDAQBookFromTSV "C:\Users\JeffHall\git\xl-TUS\test1.tsv"
     Application.ScreenUpdating = True
@@ -27,16 +27,27 @@ End Sub
 
 '@ModuleCleanup
 Private Sub ModuleCleanup()
-    Application.ScreenUpdating = False
-    ' Shared teardown: Clean up data
-    ClearMainSheetInputs
-    ClearDAQBookInputs
-    
-    Set wsMain = Nothing
+    Call Sheet7.TruncateChannels1to14
+    Call Sheet7.TruncateChannels15to28
+    Call Sheet7.TruncateChannels29to40
     Set wsDaqBook = Nothing
     Set Assert = Nothing
-    Set Fakes = Nothing
-    Application.ScreenUpdating = True
+End Sub
+
+Private Sub LoadTestDAQBookFromTSV(tsvPath As String)
+    Dim rowIdx As Long, colIdx As Long
+    Dim data As Variant
+    data = Split(CreateObject("Scripting.FileSystemObject").OpenTextFile(tsvPath).ReadAll, vbCrLf)
+    
+    For rowIdx = LBound(data) To UBound(data)
+        If Trim(data(rowIdx)) <> "" Then
+            Dim values As Variant
+            values = Split(data(rowIdx), vbTab)
+            For colIdx = LBound(values) To UBound(values)
+                wsDaqBook.cells(rowIdx + 2, colIdx + 1).Value = values(colIdx)
+            Next colIdx
+        End If
+    Next rowIdx
 End Sub
 
 Private Sub InputMainSheetData()
@@ -93,21 +104,6 @@ Private Sub InputMainSheetData()
     wsMain.Range("G40").Value = 372.8
 End Sub
 
-Private Sub LoadTestDAQBookFromTSV(tsvPath As String)
-    Dim rowIdx As Long, colIdx As Long
-    Dim data As Variant
-    data = Split(CreateObject("Scripting.FileSystemObject").OpenTextFile(tsvPath).ReadAll, vbCrLf)
-    
-    For rowIdx = LBound(data) To UBound(data)
-        If Trim(data(rowIdx)) <> "" Then
-            Dim values As Variant
-            values = Split(data(rowIdx), vbTab)
-            For colIdx = LBound(values) To UBound(values)
-                wsDaqBook.Cells(rowIdx + 2, colIdx + 1).Value = values(colIdx)
-            Next colIdx
-        End If
-    Next rowIdx
-End Sub
 
 Private Sub ClearMainSheetInputs()
     With wsMain
@@ -133,7 +129,7 @@ Private Sub TCAlerts_ContainsNoDropped()
     For i = 5 To 14
         Dim val As Variant
         val = wsMain.Range("P" & i).Value
-        
+
         Assert.AreNotEqual "Dropped", val, "Expected P" & i & " not to contain 'Dropped'"
         Select Case i
             Case 6: Assert.AreEqual "High", val, "Expected P6 to be High"
@@ -154,4 +150,16 @@ TestFail:
     Resume TestExit
 End Sub
 
+'@TestMethod
+Private Sub TC_PasteChannels1to14()
+    TestPasteRoutine "Sheet7.PasteChannels1to14", "A2", 1
+End Sub
 
+'@TestMethod
+Private Sub TC_PasteChannels15to28()
+    TestPasteRoutine "Sheet7.PasteChannels15to28", "Q2", 15
+End Sub
+
+'@TestMethod
+Private Sub TC_PasteChannels29to40()
+    TestPasteRoutine "Sheet7.PasteChannels29to40", "AG2", 29

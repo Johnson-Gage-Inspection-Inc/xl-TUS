@@ -37,7 +37,7 @@ End Sub
 '=======================
 ' Core reusable logic
 '=======================
-Private Sub PasteChannelBlock(sheetName As String, startCellAddress As String, channelCount As Long, label As String, startingChannel As Long)
+Private Sub PasteChannelBlock(sheetName As String, startCellAddress As String, channelCount As Long, label As String, startingChannel As Long, Optional tsvTextSource As String = "")
     Dim clipboard As MSForms.DataObject
     Dim rawText As String
     Dim lines As Variant, fields As Variant
@@ -49,6 +49,7 @@ Private Sub PasteChannelBlock(sheetName As String, startCellAddress As String, c
     Dim headerMismatch As Boolean
     Dim rowOffset As Long
     Dim colCount As Long
+    Dim msg As String
 
     ' Build expected headers: Time, 1...N
     ReDim expectedHeader(0 To channelCount)
@@ -58,29 +59,27 @@ Private Sub PasteChannelBlock(sheetName As String, startCellAddress As String, c
     Next i
     colCount = channelCount + 1
 
-    ' Get clipboard text
-    On Error GoTo ClipboardError
-    Set clipboard = New MSForms.DataObject
-    clipboard.GetFromClipboard
-    rawText = clipboard.GetText
-    On Error GoTo 0
-    Call TruncateTableByName(label)
-
-    ' Split by lines
-    lines = Split(rawText, vbCrLf)
-    If UBound(lines) < 2 Then
-        MsgBox "Clipboard content is too short. Expected at least 3 lines.", vbCritical
-        Exit Sub
+    ' Get TSV data: from clipboard or argument
+    If Len(tsvTextSource) = 0 Then
+        On Error GoTo ClipboardError
+        Set clipboard = New MSForms.DataObject
+        clipboard.GetFromClipboard
+        rawText = clipboard.GetText
+        On Error GoTo 0
+    Else
+        rawText = tsvTextSource
     End If
 
-    ' Clean empty lines
-    Dim cleanLines As Collection
-    Set cleanLines = New Collection
+    Call TruncateTableByName(label)
+
+    ' Split into lines and clean
+    lines = Split(rawText, vbCrLf)
+    Dim cleanLines As Collection: Set cleanLines = New Collection
     For i = LBound(lines) To UBound(lines)
         If Trim(lines(i)) <> "" Then cleanLines.Add lines(i)
     Next i
     If cleanLines.count < 3 Then
-        MsgBox "No data rows found after headers.", vbCritical
+        MsgBox "Not enough non-empty lines in data. Expected at least header + spacer + one row.", vbCritical
         Exit Sub
     End If
 
@@ -90,10 +89,8 @@ Private Sub PasteChannelBlock(sheetName As String, startCellAddress As String, c
         MsgBox "Header column count mismatch for " & label & ". Expected " & colCount & " columns.", vbCritical
         Exit Sub
     End If
-    
-    Dim msg As String
+
     headerMismatch = False
-    
     For j = 0 To Application.Min(UBound(expectedHeader), UBound(pastedHeader))
         If j = 0 Then
             If LCase(Trim(pastedHeader(0))) <> "time" Then
@@ -105,29 +102,20 @@ Private Sub PasteChannelBlock(sheetName As String, startCellAddress As String, c
             msg = msg & expectedHeader(j) & " <- " & pastedHeader(j) & vbCrLf
         End If
     Next j
-    
     If headerMismatch Then
         MsgBox label & ": Header mismatch detected. Using existing headers. Mapping:" & vbCrLf & msg, vbExclamation, "Header Diff for " & label
     End If
 
-
-    ' Validate row 2 is blank
+    ' Validate spacer row
     fields = Split(Replace(cleanLines(2), vbTab, ","), ",")
-    Dim isEmptySpacer As Boolean
-    isEmptySpacer = True
     For j = LBound(fields) To UBound(fields)
         If Trim(fields(j)) <> "" Then
-            isEmptySpacer = False
-            Exit For
+            MsgBox "Expected a blank spacer row after headers.", vbCritical
+            Exit Sub
         End If
     Next j
-    If Not isEmptySpacer Then
-        MsgBox "Expected a blank spacer row after headers.", vbCritical
-        Exit Sub
-    End If
 
-
-    ' Validate data rows
+    ' Validate all data rows
     For i = 3 To cleanLines.count
         fields = Split(Replace(cleanLines(i), vbTab, ","), ",")
         If UBound(fields) + 1 < 2 Then
@@ -150,25 +138,21 @@ Private Sub PasteChannelBlock(sheetName As String, startCellAddress As String, c
         Next j
     Next i
 
-    ' Get target range
+    ' Paste data
     Set ws = ThisWorkbook.Sheets(sheetName)
     Set startCell = ws.Range(startCellAddress)
-    rowOffset = 1
-    
-    ' Build and paste all values using a 2D array (faster)
-    Dim data() As Variant
-    Dim numRows As Long: numRows = cleanLines.count - 2 ' skip header + blank row
+
+    Dim numRows As Long: numRows = cleanLines.count - 2
     Dim numCols As Long: numCols = colCount
-    ReDim data(1 To numRows, 1 To numCols)
-    
+    Dim data() As Variant: ReDim data(1 To numRows, 1 To numCols)
+
     For i = 1 To numRows
         fields = Split(Replace(cleanLines(i + 2), vbTab, ","), ",")
         For j = 0 To UBound(fields)
             data(i, j + 1) = Trim(fields(j))
         Next j
     Next i
-    
-    ' Write to sheet in one go
+
     startCell.Offset(1, 0).Resize(numRows, numCols).Value = data
     Exit Sub
 
@@ -198,4 +182,3 @@ Public Sub TruncateTableByName(tableName As String)
 
     tbl.DataBodyRange.Rows.Delete
 End Sub
-
