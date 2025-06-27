@@ -22,6 +22,18 @@ Public Sub PasteChannels29to40()
     PasteChannelBlock "DaqBook_RAW_Data", "AG2", 12, "DataForChannels29to40", 29
 End Sub
 
+Public Sub TruncateChannels1to14()
+    Call TruncateTableByName("DataForChannels1to14")
+End Sub
+
+Public Sub TruncateChannels15to28()
+    Call TruncateTableByName("DataForChannels15to28")
+End Sub
+
+Public Sub TruncateChannels29to40()
+    Call TruncateTableByName("DataForChannels29to40")
+End Sub
+
 '=======================
 ' Core reusable logic
 '=======================
@@ -52,6 +64,7 @@ Private Sub PasteChannelBlock(sheetName As String, startCellAddress As String, c
     clipboard.GetFromClipboard
     rawText = clipboard.GetText
     On Error GoTo 0
+    Call TruncateTableByName(label)
 
     ' Split by lines
     lines = Split(rawText, vbCrLf)
@@ -161,5 +174,28 @@ Private Sub PasteChannelBlock(sheetName As String, startCellAddress As String, c
 
 ClipboardError:
     MsgBox "Could not read clipboard. Ensure you've copied the TSV data.", vbCritical
+End Sub
+Public Sub TruncateTableByName(tableName As String)
+    Dim tbl As ListObject
+    Dim ws As Worksheet
+    
+    ' Loop through all sheets to find the table
+    For Each ws In ThisWorkbook.Worksheets
+        On Error Resume Next
+        Set tbl = ws.ListObjects(tableName)
+        On Error GoTo 0
+        If Not tbl Is Nothing Then Exit For
+    Next ws
+
+    If tbl Is Nothing Then
+        MsgBox "Table '" & tableName & "' not found in this workbook.", vbCritical
+        Exit Sub
+    End If
+
+    If tbl.DataBodyRange Is Nothing Then
+        Exit Sub
+    End If
+
+    tbl.DataBodyRange.Rows.Delete
 End Sub
 
