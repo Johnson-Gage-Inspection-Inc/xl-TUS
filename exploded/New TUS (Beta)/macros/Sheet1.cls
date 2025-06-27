@@ -162,8 +162,8 @@ End Sub
 Function FindTimePoint(targetValue As Variant, suffix As String, col As Long, timeStp() As Range)
     Dim iRow As Long
     For iRow = 10 To 25
-        If Not IsEmpty(Cells(iRow, col)) Then
-            If Round(Cells(iRow, col).Value, 1) = Round(targetValue, 1) Then
+        If Not IsEmpty(cells(iRow, col)) Then
+            If Round(cells(iRow, col).Value, 1) = Round(targetValue, 1) Then
                 FindTimePoint = timeStp(iRow - 10)
                 Exit Function
             End If
