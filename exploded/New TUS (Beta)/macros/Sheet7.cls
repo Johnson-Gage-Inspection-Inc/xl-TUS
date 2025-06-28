@@ -37,7 +37,7 @@ End Sub
 '=======================
 ' Core reusable logic
 '=======================
-Private Sub PasteChannelBlock(sheetName As String, startCellAddress As String, channelCount As Long, label As String, startingChannel As Long, Optional tsvTextSource As String = "")
+Public Sub PasteChannelBlock(sheetName As String, startCellAddress As String, channelCount As Long, label As String, startingChannel As Long, Optional tsvTextSource As String = "")
     Dim clipboard As MSForms.DataObject
     Dim rawText As String
     Dim lines As Variant, fields As Variant
