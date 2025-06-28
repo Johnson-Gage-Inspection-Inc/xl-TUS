@@ -153,7 +153,7 @@ Public Sub PasteChannelBlock(sheetName As String, startCellAddress As String, ch
         Next j
     Next i
 
-    startCell.Offset(1, 0).Resize(numRows, numCols).Value = data
+    startCell.Offset(1, 0).Resize(numRows, numCols).value = data
     Exit Sub
 
 ClipboardError:

@@ -16,7 +16,7 @@ Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
 
     If LCase(Right(ThisWorkbook.Name, 5)) = ".xltm" Then
         With ThisWorkbook.Sheets("Main").Range("A1")
-            .Value = "Ver. " & Format(Now, "mm.dd.yy")
+            .value = "Ver. " & Format(Now, "mm.dd.yy")
         End With
         If ThisWorkbook.VBProject.Protection = 0 Then
             ExportVisualBasicCode

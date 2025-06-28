@@ -28,4 +28,24 @@ Function GetUniqueValues(ByRef inputArray() As String) As Collection
         GetUniqueValues.Add key
     Next key
 End Function
+Function IFZERO(value As Variant, fallback As Variant) As Variant
+    If IsError(value) Then
+        IFZERO = CVErr(xlErrValue)
+    ElseIf IsNumeric(value) Then
+        If CDbl(value) = 0 Then
+            IFZERO = fallback
+        Else
+            IFZERO = value
+        End If
+    ElseIf Trim(CStr(value)) = "" Then
+        IFZERO = fallback
+    Else
+        IFZERO = value
+    End If
+End Function
+
+
+
+
+
 
