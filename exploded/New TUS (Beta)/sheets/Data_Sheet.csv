@@ -15,7 +15,7 @@
   _xlfn.BYCOL(_xlpm.tbl, _xlfn.LAMBDA(_xlpm.col, IF(COUNTA(_xlpm.col)>0, INDEX(_xlpm.hdrs, 1, COLUMN(_xlpm.col) - COLUMN(INDEX(_xlpm.tbl,1,1)) + 1), """")))
 )",,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,"=IF(ISBLANK(DaqBook_RAW_Data!L3),"""",DaqBook_RAW_Data!L3)","=IF(ISBLANK(DaqBook_RAW_Data!M3),"""",DaqBook_RAW_Data!M3)","=IF(ISBLANK(DaqBook_RAW_Data!N3),"""",DaqBook_RAW_Data!N3)",,,
-"=TEXT(B14:B903, ""h:mm"")","=IFERROR(_xlfn._xlws.FILTER(DataForChannels1to14[],(DataForChannels1to14[Time]>=TUS_Start_Time)*(DataForChannels1to14[Time]<=Survey_End_Time),""""),"""")",0,0,0,0,0,0,0,0,0,0,0,0,0,0,,
+"=TEXT(B14:B903, ""h:mm"")",=DataForChannels1to14[],0,0,0,0,0,0,0,0,0,0,0,0,0,0,,
 0:00,,,,,,,,,,,,,,,,,
 0:00,,,,,,,,,,,,,,,,,
 0:00,,,,,,,,,,,,,,,,,
