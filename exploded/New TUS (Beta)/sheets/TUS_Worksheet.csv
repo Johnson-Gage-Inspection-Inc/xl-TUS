@@ -14,7 +14,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(C10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(C10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -23,7 +23,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(D10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(D10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -32,7 +32,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(E10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(E10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -41,7 +41,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(F10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(F10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -50,7 +50,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(G10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(G10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -59,7 +59,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(H10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(H10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -68,7 +68,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(I10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(I10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -77,7 +77,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(J10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(J10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -86,7 +86,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(K10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(K10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -95,7 +95,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(L10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(L10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -104,7 +104,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(M10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(M10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -113,7 +113,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(N10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(N10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -122,7 +122,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(O10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(O10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -131,11 +131,11 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(P10, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(P10, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )",,,,
-,T/C CFs:,"=IFERROR(VLOOKUP(C10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(D10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(E10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(F10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(G10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(H10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(I10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(J10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(K10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(L10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(M10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(N10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(O10,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(P10,WireOffsets[],2,FALSE),"""")",,,,
+,T/C CFs:,"=IFERROR(VLOOKUP(C10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(D10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(E10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(F10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(G10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(H10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(I10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(J10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(K10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(L10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(M10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(N10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(O10,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(P10,#REF!,2,FALSE),"""")",,,,
 ,Cumulative CFs:,"=IF(OR(C11="""",C12=""""),"""",SUM(C11:C12))","=IF(OR(D11="""",D12=""""),"""",SUM(D11:D12))","=IF(OR(E11="""",E12=""""),"""",SUM(E11:E12))","=IF(OR(F11="""",F12=""""),"""",SUM(F11:F12))","=IF(OR(G11="""",G12=""""),"""",SUM(G11:G12))","=IF(OR(H11="""",H12=""""),"""",SUM(H11:H12))","=IF(OR(I11="""",I12=""""),"""",SUM(I11:I12))","=IF(OR(J11="""",J12=""""),"""",SUM(J11:J12))","=IF(OR(K11="""",K12=""""),"""",SUM(K11:K12))","=IF(OR(L11="""",L12=""""),"""",SUM(L11:L12))","=IF(OR(M11="""",M12=""""),"""",SUM(M11:M12))","=IF(OR(N11="""",N12=""""),"""",SUM(N11:N12))","=IF(OR(O11="""",O12=""""),"""",SUM(O11:O12))","=IF(OR(P11="""",P12=""""),"""",SUM(P11:P12))",,,,
 ,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
@@ -146,7 +146,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(C16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(C16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -155,7 +155,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(D16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(D16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -164,7 +164,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(E16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(E16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -173,7 +173,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(F16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(F16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -182,7 +182,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(G16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(G16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -191,7 +191,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(H16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(H16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -200,7 +200,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(I16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(I16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -209,7 +209,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(J16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(J16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -218,7 +218,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(K16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(K16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -227,7 +227,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(L16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(L16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -236,7 +236,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(M16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(M16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -245,7 +245,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(N16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(N16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -254,7 +254,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(O16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(O16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -263,11 +263,11 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(P16, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(P16, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )",,,,
-,T/C CFs:,"=IFERROR(VLOOKUP(C16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(D16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(E16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(F16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(G16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(H16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(I16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(J16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(K16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(L16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(M16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(N16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(O16,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(P16,WireOffsets[],2,FALSE),"""")",,,,
+,T/C CFs:,"=IFERROR(VLOOKUP(C16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(D16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(E16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(F16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(G16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(H16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(I16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(J16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(K16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(L16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(M16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(N16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(O16,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(P16,#REF!,2,FALSE),"""")",,,,
 ,Cumulative CFs:,"=IF(OR(C17="""",C18=""""),"""",SUM(C17:C18))","=IF(OR(D17="""",D18=""""),"""",SUM(D17:D18))","=IF(OR(E17="""",E18=""""),"""",SUM(E17:E18))","=IF(OR(F17="""",F18=""""),"""",SUM(F17:F18))","=IF(OR(G17="""",G18=""""),"""",SUM(G17:G18))","=IF(OR(H17="""",H18=""""),"""",SUM(H17:H18))","=IF(OR(I17="""",I18=""""),"""",SUM(I17:I18))","=IF(OR(J17="""",J18=""""),"""",SUM(J17:J18))","=IF(OR(K17="""",K18=""""),"""",SUM(K17:K18))","=IF(OR(L17="""",L18=""""),"""",SUM(L17:L18))","=IF(OR(M17="""",M18=""""),"""",SUM(M17:M18))","=IF(OR(N17="""",N18=""""),"""",SUM(N17:N18))","=IF(OR(O17="""",O18=""""),"""",SUM(O17:O18))","=IF(OR(P17="""",P18=""""),"""",SUM(P17:P18))",,,,
 ,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
@@ -278,7 +278,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(C22, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(C22, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -287,7 +287,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(D22, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(D22, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -296,7 +296,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(E22, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(E22, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -305,7 +305,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(F22, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(F22, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -314,7 +314,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(G22, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(G22, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -323,7 +323,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(H22, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(H22, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -332,7 +332,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(I22, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(I22, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -341,7 +341,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(J22, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(J22, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -350,7 +350,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(K22, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(K22, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -359,7 +359,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(L22, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(L22, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -368,7 +368,7 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(M22, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(M22, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )","=IF(
@@ -377,11 +377,11 @@ Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,
   _xlfn.XLOOKUP(
     TEXT(Temperature, ""0""),
     DaqbookOffsets[#Headers],
-    _xlfn.XLOOKUP(N22, DaqbookOffsets[Point], DaqbookOffsets[]),
+    _xlfn.XLOOKUP(N22, DaqbookOffsets[point], DaqbookOffsets[]),
     ""No match"", 1
   )
 )",,,,,,
-,T/C CFs:,"=IFERROR(VLOOKUP(C22,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(D22,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(E22,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(F22,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(G22,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(H22,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(I22,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(J22,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(K22,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(L22,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(M22,WireOffsets[],2,FALSE),"""")","=IFERROR(VLOOKUP(N22,WireOffsets[],2,FALSE),"""")",,,,,,
+,T/C CFs:,"=IFERROR(VLOOKUP(C22,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(D22,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(E22,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(F22,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(G22,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(H22,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(I22,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(J22,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(K22,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(L22,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(M22,#REF!,2,FALSE),"""")","=IFERROR(VLOOKUP(N22,#REF!,2,FALSE),"""")",,,,,,
 ,Cumulative CFs:,"=IF(OR(C23="""",C24=""""),"""",SUM(C23:C24))","=IF(OR(D23="""",D24=""""),"""",SUM(D23:D24))","=IF(OR(E23="""",E24=""""),"""",SUM(E23:E24))","=IF(OR(F23="""",F24=""""),"""",SUM(F23:F24))","=IF(OR(G23="""",G24=""""),"""",SUM(G23:G24))","=IF(OR(H23="""",H24=""""),"""",SUM(H23:H24))","=IF(OR(I23="""",I24=""""),"""",SUM(I23:I24))","=IF(OR(J23="""",J24=""""),"""",SUM(J23:J24))","=IF(OR(K23="""",K24=""""),"""",SUM(K23:K24))","=IF(OR(L23="""",L24=""""),"""",SUM(L23:L24))","=IF(OR(M23="""",M24=""""),"""",SUM(M23:M24))","=IF(OR(N23="""",N24=""""),"""",SUM(N23:N24))",,,,,,
 ,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
