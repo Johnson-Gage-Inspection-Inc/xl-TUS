@@ -24,7 +24,7 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Dim i As Long
     For i = 0 To UBound(iCells)
         With Range(rRanges(i))
-            .NumberFormat = IIf(Range(iCells(i)).Value = 0, "0°F", "0.0°F")
+            .NumberFormat = IIf(Range(iCells(i)).value = 0, "0°F", "0.0°F")
         End With
     Next i
 

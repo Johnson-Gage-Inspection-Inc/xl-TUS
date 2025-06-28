@@ -23,19 +23,19 @@ Sub Printselection()
     
     Worksheets("Data_Sheet").Activate
     For k = ActiveSheet.UsedRange.Rows.count To ActiveSheet.UsedRange.row Step -1
-        If cells(k, TestCol).Value <> "" Then Exit For
+        If cells(k, TestCol).value <> "" Then Exit For
     Next k
     ActiveSheet.PageSetup.PrintArea = "A1:P" & k
     
     Worksheets("Data_Sheet_15_28").Activate
     For k = ActiveSheet.UsedRange.Rows.count To ActiveSheet.UsedRange.row Step -1
-        If cells(k, TestCol).Value <> "" Then Exit For
+        If cells(k, TestCol).value <> "" Then Exit For
     Next k
     ActiveSheet.PageSetup.PrintArea = "A1:P" & k
 
     Worksheets("Data_Sheet_29_40").Activate
     For k = ActiveSheet.UsedRange.Rows.count To ActiveSheet.UsedRange.row Step -1
-        If cells(k, TestCol).Value <> "" Then Exit For
+        If cells(k, TestCol).value <> "" Then Exit For
     Next k
     ActiveSheet.PageSetup.PrintArea = "A1:P" & k
     
@@ -43,13 +43,13 @@ Sub Printselection()
     
     'Set each worksheet for printing
     For Each rng In Sheets("Standards_Info").Range("U2:U9")
-        If Trim(rng.Value) <> "" Then
+        If Trim(rng.value) <> "" Then
             On Error Resume Next
             Set wks = Nothing
-            Set wks = Sheets(rng.Value)
+            Set wks = Sheets(rng.value)
             On Error GoTo 0
             If wks Is Nothing Then
-                MsgBox "Sheet " & rng.Value & " does not exist"
+                MsgBox "Sheet " & rng.value & " does not exist"
             Else
                 ReDim Preserve arr(i)
                 arr(i) = wks.Name

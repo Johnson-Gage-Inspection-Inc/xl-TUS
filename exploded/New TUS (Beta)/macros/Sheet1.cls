@@ -13,8 +13,8 @@ Public checkVal1 As Double
 Function SafeSum(rng As Range) As Double
     Dim cell As Range
     For Each cell In rng
-        If IsNumeric(cell.Value) Then
-            SafeSum = SafeSum + cell.Value
+        If IsNumeric(cell.value) Then
+            SafeSum = SafeSum + cell.value
         Else
             SafeSum = 0
             Exit Function
@@ -67,16 +67,16 @@ Private Sub Worksheet_Calculate()
     Dim setPoint As Range:  Set setPoint = Range("A1")
     Dim high As Range:      Set high = Range("F34")
     Dim tusTol As Range:    Set tusTol = Range("A2")    'Initialize high and low values
-    Dim lowOOT As Double:       lowOOT = setPoint.Value - tusTol.Value
-    Dim highOOT As Double:      highOOT = setPoint.Value + tusTol.Value
+    Dim lowOOT As Double:       lowOOT = setPoint.value - tusTol.value
+    Dim highOOT As Double:      highOOT = setPoint.value + tusTol.value
     Dim a_counter As Long:      a_counter = 1
     Dim colToSearch As Long:    colToSearch = 0
       'Get lowest temperature for the survey depending on the number of points
-    If numPoints.Value < 15 Then
+    If numPoints.value < 15 Then
         low = WorksheetFunction.Min(low1st)
-    ElseIf numPoints.Value > 14 And numPoints.Value < 29 Then
+    ElseIf numPoints.value > 14 And numPoints.value < 29 Then
         low = WorksheetFunction.Min(low1st, low2nd)
-    ElseIf numPoints.Value > 28 Then
+    ElseIf numPoints.value > 28 Then
         low = WorksheetFunction.Min(low1st, low2nd, low3rd)
     End If
    
@@ -98,32 +98,32 @@ Private Sub Worksheet_Calculate()
     
     'Clear values over number of points
     For i = 1 To 40
-        oPt(i).Value = ""
-        timePt(i).Value = ""
+        oPt(i).value = ""
+        timePt(i).value = ""
     Next i    'Process individual values
-    For i = 1 To numPoints.Value
+    For i = 1 To numPoints.value
         ptColumn = 0
         
         'Reset Flag to Zero
-        oPt(i).Value = 0
-        timePt(i).Value = ""
+        oPt(i).value = 0
+        timePt(i).value = ""
           'Mark if High or Low in Tolerance
-        If (IsEmpty(hy(i).Value) Or IsEmpty(ly(i).Value) Or hy(i).Value = "" Or ly(i).Value = "") Then
-            oPt(i).Value = "Dropped"
+        If (IsEmpty(hy(i).value) Or IsEmpty(ly(i).value) Or hy(i).value = "" Or ly(i).value = "") Then
+            oPt(i).value = "Dropped"
         Else
               'Mark if High or Low out of Tolerance
-            If Round(ly(i).Value, 1) < lowOOT Then
-                oPt(i).Value = "Out of Tol - LOW"
-            ElseIf Round(hy(i).Value, 1) > highOOT Then
-                oPt(i).Value = "Out of Tol - HIGH"
+            If Round(ly(i).value, 1) < lowOOT Then
+                oPt(i).value = "Out of Tol - LOW"
+            ElseIf Round(hy(i).value, 1) > highOOT Then
+                oPt(i).value = "Out of Tol - HIGH"
             End If
 
-            If Round(hy(i).Value, 1) = Round(high.Value, 1) Then
-                oPt(i).Value = "High"
-            ElseIf Round(ly(i).Value, 1) = Round(low, 1) Then
-                oPt(i).Value = "Low"
+            If Round(hy(i).value, 1) = Round(high.value, 1) Then
+                oPt(i).value = "High"
+            ElseIf Round(ly(i).value, 1) = Round(low, 1) Then
+                oPt(i).value = "Low"
             Else
-                timePt(i).Value = ""
+                timePt(i).value = ""
                 GoTo NextPoint
             End If
 
@@ -137,17 +137,17 @@ Private Sub Worksheet_Calculate()
             ElseIf colToSearch > 28 Then
                 ptColumn = i + 13
             End If
-              If Right(oPt(i).Value, 3) = "Low" Then
+              If Right(oPt(i).value, 3) = "Low" Then
                 timePt(i) = FindTimePoint(low, "Low", ptColumn, timeStp)
-            ElseIf Right(oPt(i).Value, 4) = "High" Then
-                timePt(i) = FindTimePoint(high.Value, "High", ptColumn, timeStp)
+            ElseIf Right(oPt(i).value, 4) = "High" Then
+                timePt(i) = FindTimePoint(high.value, "High", ptColumn, timeStp)
             End If
 
         End If
 NextPoint:
     Next i
       'Process total deviation
-    totalDevCell.Value = IIf(Sgn(x1.Value) = Sgn(x2.Value), x1.Value - x2.Value, Abs(x1.Value) + Abs(x2.Value))
+    totalDevCell.value = IIf(Sgn(x1.value) = Sgn(x2.value), x1.value - x2.value, Abs(x1.value) + Abs(x2.value))
         
 CleanExit:
     Application.ScreenUpdating = True
@@ -163,7 +163,7 @@ Function FindTimePoint(targetValue As Variant, suffix As String, col As Long, ti
     Dim iRow As Long
     For iRow = 10 To 25
         If Not IsEmpty(cells(iRow, col)) Then
-            If Round(cells(iRow, col).Value, 1) = Round(targetValue, 1) Then
+            If Round(cells(iRow, col).value, 1) = Round(targetValue, 1) Then
                 FindTimePoint = timeStp(iRow - 10)
                 Exit Function
             End If
