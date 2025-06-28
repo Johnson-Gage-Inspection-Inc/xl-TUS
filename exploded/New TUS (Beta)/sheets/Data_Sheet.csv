@@ -9,9 +9,13 @@
 ,,,,,,,,"=IF(Main!K15=""SIM Load Hot"",Main!N59,"""")",,,,,,,,,
 ,,,,,,,,"=IF(AND(Main!E60 <> """", Main!K60 <>""""),Main!N60,IF(AND(Main!E61<>"""",Main!K61<>""""),Main!N61,""""))",,,,,,,,,
 ,,,,,,,,,,,,,,,,,
-,=DaqBook_RAW_Data!A2,"=IF(ISBLANK(DaqBook_RAW_Data!B2),"""",1)","=IF(ISBLANK(DaqBook_RAW_Data!C2),"""",2)","=IF(ISBLANK(DaqBook_RAW_Data!D2),"""",3)","=IF(ISBLANK(DaqBook_RAW_Data!E2),"""",4)","=IF(ISBLANK(DaqBook_RAW_Data!F2),"""",5)","=IF(ISBLANK(DaqBook_RAW_Data!G2),"""",6)","=IF(ISBLANK(DaqBook_RAW_Data!H2),"""",7)","=IF(ISBLANK(DaqBook_RAW_Data!I2),"""",8)","=IF(ISBLANK(DaqBook_RAW_Data!J2),"""",9)","=IF(ISBLANK(DaqBook_RAW_Data!K2),"""",10)","=IF(ISBLANK(DaqBook_RAW_Data!L2),"""",11)","=IF(ISBLANK(DaqBook_RAW_Data!M2),"""",12)","=IF(ISBLANK(DaqBook_RAW_Data!N2),"""",13)","=IF(ISBLANK(DaqBook_RAW_Data!O2),"""",14)",,
+,"=_xlfn.LET(
+  _xlpm.tbl, DataForChannels1to14[],
+  _xlpm.hdrs, DataForChannels1to14[#Headers],
+  _xlfn.BYCOL(_xlpm.tbl, _xlfn.LAMBDA(_xlpm.col, IF(COUNTA(_xlpm.col)>0, INDEX(_xlpm.hdrs, 1, COLUMN(_xlpm.col) - COLUMN(INDEX(_xlpm.tbl,1,1)) + 1), """")))
+)",,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,"=IF(ISBLANK(DaqBook_RAW_Data!L3),"""",DaqBook_RAW_Data!L3)","=IF(ISBLANK(DaqBook_RAW_Data!M3),"""",DaqBook_RAW_Data!M3)","=IF(ISBLANK(DaqBook_RAW_Data!N3),"""",DaqBook_RAW_Data!N3)",,,
-"=TEXT(B14:B903, ""h:mm"")","=IF(DaqBook_RAW_Data!#REF!="""", """", DaqBook_RAW_Data!#REF!)","=IF(DaqBook_RAW_Data!#REF!="""", """", DaqBook_RAW_Data!#REF!)",,,,,,,,,,,,,,,
+"=TEXT(B14:B903, ""h:mm"")","=IFERROR(_xlfn._xlws.FILTER(DataForChannels1to14[],(DataForChannels1to14[Time]>=TUS_Start_Time)*(DataForChannels1to14[Time]<=Survey_End_Time),""""),"""")",0,0,0,0,0,0,0,0,0,0,0,0,0,0,,
 0:00,,,,,,,,,,,,,,,,,
 0:00,,,,,,,,,,,,,,,,,
 0:00,,,,,,,,,,,,,,,,,
