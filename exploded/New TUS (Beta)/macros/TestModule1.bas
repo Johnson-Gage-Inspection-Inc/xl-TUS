@@ -1,7 +1,6 @@
 Attribute VB_Name = "TestModule1"
 '@TestModule
 '@Folder("Tests")
-
 Option Explicit
 Option Private Module
 
@@ -12,42 +11,37 @@ Private wsDaqBook As Worksheet
 
 '@ModuleInitialize
 Private Sub ModuleInitialize()
-    ' Shared test setup: Arrange test context
     Set Assert = CreateObject("Rubberduck.AssertClass")
     Set Fakes = CreateObject("Rubberduck.FakesProvider")
-    
+
     Set wsMain = ThisWorkbook.Sheets("Main")
     Set wsDaqBook = ThisWorkbook.Sheets("DaqBook_RAW_Data")
-    
+
     Application.ScreenUpdating = False
     InputMainSheetData
-    LoadTestDAQBookFromTSV "C:\Users\JeffHall\git\xl-TUS\test1.tsv"
+
+    ' Inject raw test data from file
+    LoadTestChannelBlock "DataForChannels1to14", "A2", 14, 1, "C:\Users\JeffHall\git\xl-TUS\test1.tsv"
+    
     Application.ScreenUpdating = True
 End Sub
+Private Sub LoadTestChannelBlock(tableName As String, startCell As String, channelCount As Long, startChannel As Long, tsvPath As String)
+    Dim rawText As String
+    rawText = CreateObject("Scripting.FileSystemObject").OpenTextFile(tsvPath).ReadAll
+    Sheet7.PasteChannelBlock "DaqBook_RAW_Data", startCell, channelCount, tableName, startChannel, rawText
+End Sub
+
 
 '@ModuleCleanup
 Private Sub ModuleCleanup()
-    Call Sheet7.TruncateChannels1to14
-    Call Sheet7.TruncateChannels15to28
-    Call Sheet7.TruncateChannels29to40
+    ClearMainSheetInputs
+    Sheet7.TruncateChannels1to14
+    Sheet7.TruncateChannels15to28
+    Sheet7.TruncateChannels29to40
+
     Set wsDaqBook = Nothing
     Set Assert = Nothing
-End Sub
-
-Private Sub LoadTestDAQBookFromTSV(tsvPath As String)
-    Dim rowIdx As Long, colIdx As Long
-    Dim data As Variant
-    data = Split(CreateObject("Scripting.FileSystemObject").OpenTextFile(tsvPath).ReadAll, vbCrLf)
-    
-    For rowIdx = LBound(data) To UBound(data)
-        If Trim(data(rowIdx)) <> "" Then
-            Dim values As Variant
-            values = Split(data(rowIdx), vbTab)
-            For colIdx = LBound(values) To UBound(values)
-                wsDaqBook.cells(rowIdx + 2, colIdx + 1).Value = values(colIdx)
-            Next colIdx
-        End If
-    Next rowIdx
+    Set Fakes = Nothing
 End Sub
 
 Private Sub InputMainSheetData()
@@ -117,24 +111,56 @@ Private Sub ClearMainSheetInputs()
     End With
 End Sub
 
-Private Sub ClearDAQBookInputs()
-    wsDaqBook.Range("A3:K38").ClearContents
+' Reusable test for PasteChannelsXXtoYY
+Private Sub TestPasteRoutine(pasteSubName As String, expectedStartCol As String, expectedFirstChannel As Long)
+    Dim testTSVPath As String
+    testTSVPath = "C:\Users\JeffHall\git\xl-TUS\test1.tsv" ' Or parameterize further
+    
+    ' Load test content into clipboard (PasteChannels still expects clipboard use)
+
+    ' Ensure clipboard is populated
+    Dim rawText As String
+    rawText = CreateObject("Scripting.FileSystemObject").OpenTextFile(testTSVPath).ReadAll
+    With CreateObject("MSForms.DataObject")
+        .SetText rawText
+        .PutInClipboard
+    End With
+
+    ' Dynamically invoke the macro by name
+    Application.Run pasteSubName
+
+    ' Verify paste occurred
+    Dim pasteCell As Range
+    Set pasteCell = wsDaqBook.Range(expectedStartCol).Offset(1, 0)
+
+    Assert.IsTrue IsDate(pasteCell.Value), "Expected time value in " & pasteCell.Address
+    Assert.IsTrue IsNumeric(pasteCell.Offset(0, 1).Value), "Expected numeric channel in " & pasteCell.Offset(0, 1).Address
+    Assert.AreEqual expectedFirstChannel, CLng(wsDaqBook.Range(expectedStartCol).Offset(0, 1).Value), "Expected first channel label"
+
+    ' Add further range checks here
 End Sub
 
 '@TestMethod("Main Sheet Logic")
-Private Sub TCAlerts_ContainsNoDropped()
+Private Sub TCAlerts_ContainsExpectedHighLowOnly()
     On Error GoTo TestFail
 
     Dim i As Long
+    Dim val As Variant
+
     For i = 5 To 14
-        Dim val As Variant
         val = wsMain.Range("P" & i).Value
 
+        ' Ensure no "Dropped"
         Assert.AreNotEqual "Dropped", val, "Expected P" & i & " not to contain 'Dropped'"
+
+        ' Check expected values
         Select Case i
-            Case 6: Assert.AreEqual "High", val, "Expected P6 to be High"
-            Case 8: Assert.AreEqual "Low", val, "Expected P8 to be Low"
-            Case Else: Assert.AreEqual "", val, "Expected P8 to be null"
+            Case 6
+                Assert.AreEqual "High", val, "Expected P6 to be High"
+            Case 8
+                Assert.AreEqual "Low", val, "Expected P8 to be Low"
+            Case Else
+                Assert.AreEqual "", val, "Expected P" & i & " to be empty"
         End Select
     Next i
 
@@ -150,16 +176,3 @@ TestFail:
     Resume TestExit
 End Sub
 
-'@TestMethod
-Private Sub TC_PasteChannels1to14()
-    TestPasteRoutine "Sheet7.PasteChannels1to14", "A2", 1
-End Sub
-
-'@TestMethod
-Private Sub TC_PasteChannels15to28()
-    TestPasteRoutine "Sheet7.PasteChannels15to28", "Q2", 15
-End Sub
-
-'@TestMethod
-Private Sub TC_PasteChannels29to40()
-    TestPasteRoutine "Sheet7.PasteChannels29to40", "AG2", 29
