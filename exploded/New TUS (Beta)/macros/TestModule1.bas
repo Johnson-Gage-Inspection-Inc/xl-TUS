@@ -48,7 +48,7 @@ Private Sub InputMainSheetData()
     wsMain.Range("D3").value = "2/17/2025"
     wsMain.Range("D9").value = "J2"
     wsMain.Range("D15:D16").value = "100"
-    wsMain.Range("D17:D19").value = "10"
+    wsMain.Range("D17:D18").value = "10"
     wsMain.Range("D22").value = "68"
     wsMain.Range("D23").value = "19"
     wsMain.Range("D24").value = "1"
@@ -102,7 +102,7 @@ End Sub
 Private Sub ClearMainSheetInputs()
     With wsMain
         .Range("D3,D9,D22,D23,D30,D32,D48,D51,D52,D56,D57").ClearContents
-        .Range("D15:D19").ClearContents
+        .Range("D15:D18").ClearContents
         .Range("D26:D28").ClearContents
         .Range("K14:L14").ClearContents
         .Range("K15:L15").ClearContents
