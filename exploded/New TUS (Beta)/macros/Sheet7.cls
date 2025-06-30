@@ -182,3 +182,26 @@ Public Sub TruncateTableByName(tableName As String)
 
     tbl.DataBodyRange.Rows.Delete
 End Sub
+Sub NegateSelectedValuesIfInDaqBookRange()
+    Dim validRange As Range
+    Dim intersectRange As Range
+    Dim cell As Range
+
+    Set validRange = Me.Range("A3:AS" & Me.Rows.count)
+
+    On Error Resume Next
+    Set intersectRange = Application.Intersect(Selection, validRange)
+    On Error GoTo 0
+
+    If intersectRange Is Nothing Then
+        MsgBox "No selected cells are within DaqBook_RAW_Data!A3:AS1048576.", vbInformation
+        Exit Sub
+    End If
+
+    For Each cell In intersectRange
+        If IsNumeric(cell.value) And Not IsEmpty(cell.value) Then
+            cell.value = -cell.value
+        End If
+    Next cell
+End Sub
+
