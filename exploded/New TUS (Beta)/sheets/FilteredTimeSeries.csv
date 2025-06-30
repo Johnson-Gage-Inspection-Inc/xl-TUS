@@ -1,7 +1,7 @@
 ,,,CummulativeOffset,CorrectedTemp,Deviations,OutOfTolerance,,Uncertainty Calculation,,,,TestPoint,Deviation,Alert,Temp,Time
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,Degrees of Freedom,=COUNT(FilteredTimeSeries[CorrectedTemp])-1,,Highest Deviation:,"=_xlfn.XLOOKUP(P2,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[TestPoint])",=P2-NominalTemp,High,=MAX(FilteredTimeSeries[CorrectedTemp]),"=_xlfn.XLOOKUP(P2,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[Time])"
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,coverage factor (K),"=_xlfn.T.INV.2T(1-0.9545, DoF)",,Lowest Deviation:,"=_xlfn.XLOOKUP(P3,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[TestPoint])",=P3-NominalTemp,Low,=MIN(FilteredTimeSeries[CorrectedTemp]),"=_xlfn.XLOOKUP(P3,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[Time])"
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,Pooled Variance (   ),=SUM(FilteredTimeSeries[Deviations]^2)/DoF,,Other alerts:,1,,"=IF(
+,,,,,,,,Degrees of Freedom,=ROWS(FilteredTimeSeries[])-1,,Highest Deviation:,"=_xlfn.XLOOKUP(P2,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[TestPoint])",=P2-NominalTemp,High,=MAX(FilteredTimeSeries[CorrectedTemp]),"=_xlfn.XLOOKUP(P2,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[Time])"
+,,,,,,,,coverage factor (K),"=_xlfn.T.INV.2T(1-0.9545, DoF)",,Lowest Deviation:,"=_xlfn.XLOOKUP(P3,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[TestPoint])",=P3-NominalTemp,Low,=MIN(FilteredTimeSeries[CorrectedTemp]),"=_xlfn.XLOOKUP(P3,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[Time])"
+,,,,,,,,Pooled Variance (   ),=SUM(FilteredTimeSeries[Deviations]^2)/DoF,,Other alerts:,1,,"=IF(
   Main!O5 = """",
   """",
   IF(
@@ -19,7 +19,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,Fixed Bias (Base₂),"=VLOOKUP(NominalTemp,_xlfn._xlws.FILTER(MUG[],MUG[Meas Units]=""°F""),8,TRUE)",,,2,,"=IF(
+,,,,,,,,Fixed Bias (Base₂),"=VLOOKUP(NominalTemp,_xlfn._xlws.FILTER(MUG[],MUG[Meas Units]=""°F""),8,TRUE)",,,2,,"=IF(
   Main!O6 = """",
   """",
   IF(
@@ -37,7 +37,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,Type B Uncertainty,=SQRT(Base₂^2+sp²),,,3,,"=IF(
+,,,,,,,,Type B Uncertainty,=SQRT(Base₂^2+sp²),,,3,,"=IF(
   Main!O7 = """",
   """",
   IF(
@@ -55,7 +55,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,Expanded uncertainty,=J6*k,,,4,,"=IF(
+,,,,,,,,Expanded uncertainty,=J6*k,,,4,,"=IF(
   Main!O8 = """",
   """",
   IF(
@@ -73,7 +73,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,Scope,"=VLOOKUP(NominalTemp,CMCs[],3,TRUE)",,,5,,"=IF(
+,,,,,,,,Scope,"=VLOOKUP(NominalTemp,CMCs[],3,TRUE)",,,5,,"=IF(
   Main!O9 = """",
   """",
   IF(
@@ -91,7 +91,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,Uncertainty,"=MAX(J7,J8)",,,6,,"=IF(
+,,,,,,,,Uncertainty,"=MAX(J7,J8)",,,6,,"=IF(
   Main!O10 = """",
   """",
   IF(
@@ -109,7 +109,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,7,,"=IF(
+,,,,,,,,,,,,7,,"=IF(
   Main!O11 = """",
   """",
   IF(
@@ -127,7 +127,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,8,,"=IF(
+,,,,,,,,,,,,8,,"=IF(
   Main!O12 = """",
   """",
   IF(
@@ -145,7 +145,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,9,,"=IF(
+,,,,,,,,,,,,9,,"=IF(
   Main!O13 = """",
   """",
   IF(
@@ -163,7 +163,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,10,,"=IF(
+,,,,,,,,,,,,10,,"=IF(
   Main!O14 = """",
   """",
   IF(
@@ -181,7 +181,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,11,,"=IF(
+,,,,,,,,,,,,11,,"=IF(
   Main!O15 = """",
   """",
   IF(
@@ -199,7 +199,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,12,,"=IF(
+,,,,,,,,,,,,12,,"=IF(
   Main!O16 = """",
   """",
   IF(
@@ -217,7 +217,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,13,,"=IF(
+,,,,,,,,,,,,13,,"=IF(
   Main!O17 = """",
   """",
   IF(
@@ -235,7 +235,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,14,,"=IF(
+,,,,,,,,,,,,14,,"=IF(
   Main!O18 = """",
   """",
   IF(
@@ -253,7 +253,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,15,,"=IF(
+,,,,,,,,,,,,15,,"=IF(
   Main!O19 = """",
   """",
   IF(
@@ -271,7 +271,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,16,,"=IF(
+,,,,,,,,,,,,16,,"=IF(
   Main!O20 = """",
   """",
   IF(
@@ -289,7 +289,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,17,,"=IF(
+,,,,,,,,,,,,17,,"=IF(
   Main!O21 = """",
   """",
   IF(
@@ -307,7 +307,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,18,,"=IF(
+,,,,,,,,,,,,18,,"=IF(
   Main!O22 = """",
   """",
   IF(
@@ -325,7 +325,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,19,,"=IF(
+,,,,,,,,,,,,19,,"=IF(
   Main!O23 = """",
   """",
   IF(
@@ -343,7 +343,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,20,,"=IF(
+,,,,,,,,,,,,20,,"=IF(
   Main!O24 = """",
   """",
   IF(
@@ -361,7 +361,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,21,,"=IF(
+,,,,,,,,,,,,21,,"=IF(
   Main!O25 = """",
   """",
   IF(
@@ -379,7 +379,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,22,,"=IF(
+,,,,,,,,,,,,22,,"=IF(
   Main!O26 = """",
   """",
   IF(
@@ -397,7 +397,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,23,,"=IF(
+,,,,,,,,,,,,23,,"=IF(
   Main!O27 = """",
   """",
   IF(
@@ -415,7 +415,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,24,,"=IF(
+,,,,,,,,,,,,24,,"=IF(
   Main!O28 = """",
   """",
   IF(
@@ -433,7 +433,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,25,,"=IF(
+,,,,,,,,,,,,25,,"=IF(
   Main!O29 = """",
   """",
   IF(
@@ -451,7 +451,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,26,,"=IF(
+,,,,,,,,,,,,26,,"=IF(
   Main!O30 = """",
   """",
   IF(
@@ -469,7 +469,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,27,,"=IF(
+,,,,,,,,,,,,27,,"=IF(
   Main!O31 = """",
   """",
   IF(
@@ -487,7 +487,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,28,,"=IF(
+,,,,,,,,,,,,28,,"=IF(
   Main!O32 = """",
   """",
   IF(
@@ -505,7 +505,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,29,,"=IF(
+,,,,,,,,,,,,29,,"=IF(
   Main!O33 = """",
   """",
   IF(
@@ -523,7 +523,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,30,,"=IF(
+,,,,,,,,,,,,30,,"=IF(
   Main!O34 = """",
   """",
   IF(
@@ -541,7 +541,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,31,,"=IF(
+,,,,,,,,,,,,31,,"=IF(
   Main!O35 = """",
   """",
   IF(
@@ -559,7 +559,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,32,,"=IF(
+,,,,,,,,,,,,32,,"=IF(
   Main!O36 = """",
   """",
   IF(
@@ -577,7 +577,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,33,,"=IF(
+,,,,,,,,,,,,33,,"=IF(
   Main!O37 = """",
   """",
   IF(
@@ -595,7 +595,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,34,,"=IF(
+,,,,,,,,,,,,34,,"=IF(
   Main!O38 = """",
   """",
   IF(
@@ -613,7 +613,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,35,,"=IF(
+,,,,,,,,,,,,35,,"=IF(
   Main!O39 = """",
   """",
   IF(
@@ -631,7 +631,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,36,,"=IF(
+,,,,,,,,,,,,36,,"=IF(
   Main!O40 = """",
   """",
   IF(
@@ -649,7 +649,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,37,,"=IF(
+,,,,,,,,,,,,37,,"=IF(
   Main!O41 = """",
   """",
   IF(
@@ -667,7 +667,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,38,,"=IF(
+,,,,,,,,,,,,38,,"=IF(
   Main!O42 = """",
   """",
   IF(
@@ -685,7 +685,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,39,,"=IF(
+,,,,,,,,,,,,39,,"=IF(
   Main!O43 = """",
   """",
   IF(
@@ -703,7 +703,7 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,40,,"=IF(
+,,,,,,,,,,,,40,,"=IF(
   Main!O44 = """",
   """",
   IF(
@@ -721,121 +721,3 @@
     )
   )
 )",,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(FilteredTimeSeries[[#This Row],[TestPoint]],CorrectionFactors[point],CorrectionFactors[CummulativeOffset])","=FilteredTimeSeries[[#This Row],[RawTemp]]+FilteredTimeSeries[[#This Row],[CummulativeOffset]]","=FilteredTimeSeries[[#This Row],[CorrectedTemp]]-NominalTemp","=ABS(FilteredTimeSeries[[#This Row],[Deviations]])>Tolerance",,,,,,,,,,

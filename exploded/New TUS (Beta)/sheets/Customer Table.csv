@@ -1,5 +1,5 @@
 ,,,,,,,,,,,,,,,,=customers_table[#Headers],Address1,Address2,Attention1,Attention2,Company,Country,Email,FaxNumber,FirstName,LastName,PhoneNumber,StateProvince,Merged,company_id
-,,,,,,,,,,,,,,,,"=_xlfn.XLOOKUP(clientCompanyId,customers_table[company_id],customers_table[])",3939 W 29Th St S,,0,0,CHROME PLUS INTERNATIONAL - WICHITA,United States,0,(316) 944-3602,0,0,(316) 944-3600,Kansas,"Wichita, KS, 67217",57283
+,,,,,,,,,,,,,,,,"=_xlfn.XLOOKUP(clientCompanyId,customers_table[company_id],customers_table[])",,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
