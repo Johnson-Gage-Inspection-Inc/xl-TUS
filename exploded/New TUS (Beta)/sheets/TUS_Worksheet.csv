@@ -3,7 +3,7 @@
 "Johnson Gage & Inspection, Inc.",,,,,,,,,,,,,,,,,,,
 Temperature Uniformity Results,,,,,,,,,,,,,,,,,,,
 Date:,"=IF(Main!D3=0,"""",Main!D3)",,,,,,,Customer: ,"=IFERROR(Main!D5,"""")",,,,,,,,,,
-Unit: ,"=IF(Main!D6=0,"""",Main!D6)",,,,,,,Temperature: ,"=IF(Temperature="""","""",Temperature)",,,,,,,,,,
+Unit: ,"=IF(Main!D6=0,"""",Main!D6)",,,,,,,Temperature: ,"=IF(NominalTemp="""","""",NominalTemp)",,,,,,,,,,
 Operator:,"=IF(Main!D7=0,"""",Main!D7)",,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 Test Sensor Correction Factors,,,,,,,,,,,,,,,,,,,

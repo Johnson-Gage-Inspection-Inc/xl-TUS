@@ -32,7 +32,7 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     ' Daqbook Tag
     If Not Intersect(Target, Range("D9")) Is Nothing Then
         Call Sheet38.UpdateDaqbookServiceRecords
-        ThisWorkbook.Connections("Query - DaqbookOffsets").Refresh
+        ' ThisWorkbook.Connections("Query - DaqbookOffsets").Refresh ' FIXME: Does this need to be remove or replaced??
     End If
     
     ' Work Item Number

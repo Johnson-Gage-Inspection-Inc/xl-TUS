@@ -19,6 +19,7 @@ Private Sub ModuleInitialize()
 
     Application.ScreenUpdating = False
     InputMainSheetData
+    PopulateComparisonReportInputs
 
     ' Inject raw test data from file
     LoadTestChannelBlock "DataForChannels1to14", "A2", 14, 1, "C:\Users\JeffHall\git\xl-TUS\test1.tsv"
@@ -67,8 +68,9 @@ Private Sub InputMainSheetData()
     For i = 1 To 10
         wsMain.Range("O" & (i + 4)).value = "J" & Format(i, "00")
     Next i
-
-    ' Set up temperature test data in B37:G40
+End Sub
+Private Sub PopulateComparisonReportInputs()
+    ' Set up Comparison Report data in B37:G40
     wsMain.Range("B37").value = 10
     wsMain.Range("C37").value = "Controller"
     wsMain.Range("D37").value = 374
