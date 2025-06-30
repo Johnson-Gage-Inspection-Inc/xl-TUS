@@ -21,9 +21,9 @@ Class:  ,=Class,,,,,Cubic Feet:  ,=CubicFeet,,,,,Result:  ,=Main!G18,,,,,,
 Controller:  ,=Controller,,,,S/N:  ,=ContSN,,,Tol:  ,=ContTol,,Tested:  ,=Main!G27,,,,,,
 Recorder:  ,=_xlnm.Recorder,,,,S/N:  ,=RecSN,,,Tol:  ,=RecTol,,Tested:  ,=Main!G28,,,,,,
 ,,,,,,,,,,,,,,,,,,,
-Test Temp:  ,=Temperature,,,,,Thermocouples In:  ,=Main!D26,,,,,Overall Uniformity:  ,"=TEXT(Alerts!J2,""0.0"") & ""°F / "" & TEXT(Alerts!J3,""0.0"") & ""°F""",,,,,,
+Test Temp:  ,=NominalTemp,,,,,Thermocouples In:  ,=Main!D26,,,,,Overall Uniformity:  ,"=TEXT(FilteredTimeSeries!N2,""0.0"") & ""°F / "" & TEXT(FilteredTimeSeries!N3,""0.0"") & ""°F""",,,,,,
 Setpoint:  ,=Main!D15,,,,,Lag Time:  ,=Main!E29,,,,,Equipment Load:  ,"=IF(Main!H15=TRUE,Main!G17,""VERIFY LOAD!!!"")",,,,,,
-Overshoot:  ,NONE OBSERVED,,,,,Recovery Time:  ,=Main!I19,,,,,"=""Uncertainty @ k=2:""","=TEXT(Alerts!P11,""0.0"") & ""°F""",,,,,,
+Overshoot:  ,NONE OBSERVED,,,,,Recovery Time:  ,=Main!I19,,,,,"=""Uncertainty @ k=2:""","=TEXT(FilteredTimeSeries!J9,""0.0"") & ""°F""",,,,,,
 ,,LagTime and Recovery Time are calculated as defined by AMS 2770.  Temperature values include all correction factors.,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 Test Location,,,Ambient Conditions,,,,Oven Location,,,,Condition,,,,,,,,
@@ -31,260 +31,260 @@ Test Location,,,Ambient Conditions,,,,Oven Location,,,,Condition,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
 "=IF(B33="""","""",1)","=IF(Main!O5="""","""",Main!O5)",,"=IF(A33<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A33),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A33),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J33="""","""",21)","=IF(Main!O25="""","""",Main!O25)",,"=IF(I33<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I33),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I33),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B34="""","""",2)","=IF(Main!O6="""","""",Main!O6)",,"=IF(A34<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A34),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A34),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J34="""","""",22)","=IF(Main!O26="""","""",Main!O26)",,"=IF(I34<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I34),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I34),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B35="""","""",3)","=IF(Main!O7="""","""",Main!O7)",,"=IF(A35<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A35),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A35),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J35="""","""",23)","=IF(Main!O27="""","""",Main!O27)",,"=IF(I35<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I35),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I35),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B36="""","""",4)","=IF(Main!O8="""","""",Main!O8)",,"=IF(A36<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A36),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A36),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J36="""","""",24)","=IF(Main!O28="""","""",Main!O28)",,"=IF(I36<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I36),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I36),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B37="""","""",5)","=IF(Main!O9="""","""",Main!O9)",,"=IF(A37<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A37),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A37),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J37="""","""",25)","=IF(Main!O29="""","""",Main!O29)",,"=IF(I37<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I37),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I37),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B38="""","""",6)","=IF(Main!O10="""","""",Main!O10)",,"=IF(A38<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A38),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A38),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J38="""","""",26)","=IF(Main!O30="""","""",Main!O30)",,"=IF(I38<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I38),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I38),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B39="""","""",7)","=IF(Main!O11="""","""",Main!O11)",,"=IF(A39<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A39),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A39),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J39="""","""",27)","=IF(Main!O31="""","""",Main!O31)",,"=IF(I39<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I39),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I39),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B40="""","""",8)","=IF(Main!O12="""","""",Main!O12)",,"=IF(A40<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A40),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A40),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J40="""","""",28)","=IF(Main!O32="""","""",Main!O32)",,"=IF(I40<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I40),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I40),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B41="""","""",9)","=IF(Main!O13="""","""",Main!O13)",,"=IF(A41<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A41),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A41),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J41="""","""",29)","=IF(Main!O33="""","""",Main!O33)",,"=IF(I41<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I41),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I41),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B42="""","""",10)","=IF(Main!O14="""","""",Main!O14)",,"=IF(A42<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A42),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A42),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J42="""","""",30)","=IF(Main!O34="""","""",Main!O34)",,"=IF(I42<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I42),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I42),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B43="""","""",11)","=IF(Main!O15="""","""",Main!O15)",,"=IF(A43<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A43),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A43),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J43="""","""",31)","=IF(Main!O35="""","""",Main!O35)",,"=IF(I43<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I43),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I43),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B44="""","""",12)","=IF(Main!O16="""","""",Main!O16)",,"=IF(A44<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A44),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A44),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J44="""","""",32)","=IF(Main!O36="""","""",Main!O36)",,"=IF(I44<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I44),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I44),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B45="""","""",13)","=IF(Main!O17="""","""",Main!O17)",,"=IF(A45<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A45),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A45),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J45="""","""",33)","=IF(Main!O37="""","""",Main!O37)",,"=IF(I45<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I45),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I45),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B46="""","""",14)","=IF(Main!O18="""","""",Main!O18)",,"=IF(A46<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A46),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A46),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J46="""","""",34)","=IF(Main!O38="""","""",Main!O38)",,"=IF(I46<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I46),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I46),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B47="""","""",15)","=IF(Main!O19="""","""",Main!O19)",,"=IF(A47<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A47),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A47),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J47="""","""",35)","=IF(Main!O39="""","""",Main!O39)",,"=IF(I47<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I47),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I47),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B48="""","""",16)","=IF(Main!O20="""","""",Main!O20)",,"=IF(A48<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A48),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A48),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J48="""","""",36)","=IF(Main!O40="""","""",Main!O40)",,"=IF(I48<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I48),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I48),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B49="""","""",17)","=IF(Main!O21="""","""",Main!O21)",,"=IF(A49<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A49),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A49),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J49="""","""",37)","=IF(Main!O41="""","""",Main!O41)",,"=IF(I49<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I49),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I49),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B50="""","""",18)","=IF(Main!O22="""","""",Main!O22)",,"=IF(A50<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A50),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A50),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J50="""","""",38)","=IF(Main!O42="""","""",Main!O42)",,"=IF(I50<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I50),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I50),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B51="""","""",19)","=IF(Main!O23="""","""",Main!O23)",,"=IF(A51<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A51),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A51),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J51="""","""",39)","=IF(Main!O43="""","""",Main!O43)",,"=IF(I51<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I51),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I51),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,,,,
 "=IF(B52="""","""",20)","=IF(Main!O24="""","""",Main!O24)",,"=IF(A52<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = A52),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = A52),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
 ),"""")",,,,,"=IF(J52="""","""",40)","=IF(Main!O44="""","""",Main!O44)",,"=IF(I52<>"""",_xlfn.LET(
-  _xlpm.temps, _xlfn._xlws.FILTER(CorrectedTimeSeries[CorrectedTemp], CorrectedTimeSeries[TestPoint] = I52),
+  _xlpm.temps, _xlfn._xlws.FILTER(FilteredTimeSeries[CorrectedTemp], FilteredTimeSeries[TestPoint] = I52),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),

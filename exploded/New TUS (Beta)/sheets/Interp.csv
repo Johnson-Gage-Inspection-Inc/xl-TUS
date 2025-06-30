@@ -4,7 +4,7 @@
 ,"Johnson Gage & Inspection, Inc.",,,,,,,,,,,,
 ,Temperature Uniformity Results,,,,,,,,,,,,
 ,Date:,=Main!D3,,,,,,Customer: ,=Main!D5,,,,
-,Unit: ,=Main!D6,,,,,,Temperature: ,=Temperature,,,,
+,Unit: ,=Main!D6,,,,,,Temperature: ,=NominalTemp,,,,
 ,Operator:,=Main!D7,,,,,,,,,,,
 ,,,,,,,,,,,,,
 ,Wire Lot,,Correction Factor,,,,,,,,,,
