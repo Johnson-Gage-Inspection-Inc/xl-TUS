@@ -1,15 +1,17 @@
+% overleaf.com is recommended for re-compiling this document.
+
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{siunitx}
 \usepackage{booktabs}
 \usepackage{geometry}
-\usepackage{hyperref}
 \geometry{margin=1in}
 
 \title{Live TUS Uncertainty Calculation}
 \author{Johnson Gage \& Inspection, Inc}
 \date{2025}
 
+\usepackage{hyperref} % The hyperref package is usually loaded after other packages (ideally just before \begin{document}) to prevent option clashes and ensure links render correctly.
 \begin{document}
 \maketitle
 
@@ -21,13 +23,13 @@ Uncertainty is calculated by combining the repeatability (Type A) and fixed syst
 \]
 
 \[
-c_i = c^{DaqBook}_i + c^{TC}_i
-\quad\text{(cumulative offsets)}
+o_i = o^{DaqBook}_i + o^{TC}_i
+\quad\text{(cumulative offset for channel $i$)}
 \]
 
 \[
-x'_{i,j} = x_{i,j} + c_i
-\quad\text{(corrected readings)}
+x'_{i,j} = x_{i,j} + o_i
+\quad\text{(corrected reading for channel $i$ at time $j$)}
 \]
 
 \[
@@ -46,7 +48,7 @@ U = k \cdot u_c
 \]
 
 \[
-\text{Reported Uncertainty} = \max(U, U_{CMC})
+\boxed{\text{Reported Uncertainty} = \max\left(U, U_{\mathrm{CMC}}\right)}
 \]
 
 \vspace{1em}
@@ -59,18 +61,18 @@ Symbol & Definition \\
 \( i \)     & Thermocouple index ($i \in 1,\cdots,n$) \\
 \( j \)     & Survey time index ($j \in 1,\cdots,m$) \\
 \( \nu \)   & Degrees of freedom ($mn - 1$) \\
-\( x_{i,j} \) & Raw measured temperature from probe \( i \), reading \( j \) \\
-\( c^{\mathrm{DaqBook}}_i \) & Offset from the DaqBook channel assigned to probe \( i \) \\
-\( c^{\mathrm{TC}}_i \) & Offset from thermocouple wire calibration for probe \( i \) \\
-\( c_i \)   & Total correction offset for probe \( i \) \\
-\( x'_{i,j} \) & Corrected temperature: \( x_{i,j} + c_i \) \\
-\( T_N \)     & Nominal temperature \\
+\( x_{i,j} \) & Raw measured temperature from probe $i$, reading $j$ \\
+\( o^{\mathrm{DaqBook}}_i \) & Offset for DaqBook channel \( i \) \\
+\( o^{\mathrm{TC}}_i \) & Offset for the probe assigned to channel \( i \) \\
+\( o_i \)   & Total correction offset for probe/channel \( i \) \\
+\( x'_{i,j} \) & Corrected temperature for probe \( i \), reading \( j \) \\
+\( T_N \) & Nominal temperature \\
 \( u_A \)   & Type A standard uncertainty \\
 \( u_B \)   & Type B standard uncertainty from the MUG \\
 \( u_c \)   & Combined standard uncertainty \\
 \( k \)     & Coverage factor (\( t \)-distribution, 95.45\%) \\
 \( U \)     & Expanded uncertainty \\
-\textit{$U_{CMC}$} & Minimum reportable uncertainty, as listed in the current \href{https://customer.a2la.org/index.cfm?event=directory.detail&labPID=46ECE43E-423E-465E-8FBB-36DC011ED988}{scope}.\\
+$U_{\mathrm{CMC}}$ & Minimum reportable uncertainty, as listed in the current \href{https://customer.a2la.org/index.cfm?event=directory.detail&labPID=46ECE43E-423E-465E-8FBB-36DC011ED988}{scope}.\\
 \bottomrule
 \end{tabular}
 
