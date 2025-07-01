@@ -77,3 +77,16 @@ The goal of the TUS process is to validate and certify that each industrial oven
   - `LOG` ensures accountability
   - `Software_Validation, Rev. His.` tracks code/release changes
   - `Enabler4Excel_Picklist_Values` and Salesforce links provide standard dropdowns and external traceability
+
+---
+
+### 📚 **Documentation**
+
+For detailed technical information and calculations, see the `docs/` folder:
+
+- **`LiveTUS_Uncertainty_InternalRef.pdf`** - Comprehensive document detailing the uncertainty calculation methodology, statistical analysis, and validation procedures used in the TUS process
+- **`LiveTUS_Uncertainty_InternalRef.tex`** - LaTeX source file for `LiveTUS_Uncertainty_InternalRef.pdf`
+
+This document provides the theoretical background and mathematical basis for the temperature uniformity survey calculations and certification process.
+
+---
