@@ -3,6 +3,7 @@
 \usepackage{siunitx}
 \usepackage{booktabs}
 \usepackage{geometry}
+\usepackage{hyperref}
 \geometry{margin=1in}
 
 \title{Live TUS Uncertainty Calculation}
@@ -30,7 +31,7 @@ x'_{i,j} = x_{i,j} + c_i
 \]
 
 \[
-u_A^2 = \frac{1}{\nu} \sum_{i=1}^{n} \sum_{j=1}^{m} (x'_{i,j} - N)^2
+u_A^2 = \frac{1}{\nu} \sum_{i=1}^{n} \sum_{j=1}^{m} (x'_{i,j} - T_N)^2
 \quad \text{(Type A standard uncertainty squared)}
 \]
 
@@ -45,8 +46,7 @@ U = k \cdot u_c
 \]
 
 \[
-\text{Uncertainty} = \max(U, \text{Scope})
-\quad \text{(final reported value)}
+\text{Reported Uncertainty} = \max(U, U_{CMC})
 \]
 
 \vspace{1em}
@@ -64,13 +64,13 @@ Symbol & Definition \\
 \( c^{\mathrm{TC}}_i \) & Offset from thermocouple wire calibration for probe \( i \) \\
 \( c_i \)   & Total correction offset for probe \( i \) \\
 \( x'_{i,j} \) & Corrected temperature: \( x_{i,j} + c_i \) \\
-\( N \)     & Nominal temperature \\
+\( T_N \)     & Nominal temperature \\
 \( u_A \)   & Type A standard uncertainty \\
 \( u_B \)   & Type B standard uncertainty from the MUG \\
 \( u_c \)   & Combined standard uncertainty \\
 \( k \)     & Coverage factor (\( t \)-distribution, 95.45\%) \\
 \( U \)     & Expanded uncertainty \\
-\textit{Scope} & CMC limit (minimum allowed uncertainty) \\
+\textit{$U_{CMC}$} & Minimum reportable uncertainty, as listed in the current \href{https://customer.a2la.org/index.cfm?event=directory.detail&labPID=46ECE43E-423E-465E-8FBB-36DC011ED988}{scope}.\\
 \bottomrule
 \end{tabular}
 
