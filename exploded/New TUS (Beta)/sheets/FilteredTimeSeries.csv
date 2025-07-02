@@ -1,7 +1,7 @@
 ,,,CummulativeOffset,CorrectedTemp,Deviations,OutOfTolerance,,Uncertainty Calculation,,,,TestPoint,Deviation,Alert,Temp,Time
-,,,,,,,,Degrees of Freedom,=ROWS(FilteredTimeSeries[])-1,,Highest Deviation:,"=_xlfn.XLOOKUP(P2,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[TestPoint])",=P2-NominalTemp,High,=MAX(FilteredTimeSeries[CorrectedTemp]),"=_xlfn.XLOOKUP(P2,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[Time])"
+,,,,,,,,Degrees of Freedom,"=ROWS(_xlfn._xlws.FILTER(FilteredTimeSeries[],FilteredTimeSeries[TestPoint]<=5))-1",,Highest Deviation:,"=_xlfn.XLOOKUP(P2,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[TestPoint])",=P2-NominalTemp,High,=MAX(FilteredTimeSeries[CorrectedTemp]),"=_xlfn.XLOOKUP(P2,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[Time])"
 ,,,,,,,,coverage factor (K),"=_xlfn.T.INV.2T(1-0.9545, DoF)",,Lowest Deviation:,"=_xlfn.XLOOKUP(P3,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[TestPoint])",=P3-NominalTemp,Low,=MIN(FilteredTimeSeries[CorrectedTemp]),"=_xlfn.XLOOKUP(P3,FilteredTimeSeries[CorrectedTemp],FilteredTimeSeries[Time])"
-,,,,,,,,Pooled Variance (   ),=SUM(FilteredTimeSeries[Deviations]^2)/DoF,,Other alerts:,1,,"=IF(
+,,,,,,,,Pooled Variance (   ),"=SUM(_xlfn._xlws.FILTER(FilteredTimeSeries[Deviations],FilteredTimeSeries[TestPoint]<=5)^2)/DoF",,Other alerts:,1,,"=IF(
   Main!O5 = """",
   """",
   IF(
