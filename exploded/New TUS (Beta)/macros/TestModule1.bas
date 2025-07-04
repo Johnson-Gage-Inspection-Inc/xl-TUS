@@ -143,8 +143,11 @@ Private Sub TestPasteRoutine(pasteSubName As String, expectedStartCol As String,
 End Sub
 
 '@TestMethod("Main Sheet Logic")
-Private Sub TCAlerts_ContainsExpectedHighLowOnly()
-    On Error GoTo TestFail
+Private Sub TCAlerts_ContainsExpectedHighLowOnly():
+    Application.ScreenUpdating = True  ' For testing purposes
+    Application.EnableEvents = True  ' For testing purposes
+    On Error GoTo TestFail  ' Press F9 to add a breakpoint here, to test with data
+    ' Then, Press F5 to clear the data after testing.
 
     Dim i As Long
     Dim val As Variant

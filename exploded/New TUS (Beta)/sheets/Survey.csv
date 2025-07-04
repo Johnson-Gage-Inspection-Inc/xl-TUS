@@ -1,4 +1,4 @@
-,,,CummulativeOffset,CorrectedTemp,Deviations,OutOfTolerance,,Uncertainty Calculation,,,,TestPoint,Deviation,Alert,Temp,Time
+,,,,,Deviations,OutOfTolerance,,Uncertainty Calculation,,,,TestPoint,Deviation,Alert,Temp,Time
 ,,,,,,,,Degrees of Freedom,"=COUNTIF(Survey[TestPoint],""<=5"")-1",,Highest Deviation:,"=_xlfn.XLOOKUP(P2,Survey[CorrectedTemp],Survey[TestPoint])",=P2-NominalTemp,High,=MAX(Survey[CorrectedTemp]),"=_xlfn.XLOOKUP(P2,Survey[CorrectedTemp],Survey[Time])"
 ,,,,,,,,coverage factor (K),"=_xlfn.T.INV.2T(1-0.9545, DoF)",,Lowest Deviation:,"=_xlfn.XLOOKUP(P3,Survey[CorrectedTemp],Survey[TestPoint])",=P3-NominalTemp,Low,=MIN(Survey[CorrectedTemp]),"=_xlfn.XLOOKUP(P3,Survey[CorrectedTemp],Survey[Time])"
 ,,,,,,,,Pooled Variance (   ),"=SUM(_xlfn._xlws.FILTER(Survey[Deviations],Survey[TestPoint]<=5)^2)/DoF",,Other alerts:,1,,"=IF(
