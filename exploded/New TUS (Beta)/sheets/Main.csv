@@ -97,11 +97,15 @@ Resolution,TUS Point #,Item Name,"=IF($D$30,D30,"""")","=IF($D$30,D36+TIME(0,$D$
 ,,,,,5,25,"=$H$83*Table18[[#This Row],[SAT Multiplier]]",5,,,,,,,,,,,,,,,,,
 ,,,,,6,50,"=$H$83*Table18[[#This Row],[SAT Multiplier]]",10,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,±,"=VLOOKUP(D19,G86:H91,2,FALSE)",°F,,,,,,,,,,,,,,,,,,
+,,,,,±,"=VLOOKUP(G97,G86:H91,2,FALSE)",°F,,,,,,,,,,,,,,,,,,
 ,,,,,,=F93&G93&H93,,,,,,,,,,,,,,,,,,,
 ,,,,,,"=ROUNDDOWN(G93,2-(1+INT(LOG10(ABS(G93)))))",,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,Numeric Tol,"=_xlfn.LET(
+  _xlpm.all, _xlfn.TEXTSPLIT(D19, , , TRUE),
+  _xlpm.nums, _xlfn._xlws.FILTER(_xlpm.all, ISNUMBER(--_xlpm.all)),
+  IF(COUNTA(_xlpm.nums)=1, INDEX(_xlpm.nums,1), NA())
+)",,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
