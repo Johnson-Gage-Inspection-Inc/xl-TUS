@@ -4,6 +4,8 @@ Attribute VB_Name = "TestModule1"
 Option Explicit
 Option Private Module
 
+Private Declare PtrSafe Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As LongPtr)
+
 Private Assert As Object
 Private Fakes As Object
 Private wsMain As Worksheet
@@ -17,14 +19,7 @@ Private Sub ModuleInitialize()
     Set wsMain = ThisWorkbook.Sheets("Main")
     Set wsDaqBook = ThisWorkbook.Sheets("DaqBook_RAW_Data")
 
-    Application.ScreenUpdating = False
     InputMainSheetData
-    PopulateComparisonReportInputs
-
-    ' Inject raw test data from file
-    LoadTestChannelBlock "DataForChannels1to14", "A2", 14, 1, "C:\Users\JeffHall\git\xl-TUS\test1.tsv"
-    
-    Application.ScreenUpdating = True
 End Sub
 Private Sub LoadTestChannelBlock(tableName As String, startCell As String, channelCount As Long, startChannel As Long, tsvPath As String)
     Dim rawText As String
@@ -142,12 +137,20 @@ Private Sub TestPasteRoutine(pasteSubName As String, expectedStartCol As String,
     ' Add further range checks here
 End Sub
 
+
 '@TestMethod("Main Sheet Logic")
 Private Sub TCAlerts_ContainsExpectedHighLowOnly():
     Application.ScreenUpdating = True  ' For testing purposes
     Application.EnableEvents = True  ' For testing purposes
+    Sleep 100
     On Error GoTo TestFail  ' Press F9 to add a breakpoint here, to test with data
     ' Then, Press F5 to clear the data after testing.
+
+    PopulateComparisonReportInputs
+    ' Inject raw test data from file
+    LoadTestChannelBlock "DataForChannels1to14", "A2", 14, 1, "C:\Users\JeffHall\git\xl-TUS\test1.tsv"
+
+    Sleep 100
 
     Dim i As Long
     Dim val As Variant
@@ -180,4 +183,5 @@ TestFail:
     Assert.Fail "Test raised an error: #" & Err.Number & " - " & Err.Description
     Resume TestExit
 End Sub
+
 

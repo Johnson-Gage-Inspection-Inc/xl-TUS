@@ -8,6 +8,11 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Option Explicit
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+    ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
+End Sub
+
 Public Sub UpdateDaqbookServiceRecords()
     ClearValueColumnInDaqbookServiceRecordsTable
     ThisWorkbook.Connections("Query - DaqbookServiceRecord").Refresh

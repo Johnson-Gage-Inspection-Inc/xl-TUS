@@ -23,8 +23,7 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Dim wbTarget As Workbook:   Set wbTarget = ThisWorkbook
     Dim c As Collection:        Set c = New Collection
     Dim sDDString As String:    sDDString = ""
-    Dim wsTarget As Worksheet:  Set wsTarget = wbTarget.Worksheets("Main")
-    Dim rFurnaceDD As Range:    Set rFurnaceDD = wsTarget.Range("D6")
+    Dim rFurnaceDD As Range:    Set rFurnaceDD = Me.Range("D6")
     
     Application.ScreenUpdating = False
     Application.EnableEvents = False
@@ -32,7 +31,11 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     ' Daqbook Tag
     If Not Intersect(Target, Range("D9")) Is Nothing Then
         Call Sheet38.UpdateDaqbookServiceRecords
-        ' ThisWorkbook.Connections("Query - DaqbookOffsets").Refresh ' FIXME: Does this need to be remove or replaced??
+    End If
+    
+    ' Test Temp (Nominal temperature), UsedWireSNs
+    If Not Intersect(Target, Union(Range("D16"), Range("UsedWireSNs"))) Is Nothing Then
+        ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
     End If
     
     ' Work Item Number
@@ -49,4 +52,9 @@ HandleError:
     MsgBox Err.Description & Chr(13) & "Error Number: " & Err.Number, vbExclamation
     Resume CleanExit
 End Sub
-
+Public Sub ForceRecalc_Alerts()
+    With ThisWorkbook.Sheets("Main")
+        .Range("Z100").value = Now()
+        .Range("P5:P44").Calculate
+    End With
+End Sub

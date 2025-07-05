@@ -1,17 +1,17 @@
 ,,,,,Deviations,OutOfTolerance,,Uncertainty Calculation,,,,TestPoint,Deviation,Alert,Temp,Time
-,,,,,,,,Degrees of Freedom,"=COUNTIF(Survey[Column2],""<=5"")-1",,Highest Deviation:,"=_xlfn.XLOOKUP(P2,Survey[Column5],Survey[Column2])",=P2-NominalTemp,High,=MAX(Survey[Column5]),"=_xlfn.XLOOKUP(P2,Survey[Column5],Survey[Column1])"
-,,,,,,,,coverage factor (K),"=_xlfn.T.INV.2T(1-0.9545, DoF)",,Lowest Deviation:,"=_xlfn.XLOOKUP(P3,Survey[Column5],Survey[Column2])",=P3-NominalTemp,Low,=MIN(Survey[Column5]),"=_xlfn.XLOOKUP(P3,Survey[Column5],Survey[Column1])"
-,,,,,,,,Pooled Variance (   ),"=SUM(_xlfn._xlws.FILTER(Survey[Deviations],Survey[Column2]<=5)^2)/DoF",,Other alerts:,1,,"=IF(
+,,,,,,,,Degrees of Freedom,"=COUNTIF(Survey[TestPoint],""<=5"")-1",,Highest Deviation:,"=_xlfn.XLOOKUP(P2,Survey[CorrectedTemp],Survey[TestPoint])",=P2-NominalTemp,High,=MAX(Survey[CorrectedTemp]),"=_xlfn.XLOOKUP(P2,Survey[CorrectedTemp],Survey[Time])"
+,,,,,,,,coverage factor (K),"=_xlfn.T.INV.2T(1-0.9545, DoF)",,Lowest Deviation:,"=_xlfn.XLOOKUP(P3,Survey[CorrectedTemp],Survey[TestPoint])",=P3-NominalTemp,Low,=MIN(Survey[CorrectedTemp]),"=_xlfn.XLOOKUP(P3,Survey[CorrectedTemp],Survey[Time])"
+,,,,,,,,Pooled Variance (   ),"=SUM(_xlfn._xlws.FILTER(Survey[Deviations],Survey[TestPoint]<=5)^2)/DoF",,Other alerts:,1,,"=IF(
   Main!O5 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -23,13 +23,13 @@
   Main!O6 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -41,13 +41,13 @@
   Main!O7 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -59,13 +59,13 @@
   Main!O8 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -77,13 +77,13 @@
   Main!O9 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -95,13 +95,13 @@
   Main!O10 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -113,13 +113,13 @@
   Main!O11 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -131,13 +131,13 @@
   Main!O12 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -149,13 +149,13 @@
   Main!O13 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -167,13 +167,13 @@
   Main!O14 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -185,13 +185,13 @@
   Main!O15 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -203,13 +203,13 @@
   Main!O16 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -221,13 +221,13 @@
   Main!O17 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -239,13 +239,13 @@
   Main!O18 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -257,13 +257,13 @@
   Main!O19 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -275,13 +275,13 @@
   Main!O20 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -293,13 +293,13 @@
   Main!O21 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -311,13 +311,13 @@
   Main!O22 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -329,13 +329,13 @@
   Main!O23 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -347,13 +347,13 @@
   Main!O24 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -365,13 +365,13 @@
   Main!O25 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -383,13 +383,13 @@
   Main!O26 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -401,13 +401,13 @@
   Main!O27 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -419,13 +419,13 @@
   Main!O28 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -437,13 +437,13 @@
   Main!O29 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -455,13 +455,13 @@
   Main!O30 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -473,13 +473,13 @@
   Main!O31 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -491,13 +491,13 @@
   Main!O32 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -509,13 +509,13 @@
   Main!O33 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -527,13 +527,13 @@
   Main!O34 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -545,13 +545,13 @@
   Main!O35 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -563,13 +563,13 @@
   Main!O36 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -581,13 +581,13 @@
   Main!O37 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -599,13 +599,13 @@
   Main!O38 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -617,13 +617,13 @@
   Main!O39 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -635,13 +635,13 @@
   Main!O40 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -653,13 +653,13 @@
   Main!O41 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -671,13 +671,13 @@
   Main!O42 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -689,13 +689,13 @@
   Main!O43 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
@@ -707,13 +707,13 @@
   Main!O44 = """",
   """",
   IF(
-    COUNTIF(Survey[Column2], Alerts[[#This Row],[TestPoint]]) = 0,
+    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
     ""DROPPED"",
     IF(
       OR(
         _xlfn._xlws.FILTER(
           Survey[OutOfTolerance],
-          Survey[Column2] = Alerts[[#This Row],[TestPoint]]
+          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
         )
       ),
       ""Out of Tol"",
