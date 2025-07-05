@@ -11,3 +11,8 @@ Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     Call EnforceSheetIsViewOnly(Me)
 End Sub
 
+Private Sub Worksheet_Change(ByVal Target As Range)
+    ThisWorkbook.Sheets("Main").Calculate
+    ThisWorkbook.Sheets("CERT").Calculate
+    ThisWorkbook.Sheets("Survey").Calculate
+End Sub

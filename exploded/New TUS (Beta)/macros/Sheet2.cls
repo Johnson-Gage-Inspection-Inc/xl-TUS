@@ -9,9 +9,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Option Explicit
 
-Private Sub Worksheet_Change(ByVal Target As Range)
-    If Intersect(Target, Range("D19, G19, J19, M19, D31, G31, J31, M31")) Is Nothing Then Exit Sub
-
+Private Sub Worksheet_Calculate()
     On Error GoTo HandleError
     Application.EnableEvents = False
     Application.ScreenUpdating = False

@@ -22,3 +22,9 @@ Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     Call EnforceSheetIsViewOnly(Me)
 End Sub
 
+Private Sub Worksheet_Change(ByVal Target As Range)
+    Me.Calculate
+End Sub
+Private Sub Worksheet_Calculate()
+    ThisWorkbook.Sheets("Header_Info").Calculate
+End Sub
