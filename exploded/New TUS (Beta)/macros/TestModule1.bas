@@ -68,31 +68,17 @@ Private Sub PopulateComparisonReportInputs()
     ' Set up Comparison Report data in B37:G40
     wsMain.Range("B37").value = 10
     wsMain.Range("C37").value = "Controller"
-    wsMain.Range("D37").value = 374
-    wsMain.Range("E37").value = 375
-    wsMain.Range("F37").value = 375
-    wsMain.Range("G37").value = 375
+    wsMain.Range("D37").value = 102
+    wsMain.Range("E37").value = 102
+    wsMain.Range("F37").value = 103
+    wsMain.Range("G37").value = 102
 
     wsMain.Range("B38").value = 10
-    wsMain.Range("C38").value = "Recorder 1"
-    wsMain.Range("D38").value = 375.8
-    wsMain.Range("E38").value = 375.8
-    wsMain.Range("F38").value = 375.8
-    wsMain.Range("G38").value = 375.8
-
-    wsMain.Range("B39").value = 7
-    wsMain.Range("C39").value = "Rec 2 High"
-    wsMain.Range("D39").value = 372.8
-    wsMain.Range("E39").value = 372.7
-    wsMain.Range("F39").value = 372.9
-    wsMain.Range("G39").value = 372.8
-
-    wsMain.Range("B40").value = 5
-    wsMain.Range("C40").value = "Rec 3 Low"
-    wsMain.Range("D40").value = 372.5
-    wsMain.Range("E40").value = 372.6
-    wsMain.Range("F40").value = 372.8
-    wsMain.Range("G40").value = 372.8
+    wsMain.Range("C38").value = "Recorder"
+    wsMain.Range("D38").value = 102.44
+    wsMain.Range("E38").value = 103.45
+    wsMain.Range("F38").value = 104.13
+    wsMain.Range("G38").value = 103.45
 End Sub
 
 
@@ -142,15 +128,16 @@ End Sub
 Private Sub TCAlerts_ContainsExpectedHighLowOnly():
     Application.ScreenUpdating = True  ' For testing purposes
     Application.EnableEvents = True  ' For testing purposes
-    Sleep 100
+    Sleep 1
+    
     On Error GoTo TestFail  ' Press F9 to add a breakpoint here, to test with data
     ' Then, Press F5 to clear the data after testing.
 
     PopulateComparisonReportInputs
     ' Inject raw test data from file
     LoadTestChannelBlock "DataForChannels1to14", "A2", 14, 1, "C:\Users\JeffHall\git\xl-TUS\test1.tsv"
-
-    Sleep 100
+    
+    Sleep 1
 
     Dim i As Long
     Dim val As Variant

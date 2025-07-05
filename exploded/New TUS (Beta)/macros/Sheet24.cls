@@ -26,7 +26,12 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     ThisWorkbook.Sheets("Main").Calculate
 End Sub
 Private Sub Worksheet_Calculate()
-    ThisWorkbook.Sheets("Main").Range("P5:P44").Calculate
+    ' Force full recalculation by making cells dirty
+    With ThisWorkbook.Sheets("Main")
+        Application.Calculation = xlCalculationManual
+        .Range("P5:P44").Dirty
+        Application.Calculation = xlCalculationAutomatic
+    End With
+    
     ThisWorkbook.Sheets("CERT").Calculate
-    Sheet6.ForceRecalc_Alerts
 End Sub

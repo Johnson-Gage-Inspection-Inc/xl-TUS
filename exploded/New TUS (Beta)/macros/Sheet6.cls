@@ -52,9 +52,3 @@ HandleError:
     MsgBox Err.Description & Chr(13) & "Error Number: " & Err.Number, vbExclamation
     Resume CleanExit
 End Sub
-Public Sub ForceRecalc_Alerts()
-    With ThisWorkbook.Sheets("Main")
-        .Range("Z100").value = Now()
-        .Range("P5:P44").Calculate
-    End With
-End Sub
