@@ -2,7 +2,7 @@ let
     // Try to get fresh data from API
     FreshData = try 
         let
-            response = Web.Contents("https://api.jgiquality.com", [RelativePath = "clients"]),
+            response = Web.Contents("https://jgiapi.com", [RelativePath = "clients"]),
             json = Json.Document(response),
             ConvertToTable = Table.FromList(json, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
             ExpandRecords = Table.ExpandRecordColumn(ConvertToTable, "Column1", Record.FieldNames(ConvertToTable{0}[Column1])),

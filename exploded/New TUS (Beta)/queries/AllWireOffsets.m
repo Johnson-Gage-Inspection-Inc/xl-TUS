@@ -1,5 +1,5 @@
 let
-    Source = Json.Document(Web.Contents("https://api.jgiquality.com", [RelativePath = "wire-offsets/"])),
+    Source = Json.Document(Web.Contents("https://jgiapi.com", [RelativePath = "wire-offsets/"])),
     #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
     #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"correction_factor", "created_at", "id", "nominal_temp", "traceability_no", "updated_at", "updated_by"}, {"correction_factor", "created_at", "id", "nominal_temp", "traceability_no", "updated_at", "updated_by"}),
     #"Removed Other Columns" = Table.SelectColumns(#"Expanded Column1",{"traceability_no", "nominal_temp", "correction_factor"}),

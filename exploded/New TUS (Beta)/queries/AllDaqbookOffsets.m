@@ -1,5 +1,5 @@
 let
-    Source = Json.Document(Web.Contents("https://api.jgiquality.com", [RelativePath = "daqbook-offsets/"])),
+    Source = Json.Document(Web.Contents("https://jgiapi.com", [RelativePath = "daqbook-offsets/"])),
     #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
     #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"point", "reading", "temp", "tn"}, {"point", "reading", "temp", "tn"}),
     #"Added Custom" = Table.AddColumn(#"Expanded Column1", "Custom", each [reading]-[temp]),

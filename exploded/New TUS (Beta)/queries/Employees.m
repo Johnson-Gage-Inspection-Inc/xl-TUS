@@ -1,5 +1,5 @@
 let
-    response = Web.Contents("https://api.jgiquality.com", [RelativePath = "employees"]),
+    response = Web.Contents("https://jgiapi.com", [RelativePath = "employees"]),
     json = Json.Document(response),
     #"Converted to Table" = Table.FromList(json, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
     #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"alias", "company_id", "culture_name", "culture_ui_name", "departments", "employee_id", "first_name", "image_url", "is_deleted", "is_locked", "last_name", "last_seen_date_utc", "login_email", "office_phone", "subscription_email", "subscription_phone", "title"}, {"alias", "company_id", "culture_name", "culture_ui_name", "departments", "employee_id", "first_name", "image_url", "is_deleted", "is_locked", "last_name", "last_seen_date_utc", "login_email", "office_phone", "subscription_email", "subscription_phone", "title"}),

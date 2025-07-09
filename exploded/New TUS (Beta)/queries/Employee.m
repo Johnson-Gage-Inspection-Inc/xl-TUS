@@ -12,7 +12,7 @@ let
     // Try to get fresh employee data from API, fall back to cached data if it fails
     employeeData = try 
         let
-            response = Web.Contents("https://api.jgiquality.com", [
+            response = Web.Contents("https://jgiapi.com", [
                 RelativePath = "whoami",
                 ManualStatusHandling = {400, 401, 403, 404, 500, 502, 503, 504}
             ]),

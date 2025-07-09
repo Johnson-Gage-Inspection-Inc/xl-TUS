@@ -9,7 +9,7 @@ let
             // Protected API call - only include Query parameter when we have a WorkItemNumber
             Source = try Json.Document(
                 Web.Contents(
-                    "https://api.jgiquality.com",
+                    "https://jgiapi.com",
                     [
                         RelativePath = "work-item-details",
                         Query = [ workItemNumber = WorkItemNumber ]

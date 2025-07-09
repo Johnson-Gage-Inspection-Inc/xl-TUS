@@ -17,7 +17,7 @@ let
                 let
                     relativeUrl = "asset-service-records/" & DaqbookAssetId,
                     // Use ManualStatusHandling to prevent auto-refresh failures
-                    response = Web.Contents("https://api.jgiquality.com", [
+                    response = Web.Contents("https://jgiapi.com", [
                         RelativePath = relativeUrl,
                         ManualStatusHandling = {400, 401, 403, 404, 500, 502, 503, 504}
                     ]),
