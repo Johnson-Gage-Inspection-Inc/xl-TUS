@@ -55,6 +55,7 @@ let
                 else #table(
                     {"asset_description", "asset_id", "asset_maker", "asset_name", "asset_tag", "asset_user", "category_name", "custodian_first_name", "custodian_last_name", "department", "manufacturer_part_number", "notes", "product_description", "product_manufacturer", "product_name", "root_category_name", "serial_number"},
                     {{"No data available", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""}}
-                )
+                ),
+    #"Filtered Rows" = Table.SelectRows(FinalData, each ([serial_number] <> ""))
 in
-    FinalData
+    #"Filtered Rows"
