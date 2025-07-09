@@ -109,20 +109,28 @@ Public Sub PasteChannelBlock(sheetName As String, startCellAddress As String, ch
         End If
     Next j
     If headerMismatch Then
-        MsgBox label & ": Header mismatch detected. Using existing headers. Mapping:" & vbCrLf & msg, vbExclamation, "Header Diff for " & label
+        MsgBox label & ": Header mismatch detected. Using existing headers." & vbCrLf & vbCrLf & "Mapping (Worksheet) <- (Clipboard):" & vbCrLf & msg, vbExclamation, "Header Diff for " & label
     End If
 
-    ' Validate spacer row
+    ' Check if row 2 is a blank spacer row (optional)
+    Dim hasSpacerRow As Boolean
+    hasSpacerRow = False
     fields = Split(Replace(cleanLines(2), vbTab, ","), ",")
+    Dim isBlankRow As Boolean
+    isBlankRow = True
     For j = LBound(fields) To UBound(fields)
         If Trim(fields(j)) <> "" Then
-            MsgBox "Expected a blank spacer row after headers.", vbCritical
-            Exit Sub
+            isBlankRow = False
+            Exit For
         End If
     Next j
+    hasSpacerRow = isBlankRow
 
-    ' Validate all data rows
-    For i = 3 To cleanLines.count
+    ' Validate all data rows (start from row 3 if spacer exists, row 2 if not)
+    Dim dataStartIndex As Long
+    dataStartIndex = IIf(hasSpacerRow, 3, 2)
+    
+    For i = dataStartIndex To cleanLines.count
         fields = Split(Replace(cleanLines(i), vbTab, ","), ",")
         If UBound(fields) + 1 < 2 Then
             MsgBox "Row " & i & " has too few columns (must include Time and at least one channel).", vbCritical
@@ -148,12 +156,12 @@ Public Sub PasteChannelBlock(sheetName As String, startCellAddress As String, ch
     Set ws = ThisWorkbook.Sheets(sheetName)
     Set startCell = ws.Range(startCellAddress)
 
-    Dim numRows As Long: numRows = cleanLines.count - 2
+    Dim numRows As Long: numRows = cleanLines.count - (IIf(hasSpacerRow, 2, 1))
     Dim numCols As Long: numCols = colCount
     Dim data() As Variant: ReDim data(1 To numRows, 1 To numCols)
 
     For i = 1 To numRows
-        fields = Split(Replace(cleanLines(i + 2), vbTab, ","), ",")
+        fields = Split(Replace(cleanLines(i + (IIf(hasSpacerRow, 2, 1))), vbTab, ","), ",")
         For j = 0 To UBound(fields)
             data(i, j + 1) = Trim(fields(j))
         Next j
@@ -210,4 +218,3 @@ Sub NegateSelectedValuesIfInDaqBookRange()
         End If
     Next cell
 End Sub
-
