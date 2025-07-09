@@ -22,6 +22,9 @@ Private Sub ModuleInitialize()
     InputMainSheetData
 End Sub
 Private Sub LoadTestChannelBlock(tableName As String, startCell As String, channelCount As Long, startChannel As Long, tsvPath As String)
+    wsMain.Range("D26:D28").value = "9:04:00 AM"
+    wsMain.Range("D30").value = "9:40:00 AM"
+    wsMain.Range("D32").value = "30"
     Dim rawText As String
     rawText = CreateObject("Scripting.FileSystemObject").OpenTextFile(tsvPath).ReadAll
     Sheet7.PasteChannelBlock "DaqBook_RAW_Data", startCell, channelCount, tableName, startChannel, rawText
@@ -48,9 +51,6 @@ Private Sub InputMainSheetData()
     wsMain.Range("D22").value = "68"
     wsMain.Range("D23").value = "19"
     wsMain.Range("D24").value = "1"
-    wsMain.Range("D26:D28").value = "9:04:00 AM"
-    wsMain.Range("D30").value = "9:40:00 AM"
-    wsMain.Range("D32").value = "30"
     wsMain.Range("K14").value = "56561-069975"
     wsMain.Range("K15").value = "SIM Load Hot"
     wsMain.Range("D48").value = "J01-J24"
