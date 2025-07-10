@@ -113,7 +113,9 @@ Public Sub PasteChannelBlock(sheetName As String, startCellAddress As String, ch
         If Not UserSettings.GetHideHeaderMismatchWarning() Then
             Dim fullMessage As String
             fullMessage = label & ": Header mismatch detected. Using existing headers." & vbCrLf & vbCrLf & "Mapping (Worksheet) <- (Clipboard):" & vbCrLf & msg
-            HeaderMismatchDialog.ShowHeaderMismatchWarning "Header Diff for " & label, fullMessage
+            Dim userResponse As Boolean
+            userResponse = HeaderMismatchDialog.ShowHeaderMismatchWarning("Header Diff for " & label, fullMessage)
+            If Not userResponse Then Exit Sub
         Else
             ' Still log the information to immediate window for debugging
             Debug.Print "Header mismatch for " & label & " (warning suppressed by user setting)"
