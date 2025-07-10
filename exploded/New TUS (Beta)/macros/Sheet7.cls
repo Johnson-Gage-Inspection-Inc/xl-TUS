@@ -199,22 +199,78 @@ End Sub
 Sub NegateSelectedValuesIfInDaqBookRange()
     Dim validRange As Range
     Dim intersectRange As Range
-    Dim cell As Range
+    Dim area As Range
+    Dim values As Variant
+    Dim i As Long, j As Long
+    Dim numRows As Long, numCols As Long
 
-    Set validRange = Me.Range("A3:AS" & Me.Rows.count)
+    ' Use three specific ranges: B3:O, R3:AE, AH3:AS
+    Dim range1 As Range, range2 As Range, range3 As Range
+    Set range1 = Me.Range("B3:O" & Me.Rows.count)
+    Set range2 = Me.Range("R3:AE" & Me.Rows.count)
+    Set range3 = Me.Range("AH3:AS" & Me.Rows.count)
+    Set validRange = Application.Union(range1, range2, range3)
 
     On Error Resume Next
     Set intersectRange = Application.Intersect(Selection, validRange)
     On Error GoTo 0
 
     If intersectRange Is Nothing Then
-        MsgBox "No selected cells are within DaqBook_RAW_Data!A3:AS1048576.", vbInformation
+        MsgBox "No selected cells are within the valid DaqBook data ranges (B3:O, R3:AE, AH3:AS).", vbInformation
         Exit Sub
     End If
 
-    For Each cell In intersectRange
-        If IsNumeric(cell.value) And Not IsEmpty(cell.value) Then
-            cell.value = -cell.value
+    ' Turn off screen updating and calculations for better performance
+    Application.ScreenUpdating = False
+    Application.Calculation = xlCalculationManual
+    
+    ' Process each area in the intersection (handles non-contiguous selections)
+    For Each area In intersectRange.Areas
+        numRows = area.Rows.count
+        numCols = area.Columns.count
+        
+        ' Read values into array for faster processing
+        If numRows = 1 And numCols = 1 Then
+            ' Single cell - handle directly
+            If IsNumeric(area.value) And Not IsEmpty(area.value) Then
+                area.value = -CDbl(area.value)
+            End If
+        Else
+            ' Multiple cells - use array operations
+            values = area.value
+            
+            ' Process the array
+            If numRows = 1 Then
+                ' Single row
+                For j = 1 To numCols
+                    If IsNumeric(values(1, j)) And Not IsEmpty(values(1, j)) Then
+                        values(1, j) = -CDbl(values(1, j))
+                    End If
+                Next j
+            ElseIf numCols = 1 Then
+                ' Single column
+                For i = 1 To numRows
+                    If IsNumeric(values(i, 1)) And Not IsEmpty(values(i, 1)) Then
+                        values(i, 1) = -CDbl(values(i, 1))
+                    End If
+                Next i
+            Else
+                ' Multiple rows and columns
+                For i = 1 To numRows
+                    For j = 1 To numCols
+                        If IsNumeric(values(i, j)) And Not IsEmpty(values(i, j)) Then
+                            values(i, j) = -CDbl(values(i, j))
+                        End If
+                    Next j
+                Next i
+            End If
+            
+            ' Write the modified array back to the range
+            area.value = values
         End If
-    Next cell
+    Next area
+    
+    ' Restore application settings
+    Application.Calculation = xlCalculationAutomatic
+    Application.ScreenUpdating = True
 End Sub
