@@ -44,6 +44,29 @@ Function IFZERO(value As Variant, fallback As Variant) As Variant
     End If
 End Function
 
+' Utility function to reset user warning preferences
+' Call this from the VBA immediate window: ResetUserWarningPreferences
+Public Sub ResetUserWarningPreferences()
+    UserSettings.ResetHeaderMismatchWarning
+    MsgBox "User warning preferences have been reset. All warnings will now be shown again.", vbInformation, "Preferences Reset"
+End Sub
+
+' Utility function to show current warning settings
+' Call this from the VBA immediate window: ShowUserWarningSettings
+Public Sub ShowUserWarningSettings()
+    Dim hideHeaderWarning As Boolean
+    hideHeaderWarning = UserSettings.GetHideHeaderMismatchWarning()
+    
+    Dim message As String
+    If hideHeaderWarning Then
+        message = "Header mismatch warnings are currently HIDDEN." & vbCrLf & vbCrLf & "To show them again, run: ResetUserWarningPreferences"
+    Else
+        message = "Header mismatch warnings are currently SHOWN (default behavior)."
+    End If
+    
+    MsgBox message, vbInformation, "Current Warning Settings"
+End Sub
+
 
 
 

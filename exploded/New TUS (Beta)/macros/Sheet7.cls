@@ -109,7 +109,17 @@ Public Sub PasteChannelBlock(sheetName As String, startCellAddress As String, ch
         End If
     Next j
     If headerMismatch Then
-        MsgBox label & ": Header mismatch detected. Using existing headers." & vbCrLf & vbCrLf & "Mapping (Worksheet) <- (Clipboard):" & vbCrLf & msg, vbExclamation, "Header Diff for " & label
+        ' Check user setting to see if warnings should be hidden
+        If Not UserSettings.GetHideHeaderMismatchWarning() Then
+            Dim fullMessage As String
+            fullMessage = label & ": Header mismatch detected. Using existing headers." & vbCrLf & vbCrLf & "Mapping (Worksheet) <- (Clipboard):" & vbCrLf & msg
+            HeaderMismatchDialog.ShowHeaderMismatchWarning "Header Diff for " & label, fullMessage
+        Else
+            ' Still log the information to immediate window for debugging
+            Debug.Print "Header mismatch for " & label & " (warning suppressed by user setting)"
+            Debug.Print "Mapping (Worksheet) <- (Clipboard):"
+            Debug.Print msg
+        End If
     End If
 
     ' Check if row 2 is a blank spacer row (optional)
