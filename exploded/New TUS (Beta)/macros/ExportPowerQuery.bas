@@ -21,7 +21,7 @@ Sub ExportAllQueryMCode()
         mCode = q.Formula
         mCode = regEx.Replace(mCode, "Authorization = ""Api-Token REDACTED""")
 
-        Set f = fso.CreateTextFile(exportPath & "\" & q.Name & ".m", True, True)
+        Set f = fso.CreateTextFile(exportPath & "\" & q.Name & ".m", True, False)
         f.Write mCode
         f.Close
         Debug.Print q.Name & " exported"
