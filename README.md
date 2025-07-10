@@ -39,7 +39,7 @@ The goal of the TUS process is to validate and certify that each unit under test
 
    ![image](https://github.com/user-attachments/assets/b59042bd-ea69-4f31-97d7-525936571f6c)
 
-7. Now, you'll by asked to authenticate to `https://jgiapi.com/wire-offsets`.  Repeat steps 4-6 for this endpoint.
+7. Now, you'll by asked to authenticate to `https://jgiapi.com/wire-offsets`.  Repeat steps 2-4 for this endpoint.
 
    ![image](https://github.com/user-attachments/assets/0b0a41b2-5ece-40a6-aa43-c30a7775962d)
 
