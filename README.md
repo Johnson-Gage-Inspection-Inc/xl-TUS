@@ -35,7 +35,7 @@ The goal of the TUS process is to validate and certify that each unit under test
 
    ![image](https://github.com/user-attachments/assets/f9cd3763-809f-4b31-9823-90032e1669d8)
 
-   > This will return a warning "We couldn't authenticate with the crednetials provided. Please try again". This is expected.
+   > This will return a warning "We couldn't authenticate with the credentials provided. Please try again". This is expected.
 
    ![image](https://github.com/user-attachments/assets/b59042bd-ea69-4f31-97d7-525936571f6c)
 
