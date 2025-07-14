@@ -58,7 +58,7 @@ The goal of the TUS process is to validate and certify that each unit under test
 
 2. For offline use, save the file before you leave JGI (or otherwise disconnect from the internet).  This will save the offsets and metadata within your workbook, for later use.
 
-   
+   ![image](https://github.com/user-attachments/assets/af2ede84-db30-4cd6-b4bd-b1cb21327d2f)
 
    Make sure to save it as a `.xlsm` file (Macro enabled),  **NOT** .xlsx (default).
 
