@@ -12,7 +12,7 @@ Option Explicit
 Private Sub Worksheet_Change(ByVal Target As Range)
 
     'Setup Worksheet
-    ' On Error GoTo HandleError
+    On Error GoTo HandleError
 
     'Initialize variables
     Dim r, aCell As Range, wireSetForSF(6) As Range, searchedSFId(6) As Range
@@ -50,5 +50,4 @@ CleanExit:
 
 HandleError:
     MsgBox Err.Description & Chr(13) & "Error Number: " & Err.Number, vbExclamation
-    Resume CleanExit
 End Sub

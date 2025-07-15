@@ -44,25 +44,31 @@ Private Sub ModuleCleanup()
 End Sub
 
 Private Sub InputMainSheetData()
-    wsMain.Range("D3").value = "2/17/2025"
+    
     wsMain.Range("D9").value = "J2"
-    wsMain.Range("D15:D16").value = "100"
-    wsMain.Range("D17:D18").value = "10"
-    wsMain.Range("D22").value = "68"
-    wsMain.Range("D23").value = "19"
-    wsMain.Range("D24").value = "1"
-    wsMain.Range("K14").value = "56561-069975"
+    Sleep 1
+
+    wsMain.Range("K14").value = "69975"
+    Sleep 1
+
     wsMain.Range("K15").value = "SIM Load Hot"
     wsMain.Range("D48").value = "J01-J24"
     wsMain.Range("D51").value = "10"
     wsMain.Range("D52").value = "0"
     wsMain.Range("D56").value = "10"
     wsMain.Range("D57").value = ""
+    wsMain.Range("D3").value = "2/17/2025"
+    wsMain.Range("D17:D18").value = "10"
+    wsMain.Range("D22").value = "68"
+    wsMain.Range("D23").value = "19"
+    wsMain.Range("D24").value = "1"
+    wsMain.Range("D15:D16").value = "100"
 
     Dim i As Long
     For i = 1 To 10
         wsMain.Range("O" & (i + 4)).value = "J" & Format(i, "00")
     Next i
+
 End Sub
 Private Sub PopulateComparisonReportInputs()
     ' Set up Comparison Report data in B37:G40
@@ -126,8 +132,8 @@ End Sub
 
 '@TestMethod("Main Sheet Logic")
 Private Sub TCAlerts_ContainsExpectedHighLowOnly():
-    Application.ScreenUpdating = True  ' For testing purposes
-    Application.EnableEvents = True  ' For testing purposes
+    ' Application.ScreenUpdating = True  ' For testing purposes
+    ' Application.EnableEvents = True  ' For testing purposes
     Sleep 1
     
     On Error GoTo TestFail  ' Press F9 to add a breakpoint here, to test with data
