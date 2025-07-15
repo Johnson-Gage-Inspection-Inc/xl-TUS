@@ -9,6 +9,23 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Option Explicit
 
+Dim lastRadioVal As Variant
+
+Private Sub Worksheet_Calculate()
+    Dim currentVal As Variant
+    currentVal = Me.Range("L20").value
+
+    If currentVal <> lastRadioVal Then
+        lastRadioVal = currentVal
+        ThisWorkbook.Connections("Query - Survey").Refresh
+    End If
+End Sub
+
+Private Sub Worksheet_Activate()
+    ' Initialize memory on activation
+    lastRadioVal = Me.Range("L20").value
+End Sub
+
 Private Sub Worksheet_Change(ByVal Target As Range)
 
     'Setup Worksheet

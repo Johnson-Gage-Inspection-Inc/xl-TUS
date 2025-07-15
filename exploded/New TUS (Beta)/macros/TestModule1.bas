@@ -49,8 +49,6 @@ Private Sub InputMainSheetData()
     
     With wsMain
         .Range("D9").value = "J2"
-        Sleep 1
-    
         .Range("K14").value = "69975"
         Sleep 1
     
@@ -138,8 +136,8 @@ End Sub
 
 '@TestMethod("Main Sheet Logic")
 Private Sub TCAlerts_ContainsExpectedHighLowOnly():
-    ' Application.ScreenUpdating = True  ' For testing purposes
-    ' Application.EnableEvents = True  ' For testing purposes
+    Application.ScreenUpdating = True  ' For testing purposes
+    Application.EnableEvents = True  ' For testing purposes
     Sleep 1
     
     On Error GoTo TestFail  ' Press F9 to add a breakpoint here, to test with data
