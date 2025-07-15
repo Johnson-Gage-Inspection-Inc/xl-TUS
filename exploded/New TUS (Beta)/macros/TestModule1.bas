@@ -22,9 +22,11 @@ Private Sub ModuleInitialize()
     InputMainSheetData
 End Sub
 Private Sub LoadTestChannelBlock(tableName As String, startCell As String, channelCount As Long, startChannel As Long, tsvPath As String)
-    wsMain.Range("D26:D28").value = "9:04:00 AM"
-    wsMain.Range("D30").value = "9:40:00 AM"
-    wsMain.Range("D32").value = "30"
+    With wsMain
+        .Range("D26:D28").value = "9:04:00 AM"
+        .Range("D30").value = "9:40:00 AM"
+        .Range("D32").value = "30"
+    End With
     Dim rawText As String
     rawText = CreateObject("Scripting.FileSystemObject").OpenTextFile(tsvPath).ReadAll
     Sheet7.PasteChannelBlock "DaqBook_RAW_Data", startCell, channelCount, tableName, startChannel, rawText
@@ -45,46 +47,50 @@ End Sub
 
 Private Sub InputMainSheetData()
     
-    wsMain.Range("D9").value = "J2"
-    Sleep 1
+    With wsMain
+        .Range("D9").value = "J2"
+        Sleep 1
+    
+        .Range("K14").value = "69975"
+        Sleep 1
+    
+        .Range("K15").value = "SIM Load Hot"
+        .Range("D48").value = "J01-J24"
+        .Range("D51").value = "10"
+        .Range("D52").value = "0"
+        .Range("D56").value = "10"
+        .Range("D57").value = ""
+        .Range("D3").value = "2/17/2025"
+        .Range("D17:D18").value = "10"
+        .Range("D22").value = "68"
+        .Range("D23").value = "19"
+        .Range("D24").value = "1"
+        .Range("D15:D16").value = "100"
 
-    wsMain.Range("K14").value = "69975"
-    Sleep 1
-
-    wsMain.Range("K15").value = "SIM Load Hot"
-    wsMain.Range("D48").value = "J01-J24"
-    wsMain.Range("D51").value = "10"
-    wsMain.Range("D52").value = "0"
-    wsMain.Range("D56").value = "10"
-    wsMain.Range("D57").value = ""
-    wsMain.Range("D3").value = "2/17/2025"
-    wsMain.Range("D17:D18").value = "10"
-    wsMain.Range("D22").value = "68"
-    wsMain.Range("D23").value = "19"
-    wsMain.Range("D24").value = "1"
-    wsMain.Range("D15:D16").value = "100"
-
-    Dim i As Long
-    For i = 1 To 10
-        wsMain.Range("O" & (i + 4)).value = "J" & Format(i, "00")
-    Next i
+        Dim i As Long
+        For i = 1 To 10
+            .Range("O" & (i + 4)).value = "J" & Format(i, "00")
+        Next i
+    End With
 
 End Sub
 Private Sub PopulateComparisonReportInputs()
     ' Set up Comparison Report data in B37:G40
-    wsMain.Range("B37").value = 10
-    wsMain.Range("C37").value = "Controller"
-    wsMain.Range("D37").value = 102
-    wsMain.Range("E37").value = 102
-    wsMain.Range("F37").value = 103
-    wsMain.Range("G37").value = 102
-
-    wsMain.Range("B38").value = 10
-    wsMain.Range("C38").value = "Recorder"
-    wsMain.Range("D38").value = 102.44
-    wsMain.Range("E38").value = 103.45
-    wsMain.Range("F38").value = 104.13
-    wsMain.Range("G38").value = 103.45
+    With wsMain
+        .Range("B37").value = 10
+        .Range("C37").value = "Controller"
+        .Range("D37").value = 102
+        .Range("E37").value = 102
+        .Range("F37").value = 103
+        .Range("G37").value = 102
+    
+        .Range("B38").value = 10
+        .Range("C38").value = "Recorder"
+        .Range("D38").value = 102.44
+        .Range("E38").value = 103.45
+        .Range("F38").value = 104.13
+        .Range("G38").value = 103.45
+    End With
 End Sub
 
 
