@@ -17,7 +17,7 @@ Private Sub Worksheet_Calculate()
 
     If currentVal <> lastRadioVal Then
         lastRadioVal = currentVal
-        ThisWorkbook.Connections("Query - Survey").Refresh
+        ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
     End If
 End Sub
 
@@ -48,6 +48,11 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     ' Daqbook Tag
     If Not Intersect(Target, Range("D9")) Is Nothing Then
         Call Sheet38.UpdateDaqbookServiceRecords
+    End If
+    
+    ' # of test points
+    If Not Intersect(Target, Range("D17")) Is Nothing Then
+        ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
     End If
     
     ' Test Temp (Nominal temperature), UsedWireSNs

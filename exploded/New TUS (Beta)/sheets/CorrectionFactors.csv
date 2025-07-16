@@ -1,0 +1,7 @@
+,,,,,,,,
+,,,,,,,point,"=TRANSPOSE(_xlfn._xlws.FILTER(CorrectionFactors[], (CorrectionFactors[point]>=Main!V22) * (CorrectionFactors[point]<=Main!V23), """"))"
+,,,,,,,Thermocouple,
+,,,,,,,WireLotNumber,
+,,,,,,,DaqbookOffset,
+,,,,,,,TCOffset,
+,,,,,,,CummulativeOffset,
