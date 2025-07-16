@@ -1,16 +1,4 @@
 let
-    // Get selection from radio button: 1 = PTs 1–14, 2 = PTs 15–28, 3 = PTs 29–40
-    RadioSelection = try Excel.CurrentWorkbook(){[Name="PT_Range_Selection"]}[Content]{0}[Column1] otherwise 1,
-
-    // Resolve channel range based on selection
-    ChannelRange =
-        if RadioSelection = 2 then [First=15, Last=28]
-        else if RadioSelection = 3 then [First=29, Last=40]
-        else [First=1, Last=14],
-
-    FIRST_CHANNEL = ChannelRange[First],
-    LAST_CHANNEL = ChannelRange[Last],
-
     SurveyStartTime = Time.From(Excel.CurrentWorkbook(){[Name="TUS_Start_Time"]}[Content]{0}[Column1]),
     SurveyEndTime = Time.From(Excel.CurrentWorkbook(){[Name="Survey_End_Time"]}[Content]{0}[Column1]),
     Source = Excel.CurrentWorkbook(){[Name="DataForChannels1to14"]}[Content],
@@ -50,7 +38,6 @@ let
 
     // Force final structure even if no data remains
     Final = Table.Combine({EmptySchema, #"Added CorrectedTemp"}),
-    #"Changed Type3" = Table.TransformColumnTypes(Final,{{"Time", type time}, {"TestPoint", Int64.Type}, {"RawTemp", type number}, {"CummulativeOffset", type number}, {"CorrectedTemp", type number}}),
-    #"Filtered Rows1" = Table.SelectRows(#"Changed Type3", each [TestPoint] >= FIRST_CHANNEL and [TestPoint] <= LAST_CHANNEL)
+    #"Changed Type3" = Table.TransformColumnTypes(Final,{{"Time", type time}, {"TestPoint", Int64.Type}, {"RawTemp", type number}, {"CummulativeOffset", type number}, {"CorrectedTemp", type number}})
 in
-    #"Filtered Rows1"
+    #"Changed Type3"
