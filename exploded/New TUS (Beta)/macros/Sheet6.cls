@@ -9,10 +9,27 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Option Explicit
 
+Dim lastRadioVal As Variant
+
+Private Sub Worksheet_Calculate()
+    Dim currentVal As Variant
+    currentVal = Me.Range("L20").value
+
+    If currentVal <> lastRadioVal Then
+        lastRadioVal = currentVal
+        ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
+    End If
+End Sub
+
+Private Sub Worksheet_Activate()
+    ' Initialize memory on activation
+    lastRadioVal = Me.Range("L20").value
+End Sub
+
 Private Sub Worksheet_Change(ByVal Target As Range)
 
     'Setup Worksheet
-    ' On Error GoTo HandleError
+    On Error GoTo HandleError
 
     'Initialize variables
     Dim r, aCell As Range, wireSetForSF(6) As Range, searchedSFId(6) As Range
@@ -31,6 +48,11 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     ' Daqbook Tag
     If Not Intersect(Target, Range("D9")) Is Nothing Then
         Call Sheet38.UpdateDaqbookServiceRecords
+    End If
+    
+    ' # of test points
+    If Not Intersect(Target, Range("D17")) Is Nothing Then
+        ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
     End If
     
     ' Test Temp (Nominal temperature), UsedWireSNs

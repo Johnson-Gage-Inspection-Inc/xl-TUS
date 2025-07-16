@@ -13,4 +13,10 @@ Private Sub Worksheet_SelectionChange(ByVal Target As Range)
 End Sub
 Private Sub Worksheet_Change(ByVal Target As Range)
     ThisWorkbook.Sheets("Comparison_Report").Calculate
+    ThisWorkbook.Sheets("Main").Calculate
+    ThisWorkbook.Sheets("CERT").Calculate
+End Sub
+Private Sub Worksheet_Calculate()
+    ThisWorkbook.Sheets("Main").Calculate
+    ThisWorkbook.Sheets("CERT").Calculate
 End Sub

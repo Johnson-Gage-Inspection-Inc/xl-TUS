@@ -4,12 +4,20 @@ let
     DaqbookAssetId = if assetIdCell = null or Text.Trim(Text.From(assetIdCell)) = "" then null else Text.From(assetIdCell),
 
     // First, try to get existing cached data from the table
-    existingData = try Excel.CurrentWorkbook(){[Name="DaqbookServiceRecord"]}[Content] otherwise #table({"Name", "Value"}, {}),
+    existingDataRaw = try Excel.CurrentWorkbook(){[Name="DaqbookServiceRecord"]}[Content] otherwise null,
+    existingData = if existingDataRaw <> null and Table.ColumnCount(existingDataRaw) = 2 then
+        Table.RenameColumns(existingDataRaw, {
+            {Table.ColumnNames(existingDataRaw){0}, "Name"},
+            {Table.ColumnNames(existingDataRaw){1}, "Value"}
+        })
+    else
+        #table({"Name", "Value"}, {}),
+    #"Filtered Rows1" = Table.SelectRows(existingData, each ([Name] <> null)),
     
     // Handle missing ID by returning cached data or empty table
     result = if DaqbookAssetId = null then
         // Return cached data if available, otherwise empty table
-        if Table.RowCount(existingData) > 1 then existingData else #table({"Name", "Value"}, {})
+        if Table.RowCount(#"Filtered Rows1") > 1 then #"Filtered Rows1" else #table({"Name", "Value"}, {})
     else
         // Try to fetch fresh data, fall back to cached data if fetch fails
         let
@@ -36,7 +44,7 @@ let
                     #"Converted to Table"
             otherwise 
                 // If web call fails, use cached data or empty table
-                if Table.RowCount(existingData) > 1 then existingData else #table({"Name", "Value"}, {})
+                if Table.RowCount(#"Filtered Rows1") > 1 then #"Filtered Rows1" else #table({"Name", "Value"}, {})
         in
             freshData,
     #"Filtered Rows" = Table.SelectRows(result, each ([Name] <> "additional_properties"))

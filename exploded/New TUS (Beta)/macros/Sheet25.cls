@@ -10,7 +10,10 @@ Attribute VB_Exposed = True
 Option Explicit
 Public Sub UpdateWorkItemDetails()
     ' TruncateWorkItemDetailsTable
+    Application.ScreenUpdating = True
+    Application.EnableEvents = True
     ThisWorkbook.Connections("Query - WorkItemDetails").Refresh
+    Me.Calculate
 End Sub
 Private Sub TruncateWorkItemDetailsTable()
     Dim lo As ListObject
@@ -27,4 +30,5 @@ Private Sub Worksheet_Change(ByVal Target As Range)
 End Sub
 Private Sub Worksheet_Calculate()
     ThisWorkbook.Sheets("Header_Info").Calculate
+    ThisWorkbook.Sheets("Customer Table").Calculate
 End Sub

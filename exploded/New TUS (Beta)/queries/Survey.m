@@ -37,6 +37,7 @@ let
     ),
 
     // Force final structure even if no data remains
-    Final = Table.Combine({EmptySchema, #"Added CorrectedTemp"})
+    Final = Table.Combine({EmptySchema, #"Added CorrectedTemp"}),
+    #"Changed Type3" = Table.TransformColumnTypes(Final,{{"Time", type time}, {"TestPoint", Int64.Type}, {"RawTemp", type number}, {"CummulativeOffset", type number}, {"CorrectedTemp", type number}})
 in
-    Final
+    #"Changed Type3"
