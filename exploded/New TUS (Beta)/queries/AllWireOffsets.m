@@ -20,7 +20,7 @@ let
                 else if CachedData <> null then CachedData
                 else #table(
                     {"traceability_no", "Temp", "Offset"},
-                    {{"No data available", 0.0, 0.0}}
+                    {{"Data unavailable: Unable to retrieve data from API or cached workbook. Please check your network connection and try again.", 0.0, 0.0}}
                 )
 in
     FinalData
