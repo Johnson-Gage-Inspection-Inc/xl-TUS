@@ -101,7 +101,7 @@ UUT Resolution,TUS Point #,Item Name,"=IF($D$30,D30,"""")","=IF($D$30,D36+TIME(0
 ,,,,,,"=""±""&G93&""°F""",,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,Numeric Tol,"=IF(TolMin+TolMax=0,TolMax,""Not Implemented: AMS Class unkown for asymmetrical tolerances."")",,,,,,,,,,,,,,,,,,,
+,,,,,Numeric Tol,"=IF(TolMin+TolMax=0,TolMax,""Not Implemented: AMS Class unknown for asymmetrical tolerances."")",,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
