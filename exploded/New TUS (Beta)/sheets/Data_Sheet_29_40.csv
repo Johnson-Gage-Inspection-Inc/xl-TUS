@@ -1,5 +1,5 @@
-,=Main!$D$16,=$B$1-$B$2,,=B1-D2,Temperature Uniformity Survey: Points 29-40,,,,,,,,,,"=IF(Main!$E$30="""",""A10"",ADDRESS(13+(MATCH(Main!$E$30,Data_Sheet!$A$14:$A$903,0)),1,4))","=VALUE(MID(P1, 2, LEN(P1)-1))"
-,=Main!$D$19,=$B$1+$B$2,=(Main!$D$19)/2,=B1+D2,,,,Below temperature values include all correction factors,,,,KEY,,,"=IF(Main!$E$30="""",""A10"",ADDRESS(13+Standards_Info!W2+(MATCH(Main!$E$30,Data_Sheet!$A$14:$A$903,0)),1,4))","=VALUE(MID(P2, 2, LEN(P2)-1))"
+,,=NominalTemp+TolMin,,=NominalTemp+TolMin/2,Temperature Uniformity Survey: Points 29-40,,,,,,,,,,"=IF(Main!$E$30="""",""A10"",ADDRESS(13+(MATCH(Main!$E$30,Data_Sheet!$A$14:$A$903,0)),1,4))","=VALUE(MID(P1, 2, LEN(P1)-1))"
+,,=NominalTemp+TolMax,,=NominalTemp+TolMax/2,,,,Below temperature values include all correction factors,,,,KEY,,,"=IF(Main!$E$30="""",""A10"",ADDRESS(13+Standards_Info!W2+(MATCH(Main!$E$30,Data_Sheet!$A$14:$A$903,0)),1,4))","=VALUE(MID(P2, 2, LEN(P2)-1))"
 ,"Johnson Gage & Inspection, Inc.",,,,,,,,,,,In Tolerence,,,,
 ,Temperature Uniformity Results,,,,,,,,,,,Below Tolerance(COLD),,,,
 ,Date:,=Main!D3,,,,,,Customer: ,=Main!D5,,,Above Tolerance (HOT),,,,
