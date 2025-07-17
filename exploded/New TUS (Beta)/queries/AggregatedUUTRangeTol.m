@@ -1,9 +1,32 @@
 let
-    Source = Excel.CurrentWorkbook(){[Name="UUTRangeTol"]}[Content],
-    #"Changed Type" = Table.TransformColumnTypes(Source,{{"AssetId", Int64.Type}, {"RangeMin", Int64.Type}, {"RangeMax", Int64.Type}, {"TolMin", type number}, {"TolMax", type number}, {"TolResolution", type number}, {"Unit", type text}, {"Flags", type text}, {"TolMinText", type text}, {"TolMaxText", type text}, {"TolText", type text}, {"RangeMaxText", type text}, {"RangeText", type text}}),
-    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"AssetId", "RangeText", "TolText"}),
+    // Try to get data with proper column names, fallback if columns don't exist yet
+    Source = try
+        let
+            // Try to get the properly structured data
+            RawSource = Excel.CurrentWorkbook(){[Name="UUTRangeTol"]}[Content],
+            // Check if we have proper column names
+            ColumnNames = Table.ColumnNames(RawSource),
+            HasProperColumns = List.Contains(ColumnNames, "AssetId") and List.Contains(ColumnNames, "RangeText") and List.Contains(ColumnNames, "TolText"),
+            
+            ProcessedData = if HasProperColumns then
+                // We have the expected columns, use them directly
+                Table.SelectColumns(RawSource, {"AssetId", "RangeText", "TolText"})
+            else
+                // We don't have proper columns (probably during initialization), return empty table
+                #table(
+                    {"AssetId", "RangeText", "TolText"},
+                    {{0, "Initializing...", "Initializing..."}}
+                )
+        in
+            ProcessedData
+    otherwise 
+        // Fallback if table doesn't exist at all
+        #table(
+            {"AssetId", "RangeText", "TolText"},
+            {{0, "Data unavailable", "Data unavailable"}}
+        ),
 
-    #"Grouped Rows" = Table.Group(#"Removed Other Columns", {"AssetId"}, {
+    #"Grouped Rows" = Table.Group(Source, {"AssetId"}, {
         {"Ranges", each Text.Combine(List.Transform([RangeText], Text.From), ", "), type text},
         {"Tolerances", each 
             let
