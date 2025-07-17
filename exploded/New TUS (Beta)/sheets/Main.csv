@@ -101,14 +101,7 @@ UUT Resolution,TUS Point #,Item Name,"=IF($D$30,D30,"""")","=IF($D$30,D36+TIME(0
 ,,,,,,=F93&G93&H93,,,,,,,,,,,,,,,,,,,
 ,,,,,,"=ROUNDDOWN(G93,2-(1+INT(LOG10(ABS(G93)))))",,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,Numeric Tol,"=_xlfn.LET(
-  _xlpm.txt, D19,
-  _xlpm.chars, MID(_xlpm.txt, _xlfn.SEQUENCE(LEN(_xlpm.txt)), 1),
-  _xlpm.keep, IF(ISNUMBER(--_xlpm.chars) + (_xlpm.chars = "".""), _xlpm.chars, """"),
-  _xlpm.numberStrings, _xlfn.TEXTSPLIT(_xlfn.TEXTJOIN("""",,_xlpm.keep), "".""),
-  _xlpm.reconstructed, _xlfn.TEXTJOIN(""."",,_xlpm.numberStrings),
-  IF(ISNUMBER(--_xlpm.reconstructed), --_xlpm.reconstructed, NA())
-)",,,,,,,,,,,,,,,,,,,
+,,,,,Numeric Tol,"=IF(TolMin+TolMax=0,TolMax,NA())",,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,
