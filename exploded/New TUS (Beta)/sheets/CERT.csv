@@ -6,7 +6,7 @@
 ,,,,"=IFERROR(CONCATENATE(""Report Number: "", WorkItemNumber),"""")",,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,"=CONCATENATE(""Page "",Main!L9,"" of "",Main!L10)",,
 ,,,,,,,,,,Form Number:  ,=FormNumber,,,,,,,,
-Customer:  ,=Main!D5,,,,,,,,,Calibration Method:  ,=CalMethod,,,,,,,,
+Customer:  ,=Main!D5,,,,,,,,,Calibration Method:  ,"=""JGI WP4100, ""&CalMethod",,,,,,,,
 ,"=IFZERO('Customer Table'!R2,"""")",,,,,,,,,,,,,,,,,,
 ,"=IFZERO('Customer Table'!S2,"""")",,,,,,,,,Tolerance Source:  ,=TolSource,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
