@@ -11,4 +11,8 @@ Option Explicit
 Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     Call EnforceSheetIsViewOnly(Me)
 End Sub
+Private Sub Worksheet_Calculate()
+    ThisWorkbook.Connections("Query - AggregatedUUTRangeTol").Refresh
+End Sub
+
 
