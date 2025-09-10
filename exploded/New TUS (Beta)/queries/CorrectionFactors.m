@@ -57,6 +57,7 @@ let
     #"Changed Type2" = Table.TransformColumnTypes(AllWireOffsetsCached,{{"Temp", type number}, {"Offset", type number}}),
     WithTCOffsets = Table.AddColumn(WithDaqbookOffsets, "TCOffset", each LinearInterpolate(#"Changed Type2", TestTemp, [WireLotNumber])),
     #"Added Custom" = Table.AddColumn(WithTCOffsets, "CummulativeOffset", each [DaqbookOffset]+[TCOffset]),
-    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"DaqbookOffset", type number}, {"TCOffset", type number}, {"CummulativeOffset", type number}})
+    #"Changed Type" = Table.TransformColumnTypes(#"Added Custom",{{"DaqbookOffset", type number}, {"TCOffset", type number}, {"CummulativeOffset", type number}}),
+    #"Reordered Columns1" = Table.ReorderColumns(#"Changed Type",{"point", "Thermocouple", "WireLotNumber", "TCOffset", "DaqbookOffset", "CummulativeOffset"})
 in
-    #"Changed Type"
+    #"Reordered Columns1"
