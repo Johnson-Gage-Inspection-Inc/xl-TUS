@@ -13,6 +13,9 @@ Private wsDaqBook As Worksheet
 
 '@ModuleInitialize
 Private Sub ModuleInitialize()
+    Dim testTSVPath As String
+    testTSVPath = ThisWorkbook.path & "\test2.tsv"
+
     Set Assert = CreateObject("Rubberduck.AssertClass")
     Set Fakes = CreateObject("Rubberduck.FakesProvider")
 
@@ -95,14 +98,12 @@ Private Sub ClearMainSheetInputs()
         .Range("K15:L15").ClearContents
         .Range("O5:O14").ClearContents
         .Range("B37:L44").ClearContents
+        .Range("D24").value = "1"  ' Reset to default
     End With
 End Sub
 
 ' Reusable test for PasteChannelsXXtoYY
 Private Sub TestPasteRoutine(pasteSubName As String, expectedStartCol As String, expectedFirstChannel As Long)
-    Dim testTSVPath As String
-    testTSVPath = "C:\Users\JeffHall\git\xl-TUS\test1.tsv" ' Or parameterize further
-    
     ' Load test content into clipboard (PasteChannels still expects clipboard use)
 
     ' Ensure clipboard is populated
@@ -139,7 +140,7 @@ Private Sub TCAlerts_ContainsExpectedHighLowOnly():
 
     PopulateComparisonReportInputs
     ' Inject raw test data from file
-    LoadTestChannelBlock "DataForChannels1to14", "A2", 14, 1, "C:\Users\JeffHall\git\xl-TUS\test2.tsv"
+    LoadTestChannelBlock "DataForChannels1to14", "A2", 14, 1, testTSVPath
     
     Sleep 1
 

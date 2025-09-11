@@ -13,6 +13,9 @@ Private wsDaqBook As Worksheet
 
 '@ModuleInitialize
 Private Sub ModuleInitialize()
+    Dim testTSVPath As String
+    testTSVPath = ThisWorkbook.path & "\test1.tsv"
+
     Set Assert = CreateObject("Rubberduck.AssertClass")
     Set Fakes = CreateObject("Rubberduck.FakesProvider")
 
@@ -106,8 +109,6 @@ End Sub
 
 ' Reusable test for PasteChannelsXXtoYY
 Private Sub TestPasteRoutine(pasteSubName As String, expectedStartCol As String, expectedFirstChannel As Long)
-    Dim testTSVPath As String
-    testTSVPath = "C:\Users\JeffHall\git\xl-TUS\test1.tsv" ' Or parameterize further
     
     ' Load test content into clipboard (PasteChannels still expects clipboard use)
 
