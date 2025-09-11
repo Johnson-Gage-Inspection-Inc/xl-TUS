@@ -1,4 +1,4 @@
-Attribute VB_Name = "TestModule1"
+Attribute VB_Name = "TestModule2"
 '@TestModule
 '@Folder("Tests")
 Option Explicit
@@ -14,7 +14,7 @@ Private wsDaqBook As Worksheet
 '@ModuleInitialize
 Private Sub ModuleInitialize()
     Dim testTSVPath As String
-    testTSVPath = ThisWorkbook.path & "\test1.tsv"
+    testTSVPath = ThisWorkbook.path & "\test2.tsv"
 
     Set Assert = CreateObject("Rubberduck.AssertClass")
     Set Fakes = CreateObject("Rubberduck.FakesProvider")
@@ -26,9 +26,9 @@ Private Sub ModuleInitialize()
 End Sub
 Private Sub LoadTestChannelBlock(tableName As String, startCell As String, channelCount As Long, startChannel As Long, tsvPath As String)
     With wsMain
-        .Range("D26:D28").value = "9:04:00 AM"
-        .Range("D30").value = "9:40:00 AM"
-        .Range("D32").value = "30"
+        .Range("D26:D28").value = "10:44:00 AM"  ' OK
+        .Range("D30").value = "10:44:00 AM"  ' OK
+        .Range("D32").value = "30"  ' OK
     End With
     Dim rawText As String
     rawText = CreateObject("Scripting.FileSystemObject").OpenTextFile(tsvPath).ReadAll
@@ -51,22 +51,23 @@ End Sub
 Private Sub InputMainSheetData()
     
     With wsMain
-        .Range("D9").value = "J2"
-        .Range("K14").value = "69975"
+        .Range("D9").value = "J2"  ' OK
+        .Range("K14").value = "078427"  ' OK
         Sleep 1
     
         .Range("K15").value = "SIM Load Hot"
-        .Range("D48").value = "J01-J24"
-        .Range("D51").value = "10"
-        .Range("D52").value = "0"
-        .Range("D56").value = "10"
-        .Range("D57").value = ""
+        .Range("D48").value = "J01-J24"  ' OK
+        .Range("D51").value = "9"  ' OK
+        .Range("D52").value = "0"  ' OK
+        .Range("D56").value = "16"  ' OK
+        .Range("D57").value = ""  ' OK
         .Range("D3").value = "2/17/2025"
-        .Range("D17:D18").value = "10"
-        .Range("D22").value = "68"
-        .Range("D23").value = "19"
-        .Range("D24").value = "1"
-        .Range("D15:D16").value = "100"
+        .Range("D17").value = "16"  ' OK
+        .Range("D18").value = "10"  ' OK
+        .Range("D22").value = ""  ' OK
+        .Range("D23").value = ""  ' OK
+        .Range("D24").value = "2"  ' OK
+        .Range("D15:D16").value = "-9"  ' OK
 
         Dim i As Long
         For i = 1 To 10
@@ -78,19 +79,12 @@ End Sub
 Private Sub PopulateComparisonReportInputs()
     ' Set up Comparison Report data in B37:G40
     With wsMain
-        .Range("B37").value = 10
-        .Range("C37").value = "Controller"
-        .Range("D37").value = 102
-        .Range("E37").value = 102
-        .Range("F37").value = 103
-        .Range("G37").value = 102
-    
-        .Range("B38").value = 10
-        .Range("C38").value = "Recorder"
-        .Range("D38").value = 102.44
-        .Range("E38").value = 103.45
-        .Range("F38").value = 104.13
-        .Range("G38").value = 103.45
+        .Range("B37").value = 16  ' OK
+        .Range("C37").value = "Indicator"  ' OK
+        .Range("D37").value = -9  ' OK
+        .Range("E37").value = -9  ' OK
+        .Range("F37").value = -8  ' OK
+        .Range("G37").value = -9  ' OK
     End With
 End Sub
 
@@ -104,12 +98,12 @@ Private Sub ClearMainSheetInputs()
         .Range("K15:L15").ClearContents
         .Range("O5:O14").ClearContents
         .Range("B37:L44").ClearContents
+        .Range("D24").value = "1"  ' Reset to default
     End With
 End Sub
 
 ' Reusable test for PasteChannelsXXtoYY
 Private Sub TestPasteRoutine(pasteSubName As String, expectedStartCol As String, expectedFirstChannel As Long)
-    
     ' Load test content into clipboard (PasteChannels still expects clipboard use)
 
     ' Ensure clipboard is populated
@@ -146,7 +140,7 @@ Private Sub TCAlerts_ContainsExpectedHighLowOnly():
 
     PopulateComparisonReportInputs
     ' Inject raw test data from file
-    LoadTestChannelBlock "DataForChannels1to14", "A2", 14, 1, "C:\Users\JeffHall\git\xl-TUS\test1.tsv"
+    LoadTestChannelBlock "DataForChannels1to14", "A2", 14, 1, testTSVPath
     
     Sleep 1
 
@@ -161,10 +155,10 @@ Private Sub TCAlerts_ContainsExpectedHighLowOnly():
 
         ' Check expected values
         Select Case i
-            Case 6
-                Assert.AreEqual "Low", val, "Expected P6 to be High"
-            Case 14
-                Assert.AreEqual "High", val, "Expected P8 to be Low"
+            Case 5
+                Assert.AreEqual "High", val, "Expected P5 to be High"
+            Case 11
+                Assert.AreEqual "Low", val, "Expected P11 to be Low"
             Case Else
                 Assert.AreEqual "", val, "Expected P" & i & " to be empty"
         End Select
@@ -181,5 +175,6 @@ TestFail:
     Assert.Fail "Test raised an error: #" & Err.Number & " - " & Err.Description
     Resume TestExit
 End Sub
+
 
 
