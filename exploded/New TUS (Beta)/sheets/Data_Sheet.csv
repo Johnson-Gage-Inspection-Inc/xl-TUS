@@ -3,7 +3,7 @@
 ,"Johnson Gage & Inspection, Inc.",,,,,,,,,,,In Tolerence,,,,,
 ,Temperature Uniformity Results,,,,,,,,,,,Below Tolerance(COLD),,,,,
 ,Date:,=Main!D3,,,,,,Customer: ,=Main!D5,,,Above Tolerance (HOT),,,,,
-,Unit: ,=Main!D6,,,,,,Temperature: ,=Main!D16,,,In 1/2 Tolerance,,,,,
+,Unit: ,=Main!D6,,,,,,Temperature: ,=Main!D16,,,"=IF(MaxMode,"""",""In 1/2 Tolerance"")",,,,,
 ,Operator:,=Main!D7,,,,,,Survey Start Time:,=Main!$D$30,,,Survey is Underlined,,,,,
 ,,,,,,,,,,,,,,,,,
 ,,,,,,,,"=IF(Main!K15=""SIM Load Hot"",Main!N59,"""")",,,,,,,,,
