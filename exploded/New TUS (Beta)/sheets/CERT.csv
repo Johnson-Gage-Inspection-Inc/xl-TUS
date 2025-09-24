@@ -23,7 +23,7 @@ Recorder:  ,=_xlnm.Recorder,,,,S/N:  ,=RecSN,,,Tol:  ,=RecTol,,Tested:  ,=Main!G
 ,,,,,,,,,,,,,,,,,,,
 Test Temp:  ,=NominalTemp,,,,,Thermocouples In:  ,=Main!D26,,,,,Overall Uniformity:  ,"=TEXT(Survey!N2,""0.0"") & Unit & "" / "" & TEXT(Survey!N3,""0.0"") & Unit",,,,,,
 Setpoint:  ,=Main!D15,,,,,Lag Time:  ,=Main!E29,,,,,Equipment Load:  ,"=IF(Main!H15=TRUE,Main!G17,""VERIFY LOAD!!!"")",,,,,,
-Overshoot:  ,NONE OBSERVED,,,,,Recovery Time:  ,=Main!I19,,,,,"=""Uncertainty @ k=""&ROUND(k,1)&"":""","=TEXT(Survey!J9,""0.0"") & Unit",,,,,,
+Overshoot:  ,NONE OBSERVED,,,,,Recovery Time:  ,=Main!I19,,,,,"=""Uncertainty @ k=""&IFERROR(ROUND(k,1),2)&"":""","=TEXT(Survey!J9,""0.0"") & Unit",,,,,,
 ,,LagTime and Recovery Time are calculated as defined by AMS 2770.  Temperature values include all correction factors.,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 Test Location,,,Ambient Conditions,,,,Oven Location,,,,Condition,,,,,,,,
@@ -315,7 +315,7 @@ Standard(s),,,,,Serial Number(s),,,Date Certified,,Date Due,,Traceable Report Nu
 "=IF(Q68="""","""",CONCATENATE(T68,"" - "",R68))",,,,,"=IF(Main!I48="""","""",Main!I48)",,,"=IF(Q68="""","""",Main!I49)",,"=IF(Q68="""","""",Main!I50)",,"=IF(Q68="""","""",Main!I54)",,,,"=IF(CERT!F68="""","""",7)","=IFERROR(_xlfn.XLOOKUP(F68,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F68,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")"
 "=IF(T69="""","""",CONCATENATE(T69,"" - "",R69))",,,,,"=IF(Main!J48="""","""",Main!J48)",,,"=IF(Q69="""","""",Main!J49)",,"=IF(Q69="""","""",Main!J50)",,"=IF(Q69="""","""",Main!J54)",,,,,,,
 ,,,,,,,,,,,,,,,,,,,
-The reported expanded uncertainty of measurement is stated as the standard uncertainty of measurement multiplied by the coverage factor k such that the coverage probability corresponds to approximately 95%. This estimate was performed in accordance with guidelines set forth in ANSI/NCSL Z540-2. The Decision Rule used is Simple Acceptance as defined in ILAC G8 with a TUR of 1:1 or better. This Rule may be superseded by technological constraints or by cited specifications. All testing performed using standards traceable to NIST or to intrinsic standards. This document shall not be reproduced except in full without the written permission of Johnson Gage and Inspection.,,,,,,,,,,,,,,,,,,,
+"The reported expanded uncertainty of measurement is stated as the standard uncertainty of measurement multiplied by the coverage factor k=2 such that the coverage probability corresponds to approximately 95%. This estimate was performed in accordance with guidelines set forth in the GUM-BIPM JCGM 100:2008. The Decision Rule used is Simple Acceptance as defined in ILAC G8, with the expanded uncertainty never to exceed the tolerance. This Rule may be superseded by technological constraints or by cited specifications. All testing performed using standards traceable to the International System of Units through the NIST or intrinsic standards. This document shall not be reproduced except in full without the written permission of Johnson Gage and Inspection and applies only to the items and quantities listed therein. The JGI quality system governing this calibration/inspection is based upon and maintained in compliance with quality specifications ISO/IEC 17025, ANSI/NCSL Z540-1 and ISO 10012.",,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,
