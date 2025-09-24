@@ -10,10 +10,10 @@ Private Assert As Object
 Private Fakes As Object
 Private wsMain As Worksheet
 Private wsDaqBook As Worksheet
+Dim testTSVPath As String
 
 '@ModuleInitialize
 Private Sub ModuleInitialize()
-    Dim testTSVPath As String
     testTSVPath = ThisWorkbook.path & "\test2.tsv"
 
     Set Assert = CreateObject("Rubberduck.AssertClass")
