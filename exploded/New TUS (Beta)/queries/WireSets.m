@@ -23,8 +23,8 @@ let
     FinalData = if FreshData <> null then FreshData 
                 else if CachedData <> null then CachedData
                 else #table(
-                    {"asset_id",  "serial_number", "asset_tag", "custom_order_number", "service_date", "certificate_number", "wire_roll_cert_number", "type"},
-                    {{"No data available", "", "", null, null, "", "", "", 0}}
+                    {"asset_id",  "serial_number", "asset_tag", "custom_order_number", "service_date", "certificate_number", "traceability_number", "wire_roll_cert_number", "type"},
+                    {{0, "No data available", "", "", null, "", "", "", ""}}
                 )
 in
     FinalData
