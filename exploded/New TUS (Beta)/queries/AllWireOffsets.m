@@ -4,9 +4,8 @@ let
         let
             Source = Json.Document(Web.Contents("https://jgiapi.com", [RelativePath = "wire-offsets/"])),
             #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
-            #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"correction_factor", "created_at", "id", "nominal_temp", "traceability_no", "updated_at", "updated_by"}, {"correction_factor", "created_at", "id", "nominal_temp", "traceability_no", "updated_at", "updated_by"}),
-            #"Removed Other Columns" = Table.SelectColumns(#"Expanded Column1",{"traceability_no", "nominal_temp", "correction_factor"}),
-            #"Renamed Columns" = Table.RenameColumns(#"Removed Other Columns",{{"correction_factor", "Offset"}, {"nominal_temp", "Temp"}}),
+            #"Expanded Column2" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"correction_factor", "nominal_temp", "traceability_no"}, {"correction_factor", "nominal_temp", "traceability_no"}),
+            #"Renamed Columns" = Table.RenameColumns(#"Expanded Column2",{{"correction_factor", "Offset"}, {"nominal_temp", "Temp"}}),
             #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Offset", type number}, {"Temp", type number}, {"traceability_no", type text}})
         in
             #"Changed Type"
@@ -21,6 +20,7 @@ let
                 else #table(
                     {"traceability_no", "Temp", "Offset"},
                     {{"Data unavailable: Unable to retrieve data from API or cached workbook. Please check your network connection and try again.", 0.0, 0.0}}
-                )
+                ),
+    #"Reordered Columns" = Table.ReorderColumns(FinalData,{"traceability_no", "Temp", "Offset"})
 in
-    FinalData
+    #"Reordered Columns"
