@@ -2,10 +2,11 @@ let
     // Try to get fresh data from SharePoint
     FreshData = try 
         let
-            Source = Excel.Workbook(Web.Contents("https://jgiquality.sharepoint.com/sites/JGI/Shared Documents/Pyro/WireSetCerts.xlsx"), null, true),
-            Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
-            #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
-            #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"service_date", type date}, {"asset_id", Int64.Type}})
+            Source = Json.Document(Web.Contents("https://jgiapi.com", [RelativePath = "wire-set-certs/"])),
+            #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+            #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"asset_id", "serial_number", "asset_tag", "custom_order_number", "service_date", "certificate_number", "traceability_number", "wire_roll_cert_number", "wire_set_group"}, {"asset_id", "serial_number", "asset_tag", "custom_order_number", "service_date", "certificate_number", "traceability_number", "wire_roll_cert_number", "type"}),
+            #"Sorted Rows" = Table.Sort(#"Expanded Column1",{{"asset_tag", Order.Ascending}}),
+            #"Changed Type" = Table.TransformColumnTypes(#"Sorted Rows",{{"service_date", type datetime}, {"asset_id", Int64.Type}})
         in
             #"Changed Type"
     otherwise null,
