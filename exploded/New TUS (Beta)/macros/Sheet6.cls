@@ -31,8 +31,8 @@ Private Sub Worksheet_Calculate()
     If Not IsError(currentKey) Then
         If currentKey <> lastWorkItemKey Then
             lastWorkItemKey = currentKey
-            Application.EnableEvents = False
             On Error GoTo CleanAfterCalc
+            Application.EnableEvents = False
             Call Sheet25.UpdateWorkItemDetails
         End If
     End If
