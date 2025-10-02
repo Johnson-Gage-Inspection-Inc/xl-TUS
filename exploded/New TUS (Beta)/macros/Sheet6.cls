@@ -10,20 +10,41 @@ Attribute VB_Exposed = True
 Option Explicit
 
 Dim lastRadioVal As Variant
+Dim lastWorkItemKey As Variant
 
 Private Sub Worksheet_Calculate()
     Dim currentVal As Variant
     currentVal = Me.Range("L20").value
 
-    If currentVal <> lastRadioVal Then
-        lastRadioVal = currentVal
-        ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
+    ' Watch L20
+    If Not IsError(currentVal) Then
+        If currentVal <> lastRadioVal Then
+            lastRadioVal = currentVal
+            ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
+        End If
     End If
+
+    ' Watch G1 for GetFormattedWorkItemNumber(K14, D24)
+    Dim currentKey As Variant
+    currentKey = Me.Range("G1").value
+
+    If Not IsError(currentKey) Then
+        If currentKey <> lastWorkItemKey Then
+            lastWorkItemKey = currentKey
+            Application.EnableEvents = False
+            On Error GoTo CleanAfterCalc
+            Call Sheet25.UpdateWorkItemDetails
+        End If
+    End If
+
+CleanAfterCalc:
+    Application.EnableEvents = True
 End Sub
 
 Private Sub Worksheet_Activate()
     ' Initialize memory on activation
     lastRadioVal = Me.Range("L20").value
+    lastWorkItemKey = Me.Range("G1").value
 End Sub
 
 Private Sub Worksheet_Change(ByVal Target As Range)
@@ -58,11 +79,6 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     ' Test Temp (Nominal temperature), UsedWireSNs
     If Not Intersect(Target, Union(Range("D16"), Range("UsedWireSNs"))) Is Nothing Then
         ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
-    End If
-    
-    ' Work Item Number
-    If Not Intersect(Target, Range("K14")) Is Nothing Then
-        Call Sheet25.UpdateWorkItemDetails
     End If
     
 CleanExit:
