@@ -1,0 +1,26 @@
+%% Use https://mermaid.live/ to render this chart
+flowchart TD
+    A([Start])
+    B[Retrieve AMS Class From ]
+    C{Is the tolerance symmetrical?
+    In other words, can it be expressed with '±' ?}
+    D[Lookup SAT Tolerance by TUS Tolerance]
+    E[Lookup SAT Tol in Header Info by Furnace]
+    F[Calculate SAT Tolerance]
+    G([Display SAT tolerance on Comparison Report])
+    H[/Manually Override SAT Tolerance class - Main!G74/]
+
+    A --> B
+    B --> C
+    C -- "Yes" --> D
+    C -- "No" --> E
+    D --> F
+    E --> F
+    H --> F
+    F --> G
+
+
+    class A,G startend;
+    class C decision;
+    class B,D,E,F action;
+    class H input;
