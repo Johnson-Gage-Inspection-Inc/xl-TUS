@@ -10,11 +10,11 @@ config:
 flowchart TD
     A(["Start"]) --> B["Look up TUS tolerance in ClientOvens.xlsx for the given furnace at the given test temp."]
     B --> C@{ label: "Is the tolerance symmetrical?\nIn other words, can it be expressed with '±' ?" }
-    C -- Yes --> D["Lookup SAT Tolerance by TUS Tolerance"]
-    C -- No --> E["Lookup SAT Tol in Header Info by Furnace"]
-    D --> F["Calculate SAT Tolerance"]
+    C -- Yes --> D["Lookup SAT_Multiplier by TUS Tolerance"]
+    C -- No --> E["Lookup SAT_Multiplier in Header Info by Furnace"]
+    D --> F["Calculate SAT Tolerance as SAT_Multiplier*MAX(nominal_temp/1000,1)"]
     E --> F
-    H[/"Manually Override SAT Tolerance class (Main!G74)"/] --> F
+    H[/"Manually Override SAT_Multiplier (Main!G74)"/] --> F
     F --> G(["Display SAT tolerance and alerts on Comparison Report"])
     C@{ shape: diamond}
      A:::startend
