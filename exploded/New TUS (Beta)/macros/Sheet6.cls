@@ -76,7 +76,6 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     Dim rFurnaceDD As Range:    Set rFurnaceDD = Me.Range("D6")
     
     Application.ScreenUpdating = False
-    Application.EnableEvents = False
 
     ' Daqbook Tag
     If Not Intersect(Target, Range("D9")) Is Nothing Then
@@ -95,7 +94,7 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     
 CleanExit:
     Application.ScreenUpdating = True
-    Application.EnableEvents = True
+    Application.EnableEvents = True  ' Just in case
     Exit Sub
 
 HandleError:
