@@ -1,7 +1,7 @@
 Attribute VB_Name = "SheetGuards"
 Option Explicit
 Public Sub EnforceSheetIsViewOnly(sh As Worksheet)
-    Exit Sub ' Uncomment this line for development mode
+    ' Exit Sub ' Uncomment this line for development mode
     Dim msg As String
     On Error Resume Next
 
