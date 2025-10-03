@@ -1,43 +1,32 @@
-%%{init: {
-  "theme": "base",
-  "themeVariables": {
-    "primaryColor": "#ffffff",
-    "lineColor": "#37474f",
-    "fontFamily": "Inter, Segoe UI, Arial"
-  }
-}}%%
-%% Use https://mermaid.live/ to render this chart
+---
+config:
+  theme: base
+  themeVariables:
+    primaryColor: '#ffffff'
+    lineColor: '#37474f'
+    fontFamily: Inter, Segoe UI, Arial
+  layout: dagre
+---
 flowchart TD
-    A([Start])
-    B[Look up TUS tolerance in ClientOvens.xlsx for the given furnace at the given test temp.]
-    C{Is the tolerance symmetrical?\nIn other words, can it be expressed with '±' ?}
-    D[Lookup SAT Tolerance by TUS Tolerance]
-    E[Lookup SAT Tol in Header Info by Furnace]
-    F[Calculate SAT Tolerance]
-    G([Display SAT tolerance and alerts on Comparison Report])
-    H[/Manually Override SAT Tolerance class - Main!G74/]
-
-    A --> B
-    B --> C
-    C -- "Yes" --> D
-    C -- "No" --> E
-    D --> F
+    A(["Start"]) --> B["Look up TUS tolerance in ClientOvens.xlsx for the given furnace at the given test temp."]
+    B --> C@{ label: "Is the tolerance symmetrical?\nIn other words, can it be expressed with '±' ?" }
+    C -- Yes --> D["Lookup SAT Tolerance by TUS Tolerance"]
+    C -- No --> E["Lookup SAT Tol in Header Info by Furnace"]
+    D --> F["Calculate SAT Tolerance"]
     E --> F
-    H --> F
-    F --> G
-
-    %% Class definitions (colors)
-    classDef startend fill:#b3e5fc,stroke:#1e88e5,color:#0d47a1;
-    classDef decision fill:#ffe0b2,stroke:#ef6c00,color:#4e342e;
-    classDef action fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20;
-    classDef input fill:#e3f2fd,stroke:#1565c0,color:#0d47a1;
-
-    %% Apply classes
-    class A,G startend;
-    class C decision;
-    class B,D,E,F action;
-    class H input;
-
-    %% Make the override edge dashed & bold (edge index 6 = H-->F)
-    %% Edge order: 0 A->B, 1 B->C, 2 C->D, 3 C->E, 4 D->F, 5 E->F, 6 H->F, 7 F->G
-    linkStyle 6 stroke-dasharray: 5 5, stroke-width:2
+    H[/"Manually Override SAT Tolerance class (Main!G74)"/] --> F
+    F --> G(["Display SAT tolerance and alerts on Comparison Report"])
+    C@{ shape: diamond}
+     A:::startend
+     B:::action
+     C:::decision
+     D:::action
+     E:::action
+     F:::action
+     H:::io
+     G:::startend
+    classDef startend fill:#b3e5fc,stroke:#1e88e5,color:#0d47a1
+    classDef decision fill:#ffe0b2,stroke:#ef6c00,color:#4e342e
+    classDef action fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20
+    classDef io fill:#e3f2fd,stroke:#1565c0,color:#0d47a1
+    linkStyle 6 stroke-dasharray: 5 5, stroke-width:2,fill:none
