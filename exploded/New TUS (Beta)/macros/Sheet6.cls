@@ -27,14 +27,19 @@ Private Sub Worksheet_Calculate()
     ' Watch G1 for GetFormattedWorkItemNumber(K14, D24)
     Dim currentKey As Variant
     currentKey = Me.Range("G1").value
-
-    If Not IsError(currentKey) Then
-        If currentKey <> lastWorkItemKey Then
-            lastWorkItemKey = currentKey
-            On Error GoTo CleanAfterCalc
-            Application.EnableEvents = False
-            Call Sheet25.UpdateWorkItemDetails
-        End If
+    
+    ' If G1 is an error, bail
+    If IsError(currentKey) Then GoTo CleanAfterCalc
+    
+    ' If our last cached value was an error (e.g., from a prior calc), reset it
+    If VarType(lastWorkItemKey) = vbError Then lastWorkItemKey = vbNullString
+    
+    ' Safe compare
+    If CStr(currentKey) <> CStr(lastWorkItemKey) Then
+        lastWorkItemKey = currentKey
+        On Error GoTo CleanAfterCalc
+        Application.EnableEvents = False
+        Sheet25.UpdateWorkItemDetails
     End If
 
 CleanAfterCalc:
@@ -42,9 +47,16 @@ CleanAfterCalc:
 End Sub
 
 Private Sub Worksheet_Activate()
-    ' Initialize memory on activation
-    lastRadioVal = Me.Range("L20").value
-    lastWorkItemKey = Me.Range("G1").value
+    ' Initialize memory on activation with non-error scalars
+    Dim v As Variant
+
+    v = Me.Range("L20").Value2
+    If IsError(v) Then v = vbNullString
+    lastRadioVal = v
+
+    v = Me.Range("G1").Value2
+    If IsError(v) Then v = vbNullString
+    lastWorkItemKey = v
 End Sub
 
 Private Sub Worksheet_Change(ByVal Target As Range)
