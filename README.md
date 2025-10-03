@@ -3,15 +3,16 @@
 
 This is the official repository for tracking and maintaining the Excel workbook for TUS certificates.  This repository houses [Usage instructions](#usage-instructions), [releases](https://github.com/Johnson-Gage-Inspection-Inc/xl-TUS/releases), [changes](https://github.com/Johnson-Gage-Inspection-Inc/xl-TUS/compare), and other [Documentation](#documentation).
 
-<!-- TOC tocDepth:2..3 chapterDepth:2..6 -->
+<!-- TOC -->
 
-- [Usage instructions](#usage-instructions)
-   - [Initialization (One time per user, per machine)](#initialization-one-time-per-user-per-machine)
-      - [Trust settings](#trust-settings)
-      - [Sharepoint Authentication](#sharepoint-authentication)
-      - [JGI server authentication](#jgi-server-authentication)
-   - [**Core Workflow** (Once per calibration)](#core-workflow-once-per-calibration)
-- [**Documentation**](#documentation)
+- [Temperature Uniformity Survey Workbook](#temperature-uniformity-survey-workbook)
+    - [Usage instructions](#usage-instructions)
+        - [Initialization One time per user, per machine](#initialization-one-time-per-user-per-machine)
+            - [Trust settings](#trust-settings)
+            - [Sharepoint Authentication](#sharepoint-authentication)
+            - [JGI server authentication](#jgi-server-authentication)
+        - [Core Workflow Once per calibration](#core-workflow-once-per-calibration)
+    - [Documentation](#documentation)
 
 <!-- /TOC -->
 ---
@@ -81,6 +82,8 @@ This is the official repository for tracking and maintaining the Excel workbook 
 
 For detailed technical information and calculations, see the `docs/` folder:
 
-- [**`LiveTUS_Uncertainty_InternalRef.pdf`**](https://github.com/Johnson-Gage-Inspection-Inc/xl-TUS/blob/main/docs/LiveTUS_Uncertainty_InternalRef.pdf) - Comprehensive document detailing the uncertainty calculation methodology, statistical analysis, and validation procedures used in the TUS process. This document provides the theoretical background and mathematical basis for the temperature uniformity survey calculations and certification process.
+- [**`LiveTUS_Uncertainty_InternalRef.pdf`**](https://github.com/Johnson-Gage-Inspection-Inc/xl-TUS/blob/main/docs/LiveTUS_Uncertainty_InternalRef.pdf) - Comprehensive document detailing the uncertainty calculation methodology, statistical analysis, and validation procedures used in the TUS process. This document provides the theoretical background and mathematical basis for the temperature uniformity survey calculations and certification process. The source code for this PDF is in [LiveTUS_Uncertainty_InternalRef.tex](https://github.com/Johnson-Gage-Inspection-Inc/xl-TUS/blob/main/docs/LiveTUS_Uncertainty_InternalRef.tex)
+
+- [**`SAT_Tolerance-FlowChart.svg`**](https://github.com/Johnson-Gage-Inspection-Inc/xl-TUS/blob/main/docs/SAT_Tolerance-FlowChart.svg) - Flowchart showing how the SAT tolerance is determined based on the furnace and TUS tolerance, and where that data is sourced. The source code for this svg is in [SAT_Tolerance-FlowChart.mmd](https://github.com/Johnson-Gage-Inspection-Inc/xl-TUS/blob/main/docs/SAT_Tolerance-FlowChart.mmd)
 
 ---
