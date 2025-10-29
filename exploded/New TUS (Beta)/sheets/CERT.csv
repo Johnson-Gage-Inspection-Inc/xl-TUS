@@ -1,35 +1,35 @@
-,,,"Johnson Gage and Inspection, Inc.",,,,,,,,,,,,,,,,
-,,,"5920 W. 21st St. N., Wichita, KS  67205 - Phone 316.943.7532",,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,Temperature Uniformity Survey Results,,,,,,,,,,,,,,,,,
-,,,,"=IFERROR(CONCATENATE(""Report Number: "", WorkItemNumber),"""")",,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,"=CONCATENATE(""Page "",Main!L9,"" of "",Main!L10)",,
-,,,,,,,,,,Form Number:  ,=FormNumber,,,,,,,,
-Customer:  ,=Main!D5,,,,,,,,,Calibration Method:  ,"=""JGI WP4100, ""&CalMethod",,,,,,,,
-,"=IFZERO('Customer Table'!R2,"""")",,,,,,,,,,,,,,,,,,
-,"=IFZERO('Customer Table'!S2,"""")",,,,,,,,,Tolerance Source:  ,=TolSource,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-Item:  ,=Item,,,,,Range:  ,=Ranges,,,,,Inspector(s):  ,=Main!D7,,,,,,
-Model Number:  ,=ModelNumber,,,,,Tolerance:  ,=Tolerances,,,,,Date Tested:  ,=Main!D3,,,,,,
-Serial Number:  ,=SerialNumber,,,,,Heating Method:  ,=HeatingMethod,,,,,Date Due:  ,"=IF(CalInterval=""N/A"", ""N/A"", EDATE(N15, CHOOSE(MATCH(CalInterval, {""M"",""2 Mo"",""Q"",""4 Mo"",""6 Mo"",""A"",""2Yr"",""3Yr""}, 0), 1, 2, 3, 4, 6, 12, 24, 36)))",,,,,,
-Unit Number:  ,=UnitNumber,,,,,Working Zone Size:  ,=WorkingZoneSize,,,,,"=IF(Main!K13="""","""",""PO:"")","=IF(Main!K13="""","""",Main!K13)",,,,,,
-Class:  ,=Class,,,,,Cubic Feet:  ,=CubicFeet,,,,,Result:  ,=Main!G18,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-Controller:  ,=Controller,,,,S/N:  ,=ContSN,,,Tol:  ,=ContTol,,Tested:  ,=Main!G27,,,,,,
-Recorder:  ,=_xlnm.Recorder,,,,S/N:  ,=RecSN,,,Tol:  ,=RecTol,,Tested:  ,=Main!G28,,,,,,
-,,,,,,,,,,,,,,,,,,,
-Test Temp:  ,=NominalTemp,,,,,Thermocouples In:  ,=Main!D26,,,,,Overall Uniformity:  ,"=TEXT(Survey!N2,""0.0"") & Unit & "" / "" & TEXT(Survey!N3,""0.0"") & Unit",,,,,,
-Setpoint:  ,=Main!D15,,,,,Lag Time:  ,=Main!E29,,,,,Equipment Load:  ,"=IF(Main!H15=TRUE,Main!G17,""VERIFY LOAD!!!"")",,,,,,
-Overshoot:  ,NONE OBSERVED,,,,,Recovery Time:  ,=Main!I19,,,,,"=""Uncertainty @ k=""&IFERROR(ROUND(k,1),2)&"":""","=TEXT(Survey!J9,""0.0"") & Unit",,,,,,
-,,LagTime and Recovery Time are calculated as defined by AMS 2770.  Temperature values include all correction factors.,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-Test Location,,,Ambient Conditions,,,,Oven Location,,,,Condition,,,,,,,,
-,On-Site,,"=CONCATENATE(Main!D22,Unit,"" / "",Main!D23,""% RH"")",,,,=OvenLocation,,,,=Condition,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
+,,,"Johnson Gage and Inspection, Inc.",,,,,,,,,,,,,,,,,
+,,,"5920 W. 21st St. N., Wichita, KS  67205 - Phone 316.943.7532",,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,Temperature Uniformity Survey Results,,,,,,,,,,,,,,,,,,
+,,,,"=IFERROR(CONCATENATE(""Report Number: "", WorkItemNumber),"""")",,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,"=CONCATENATE(""Page "",Main!L9,"" of "",Main!L10)",,,
+,,,,,,,,,,Form Number:  ,=FormNumber,,,,,,,,,
+Customer:  ,=Main!D5,,,,,,,,,Calibration Method:  ,"=""JGI WP4100, ""&CalMethod",,,,,,,,,
+,"=IFZERO('Customer Table'!R2,"""")",,,,,,,,,,,,,,,,,,,
+,"=IFZERO('Customer Table'!S2,"""")",,,,,,,,,Tolerance Source:  ,=TolSource,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+Item:  ,=Item,,,,,Range:  ,=Ranges,,,,,Inspector(s):  ,=Main!D7,,,,,,,
+Model Number:  ,=ModelNumber,,,,,Tolerance:  ,=Tolerances,,,,,Date Tested:  ,=Main!D3,,,,,,,
+Serial Number:  ,=SerialNumber,,,,,Heating Method:  ,=HeatingMethod,,,,,Date Due:  ,"=IF(CalInterval=""N/A"", ""N/A"", EDATE(N15, CHOOSE(MATCH(CalInterval, {""M"",""2 Mo"",""Q"",""4 Mo"",""6 Mo"",""A"",""2Yr"",""3Yr""}, 0), 1, 2, 3, 4, 6, 12, 24, 36)))",,,,,,,
+Unit Number:  ,=UnitNumber,,,,,Working Zone Size:  ,=WorkingZoneSize,,,,,"=IF(Main!K13="""","""",""PO:"")","=IF(Main!K13="""","""",Main!K13)",,,,,,,
+Class:  ,=Class,,,,,Cubic Feet:  ,=CubicFeet,,,,,Result:  ,=Main!G18,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+Controller:  ,=Controller,,,,S/N:  ,=ContSN,,,Tol:  ,=ContTol,,Tested:  ,=Main!G27,,,,,,,
+Recorder:  ,=_xlnm.Recorder,,,,S/N:  ,=RecSN,,,Tol:  ,=RecTol,,Tested:  ,=Main!G28,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+Test Temp:  ,=NominalTemp,,,,,Thermocouples In:  ,=Main!D26,,,,,Overall Uniformity:  ,"=TEXT(Survey!N2,""0.0"") & Unit & "" / "" & TEXT(Survey!N3,""0.0"") & Unit",,,,,,,
+Setpoint:  ,=Main!D15,,,,,Lag Time:  ,=Main!E29,,,,,Equipment Load:  ,"=IF(Main!H15=TRUE,Main!G17,""VERIFY LOAD!!!"")",,,,,,,
+Overshoot:  ,NONE OBSERVED,,,,,Recovery Time:  ,=Main!I19,,,,,"=""Uncertainty @ k=""&IFERROR(ROUND(k,1),2)&"":""","=TEXT(Survey!J9,""0.0"") & Unit",,,,,,,
+,,LagTime and Recovery Time are calculated as defined by AMS 2770.  Temperature values include all correction factors.,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+Test Location,,,Ambient Conditions,,,,Oven Location,,,,Condition,,,,,,,,,
+,On-Site,,"=CONCATENATE(Main!D22,Unit,"" / "",Main!D23,""% RH"")",,,,=OvenLocation,,,,=Condition,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
 "=IF(B33="""","""",1)","=IF(Main!O5="""","""",Main!O5)",,"=IF(A33<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A33),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -42,7 +42,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B34="""","""",2)","=IF(Main!O6="""","""",Main!O6)",,"=IF(A34<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A34),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -55,7 +55,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B35="""","""",3)","=IF(Main!O7="""","""",Main!O7)",,"=IF(A35<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A35),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -68,7 +68,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B36="""","""",4)","=IF(Main!O8="""","""",Main!O8)",,"=IF(A36<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A36),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -81,7 +81,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B37="""","""",5)","=IF(Main!O9="""","""",Main!O9)",,"=IF(A37<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A37),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -94,7 +94,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B38="""","""",6)","=IF(Main!O10="""","""",Main!O10)",,"=IF(A38<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A38),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -107,7 +107,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B39="""","""",7)","=IF(Main!O11="""","""",Main!O11)",,"=IF(A39<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A39),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -120,7 +120,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B40="""","""",8)","=IF(Main!O12="""","""",Main!O12)",,"=IF(A40<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A40),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -133,7 +133,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B41="""","""",9)","=IF(Main!O13="""","""",Main!O13)",,"=IF(A41<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A41),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -146,7 +146,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B42="""","""",10)","=IF(Main!O14="""","""",Main!O14)",,"=IF(A42<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A42),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -159,7 +159,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B43="""","""",11)","=IF(Main!O15="""","""",Main!O15)",,"=IF(A43<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A43),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -172,7 +172,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B44="""","""",12)","=IF(Main!O16="""","""",Main!O16)",,"=IF(A44<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A44),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -185,7 +185,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B45="""","""",13)","=IF(Main!O17="""","""",Main!O17)",,"=IF(A45<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A45),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -198,7 +198,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B46="""","""",14)","=IF(Main!O18="""","""",Main!O18)",,"=IF(A46<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A46),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -211,7 +211,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B47="""","""",15)","=IF(Main!O19="""","""",Main!O19)",,"=IF(A47<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A47),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -224,7 +224,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B48="""","""",16)","=IF(Main!O20="""","""",Main!O20)",,"=IF(A48<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A48),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -237,7 +237,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B49="""","""",17)","=IF(Main!O21="""","""",Main!O21)",,"=IF(A49<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A49),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -250,7 +250,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B50="""","""",18)","=IF(Main!O22="""","""",Main!O22)",,"=IF(A50<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A50),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -263,7 +263,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B51="""","""",19)","=IF(Main!O23="""","""",Main!O23)",,"=IF(A51<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A51),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -276,7 +276,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
+),"""")",,,,,,,,,
 "=IF(B52="""","""",20)","=IF(Main!O24="""","""",Main!O24)",,"=IF(A52<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[CorrectedTemp], Survey[TestPoint] = A52),
   _xlpm.minVal, MIN(_xlpm.temps),
@@ -289,16 +289,16 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,,,,
-,"See attached diagram for the location of each test thermocouple and ""Uniformity Survey Worksheet"" for all correction factors used.",,,,,,,,,,,,,,,,,,
-Comments:  ,"=CONCATENATE(Main!G23,""  "",FurnaceSpecificComments,Main!V24)",,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-"The JGI quality system governing this calibration/inspection is based upon and maintained in compliance with quality specifications ISO/IEC 17025, ANSI/NCSL Z540-1 and ISO 10012.",,,,,,,,,,,,,,,,,,,
-Standard(s),,,,,Serial Number(s),,,Date Certified,,Date Due,,Traceable Report Number,,,,,PART NUMBER,,CATEGORY
+),"""")",,,,,,,,,
+,"See attached diagram for the location of each test thermocouple and ""Uniformity Survey Worksheet"" for all correction factors used.",,,,,,,,,,,,,,,,,,,
+Comments:  ,"=CONCATENATE(Main!G23,""  "",FurnaceSpecificComments,Main!V24)",,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+"The JGI quality system governing this calibration/inspection is based upon and maintained in compliance with quality specifications ISO/IEC 17025, ANSI/NCSL Z540-1 and ISO 10012.",,,,,,,,,,,,,,,,,,,,
+Standard(s),,,,,Serial Number(s),,,Date Certified,,Date Due,,Traceable Report Number,,,,,PART NUMBER,,CATEGORY,Wire Type
 "=IF(F62="""","""",CONCATENATE(T62,"" - "",R62))",,,,,"=IFERROR(
   _xlfn.XLOOKUP(
     Main!D9,
@@ -306,22 +306,22 @@ Standard(s),,,,,Serial Number(s),,,Date Certified,,Date Due,,Traceable Report Nu
     _xlfn._xlws.FILTER(AssetPool[SerialNumber], AssetPool[RootCategoryName]= ""DAQ Modules"")
   ),
   """"
-)",,,"=IF(F62="""","""",Main!D12)",,"=IF(F62="""","""",Main!D13)",,"=IF(F62="""","""",REPLACE(Main!D14,3,1,""""))",,,,"=IF(CERT!F62="""","""",1)","=IF(Main!D9="""", """", _xlfn.XLOOKUP(Main!D9,AssetPool[AssetTag],AssetPool[ManufacturerPartNumber]))",,"=IF(Main!D9="""", """", _xlfn.XLOOKUP(Main!D9,AssetPool[AssetTag],AssetPool[CategoryName]))"
-"=IF(Q63="""","""",CONCATENATE(T63,"" - "",R63))",,,,,"=IF(Main!D48="""","""",Main!D48)",,,"=IF(Q63="""","""",Main!D49)",,"=IF(Q63="""","""",Main!D50)",,"=IF(Q63="""","""",Main!D54)",,,,"=IF(CERT!F63="""","""",2)","=IFERROR(_xlfn.XLOOKUP(F63,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F63,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")"
-"=IF(Q64="""","""",CONCATENATE(T64,"" - "",R64))",,,,,"=IF(Main!E48="""","""",Main!E48)",,,"=IF(Q64="""","""",Main!E49)",,"=IF(Q64="""","""",Main!E50)",,"=IF(Q64="""","""",Main!E54)",,,,"=IF(CERT!F64="""","""",3)","=IFERROR(_xlfn.XLOOKUP(F64,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F64,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")"
-"=IF(Q65="""","""",CONCATENATE(T65,"" - "",R65))",,,,,"=IF(Main!F48="""","""",Main!F48)",,,"=IF(Q65="""","""",Main!F49)",,"=IF(Q65="""","""",Main!F50)",,"=IF(Q65="""","""",Main!F54)",,,,"=IF(CERT!F65="""","""",4)","=IFERROR(_xlfn.XLOOKUP(F65,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F65,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")"
-"=IF(Q66="""","""",CONCATENATE(T66,"" - "",R66))",,,,,"=IF(Main!G48="""","""",Main!G48)",,,"=IF(Q66="""","""",Main!G49)",,"=IF(Q66="""","""",Main!G50)",,"=IF(Q66="""","""",Main!G54)",,,,"=IF(CERT!F66="""","""",5)","=IFERROR(_xlfn.XLOOKUP(F66,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F66,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")"
-"=IF(Q67="""","""",CONCATENATE(T67,"" - "",R67))",,,,,"=IF(Main!H48="""","""",Main!H48)",,,"=IF(Q67="""","""",Main!H49)",,"=IF(Q67="""","""",Main!H50)",,"=IF(Q67="""","""",Main!H54)",,,,"=IF(CERT!F67="""","""",6)","=IFERROR(_xlfn.XLOOKUP(F67,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F67,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")"
-"=IF(Q68="""","""",CONCATENATE(T68,"" - "",R68))",,,,,"=IF(Main!I48="""","""",Main!I48)",,,"=IF(Q68="""","""",Main!I49)",,"=IF(Q68="""","""",Main!I50)",,"=IF(Q68="""","""",Main!I54)",,,,"=IF(CERT!F68="""","""",7)","=IFERROR(_xlfn.XLOOKUP(F68,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F68,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")"
-"=IF(T69="""","""",CONCATENATE(T69,"" - "",R69))",,,,,"=IF(Main!J48="""","""",Main!J48)",,,"=IF(Q69="""","""",Main!J49)",,"=IF(Q69="""","""",Main!J50)",,"=IF(Q69="""","""",Main!J54)",,,,,,,
-,,,,,,,,,,,,,,,,,,,
-"The reported expanded uncertainty of measurement is stated as the standard uncertainty of measurement multiplied by the coverage factor k=2 such that the coverage probability corresponds to approximately 95%. This estimate was performed in accordance with guidelines set forth in the GUM-BIPM JCGM 100:2008. The Decision Rule used is Simple Acceptance as defined in ILAC G8, with the expanded uncertainty never to exceed the tolerance. This Rule may be superseded by technological constraints or by cited specifications. All testing performed using standards traceable to the International System of Units through the NIST or intrinsic standards. This document shall not be reproduced except in full without the written permission of Johnson Gage and Inspection and applies only to the items and quantities listed therein. The JGI quality system governing this calibration/inspection is based upon and maintained in compliance with quality specifications ISO/IEC 17025, ANSI/NCSL Z540-1 and ISO 10012.",,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,
-www.jgiquality.com,,,,,,,,,,,,,contact@jgiquality.com,,,,,,
+)",,,"=IF(F62="""","""",Main!D12)",,"=IF(F62="""","""",Main!D13)",,"=IF(F62="""","""",Main!D14)",,,,"=IF(CERT!F62="""","""",1)","=IF(Main!D9="""", """", _xlfn.XLOOKUP(Main!D9,AssetPool[AssetTag],AssetPool[ManufacturerPartNumber]))",,"=IF(Main!D9="""", """", _xlfn.XLOOKUP(Main!D9,AssetPool[AssetTag],AssetPool[CategoryName]))",
+"=IF(Q63="""","""",CONCATENATE(""Type """""",U63,"""""" Thermocouple""))",,,,,"=IF(Main!D48="""","""",Main!D48)",,,"=IF(Q63="""","""",Main!D49)",,"=IF(Q63="""","""",Main!D50)",,"=IF(Q63="""","""",Main!D54)",,,,"=IF(CERT!F63="""","""",2)","=IFERROR(_xlfn.XLOOKUP(F63,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F63,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")","=IFERROR(_xlfn.XLOOKUP(F63,WireSets[serial_number],WireSets[type]),"""")"
+"=IF(Q64="""","""",CONCATENATE(""Type """""",U64,"""""" Thermocouple""))",,,,,"=IF(Main!E48="""","""",Main!E48)",,,"=IF(Q64="""","""",Main!E49)",,"=IF(Q64="""","""",Main!E50)",,"=IF(Q64="""","""",Main!E54)",,,,"=IF(CERT!F64="""","""",3)","=IFERROR(_xlfn.XLOOKUP(F64,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F64,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")","=IFERROR(_xlfn.XLOOKUP(F64,WireSets[serial_number],WireSets[type]),"""")"
+"=IF(Q65="""","""",CONCATENATE(""Type """""",U65,"""""" Thermocouple""))",,,,,"=IF(Main!F48="""","""",Main!F48)",,,"=IF(Q65="""","""",Main!F49)",,"=IF(Q65="""","""",Main!F50)",,"=IF(Q65="""","""",Main!F54)",,,,"=IF(CERT!F65="""","""",4)","=IFERROR(_xlfn.XLOOKUP(F65,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F65,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")","=IFERROR(_xlfn.XLOOKUP(F65,WireSets[serial_number],WireSets[type]),"""")"
+"=IF(Q66="""","""",CONCATENATE(""Type """""",U66,"""""" Thermocouple""))",,,,,"=IF(Main!G48="""","""",Main!G48)",,,"=IF(Q66="""","""",Main!G49)",,"=IF(Q66="""","""",Main!G50)",,"=IF(Q66="""","""",Main!G54)",,,,"=IF(CERT!F66="""","""",5)","=IFERROR(_xlfn.XLOOKUP(F66,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F66,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")","=IFERROR(_xlfn.XLOOKUP(F66,WireSets[serial_number],WireSets[type]),"""")"
+"=IF(Q67="""","""",CONCATENATE(""Type """""",U67,"""""" Thermocouple""))",,,,,"=IF(Main!H48="""","""",Main!H48)",,,"=IF(Q67="""","""",Main!H49)",,"=IF(Q67="""","""",Main!H50)",,"=IF(Q67="""","""",Main!H54)",,,,"=IF(CERT!F67="""","""",6)","=IFERROR(_xlfn.XLOOKUP(F67,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F67,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")","=IFERROR(_xlfn.XLOOKUP(F67,WireSets[serial_number],WireSets[type]),"""")"
+"=IF(Q68="""","""",CONCATENATE(""Type """""",U68,"""""" Thermocouple""))",,,,,"=IF(Main!I48="""","""",Main!I48)",,,"=IF(Q68="""","""",Main!I49)",,"=IF(Q68="""","""",Main!I50)",,"=IF(Q68="""","""",Main!I54)",,,,"=IF(CERT!F68="""","""",7)","=IFERROR(_xlfn.XLOOKUP(F68,AssetPool[SerialNumber],AssetPool[ManufacturerPartNumber]),"""")",,"=IFERROR(_xlfn.XLOOKUP(F68,AssetPool[SerialNumber],AssetPool[CategoryName]),"""")","=IFERROR(_xlfn.XLOOKUP(F68,WireSets[serial_number],WireSets[type]),"""")"
+"=IF(Q69="""","""",CONCATENATE(""Type """""",U69,"""""" Thermocouple""))",,,,,"=IF(Main!J48="""","""",Main!J48)",,,"=IF(Q69="""","""",Main!J49)",,"=IF(Q69="""","""",Main!J50)",,"=IF(Q69="""","""",Main!J54)",,,,,,,,"=IFERROR(_xlfn.XLOOKUP(F69,WireSets[serial_number],WireSets[type]),"""")"
+,,,,,,,,,,,,,,,,,,,,
+"The reported expanded uncertainty of measurement is stated as the standard uncertainty of measurement multiplied by the coverage factor k=2 such that the coverage probability corresponds to approximately 95%. This estimate was performed in accordance with guidelines set forth in the GUM-BIPM JCGM 100:2008. The Decision Rule used is Simple Acceptance as defined in ILAC G8, with the expanded uncertainty never to exceed the tolerance. This Rule may be superseded by technological constraints or by cited specifications. All testing performed using standards traceable to the International System of Units through the NIST or intrinsic standards. This document shall not be reproduced except in full without the written permission of Johnson Gage and Inspection and applies only to the items and quantities listed therein. The JGI quality system governing this calibration/inspection is based upon and maintained in compliance with quality specifications ISO/IEC 17025, ANSI/NCSL Z540-1 and ISO 10012.",,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+www.jgiquality.com,,,,,,,,,,,,,contact@jgiquality.com,,,,,,,

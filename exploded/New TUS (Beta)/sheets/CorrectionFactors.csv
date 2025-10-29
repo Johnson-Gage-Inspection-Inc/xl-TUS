@@ -8,5 +8,5 @@
 ,,,,,,,,
 ,,,,,,,,
 ,,,,,,,,
-,,,,,,,,
-,,,,,,,,
+,,,,,,,WireLotNumber,TCOffset
+,,,,,,,"=_xlfn.UNIQUE(_xlfn.CHOOSECOLS(CorrectionFactors[], MATCH({""WireLotNumber"",""TCOffset""}, CorrectionFactors[#Headers], 0)))",0
