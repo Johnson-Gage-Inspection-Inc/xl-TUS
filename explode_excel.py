@@ -10,49 +10,51 @@ def export_sheets_with_formulas(xlsx_path: Path, output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     for sheet in wb.worksheets:
+
         def get_formula_or_value(cell: Cell) -> str:
             val = cell.value
-            if cell.data_type == 'f':
+            if cell.data_type == "f":
                 return val if isinstance(val, str) else val.text
             else:
                 return val
 
         csv_path = output_dir / f"{sheet.title}.csv"
-        with open(csv_path, 'w', newline='', encoding='utf-8') as f:
+
+        # Collect all rows
+        rows = [
+            [get_formula_or_value(cell) for cell in row]
+            for row in sheet.iter_rows(values_only=False)
+        ]
+
+        # Trim trailing empty rows
+        while rows and all(
+            cell is None or str(cell).strip() == "" for cell in rows[-1]
+        ):
+            rows.pop()
+
+        # Write trimmed rows to CSV
+        with open(csv_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
-            rows = [
-                [get_formula_or_value(cell) for cell in row]
-                for row in sheet.iter_rows(values_only=False)
-            ]
             writer.writerows(rows)
 
-        # After writing, check if all rows are just commas
-        with open(csv_path, 'r+', encoding='utf-8') as f:
-            content = f.read()
-            if all(
-                not any(cell.strip() for cell in line.split(','))
-                for line in content.splitlines()
-            ):
-                f.seek(0)
-                f.truncate()
 
 def delete_existing():
-    path = 'exploded/00 TUS cert/sheets'
-    for child in Path(path).glob('*'):
+    path = "exploded/00 TUS cert/sheets"
+    for child in Path(path).glob("*"):
         if child.is_file():
             child.unlink()
         elif child.is_dir():
-            for subchild in child.glob('**/*'):
+            for subchild in child.glob("**/*"):
                 if subchild.is_file():
                     subchild.unlink()
             child.rmdir()
+
 
 def main():
     delete_existing()
     for path_str in sys.argv[1:]:
         path = Path(path_str)
-        if path.suffix.lower() not in {
-                ".xlsx", ".xltm", ".xlsm", ".xltx", ".xlsb"}:
+        if path.suffix.lower() not in {".xlsx", ".xltm", ".xlsm", ".xltx", ".xlsb"}:
             continue
 
         exploded_root = Path("exploded") / path.stem
