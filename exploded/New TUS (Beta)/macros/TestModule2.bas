@@ -70,7 +70,7 @@ Private Sub InputMainSheetData()
         .Range("D15:D16").value = "-9"  ' OK
 
         Dim i As Long
-        For i = 1 To 10
+        For i = 1 To 16
             .Range("O" & (i + 4)).value = "J" & Format(i, "00")
         Next i
     End With
@@ -96,7 +96,7 @@ Private Sub ClearMainSheetInputs()
         .Range("D26:D28").ClearContents
         .Range("K14:L14").ClearContents
         .Range("K15:L15").ClearContents
-        .Range("O5:O14").ClearContents
+        .Range("O5:O20").ClearContents
         .Range("B37:L44").ClearContents
         .Range("D24").value = "1"  ' Reset to default
     End With
@@ -157,7 +157,7 @@ Private Sub TCAlerts_ContainsExpectedHighLowOnly():
         Select Case i
             Case 5
                 Assert.AreEqual "High", val, "Expected P5 to be High"
-            Case 11
+            Case 16
                 Assert.AreEqual "Low", val, "Expected P11 to be Low"
             Case Else
                 Assert.AreEqual "", val, "Expected P" & i & " to be empty"

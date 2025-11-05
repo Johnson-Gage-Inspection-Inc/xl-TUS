@@ -10,7 +10,6 @@ Attribute VB_Exposed = True
 Private Sub Worksheet_Change(ByVal Target As Range)
     ThisWorkbook.Connections("Query - Survey").Refresh
     ThisWorkbook.Sheets("Survey").Calculate
-    ThisWorkbook.Connections("Query - Comparison").Refresh
 End Sub
 
 '=======================
