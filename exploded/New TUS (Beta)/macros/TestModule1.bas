@@ -10,10 +10,10 @@ Private Assert As Object
 Private Fakes As Object
 Private wsMain As Worksheet
 Private wsDaqBook As Worksheet
+Private testTSVPath As String
 
 '@ModuleInitialize
 Private Sub ModuleInitialize()
-    Dim testTSVPath As String
     testTSVPath = ThisWorkbook.path & "\test1.tsv"
 
     Set Assert = CreateObject("Rubberduck.AssertClass")
@@ -139,6 +139,7 @@ End Sub
 Private Sub TCAlerts_ContainsExpectedHighLowOnly():
     Application.ScreenUpdating = True  ' For testing purposes
     Application.EnableEvents = True  ' For testing purposes
+    Application.Calculation = xlCalculationAutomatic  ' For testing purposes
     Sleep 1
     
     On Error GoTo TestFail  ' Press F9 to add a breakpoint here, to test with data
@@ -163,7 +164,7 @@ Private Sub TCAlerts_ContainsExpectedHighLowOnly():
         Select Case i
             Case 6
                 Assert.AreEqual "Low", val, "Expected P6 to be High"
-            Case 14
+            Case 8
                 Assert.AreEqual "High", val, "Expected P8 to be Low"
             Case Else
                 Assert.AreEqual "", val, "Expected P" & i & " to be empty"

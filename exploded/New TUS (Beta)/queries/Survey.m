@@ -27,17 +27,14 @@ let
     #"Merged with CF" = Table.NestedJoin(#"Changed Type1", {"TestPoint"}, #"Changed Type2", {"point"}, "CF", JoinKind.LeftOuter),
     #"Expanded CF" = try Table.ExpandTableColumn(#"Merged with CF", "CF", {"CummulativeOffset"}) otherwise Table.AddColumn(#"Merged with CF", "CummulativeOffset", each null, type number),
 
-    // Add CorrectedTemp = RawTemp + CummulativeOffset
-    #"Added CorrectedTemp" = Table.AddColumn(#"Expanded CF", "CorrectedTemp", each [RawTemp] + [CummulativeOffset], type number),
-
     // Define empty fallback with correct column types and names
     EmptySchema = #table(
-        {"Time", "TestPoint", "RawTemp", "CummulativeOffset", "CorrectedTemp"},
+        {"Time", "TestPoint", "RawTemp", "CummulativeOffset"},
         {}
     ),
 
     // Force final structure even if no data remains
-    Final = Table.Combine({EmptySchema, #"Added CorrectedTemp"}),
-    #"Changed Type3" = Table.TransformColumnTypes(Final,{{"Time", type time}, {"TestPoint", Int64.Type}, {"RawTemp", type number}, {"CummulativeOffset", type number}, {"CorrectedTemp", type number}})
+    Final = Table.Combine({EmptySchema, #"Expanded CF"}),
+    #"Changed Type3" = Table.TransformColumnTypes(Final,{{"Time", type time}, {"TestPoint", Int64.Type}, {"RawTemp", type number}, {"CummulativeOffset", type number}})
 in
     #"Changed Type3"
