@@ -1,2 +1,2 @@
 ,,,,AssetId,Ranges,Tolerances
-,,,,"=_xlfn.XLOOKUP(AssetId,AggregatedUUTRangeTol[AssetId],AggregatedUUTRangeTol[])",100°F/600°F,±10.0°F
+,,,,"=_xlfn.XLOOKUP(AssetId,AggregatedUUTRangeTol[AssetId],AggregatedUUTRangeTol[])",,
