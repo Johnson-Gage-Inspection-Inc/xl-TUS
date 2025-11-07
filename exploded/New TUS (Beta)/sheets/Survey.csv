@@ -20,7 +20,7 @@
   (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
   Survey[Time],
   """")",,,
-,,,,,,,,,coverage factor (K),"=_xlfn.T.INV.2T(1-0.9545, DoF)",,2,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+,,,,,,,,,coverage factor (K),"=IFERROR(_xlfn.T.INV.2T(1-0.9545, DoF),2)",,2,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
     IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
         Alerts[[#Headers],[High]:[Out Of Tolerance]],
         """")
