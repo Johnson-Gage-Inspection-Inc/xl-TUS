@@ -1,723 +1,841 @@
-,,,,Deviations,OutOfTolerance,,Uncertainty Calculation,,,,TestPoint,Deviation,Alert,Temp,Time
-,,,,,,,Degrees of Freedom,"=COUNTIF(Survey[TestPoint],""<=5"")-1",,Highest Deviation:,"=_xlfn.XLOOKUP(O2,Survey[RawTemp],Survey[TestPoint])",=O2-NominalTemp,High,=MAX(Survey[RawTemp]),"=_xlfn.XLOOKUP(O2,Survey[RawTemp],Survey[Time])"
-,,,,,,,coverage factor (K),"=_xlfn.T.INV.2T(1-0.9545, DoF)",,Lowest Deviation:,"=_xlfn.XLOOKUP(O3,Survey[RawTemp],Survey[TestPoint])",=O3-NominalTemp,Low,=MIN(Survey[RawTemp]),"=_xlfn.XLOOKUP(O3,Survey[RawTemp],Survey[Time])"
-,,,,,,,Pooled Variance (   ),"=SUM(_xlfn._xlws.FILTER(Survey[Deviations],Survey[TestPoint]<=5)^2)/DoF",,Other alerts:,1,,"=IF(
+,,,,Deviations,High,Low,OutOfTolerance,,Uncertainty Calculation,,,TestPoint,Alert,Temp,Time,Dropped,High,Low,Out Of Tolerance,,,
+,,,,,,,,,Degrees of Freedom,"=COUNTIF(Survey[TestPoint],""<=5"")-1",,1,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O5 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,Fixed Bias (Base₂),"=VLOOKUP(NominalTemp,_xlfn._xlws.FILTER(MUG[],MUG[Meas Units]=""°F""),8,TRUE)",,,2,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,coverage factor (K),"=_xlfn.T.INV.2T(1-0.9545, DoF)",,2,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O6 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,Type B Uncertainty,=SQRT(Base₂^2+sp²),,,3,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,Pooled Variance (   ),"=SUM(_xlfn._xlws.FILTER(Survey[Deviations],Survey[TestPoint]<=5)^2)/DoF",,3,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O7 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,Expanded uncertainty,=I6*k,,,4,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,Fixed Bias (Base₂),"=VLOOKUP(NominalTemp,_xlfn._xlws.FILTER(MUG[],MUG[Meas Units]=""°F""),8,TRUE)",,4,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O8 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,Scope,"=VLOOKUP(NominalTemp,CMCs[],3,TRUE)",,,5,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,Type B Uncertainty,=SQRT(Base₂^2+sp²),,5,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O9 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,Uncertainty,"=MAX(I7,I8)",,,6,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,Expanded uncertainty,=K6*k,,6,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O10 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,7,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,Scope,"=VLOOKUP(NominalTemp,CMCs[],3,TRUE)",,7,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O11 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,8,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,Uncertainty,"=MAX(K7,K8)",,8,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O12 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,9,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,9,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O13 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,10,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,10,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O14 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,11,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,11,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O15 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,12,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,12,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O16 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,13,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,13,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O17 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,14,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,14,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O18 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,15,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,15,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O19 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,16,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,16,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O20 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,17,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,17,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O21 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,18,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,18,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O22 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,19,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,19,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O23 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,20,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,20,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O24 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,21,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,21,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O25 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,22,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,22,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O26 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,23,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,23,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O27 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,24,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,24,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O28 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,25,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,25,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O29 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,26,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,26,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O30 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,27,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,27,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O31 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,28,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,28,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O32 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,29,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,29,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O33 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,30,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,30,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O34 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,31,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,31,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O35 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,32,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,32,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O36 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,33,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,33,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O37 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,34,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,34,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O38 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,35,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,35,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O39 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,36,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,36,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O40 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,37,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,37,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O41 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,38,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,38,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O42 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,39,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,39,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O43 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
-,,,,,,,,,,,40,,"=IF(
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
+,,,,,,,,,,,,40,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+    IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
+        Alerts[[#Headers],[High]:[Out Of Tolerance]],
+        """")
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*(Survey[Time]=--Alerts[[#This Row],[Time]]),
+  Survey[RawTemp],
+  """")","=IFERROR(IF(OR(Alerts[[#This Row],[High]],Alerts[[#This Row],[Low]]),Alerts[[#This Row],[High]]&Alerts[[#This Row],[Low]],Alerts[[#This Row],[Out Of Tolerance]]),"""")","=IF(
   Main!O44 = """",
-  """",
-  IF(
-    COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0,
-    ""DROPPED"",
-    IF(
-      OR(
-        _xlfn._xlws.FILTER(
-          Survey[OutOfTolerance],
-          Survey[TestPoint] = Alerts[[#This Row],[TestPoint]]
-        )
-      ),
-      ""Out of Tol"",
-      """"
-    )
-  )
-)",,
+  FALSE,
+  COUNTIF(Survey[TestPoint], Alerts[[#This Row],[TestPoint]]) = 0
+)","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[High],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[Low],
+  Survey[Time],
+  """")","=_xlfn.XLOOKUP(1,
+  (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
+  Survey[Time],
+  """")",,,
