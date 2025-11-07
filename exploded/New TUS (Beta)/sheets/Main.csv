@@ -23,7 +23,15 @@ Ver. 11.07.25,,TUS Worksheet for,,,,"=GetFormattedWorkItemNumber(K14, D24)",,,,,
 ,,Test Temperature:,,,Overshoot:,NONE OBSERVED,,,# Seconds (Sim Load Hot):,,,,12,,,,#VALUE!,,,,,,,,
 ,,# of Test Points:,,,Equip Load:,"=IF(ISBLANK(Load),"""",Load)",,,Load Entry (Sim Load Hot):,,"=IF(K15=""SIM Load Hot"",TEXT(D26,""hh:mm""),"""")",,13,,,,#VALUE!,,,,,,,,
 ,,Comp Interval:,,,Results:,ACCEPTED,,,,,,,14,,,,#VALUE!,,,,,,,,
-,,Tolerance:,=Tolerances,,Recovery:,"=IF(K15=""Salt"",0, IF(OR(K15=""Hot"",K15=""SIM Load Hot""),IF(OR(D26="""",D28=""""),""N/A"",IF(ISBLANK(D26),""N/A"",D28-D26)),""N/A""))",,"=IF(G19=""N/A"",""N/A"",IF(G19=0,""<2"",ROUND(IF(LEN(G19)>3,G19*1440,RIGHT(TEXT(G19,""hh:mm""),2)),0))&"" MINUTES"")",=V21,,,,15,,,,#VALUE!,,,Radio selection:,=L20,,,,
+,,Tolerance:,"=_xlfn.LET(
+    _xlpm.lst,  _xlfn._xlws.FILTER(UUTRangeTol[TolText], UUTRangeTol[AssetId]=AssetId),
+    _xlpm.norm, UPPER(TRIM(_xlpm.lst)),
+    _xlpm.un,   _xlfn.UNIQUE(_xlpm.norm),
+    IF(ROWS(_xlpm.un)=1,
+       INDEX(_xlpm.lst, _xlfn.XMATCH(_xlpm.un, _xlpm.norm)),
+       _xlfn.TEXTJOIN("" / "",, _xlpm.lst)
+    )
+  )",,Recovery:,"=IF(K15=""Salt"",0, IF(OR(K15=""Hot"",K15=""SIM Load Hot""),IF(OR(D26="""",D28=""""),""N/A"",IF(ISBLANK(D26),""N/A"",D28-D26)),""N/A""))",,"=IF(G19=""N/A"",""N/A"",IF(G19=0,""<2"",ROUND(IF(LEN(G19)>3,G19*1440,RIGHT(TEXT(G19,""hh:mm""),2)),0))&"" MINUTES"")",=V21,,,,15,,,,#VALUE!,,,Radio selection:,=L20,,,,
 ,SAT Tolerance (per AMS2750):,,"=""±""&SAT_Tolerance&""°F""",,,,,,,,1,,16,,,,#VALUE!,,,PT index offset:,=(V19-1)*14,,,,
 ,,,,,,,,,,,,,17,,,,#VALUE!,,,Count:,"=IF(D17=0,40,D17)",,,,
 ,,Temperature:,,,,,,,,,,,18,,,,#VALUE!,,,Min:,=V20+1,,,,
