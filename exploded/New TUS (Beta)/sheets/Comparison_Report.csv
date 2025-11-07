@@ -7,63 +7,59 @@
 ,,,,,Test readings shown include all  correction factors.,,,,,,,,,,,,"=IF(T4=0, 0, IF(T4 > SAT_Tolerance + (1-M19)*0.4, 1, """"))",,,,,,,,,,,
 Time Abs ,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,,,,"=IF(U4=0, 0, IF(U4 > SAT_Tolerance + (1-M31)*0.4, 1, """"))",,,,,,,,,,,
 Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B37:$C37),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!B38:C38),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B39:$C39),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B40:$C40),"""")",,Deviation,,,,,,,,,,,,,,,
-=TRANSPOSE(_xlfn._TRO_TRAILING(Main!D36:L36)),,"=IFERROR(
-  _xlfn.LET(_xlpm.tp, --$C$9,
-    _xlfn.MAP(_xlfn.ANCHORARRAY(A10),
-      _xlfn.LAMBDA(_xlpm.t,
-        IF((_xlpm.tp=0)+(_xlpm.t=""""),"""",
-          _xlfn.XLOOKUP(1,
-             (Survey[Time]=--_xlpm.t)*(Survey[TestPoint]=_xlpm.tp),
-             Survey[RawTemp],
-             """",0
-          )
-        )
+=TRANSPOSE(_xlfn._TRO_TRAILING(Main!D36:L36)),,"=_xlfn.MAP(_xlfn.ANCHORARRAY($A10),
+  _xlfn.LAMBDA(_xlpm.t,
+    IF(OR(C9="""",_xlpm.t=""""),"""",
+      _xlfn.XLOOKUP(
+        1,
+        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (--Survey[TestPoint]=--C9),
+        Survey[RawTemp],
+        """",
+        0
       )
     )
-  ),
-"""")","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D37:$L37),""""))","=IF(C10="""","""",D10-C10)","=IFERROR(
-  _xlfn.LET(_xlpm.tp, --$F$9,
-    _xlfn.MAP(_xlfn.ANCHORARRAY(A10),
-      _xlfn.LAMBDA(_xlpm.t,
-        IF((_xlpm.tp=0)+(_xlpm.t=""""),"""",
-          _xlfn.XLOOKUP(1,
-             (Survey[Time]=--_xlpm.t)*(Survey[TestPoint]=_xlpm.tp),
-             Survey[RawTemp],
-             """",0
-          )
-        )
+  )
+)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D37:$L37),""""))","=IF(C10="""","""",D10-C10)","=_xlfn.MAP(_xlfn.ANCHORARRAY($A10),
+  _xlfn.LAMBDA(_xlpm.t,
+    IF(OR(F9="""",_xlpm.t=""""),"""",
+      _xlfn.XLOOKUP(
+        1,
+        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (--Survey[TestPoint]=--F9),
+        Survey[RawTemp],
+        """",
+        0
       )
     )
-  ),
-"""")","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D38:$L38),""""))","=IF(F10="""","""",G10-F10)","=IFERROR(
-  _xlfn.LET(_xlpm.tp, --$I$9,
-    _xlfn.MAP(_xlfn.ANCHORARRAY(A10),
-      _xlfn.LAMBDA(_xlpm.t,
-        IF((_xlpm.tp=0)+(_xlpm.t=""""),"""",
-          _xlfn.XLOOKUP(1,
-             (Survey[Time]=--_xlpm.t)*(Survey[TestPoint]=_xlpm.tp),
-             Survey[RawTemp],
-             """",0
-          )
-        )
+  )
+)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D38:$L38),""""))","=IF(F10="""","""",G10-F10)","=_xlfn.MAP(_xlfn.ANCHORARRAY($A10),
+  _xlfn.LAMBDA(_xlpm.t,
+    IF(OR(I9="""",_xlpm.t=""""),"""",
+      _xlfn.XLOOKUP(
+        1,
+        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (--Survey[TestPoint]=--I9),
+        Survey[RawTemp],
+        """",
+        0
       )
     )
-  ),
-"""")","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D39:$L39),""""))","=IF(I10="""","""",J10-I10)","=IFERROR(
-  _xlfn.LET(_xlpm.tp, --$L$9,
-    _xlfn.MAP(_xlfn.ANCHORARRAY(A10),
-      _xlfn.LAMBDA(_xlpm.t,
-        IF((_xlpm.tp=0)+(_xlpm.t=""""),"""",
-          _xlfn.XLOOKUP(1,
-             (Survey[Time]=--_xlpm.t)*(Survey[TestPoint]=_xlpm.tp),
-             Survey[RawTemp],
-             """",0
-          )
-        )
+  )
+)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D39:$L39),""""))","=IF(I10="""","""",J10-I10)","=_xlfn.MAP(_xlfn.ANCHORARRAY($A10),
+  _xlfn.LAMBDA(_xlpm.t,
+    IF(OR(L9="""",_xlpm.t=""""),"""",
+      _xlfn.XLOOKUP(
+        1,
+        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (--Survey[TestPoint]=--L9),
+        Survey[RawTemp],
+        """",
+        0
       )
     )
-  ),
-"""")","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D40:$L40),""""))","=IF(L10="""","""",M10-L10)","=IF(R1,D9 & "" IS OOT!!!"","""")",,,,,,,,,,,,,,
+  )
+)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D40:$L40),""""))","=IF(L10="""","""",M10-L10)","=IF(R1,D9 & "" IS OOT!!!"","""")",,,,,,,,,,,,,,
 ,,,,"=IF(C11="""","""",D11-C11)",,,"=IF(F11="""","""",G11-F11)",,,"=IF(I11="""","""",J11-I11)",,,"=IF(L11="""","""",M11-L11)","=IF(R2, G9 & "" IS OOT!!!"","""")",,,,,Compensation Interval:,4,10,,,,,,,
 ,,,,"=IF(C12="""","""",D12-C12)",,,"=IF(F12="""","""",G12-F12)",,,"=IF(I12="""","""",J12-I12)",,,"=IF(L12="""","""",M12-L12)","=IF(R3, J9 & "" IS OOT!!!"","""")",,,,"=_xlfn.XLOOKUP(TRIM(LEFT(K5,2)),Table7[#Headers],Table7[],"""")",,2,2,,,,,,,
 ,,,,"=IF(C13="""","""",D13-C13)",,,"=IF(F13="""","""",G13-F13)",,,"=IF(I13="""","""",J13-I13)",,,"=IF(L13="""","""",M13-L13)","=IF(R4, M9 &"" IS OOT!!!"","""")",,,,,,4,7,,,,,,,
@@ -75,63 +71,59 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B37:$C37),"""")",,Deviation,"=IFERROR(
 ,,,=Main!A37,"=IF(OR(P16:P23=1),""CHECK READINGS!!!"","""")",,=Main!A38,"=IF(OR(S16:S23=1),""CHECK READINGS!!!"","""")",,=Main!A39,"=IF(ISNUMBER(SEARCH(""."",K10)),""."","""")",,=Main!A40,"=IF(ISNUMBER(SEARCH(""."",N10)),""."","""")",,,,,,,16,,,,,,,,
 ,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,,,,,,,17,,,,,,,,
 Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B41:$C41),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B42:$C42),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B43:$C43),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B44:$C44),"""")",,Deviation,,,,,,,21,,,,,,,,
-=TRANSPOSE(Main!D36:L36),,"=IFERROR(
-  _xlfn.LET(_xlpm.tp, --$C$21,
-    _xlfn.MAP(_xlfn.ANCHORARRAY(A22),
-      _xlfn.LAMBDA(_xlpm.t,
-        IF((_xlpm.tp=0)+(_xlpm.t=""""),"""",
-          _xlfn.XLOOKUP(1,
-             (Survey[Time]=--_xlpm.t)*(Survey[TestPoint]=_xlpm.tp),
-             Survey[RawTemp],
-             """",0
-          )
-        )
+=TRANSPOSE(Main!D36:L36),,"=_xlfn.MAP(_xlfn.ANCHORARRAY($A22),
+  _xlfn.LAMBDA(_xlpm.t,
+    IF(OR(C21="""",_xlpm.t=""""),"""",
+      _xlfn.XLOOKUP(
+        1,
+        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (--Survey[TestPoint]=--C21),
+        Survey[RawTemp],
+        """",
+        0
       )
     )
-  ),
-"""")","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D41:$L41),""""))","=IF(C22="""","""",D22-C22)","=IFERROR(
-  _xlfn.LET(_xlpm.tp, --$F$21,
-    _xlfn.MAP(_xlfn.ANCHORARRAY(A22),
-      _xlfn.LAMBDA(_xlpm.t,
-        IF((_xlpm.tp=0)+(_xlpm.t=""""),"""",
-          _xlfn.XLOOKUP(1,
-             (Survey[Time]=--_xlpm.t)*(Survey[TestPoint]=_xlpm.tp),
-             Survey[RawTemp],
-             """",0
-          )
-        )
+  )
+)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D41:$L41),""""))","=IF(C22="""","""",D22-C22)","=_xlfn.MAP(_xlfn.ANCHORARRAY($A22),
+  _xlfn.LAMBDA(_xlpm.t,
+    IF(OR(F21="""",_xlpm.t=""""),"""",
+      _xlfn.XLOOKUP(
+        1,
+        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (--Survey[TestPoint]=--F21),
+        Survey[RawTemp],
+        """",
+        0
       )
     )
-  ),
-"""")","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D42:$L42),""""))","=IF(F22="""","""",G22-F22)","=IFERROR(
-  _xlfn.LET(_xlpm.tp, --$I$21,
-    _xlfn.MAP(_xlfn.ANCHORARRAY(A22),
-      _xlfn.LAMBDA(_xlpm.t,
-        IF((_xlpm.tp=0)+(_xlpm.t=""""),"""",
-          _xlfn.XLOOKUP(1,
-             (Survey[Time]=--_xlpm.t)*(Survey[TestPoint]=_xlpm.tp),
-             Survey[RawTemp],
-             """",0
-          )
-        )
+  )
+)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D42:$L42),""""))","=IF(F22="""","""",G22-F22)","=_xlfn.MAP(_xlfn.ANCHORARRAY($A22),
+  _xlfn.LAMBDA(_xlpm.t,
+    IF(OR(I21="""",_xlpm.t=""""),"""",
+      _xlfn.XLOOKUP(
+        1,
+        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (--Survey[TestPoint]=--I21),
+        Survey[RawTemp],
+        """",
+        0
       )
     )
-  ),
-"""")","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D43:$L43),""""))","=IF(I22="""","""",J22-I22)","=IFERROR(
-  _xlfn.LET(_xlpm.tp, --$L$21,
-    _xlfn.MAP(_xlfn.ANCHORARRAY(A22),
-      _xlfn.LAMBDA(_xlpm.t,
-        IF((_xlpm.tp=0)+(_xlpm.t=""""),"""",
-          _xlfn.XLOOKUP(1,
-             (Survey[Time]=--_xlpm.t)*(Survey[TestPoint]=_xlpm.tp),
-             Survey[RawTemp],
-             """",0
-          )
-        )
+  )
+)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D43:$L43),""""))","=IF(I22="""","""",J22-I22)","=_xlfn.MAP(_xlfn.ANCHORARRAY($A22),
+  _xlfn.LAMBDA(_xlpm.t,
+    IF(OR(L21="""",_xlpm.t=""""),"""",
+      _xlfn.XLOOKUP(
+        1,
+        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (--Survey[TestPoint]=--L21),
+        Survey[RawTemp],
+        """",
+        0
       )
     )
-  ),
-"""")","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D44:$L44),""""))","=IF(L22="""","""",M22-L22)","=IF(R5, D21 &"" IS OOT!!!"","""")",,,,,,,,,,,,,,
+  )
+)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D44:$L44),""""))","=IF(L22="""","""",M22-L22)","=IF(R5, D21 &"" IS OOT!!!"","""")",,,,,,,,,,,,,,
 ,,,,"=IF(C23="""","""",D23-C23)",,,"=IF(F23="""","""",G23-F23)",,,"=IF(I23="""","""",J23-I23)",,,"=IF(L23="""","""",M23-L23)","=IF(R6, G21 &"" IS OOT!!!"","""")",,,,,,,,,,,,,,
 ,,,,"=IF(C24="""","""",D24-C24)",,,"=IF(F24="""","""",G24-F24)",,,"=IF(I24="""","""",J24-I24)",,,"=IF(L24="""","""",M24-L24)","=IF(R7, J21 & "" IS OOT!!!"","""")",,,,,,,,,,,,,,
 ,,,,"=IF(C25="""","""",D25-C25)",,,"=IF(F25="""","""",G25-F25)",,,"=IF(I25="""","""",J25-I25)",,,"=IF(L25="""","""",M25-L25)","=IF(R8, M21 & "" IS OOT!!!"","""")",,,,,,,,,,,,,,
