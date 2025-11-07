@@ -1,0 +1,2 @@
+,,=Employees[#Headers],Name,login_email,IsPyro
+,,"=_xlfn.XLOOKUP(User[[#This Row],[User]],Employees[login_email],Employees[Name])",,,
