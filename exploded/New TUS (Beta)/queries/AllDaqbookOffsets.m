@@ -21,6 +21,9 @@ let
                 else #table(
                     {"point", "reading", "Temp", "traceability_no", "Offset"},
                     {{0, 0.0, 0.0, "Data unavailable: Unable to retrieve data from API or cached workbook. Please check your network connection and try again.", 0.0}}
-                )
+                ),
+    #"Reordered Columns" = Table.ReorderColumns(FinalData,{"traceability_no", "point", "Temp", "reading", "Offset"}),
+    #"Sorted Rows" = Table.Sort(#"Reordered Columns",{{"traceability_no", Order.Ascending}, {"Temp", Order.Ascending}, {"point", Order.Ascending}}),
+    #"Reordered Columns1" = Table.ReorderColumns(#"Sorted Rows",{"traceability_no", "reading", "point", "Temp", "Offset"})
 in
-    FinalData
+    #"Reordered Columns1"

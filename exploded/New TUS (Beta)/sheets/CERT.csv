@@ -36,7 +36,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J33="""","""",21)","=IF(Main!O25="""","""",Main!O25)",,"=IF(I33<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J33="""","""",21)","=IF(Main!O25="""","""",Main!O25)",,"=IF(I33<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I33),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -49,7 +49,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J34="""","""",22)","=IF(Main!O26="""","""",Main!O26)",,"=IF(I34<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J34="""","""",22)","=IF(Main!O26="""","""",Main!O26)",,"=IF(I34<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I34),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -62,7 +62,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J35="""","""",23)","=IF(Main!O27="""","""",Main!O27)",,"=IF(I35<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J35="""","""",23)","=IF(Main!O27="""","""",Main!O27)",,"=IF(I35<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I35),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -75,7 +75,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J36="""","""",24)","=IF(Main!O28="""","""",Main!O28)",,"=IF(I36<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J36="""","""",24)","=IF(Main!O28="""","""",Main!O28)",,"=IF(I36<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I36),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -88,7 +88,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J37="""","""",25)","=IF(Main!O29="""","""",Main!O29)",,"=IF(I37<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J37="""","""",25)","=IF(Main!O29="""","""",Main!O29)",,"=IF(I37<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I37),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -101,7 +101,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J38="""","""",26)","=IF(Main!O30="""","""",Main!O30)",,"=IF(I38<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J38="""","""",26)","=IF(Main!O30="""","""",Main!O30)",,"=IF(I38<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I38),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -114,7 +114,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J39="""","""",27)","=IF(Main!O31="""","""",Main!O31)",,"=IF(I39<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J39="""","""",27)","=IF(Main!O31="""","""",Main!O31)",,"=IF(I39<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I39),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -127,7 +127,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J40="""","""",28)","=IF(Main!O32="""","""",Main!O32)",,"=IF(I40<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J40="""","""",28)","=IF(Main!O32="""","""",Main!O32)",,"=IF(I40<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I40),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -140,7 +140,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J41="""","""",29)","=IF(Main!O33="""","""",Main!O33)",,"=IF(I41<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J41="""","""",29)","=IF(Main!O33="""","""",Main!O33)",,"=IF(I41<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I41),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -153,7 +153,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J42="""","""",30)","=IF(Main!O34="""","""",Main!O34)",,"=IF(I42<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J42="""","""",30)","=IF(Main!O34="""","""",Main!O34)",,"=IF(I42<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I42),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -166,7 +166,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J43="""","""",31)","=IF(Main!O35="""","""",Main!O35)",,"=IF(I43<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J43="""","""",31)","=IF(Main!O35="""","""",Main!O35)",,"=IF(I43<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I43),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -179,7 +179,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J44="""","""",32)","=IF(Main!O36="""","""",Main!O36)",,"=IF(I44<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J44="""","""",32)","=IF(Main!O36="""","""",Main!O36)",,"=IF(I44<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I44),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -192,7 +192,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J45="""","""",33)","=IF(Main!O37="""","""",Main!O37)",,"=IF(I45<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J45="""","""",33)","=IF(Main!O37="""","""",Main!O37)",,"=IF(I45<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I45),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -205,7 +205,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J46="""","""",34)","=IF(Main!O38="""","""",Main!O38)",,"=IF(I46<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J46="""","""",34)","=IF(Main!O38="""","""",Main!O38)",,"=IF(I46<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I46),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -218,7 +218,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J47="""","""",35)","=IF(Main!O39="""","""",Main!O39)",,"=IF(I47<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J47="""","""",35)","=IF(Main!O39="""","""",Main!O39)",,"=IF(I47<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I47),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -231,7 +231,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J48="""","""",36)","=IF(Main!O40="""","""",Main!O40)",,"=IF(I48<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J48="""","""",36)","=IF(Main!O40="""","""",Main!O40)",,"=IF(I48<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I48),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -244,7 +244,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J49="""","""",37)","=IF(Main!O41="""","""",Main!O41)",,"=IF(I49<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J49="""","""",37)","=IF(Main!O41="""","""",Main!O41)",,"=IF(I49<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I49),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),
@@ -257,7 +257,7 @@ Position,Thermocouple,,Low,High,Avg,,,Position,Thermocouple,,Low,High,Avg,,,,,,,
   _xlpm.maxVal, MAX(_xlpm.temps),
   _xlpm.avgVal, AVERAGE(_xlpm.temps),
   CHOOSE({1,2,3}, _xlpm.minVal, _xlpm.maxVal, _xlpm.avgVal)
-),"""")",,,,,"=IF(J50="""","""",38)","=IF(Main!O42="""","""",Main!O42)",,"=IF(I50<>"""",_xlfn.LET(
+),"""")",#VALUE!,#VALUE!,,,"=IF(J50="""","""",38)","=IF(Main!O42="""","""",Main!O42)",,"=IF(I50<>"""",_xlfn.LET(
   _xlpm.temps, _xlfn._xlws.FILTER(Survey[RawTemp], Survey[TestPoint] = I50),
   _xlpm.minVal, MIN(_xlpm.temps),
   _xlpm.maxVal, MAX(_xlpm.temps),

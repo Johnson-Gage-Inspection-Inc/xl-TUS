@@ -8,9 +8,172 @@
 ,Operator:,=Main!D7,,,,,,,,,,,
 ,,,,,,,,,,,,,
 ,Wire Lot,,Correction Factor,,,,,,,,,,
-,=TRANSPOSE(WireLotNos),,"=_xlfn.XLOOKUP(B11, CorrectionFactors[WireLotNumber], CorrectionFactors[TCOffset], """")",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(B12, CorrectionFactors[WireLotNumber], CorrectionFactors[TCOffset], """")",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(B13, CorrectionFactors[WireLotNumber], CorrectionFactors[TCOffset], """")",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(B14, CorrectionFactors[WireLotNumber], CorrectionFactors[TCOffset], """")",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(B15, CorrectionFactors[WireLotNumber], CorrectionFactors[TCOffset], """")",,,,,,,,,,
-,,,"=_xlfn.XLOOKUP(B16, CorrectionFactors[WireLotNumber], CorrectionFactors[TCOffset], """")",,,,,,,,,,
+,=TRANSPOSE(WireLotNos),,"=IF(B11<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B11),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,
+,065908J,,"=IF(B12<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B12),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,
+,,,"=IF(B13<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B13),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,
+,,,"=IF(B14<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B14),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,
+,,,"=IF(B15<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B15),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,
+,,,"=IF(B16<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B16),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,
+,,,"=IF(B17<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B17),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,
+,,,"=IF(B18<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B18),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,
+,,,"=IF(B19<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B19),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,
+,,,"=IF(B20<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B20),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,
+,,,"=IF(B21<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B21),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,
+,,,"=IF(B22<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B22),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,
+,,,"=IF(B23<>"""",_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B23),
+    _xlpm.temps,      INDEX(_xlpm.table,,1),
+    _xlpm.offsets,    INDEX(_xlpm.table,,2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), -1),
+        _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.table, NA(), 1)
+    ),
+    IFERROR(
+      _xlfn.XLOOKUP(NominalTemp, _xlpm.temps, _xlpm.offsets, NA(),0),
+      QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
+    )
+),"""")",,,,,,,,,,

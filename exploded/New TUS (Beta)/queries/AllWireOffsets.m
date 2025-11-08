@@ -21,6 +21,7 @@ let
                     {"traceability_no", "Temp", "Offset"},
                     {{"Data unavailable: Unable to retrieve data from API or cached workbook. Please check your network connection and try again.", 0.0, 0.0}}
                 ),
-    #"Reordered Columns" = Table.ReorderColumns(FinalData,{"traceability_no", "Temp", "Offset"})
+    #"Reordered Columns" = Table.ReorderColumns(FinalData,{"traceability_no", "Temp", "Offset"}),
+    #"Sorted Rows" = Table.Sort(#"Reordered Columns",{{"traceability_no", Order.Ascending}, {"Temp", Order.Ascending}})
 in
-    #"Reordered Columns"
+    #"Sorted Rows"

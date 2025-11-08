@@ -1,38 +1,52 @@
-,,,,traceability_no
-,,,,=_xlfn._xlws.SORT(_xlfn.UNIQUE(AllWireOffsets[traceability_no]))
-,,,,049787R
-,,,,059078F
-,,,,059078G
-,,,,061486E
-,,,,065908H
-,,,,065908I
-,,,,065908J
-,,,,065908K
-,,,,065908L
-,,,,065908M
-,,,,065908N
-,,,,065908O
-,,,,065908P
-,,,,065908Q
-,,,,065908R
-,,,,065908S
-,,,,069220A
-,,,,069220B
-,,,,069220C
-,,,,069220D
-,,,,069220E
-,,,,069220F
-,,,,069220G
-,,,,069220H
-,,,,072513B
-,,,,072513C
-,,,,072513D
-,,,,072513E
-,,,,072513F
-,,,,072513I
-,,,,072513K
-,,,,072513L
-,,,,072513M
-,,,,072513N
-,,,,074618A
-,,,,074618B
+,,,,traceability_no,,,
+,,,,=_xlfn._xlws.SORT(_xlfn.UNIQUE(AllWireOffsets[traceability_no])),,=TRANSPOSE(WireLotNos),"=_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=G2),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp,_xlfn.TAKE(_xlpm.table,,1),_xlpm.table,"""",-1),
+        _xlfn.XLOOKUP(NominalTemp,_xlfn.TAKE(_xlpm.table,,1),_xlpm.table,"""",1)
+    ),
+    _xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1))
+)"
+,,,,049787R,,065908J,"=_xlfn.LET(
+    _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=G3),
+    _xlpm.matches, _xlfn.VSTACK(
+        _xlfn.XLOOKUP(NominalTemp,_xlfn.TAKE(_xlpm.table,,1),_xlpm.table,"""",-1),
+        _xlfn.XLOOKUP(NominalTemp,_xlfn.TAKE(_xlpm.table,,1),_xlpm.table,"""",1)
+    ),
+    _xlfn.FORECAST.LINEAR(NominalTemp, _xlfn.DROP(_xlpm.matches,,1), _xlfn.TAKE(_xlpm.matches,,1))
+)"
+,,,,059078F,,,
+,,,,059078G,,,
+,,,,061486E,,,
+,,,,065908H,,,
+,,,,065908I,,,
+,,,,065908J,,,
+,,,,065908K,,,
+,,,,065908L,,,
+,,,,065908M,,,
+,,,,065908N,,,
+,,,,065908O,,,
+,,,,065908P,,,
+,,,,065908Q,,,
+,,,,065908R,,,
+,,,,065908S,,,
+,,,,069220A,,,
+,,,,069220B,,,
+,,,,069220C,,,
+,,,,069220D,,,
+,,,,069220E,,,
+,,,,069220F,,,
+,,,,069220G,,,
+,,,,069220H,,,
+,,,,072513B,,,
+,,,,072513C,,,
+,,,,072513D,,,
+,,,,072513E,,,
+,,,,072513F,,,
+,,,,072513I,,,
+,,,,072513K,,,
+,,,,072513L,,,
+,,,,072513M,,,
+,,,,072513N,,,
+,,,,074618A,,,
+,,,,074618B,,,

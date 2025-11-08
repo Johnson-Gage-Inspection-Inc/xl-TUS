@@ -13,16 +13,6 @@ Dim lastRadioVal As Variant
 Dim lastWorkItemKey As Variant
 
 Private Sub Worksheet_Calculate()
-    Dim currentVal As Variant
-    currentVal = Me.Range("L20").value
-
-    ' Watch L20
-    If Not IsError(currentVal) Then
-        If currentVal <> lastRadioVal Then
-            lastRadioVal = currentVal
-            ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
-        End If
-    End If
 
     ' Watch G1 for GetFormattedWorkItemNumber(K14, D24)
     Dim currentKey As Variant
@@ -62,7 +52,7 @@ End Sub
 Private Sub Worksheet_Change(ByVal Target As Range)
 
     'Setup Worksheet
-    On Error GoTo HandleError
+    ' On Error GoTo HandleError
 
     'Initialize variables
     Dim r, aCell As Range, wireSetForSF(6) As Range, searchedSFId(6) As Range
@@ -81,17 +71,7 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     If Not Intersect(Target, Range("D9")) Is Nothing Then
         Call Sheet38.UpdateDaqbookServiceRecords
     End If
-    
-    ' # of test points
-    If Not Intersect(Target, Range("D17")) Is Nothing Then
-        ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
-    End If
-    
-    ' Test Temp (Nominal temperature), UsedWireSNs
-    If Not Intersect(Target, Union(Range("D16"), Range("UsedWireSNs"))) Is Nothing Then
-        ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
-    End If
-    
+
 CleanExit:
     Application.ScreenUpdating = True
     Application.EnableEvents = True  ' Just in case
