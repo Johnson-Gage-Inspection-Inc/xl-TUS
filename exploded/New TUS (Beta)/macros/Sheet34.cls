@@ -10,6 +10,3 @@ Attribute VB_Exposed = True
 Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     Call EnforceSheetIsViewOnly(Me)
 End Sub
-Private Sub Worksheet_Change(ByVal Target As Range)
-    ThisWorkbook.Connections("Query - CorrectionFactors").Refresh
-End Sub
