@@ -1,0 +1,2248 @@
+,,,,,AssetTag,,,Point,Temp,Offset,,Point,DaqbookInterp,DaqbookCF,T/C Name,Include,WireSet,Wire Lot #,TC CF,,,Serial,Range
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,"=_xlfn._xlws.FILTER(AllDaqbookOffsets[[point]:[Offset]],AllDaqbookOffsets[AssetTag]=DaqbookAssetTag)",,,,1,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N2),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O5, NA())",=NOT(ISBLANK(Main!O5)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J01,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,2,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N3),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O6, NA())",=NOT(ISBLANK(Main!O6)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J02,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,3,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N4),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O7, NA())",=NOT(ISBLANK(Main!O7)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J03,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,4,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N5),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O8, NA())",=NOT(ISBLANK(Main!O8)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J04,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,5,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N6),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O9, NA())",=NOT(ISBLANK(Main!O9)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J05,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,6,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N7),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O10, NA())",=NOT(ISBLANK(Main!O10)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J06,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,7,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N8),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O11, NA())",=NOT(ISBLANK(Main!O11)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J07,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,8,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N9),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O12, NA())",=NOT(ISBLANK(Main!O12)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J08,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,9,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N10),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O13, NA())",=NOT(ISBLANK(Main!O13)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J09,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,10,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N11),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O14, NA())",=NOT(ISBLANK(Main!O14)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J10,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,11,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N12),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O15, NA())",=NOT(ISBLANK(Main!O15)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J101,J101-J110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,12,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N13),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O16, NA())",=NOT(ISBLANK(Main!O16)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J102,J101-J110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,13,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N14),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O17, NA())",=NOT(ISBLANK(Main!O17)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J103,J101-J110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,14,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N15),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O18, NA())",=NOT(ISBLANK(Main!O18)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J104,J101-J110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,15,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N16),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O19, NA())",=NOT(ISBLANK(Main!O19)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J105,J101-J110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,16,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N17),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O20, NA())",=NOT(ISBLANK(Main!O20)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J106,J101-J110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,17,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N18),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O21, NA())",=NOT(ISBLANK(Main!O21)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J107,J101-J110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,18,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N19),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O22, NA())",=NOT(ISBLANK(Main!O22)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J108,J101-J110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,19,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N20),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O23, NA())",=NOT(ISBLANK(Main!O23)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J109,J101-J110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,20,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N21),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O24, NA())",=NOT(ISBLANK(Main!O24)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J11,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,21,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N22),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O25, NA())",=NOT(ISBLANK(Main!O25)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J110,J101-J110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,22,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N23),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O26, NA())",=NOT(ISBLANK(Main!O26)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J111,J111-J120
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,23,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N24),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O27, NA())",=NOT(ISBLANK(Main!O27)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J112,J111-J120
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,24,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N25),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O28, NA())",=NOT(ISBLANK(Main!O28)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J113,J111-J120
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,25,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N26),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O29, NA())",=NOT(ISBLANK(Main!O29)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J114,J111-J120
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,26,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N27),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O30, NA())",=NOT(ISBLANK(Main!O30)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J115,J111-J120
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,27,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N28),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O31, NA())",=NOT(ISBLANK(Main!O31)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J116,J111-J120
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,28,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N29),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O32, NA())",=NOT(ISBLANK(Main!O32)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J117,J111-J120
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,29,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N30),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O33, NA())",=NOT(ISBLANK(Main!O33)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J118,J111-J120
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,30,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N31),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O34, NA())",=NOT(ISBLANK(Main!O34)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J119,J111-J120
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,31,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N32),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O35, NA())",=NOT(ISBLANK(Main!O35)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J12,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,32,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N33),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O36, NA())",=NOT(ISBLANK(Main!O36)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J120,J111-J120
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,33,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N34),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O37, NA())",=NOT(ISBLANK(Main!O37)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J13,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,34,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N35),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O38, NA())",=NOT(ISBLANK(Main!O38)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J14,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,35,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N36),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O39, NA())",=NOT(ISBLANK(Main!O39)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J15,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,36,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N37),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O40, NA())",=NOT(ISBLANK(Main!O40)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J16,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,37,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N38),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O41, NA())",=NOT(ISBLANK(Main!O41)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J17,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,38,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N39),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O42, NA())",=NOT(ISBLANK(Main!O42)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J18,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,39,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N40),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O43, NA())",=NOT(ISBLANK(Main!O43)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J19,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,40,"=_xlfn.LET(
+  _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
+  _xlpm.n, NominalTemp,
+  _xlpm.table, _xlfn._xlws.FILTER(_xlfn.DROP(_xlpm.full_table,,1),_xlfn.TAKE(_xlpm.full_table,,1)=DaqbookInterp[[#This Row],[Point]]),
+  _xlpm.temps, INDEX(_xlpm.table,,1),
+  _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+  IFERROR(_xlpm.exact_match,
+    _xlfn.LET(
+      _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+      _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+      IF(INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+         INDEX(_xlpm.lo,1,2),
+         _xlfn.FORECAST.LINEAR(_xlpm.n, INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2), INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1))
+      )
+    )
+  )
+)","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N41),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O44, NA())",=NOT(ISBLANK(Main!O44)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],WireSNs[])","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16)",,,J20,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J201,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J202,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J203,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J204,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J205,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J206,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J207,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J208,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J209,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J21,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J210,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J211,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J212,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J213,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J214,J201-J214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J22,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J23,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J24,J01-J24
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J301,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J302,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J303,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J304,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J305,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J306,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J307,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J308,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J309,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J310,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J311,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J312,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J313,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J314,J301-J314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J501,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J502,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J503,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J504,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J505,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J506,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J507,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J508,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J509,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J510,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J511,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J512,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J513,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J514,J501-J514
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J601,J601-J610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J602,J601-J610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J603,J601-J610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J604,J601-J610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J605,J601-J610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J606,J601-J610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J607,J601-J610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J608,J601-J610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J609,J601-J610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J610,J601-J610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J701,J701-J710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J702,J701-J710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J703,J701-J710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J704,J701-J710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J705,J701-J710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J706,J701-J710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J707,J701-J710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J708,J701-J710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J709,J701-J710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,J710,J701-J710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K01,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K02,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K03,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K04,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K05,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K06,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K07,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K08,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K09,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K10,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K101,K101 - K110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K102,K101 - K110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K103,K101 - K110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K104,K101 - K110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K105,K101 - K110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K106,K101 - K110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K107,K101 - K110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K108,K101 - K110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K109,K101 - K110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K11,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K110,K101 - K110
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K12,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K13,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K14,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K15,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K16,K01-K16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K201,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K202,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K203,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K204,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K205,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K206,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K207,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K208,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K209,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K210,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K211,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K212,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K213,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K214,K201-K214
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K301,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K302,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K303,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K304,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K305,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K306,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K307,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K308,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K309,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K310,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K311,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K312,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K313,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K314,K301-K314
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K401,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K402,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K403,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K404,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K405,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K406,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K407,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K408,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K409,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K410,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K411,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K412,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K413,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K414,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K415,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K416,K401-K416
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K521,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K522,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K523,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K524,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K525,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K526,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K527,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K528,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K529,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K530,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K531,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K532,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K533,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K534,K521-K534
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K601,K601-K610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K602,K601-K610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K603,K601-K610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K604,K601-K610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K605,K601-K610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K606,K601-K610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K607,K601-K610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K608,K601-K610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K609,K601-K610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K610,K601-K610
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K701,K701-K710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K702,K701-K710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K703,K701-K710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K704,K701-K710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K705,K701-K710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K706,K701-K710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K707,K701-K710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K708,K701-K710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K709,K701-K710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K710,K701-K710
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K801,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K802,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K803,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K804,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K805,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K806,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K807,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K808,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K809,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K810,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K811,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K812,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K813,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K814,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K815,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K816,K801-K816
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K901,K901-K910
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K902,K901-K910
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K903,K901-K910
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K904,K901-K910
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K905,K901-K910
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K906,K901-K910
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K907,K901-K910
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K908,K901-K910
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K909,K901-K910
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,K910,K901-K910
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N01,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N02,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N03,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N04,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N05,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N06,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N07,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N08,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N09,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N10,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N101,N101-N112
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N102,N101-N112
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N103,N101-N112
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N104,N101-N112
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N105,N101-N112
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N106,N101-N112
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N107,N101-N112
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N108,N101-N112
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N109,N101-N112
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N11,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N110,N101-N112
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N111,N101-N112
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N112,N101-N112
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N12,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N13,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N14,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N15,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N16,N01-N16
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N21,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N22,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N23,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N24,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N25,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N26,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N27,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N28,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N29,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N30,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N31,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N32,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N33,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,N34,N21-N34
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,
+,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,,,,,,,,,,,,

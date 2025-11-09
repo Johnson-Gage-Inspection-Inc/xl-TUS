@@ -1,2 +1,0 @@
-,,,,AssetId,Ranges,Tolerances
-,,,,"=_xlfn.XLOOKUP(AssetId,AggregatedUUTRangeTol[AssetId],AggregatedUUTRangeTol[])",,
