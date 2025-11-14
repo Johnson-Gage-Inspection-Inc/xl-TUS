@@ -21,7 +21,7 @@
       QRound(_xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1)))
     )
 ),"""")",,,,,,,,,,
-,065908J,,"=IF(B12<>"""",_xlfn.LET(
+,,,"=IF(B12<>"""",_xlfn.LET(
     _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=B12),
     _xlpm.temps,      INDEX(_xlpm.table,,1),
     _xlpm.offsets,    INDEX(_xlpm.table,,2),
