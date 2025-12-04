@@ -91,6 +91,45 @@ Private Sub ProtectAllSheets()
     Application.EnableEvents = True
     Application.ScreenUpdating = True
 End Sub
+Public Sub RunDataSyncAndRefresh()
+    Dim conn As WorkbookConnection
+    Dim names As Variant
+    Dim i As Long
 
+    ' Recalculate formulas if needed
+    Application.Calculate
 
+    ' 1. Run SyncDataSync first (POST /data-sync via worker)
+    On Error Resume Next
+    Set conn = ThisWorkbook.Connections("Query - SyncDataSync")
+    On Error GoTo 0
+
+    If Not conn Is Nothing Then
+        Debug.Print "Refreshing: Query - SyncDataSync"
+        conn.Refresh
+
+        ' Wait for all async queries to finish (includes PQ)
+        Application.CalculateUntilAsyncQueriesDone
+    Else
+        Debug.Print "Connection not found: Query - SyncDataSync"
+    End If
+
+    ' 2. Refresh dependent queries in order
+    names = Array("Query - WireSets", "Query - AllWireOffsets", "Query - AllDaqbookOffsets")
+
+    For i = LBound(names) To UBound(names)
+        On Error Resume Next
+        Set conn = ThisWorkbook.Connections(names(i))
+        On Error GoTo 0
+
+        If Not conn Is Nothing Then
+            Debug.Print "Refreshing: " & names(i)
+            conn.Refresh
+        Else
+            Debug.Print "Connection not found: " & names(i)
+        End If
+
+        Set conn = Nothing
+    Next i
+End Sub
 
