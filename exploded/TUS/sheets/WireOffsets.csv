@@ -7,7 +7,7 @@
     ),
     _xlfn.FORECAST.LINEAR(NominalTemp, INDEX(_xlpm.matches,,2), INDEX(_xlpm.matches,,1))
 )"
-,,,,065908H,,,"=_xlfn.LET(
+,,,,065908I,,,"=_xlfn.LET(
     _xlpm.table, _xlfn._xlws.FILTER(AllWireOffsets[[Temp]:[Offset]],AllWireOffsets[traceability_no]=G3),
     _xlpm.matches, _xlfn.VSTACK(
         _xlfn.XLOOKUP(NominalTemp,_xlfn.TAKE(_xlpm.table,,1),_xlpm.table,"""",-1),
@@ -15,8 +15,6 @@
     ),
     _xlfn.FORECAST.LINEAR(NominalTemp, _xlfn.DROP(_xlpm.matches,,1), _xlfn.TAKE(_xlpm.matches,,1))
 )"
-,,,,065908I,,,
-,,,,065908K,,,
 ,,,,065908M,,,
 ,,,,065908N,,,
 ,,,,065908O,,,
@@ -30,7 +28,6 @@
 ,,,,069220H,,,
 ,,,,072513B,,,
 ,,,,072513C,,,
-,,,,072513E,,,
 ,,,,072513F,,,
 ,,,,072513G,,,
 ,,,,072513H,,,
