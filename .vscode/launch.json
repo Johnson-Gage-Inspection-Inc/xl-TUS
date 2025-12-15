@@ -6,7 +6,7 @@
         "type": "debugpy",
         "request": "launch",
         "program": "${workspaceFolder}/explode_excel.py",
-        "args": ["New TUS (Beta).xltm"],
+        "args": ["TUS.xltm"],
         "console": "integratedTerminal"
       }
     ]
