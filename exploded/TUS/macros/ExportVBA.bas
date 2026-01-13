@@ -22,17 +22,17 @@ Public Sub ExportVisualBasicCode()
     fileBaseName = Left(ThisWorkbook.Name, InStrRev(ThisWorkbook.Name, ".") - 1)
 
     Set fso = CreateObject("Scripting.FileSystemObject")
-    exportPath = ActiveWorkbook.path & "\exploded\" & fileBaseName & "\macros"
+    exportPath = ThisWorkbook.path & "\exploded\" & fileBaseName & "\macros"
     count = 0
 
     If Not fso.FolderExists(exportPath) Then
         Call fso.CreateFolder(exportPath)
     End If
 
-    totalComponents = ActiveWorkbook.VBProject.VBComponents.count
+    totalComponents = ThisWorkbook.VBProject.VBComponents.count
     progress = 0
 
-    For Each VBComponent In ActiveWorkbook.VBProject.VBComponents
+    For Each VBComponent In ThisWorkbook.VBProject.VBComponents
         progress = progress + 1
         Application.StatusBar = "Exporting VBA (" & progress & " of " & totalComponents & "): " & VBComponent.Name
 

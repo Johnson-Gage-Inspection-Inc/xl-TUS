@@ -10,3 +10,4 @@
 venv
 examples/*
 backend/*
+.vscode/mcp.json
