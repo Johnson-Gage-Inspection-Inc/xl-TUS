@@ -32,8 +32,12 @@ Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
     
         GoHome
     ElseIf SaveAsUI Then
-        Dim suggestedFilename As String: suggestedFilename = ws.Range("G1").value
-        If suggestedFilename <> "" Then
+        Dim suggestedFilename As String: suggestedFilename = ""
+        On Error Resume Next
+        suggestedFilename = CStr(ws.Range("G1").value)
+        On Error GoTo ErrorHandler
+        
+        If suggestedFilename <> "" And Not IsError(ws.Range("G1").value) Then
             Application.EnableEvents = False ' Prevent recursion
             
             ' Show the Save As dialog with .xlsm format
