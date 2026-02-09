@@ -1,0 +1,279 @@
+,,,,SBP_Set,,SN,Set,Interp,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,=_xlfn.UNIQUE(SBPOffsets[[probe_serial_number]:[SBP_Set]]),SBP Set 1,"=_xlfn.MAP(
+  _xlfn.TAKE(_xlfn.ANCHORARRAY(G2),,1),
+  _xlfn.LAMBDA(_xlpm.psn,
+    _xlfn.LET(
+      _xlpm.n, NominalTemp,
+      _xlpm.table, _xlfn._xlws.FILTER(SBPOffsets[[nominal_temp]:[offset]], SBPOffsets[probe_serial_number]=_xlpm.psn),
+      _xlpm.temps, INDEX(_xlpm.table,,1),
+      _xlpm.exact_match, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, INDEX(_xlpm.table,,2), NA(), 0),
+      IFERROR(
+        _xlpm.exact_match,
+        _xlfn.LET(
+          _xlpm.lo, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), -1),
+          _xlpm.hi, _xlfn.XLOOKUP(_xlpm.n, _xlpm.temps, _xlpm.table, NA(), 1),
+          IF(
+            INDEX(_xlpm.lo,1,1)=INDEX(_xlpm.hi,1,1),
+            INDEX(_xlpm.lo,1,2),
+            _xlfn.FORECAST.LINEAR(
+              _xlpm.n,
+              INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,2),
+              INDEX(_xlfn.VSTACK(_xlpm.lo,_xlpm.hi),,1)
+            )
+          )
+        )
+      )
+    )
+  )
+)",,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,06B,SBP Set 1,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,06C,SBP Set 1,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,06D,SBP Set 1,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,06E,SBP Set 1,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,06F,SBP Set 1,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,10A,SBP Set 1,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,10B,SBP Set 1,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,10C,SBP Set 1,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,10D,SBP Set 1,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,10E,SBP Set 1,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,210A,SBP Set 2,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,210B,SBP Set 2,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,210C,SBP Set 2,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,210D,SBP Set 2,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,210E,SBP Set 2,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,26A,SBP Set 2,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,26B,SBP Set 2,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,26C,SBP Set 2,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,26D,SBP Set 2,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,26E,SBP Set 2,#N/A,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
+,,,,"=_xlfn.LET(
+  _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
+  IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
+)",,,,,,,,,
