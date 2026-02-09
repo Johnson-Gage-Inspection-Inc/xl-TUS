@@ -1,8 +1,8 @@
-,,,,Column1,,SN,Set,Interp,,,,,
+,,,,SBP_Set,,SN,Set,Interp,,,,,
 ,,,,"=_xlfn.LET(
   _xlpm.x, MID(SBPOffsets[[#This Row],[certificate_number]], 4, 1),
   IF(OR(_xlpm.x=""1"", _xlpm.x=""2""), ""SBP Set "" & _xlpm.x, NA())
-)",,=_xlfn.UNIQUE(SBPOffsets[[probe_serial_number]:[Column1]]),SBP Set 1,"=_xlfn.MAP(
+)",,=_xlfn.UNIQUE(SBPOffsets[[probe_serial_number]:[SBP_Set]]),SBP Set 1,"=_xlfn.MAP(
   _xlfn.TAKE(_xlfn.ANCHORARRAY(G2),,1),
   _xlfn.LAMBDA(_xlpm.psn,
     _xlfn.LET(

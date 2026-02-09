@@ -17,7 +17,7 @@
   )
 )","=IF(DaqbookInterp[[#This Row],[Include]],QRound(N2),NA())","=IF(DaqbookInterp[[#This Row],[Include]],Main!O5, NA())",=NOT(ISBLANK(Main!O5)),"=LOOKUP(DaqbookInterp[[#This Row],[T/C Name]],_xlfn.ANCHORARRAY($Z$2))","=HLOOKUP(DaqbookInterp[[#This Row],[WireSet]],Main!$D$48:$I$55,8,0)","=IF(LEFT(DaqbookInterp[[#This Row],[WireSet]],3)=""SBP"",
 VLOOKUP(DaqbookInterp[[#This Row],[T/C Name]],_xlfn.HSTACK(_xlfn.ANCHORARRAY(SBPOffsets!$G$2),_xlfn.ANCHORARRAY(SBPOffsets!$I$2)),3,FALSE),
-_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16))",,,J01,J01-J24,,"=_xlfn._xlws.SORT(_xlfn.VSTACK(WireSNs[],_xlfn.UNIQUE(SBPOffsets[[probe_serial_number]:[Column1]])))",SBP Set 1
+_xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16))",,,J01,J01-J24,,"=_xlfn._xlws.SORT(_xlfn.VSTACK(WireSNs[],_xlfn.UNIQUE(SBPOffsets[[probe_serial_number]:[SBP_Set]])))",SBP Set 1
 ,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,2,"=_xlfn.LET(
   _xlpm.full_table,_xlfn.ANCHORARRAY( $I$2),
   _xlpm.n, NominalTemp,
