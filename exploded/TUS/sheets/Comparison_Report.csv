@@ -12,7 +12,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B37:$C37),"""")",,Deviation,"=IFERROR(
     IF(OR(C9="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
         1,
-        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (TEXT(Survey[Time],""hh:mm"")=TEXT(MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1),""hh:mm"")) *
         (--Survey[TestPoint]=--C9),
         Survey[RawTemp],
         """",
@@ -25,7 +25,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B37:$C37),"""")",,Deviation,"=IFERROR(
     IF(OR(F9="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
         1,
-        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (TEXT(Survey[Time],""hh:mm"")=TEXT(MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1),""hh:mm"")) *
         (--Survey[TestPoint]=--F9),
         Survey[RawTemp],
         """",
@@ -38,7 +38,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B37:$C37),"""")",,Deviation,"=IFERROR(
     IF(OR(I9="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
         1,
-        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (TEXT(Survey[Time],""hh:mm"")=TEXT(MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1),""hh:mm"")) *
         (--Survey[TestPoint]=--I9),
         Survey[RawTemp],
         """",
@@ -51,7 +51,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B37:$C37),"""")",,Deviation,"=IFERROR(
     IF(OR(L9="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
         1,
-        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (TEXT(Survey[Time],""hh:mm"")=TEXT(MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1),""hh:mm"")) *
         (--Survey[TestPoint]=--L9),
         Survey[RawTemp],
         """",
@@ -76,7 +76,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B41:$C41),"""")",,Deviation,"=IFERROR(
     IF(OR(C21="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
         1,
-        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (TEXT(Survey[Time],""hh:mm"")=TEXT(MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1),""hh:mm"")) *
         (--Survey[TestPoint]=--C21),
         Survey[RawTemp],
         """",
@@ -89,7 +89,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B41:$C41),"""")",,Deviation,"=IFERROR(
     IF(OR(F21="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
         1,
-        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (TEXT(Survey[Time],""hh:mm"")=TEXT(MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1),""hh:mm"")) *
         (--Survey[TestPoint]=--F21),
         Survey[RawTemp],
         """",
@@ -102,7 +102,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B41:$C41),"""")",,Deviation,"=IFERROR(
     IF(OR(I21="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
         1,
-        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (TEXT(Survey[Time],""hh:mm"")=TEXT(MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1),""hh:mm"")) *
         (--Survey[TestPoint]=--I21),
         Survey[RawTemp],
         """",
@@ -115,7 +115,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B41:$C41),"""")",,Deviation,"=IFERROR(
     IF(OR(L21="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
         1,
-        (MOD(Survey[Time],1)=MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1)) *
+        (TEXT(Survey[Time],""hh:mm"")=TEXT(MOD(IF(ISNUMBER(_xlpm.t),_xlpm.t,TIMEVALUE(_xlpm.t)),1),""hh:mm"")) *
         (--Survey[TestPoint]=--L21),
         Survey[RawTemp],
         """",
