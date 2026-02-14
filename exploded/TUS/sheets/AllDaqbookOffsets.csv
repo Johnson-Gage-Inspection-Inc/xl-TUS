@@ -20,10 +20,10 @@ VLOOKUP(DaqbookInterp[[#This Row],[T/C Name]],_xlfn.HSTACK(_xlfn.ANCHORARRAY(SBP
 _xlfn.XLOOKUP(DaqbookInterp[[#This Row],[Wire Lot '#]],Interp!$B$11:$B$16,Interp!$D$11:$D$16))",,,J01,J01-J24,,"=_xlfn._xlws.SORT(_xlfn.VSTACK(WireSNs[],_xlfn.UNIQUE(SBPOffsets[[probe_serial_number]:[SBP_Set]])))",SBP Set 1,,"=IF(COUNTA(WireSetSNs)>0,
  _xlfn.LET(
   _xlpm.data,_xlfn.ANCHORARRAY($Z$2),
-  _xlpm.vals,INDEX(_xlpm.data,,1),
+  _xlpm.sn,INDEX(_xlpm.data,,1),
   _xlpm.grp, INDEX(_xlpm.data,,2),
-  _xlpm.sn,  _xlfn.TOROW(WireSetSNs,1),
-  _xlfn.TOCOL(IF(ISNUMBER(_xlfn.XMATCH(_xlpm.grp,_xlpm.sn)), _xlpm.vals, NA()), 3)
+  _xlpm.sets,  _xlfn.TOROW(WireSetSNs,1),
+  _xlfn.TOCOL(IF(ISNUMBER(_xlfn.XMATCH(_xlpm.grp,_xlpm.sets)), _xlpm.sn, NA()), 3)
  ),
 INDEX(_xlfn.ANCHORARRAY($Z$2),,1))"
 ,,,,,"=LEFT(AllDaqbookOffsets[[#This Row],[traceability_no]],2)",,,,,,,2,"=_xlfn.LET(
