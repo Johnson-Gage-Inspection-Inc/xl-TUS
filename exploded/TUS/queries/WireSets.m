@@ -26,6 +26,7 @@ let
                 else #table(
                     {"asset_id",  "serial_number", "asset_tag", "custom_order_number", "service_date", "certificate_number", "traceability_number", "wire_roll_cert_number", "type"},
                     {{0, "No data available", "", "", null, "", "", "", ""}}
-                )
+                ),
+    #"Removed Other Columns" = Table.SelectColumns(FinalData,{"asset_id", "serial_number", "asset_tag", "custom_order_number", "service_date", "certificate_number", "traceability_number", "wire_roll_cert_number", "type"})
 in
-    FinalData
+    #"Removed Other Columns"
