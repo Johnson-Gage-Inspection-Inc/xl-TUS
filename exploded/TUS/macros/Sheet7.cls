@@ -187,13 +187,22 @@ End Sub
 Public Sub TruncateTableByName(tableName As String)
     Dim tbl As ListObject
     Dim ws As Worksheet
+    Dim lo As ListObject
+    Dim found As Boolean
+    
+    found = False
     
     ' Loop through all sheets to find the table
     For Each ws In ThisWorkbook.Worksheets
-        On Error Resume Next
-        Set tbl = ws.ListObjects(tableName)
-        On Error GoTo 0
-        If Not tbl Is Nothing Then Exit For
+        ' Loop through ListObjects on this sheet to find by name
+        For Each lo In ws.ListObjects
+            If lo.Name = tableName Then
+                Set tbl = lo
+                found = True
+                Exit For
+            End If
+        Next lo
+        If found Then Exit For
     Next ws
 
     If tbl Is Nothing Then
