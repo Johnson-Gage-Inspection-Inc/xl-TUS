@@ -13,14 +13,19 @@ let
     otherwise null,
     
     // Try to get cached data from workbook
-    CachedData = try Excel.CurrentWorkbook(){[Name="AllDaqbookOffsets"]}[Content] otherwise null,
+    CachedData = try 
+        let
+            cached = Excel.CurrentWorkbook(){[Name="AllDaqbookOffsets"]}[Content],
+            validated = if Table.RowCount(cached) > 0 then cached else null
+        in validated
+    otherwise null,
     
     // Use fresh data if available, otherwise use cached data, otherwise return empty table
     FinalData = if FreshData <> null then FreshData 
                 else if CachedData <> null then CachedData
                 else #table(
                     {"point", "reading", "Temp", "traceability_no", "Offset"},
-                    {{0, 0.0, 0.0, "Data unavailable: Unable to retrieve data from API or cached workbook. Please check your network connection and try again.", 0.0}}
+                    {}
                 ),
     #"Reordered Columns" = Table.ReorderColumns(FinalData,{"traceability_no", "point", "Temp", "reading", "Offset"}),
     #"Sorted Rows" = Table.Sort(#"Reordered Columns",{{"traceability_no", Order.Ascending}, {"Temp", Order.Ascending}, {"point", Order.Ascending}}),

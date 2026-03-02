@@ -12,14 +12,19 @@ let
     otherwise null,
     
     // Try to get cached data from workbook
-    CachedData = try Excel.CurrentWorkbook(){[Name="MUG"]}[Content] otherwise null,
+    CachedData = try 
+        let
+            cached = Excel.CurrentWorkbook(){[Name="MUG"]}[Content],
+            validated = if Table.RowCount(cached) > 0 then cached else null
+        in validated
+    otherwise null,
     
     // Use fresh data if available, otherwise use cached data, otherwise return empty table
     FinalData = if FreshData <> null then FreshData 
                 else if CachedData <> null then CachedData
                 else #table(
                     {"Range Lo", "Range Hi", "Res", "Meas Units", "Uncert Units", "Base ", "Mult", "Base 2", "Mult 2"},
-                    {{0, 0, 0, "No data available", "", 0, 0, 0, 0}}
+                    {}
                 )
 in
     FinalData

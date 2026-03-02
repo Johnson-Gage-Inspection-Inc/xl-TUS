@@ -14,14 +14,19 @@ let
     otherwise null,
     
     // Try to get cached data from workbook
-    CachedData = try Excel.CurrentWorkbook(){[Name="Header_Info"]}[Content] otherwise null,
+    CachedData = try 
+        let
+            cached = Excel.CurrentWorkbook(){[Name="Header_Info"]}[Content],
+            validated = if Table.RowCount(cached) > 0 then cached else null
+        in validated
+    otherwise null,
     
     // Use fresh data if available, otherwise use cached data, otherwise return empty table
     FinalData = if FreshData <> null then FreshData 
         else if CachedData <> null then CachedData
         else #table(
-            {"AssetId", "ClientCompanyId", "Furnace", "FormNumber", "CalibrationMethod", "ToleranceSource", "Item", "ModelNumber", "SerialNumber", "UnitNumber", "Class", "HeatingMethod", "WorkingZoneSize", "CubicFeet", "CalInterval", "ControllerId", "Controller", "ContSN", "ContTol", "RecorderId", "Recorder", "RecSN", "RecTol", "FurnaceSpecificComments", "TestLocation", "OvenLocation", "Condition", "PB", "Integral", "Derivative", "Other1", "Other2", "CheckRec", "Load", "LagLimit", "RecoveryLimit"},
-            {{0, 0, "No data available", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 0, 0}}
+            {"AssetId", "ClientCompanyId", "Furnace", "FormNumber", "CalibrationMethod", "ToleranceSource", "Item", "ModelNumber", "SerialNumber", "UnitNumber", "Class", "HeatingMethod", "WorkingZoneSize", "CubicFeet", "CalInterval", "ControllerId", "Controller", "ContSN", "ContTol", "RecorderId", "Recorder", "RecSN", "RecTol", "FurnaceSpecificComments", "TestLocation", "OvenLocation", "Condition", "PB", "Derivative", "Integral", "Other1", "Other2", "CheckRec", "Load", "LagLimit", "RecoveryLimit", "SAT Tol"},
+            {}
         ),
     #"Reordered Columns" = Table.ReorderColumns(FinalData,{"AssetId", "ClientCompanyId", "Furnace", "FormNumber", "CalibrationMethod", "ToleranceSource", "Item", "ModelNumber", "SerialNumber", "UnitNumber", "Class", "HeatingMethod", "WorkingZoneSize", "CubicFeet", "CalInterval", "ControllerId", "Controller", "ContSN", "ContTol", "RecorderId", "Recorder", "RecSN", "RecTol", "FurnaceSpecificComments", "TestLocation", "OvenLocation", "Condition", "PB", "Derivative", "Integral", "Other1", "Other2", "CheckRec", "Load", "LagLimit", "RecoveryLimit", "SAT Tol"})
 in

@@ -67,11 +67,6 @@ Private Sub Worksheet_Change(ByVal Target As Range)
     
     Application.ScreenUpdating = False
 
-    ' Daqbook Tag
-    If Not Intersect(Target, Range("D9")) Is Nothing Then
-        Call Sheet38.UpdateDaqbookServiceRecords
-    End If
-
 CleanExit:
     Application.ScreenUpdating = True
     Application.EnableEvents = True  ' Just in case
