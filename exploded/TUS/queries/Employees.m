@@ -26,14 +26,19 @@ let
     otherwise null,
     
     // Try to get cached data from workbook
-    CachedData = try Excel.CurrentWorkbook(){[Name="Employees"]}[Content] otherwise null,
+    CachedData = try 
+        let
+            cached = Excel.CurrentWorkbook(){[Name="Employees"]}[Content],
+            validated = if Table.RowCount(cached) > 0 then cached else null
+        in validated
+    otherwise null,
     
     // Use fresh data if available, otherwise use cached data, otherwise return empty table
     FinalData = if FreshData <> null then FreshData 
                 else if CachedData <> null then CachedData
                 else #table(
                     {"employee_id", "Name", "login_email", "IsPyro"},
-                    {{0, "No data available", "", false}}
+                    {}
                 )
 in
     FinalData

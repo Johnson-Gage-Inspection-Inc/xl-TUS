@@ -46,14 +46,19 @@ let
     otherwise null,
     
     // Try to get cached data from workbook
-    CachedData = try Excel.CurrentWorkbook(){[Name="AssetPool"]}[Content] otherwise null,
+    CachedData = try 
+        let
+            cached = Excel.CurrentWorkbook(){[Name="AssetPool"]}[Content],
+            validated = if Table.RowCount(cached) > 0 then cached else null
+        in validated
+    otherwise null,
     
     // Use fresh data if available, otherwise use cached data, otherwise return empty table
     FinalData = if FreshData <> null then FreshData 
                 else if CachedData <> null then CachedData
                 else #table(
-                    {"AssetDescription", "AssetId", "AssetMaker", "AssetName", "AssetTag", "AssetUser", "CategoryName", "CustodianFirstName", "CustodianLastName", "Department", "ManufacturerPartNumber", "Notes", "ProductDescription", "ProductManufacturer", "ProductName", "RootCategoryName", "SerialNumber"},
-                    {{"No data available", 0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""}}
+                    {"AssetDescription", "AssetId", "AssetMaker", "AssetName", "AssetTag", "AssetUser", "CategoryName", "Class", "CustomStatusAbbr", "CustomStatusName", "Department", "ManufacturerPartNumber", "Notes", "ProductDescription", "ProductManufacturer", "ProductName", "RootCategoryName", "SerialNumber"},
+                    {}
                 ),
     #"Filtered Rows" = Table.SelectRows(FinalData, each ([SerialNumber] <> ""))
 in

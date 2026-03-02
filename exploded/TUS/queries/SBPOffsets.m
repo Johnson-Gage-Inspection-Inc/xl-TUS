@@ -14,9 +14,10 @@ let
     CachedData = try 
         let
             cached = Excel.CurrentWorkbook(){[Name="SBPOffsets"]}[Content],
-            #"Removed Other Columns" = Table.SelectColumns(cached,{"certificate_number", "nominal_temp", "offset", "probe_serial_number"})
+            #"Removed Other Columns" = Table.SelectColumns(cached,{"certificate_number", "nominal_temp", "offset", "probe_serial_number"}),
+            validated = if Table.RowCount(#"Removed Other Columns") > 0 then #"Removed Other Columns" else null
         in
-            #"Removed Other Columns"
+            validated
     otherwise null,
     
     // Use fresh data if available, otherwise use cached data, otherwise return empty table
@@ -24,7 +25,7 @@ let
                 else if CachedData <> null then CachedData
                 else #table(
                     {"probe_serial_number", "certificate_number", "nominal_temp", "offset"},
-                    {{"Data unavailable: Unable to retrieve data from API or cached workbook. Please check your network connection and try again.", "", 0.0, 0.0}}
+                    {}
                 ),
     #"Sorted Rows" = Table.Sort(FinalData,{{"certificate_number", Order.Ascending}, {"probe_serial_number", Order.Ascending}, {"nominal_temp", Order.Ascending}})
 in

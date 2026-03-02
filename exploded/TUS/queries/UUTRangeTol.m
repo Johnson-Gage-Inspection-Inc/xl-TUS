@@ -15,9 +15,10 @@ let
         let
             Source = Excel.CurrentWorkbook(){[Name="UUTRangeTol"]}[Content],
             #"Changed Type" = Table.TransformColumnTypes(Source,{{"AssetId", Int64.Type}, {"RangeMin", Int64.Type}, {"RangeMax", Int64.Type}, {"TolMin", type number}, {"TolMax", type number}, {"TolResolution", type number}, {"Unit", type text}, {"Flags", type text}, {"TolMinText", type text}, {"TolMaxText", type text}, {"TolText", type text}, {"RangeMaxText", type text}, {"RangeText", type text}}),
-            #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"Flags", "Unit", "TolResolution", "TolMax", "TolMin", "RangeMax", "RangeMin", "AssetId"})
+            #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"Flags", "Unit", "TolResolution", "TolMax", "TolMin", "RangeMax", "RangeMin", "AssetId"}),
+            validated = if Table.RowCount(#"Removed Other Columns") > 0 then #"Removed Other Columns" else null
         in
-            #"Removed Other Columns"
+            validated
     otherwise null,
     
     // Use fresh data if available, otherwise use cached data, otherwise return fallback table
@@ -25,7 +26,7 @@ let
                 else if CachedData <> null then CachedData
                 else #table(
                     {"AssetId", "RangeMin", "RangeMax", "TolMin", "TolMax", "TolResolution", "Unit", "Flags"},
-                    {{0, 0, 0, 0.0, 0.0, 0.0, "Data unavailable: Unable to retrieve data from SharePoint or cached workbook. Please check your network connection and try again.", ""}}
+                    {}
                 )
 in
     FinalData

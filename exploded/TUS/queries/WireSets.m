@@ -15,9 +15,10 @@ let
     CachedData = try
         let
             existing = Excel.CurrentWorkbook(){[Name="WireSets"]}[Content],
-            #"Changed Type" = Table.TransformColumnTypes(existing,{{"service_date", type date}})
+            #"Changed Type" = Table.TransformColumnTypes(existing,{{"service_date", type date}}),
+            validated = if Table.RowCount(#"Changed Type") > 0 then #"Changed Type" else null
         in
-            #"Changed Type"
+            validated
         otherwise null,
     
     // Use fresh data if available, otherwise use cached data, otherwise return empty table
@@ -25,7 +26,7 @@ let
                 else if CachedData <> null then CachedData
                 else #table(
                     {"asset_id",  "serial_number", "asset_tag", "custom_order_number", "service_date", "certificate_number", "traceability_number", "wire_roll_cert_number", "type"},
-                    {{0, "No data available", "", "", null, "", "", "", ""}}
+                    {}
                 ),
     #"Removed Other Columns" = Table.SelectColumns(FinalData,{"asset_id", "serial_number", "asset_tag", "custom_order_number", "service_date", "certificate_number", "traceability_number", "wire_roll_cert_number", "type"})
 in
