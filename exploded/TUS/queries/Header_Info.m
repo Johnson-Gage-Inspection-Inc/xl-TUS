@@ -17,7 +17,8 @@ let
     CachedData = try 
         let
             cached = Excel.CurrentWorkbook(){[Name="Header_Info"]}[Content],
-            validated = if Table.RowCount(cached) > 0 then cached else null
+            selected = Table.SelectColumns(cached, {"AssetId", "ClientCompanyId", "Furnace", "FormNumber", "CalibrationMethod", "ToleranceSource", "Item", "ModelNumber", "SerialNumber", "UnitNumber", "Class", "HeatingMethod", "WorkingZoneSize", "CubicFeet", "CalInterval", "ControllerId", "Controller", "ContSN", "ContTol", "RecorderId", "Recorder", "RecSN", "RecTol", "FurnaceSpecificComments", "TestLocation", "OvenLocation", "Condition", "PB", "Derivative", "Integral", "Other1", "Other2", "CheckRec", "Load", "LagLimit", "RecoveryLimit", "SAT Tol"}, MissingField.UseNull),
+            validated = if Table.RowCount(selected) > 0 then selected else null
         in validated
     otherwise null,
     

@@ -13,7 +13,7 @@ let
                 ]
             ),
             responseMeta = Value.Metadata(response),
-            status = responseMeta[Response.Status],
+            status = try responseMeta[Response.Status] otherwise 200,
             json   = if status = 200 then Json.Document(response) else error "HTTP " & Text.From(status),
             #"Converted to Table" = Table.FromList(json, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
             #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"asset_id", "certificate_tn", "due_date", "service_date"}, {"asset_id", "certificate_tn", "due_date", "service_date"}),
