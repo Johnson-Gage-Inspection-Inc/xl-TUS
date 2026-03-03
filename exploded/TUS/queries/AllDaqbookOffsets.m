@@ -1,3 +1,9 @@
+// Connection Properties (Usage tab)
+//   BackgroundQuery:       True
+//   RefreshOnFileOpen:     True
+//   RefreshPeriod:         0
+//   RefreshWithRefreshAll: False
+
 let
     // Try to get fresh data from API
     FreshData = try 

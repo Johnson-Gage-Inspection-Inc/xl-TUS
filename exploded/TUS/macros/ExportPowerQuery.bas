@@ -17,15 +17,37 @@ Sub ExportAllQueryMCode()
     regEx.IgnoreCase = True
     regEx.pattern = "Authorization\s*=\s*""Api-Token [^""]+"""
 
+    Dim connHeader As String
+    Dim conn As WorkbookConnection
+    Dim oledb As OLEDBConnection
+
     For Each q In ThisWorkbook.Queries
         mCode = q.Formula
         mCode = regEx.Replace(mCode, "Authorization = ""Api-Token REDACTED""")
 
+        ' Build a header with connection properties (Usage tab)
+        connHeader = ""
+        Set conn = Nothing
+        Set oledb = Nothing
+
+        On Error Resume Next
+        Set conn = ThisWorkbook.Connections("Query - " & q.Name)
+        On Error GoTo 0
+
+        If Not conn Is Nothing Then
+            Set oledb = conn.OLEDBConnection
+
+            connHeader = "// Connection Properties (Usage tab)" & vbLf
+            connHeader = connHeader & "//   BackgroundQuery:       " & oledb.BackgroundQuery & vbLf
+            connHeader = connHeader & "//   RefreshOnFileOpen:     " & oledb.RefreshOnFileOpen & vbLf
+            connHeader = connHeader & "//   RefreshPeriod:         " & oledb.RefreshPeriod & vbLf
+            connHeader = connHeader & "//   RefreshWithRefreshAll: " & conn.RefreshWithRefreshAll & vbLf
+            connHeader = connHeader & vbLf
+        End If
+
         Set f = fso.CreateTextFile(exportPath & "\" & q.Name & ".m", True, False)
-        f.Write mCode
+        f.Write connHeader & mCode
         f.Close
         Debug.Print q.Name & " exported"
     Next q
 End Sub
-
-

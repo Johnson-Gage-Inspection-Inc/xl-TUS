@@ -1,3 +1,9 @@
+// Connection Properties (Usage tab)
+//   BackgroundQuery:       True
+//   RefreshOnFileOpen:     False
+//   RefreshPeriod:         0
+//   RefreshWithRefreshAll: True
+
 let
     // Try to get fresh data from SharePoint
     FreshData = try 

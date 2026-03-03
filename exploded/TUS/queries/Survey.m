@@ -1,3 +1,9 @@
+// Connection Properties (Usage tab)
+//   BackgroundQuery:       True
+//   RefreshOnFileOpen:     False
+//   RefreshPeriod:         0
+//   RefreshWithRefreshAll: True
+
 let
     // helper: floor a time to the minute (drop seconds/fractions)
     ToMinute = (t as nullable time) as nullable time =>

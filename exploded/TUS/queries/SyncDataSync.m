@@ -1,3 +1,9 @@
+// Connection Properties (Usage tab)
+//   BackgroundQuery:       False
+//   RefreshOnFileOpen:     False
+//   RefreshPeriod:         0
+//   RefreshWithRefreshAll: False
+
 let
   respTry =
     try Web.Contents(
