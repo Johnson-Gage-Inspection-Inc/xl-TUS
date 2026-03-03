@@ -3,7 +3,7 @@
 //   RefreshOnFileOpen:     False
 //   RefreshPeriod:         0
 //   RefreshWithRefreshAll: True
-//   EnableFastDataLoad:    False
+//   EnableFastDataLoad:    True
 
 let
     required = {"User"},

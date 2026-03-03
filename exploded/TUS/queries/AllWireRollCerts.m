@@ -3,7 +3,7 @@
 //   RefreshOnFileOpen:     True
 //   RefreshPeriod:         0
 //   RefreshWithRefreshAll: True
-//   EnableFastDataLoad:    False
+//   EnableFastDataLoad:    True
 
 let
     Source = AllWireOffsets,
