@@ -12,6 +12,18 @@ Option Explicit
 Private Sub Workbook_Open()
     ' Protect sheets with UserInterfaceOnly:=True
     ProtectAllSheets
+
+    ' Prevent SyncDataSync from running during Refresh All or on open.
+    ' It should only run when the user explicitly clicks "Refresh Server Data".
+    Dim syncConn As WorkbookConnection
+    On Error Resume Next
+    Set syncConn = ThisWorkbook.Connections("Query - SyncDataSync")
+    If Not syncConn Is Nothing Then
+        syncConn.OLEDBConnection.EnableRefresh = False
+        syncConn.OLEDBConnection.BackgroundQuery = False
+        syncConn.RefreshWithRefreshAll = False
+    End If
+    On Error GoTo 0
 End Sub
 Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
     On Error GoTo ErrorHandler
@@ -112,10 +124,21 @@ Public Sub RunDataSyncAndRefresh()
 
     If Not conn Is Nothing Then
         Debug.Print "Refreshing: Query - SyncDataSync"
+        On Error GoTo SyncDataSync_Error
+        conn.OLEDBConnection.EnableRefresh = True
         conn.Refresh
 
         ' Wait for all async queries to finish (includes PQ)
         Application.CalculateUntilAsyncQueriesDone
+SyncDataSync_Cleanup:
+        On Error Resume Next
+        conn.OLEDBConnection.EnableRefresh = False
+        On Error GoTo 0
+        GoTo SyncDataSync_After
+SyncDataSync_Error:
+        ' Ensure EnableRefresh is reset even if refresh fails
+        Resume SyncDataSync_Cleanup
+SyncDataSync_After:
     Else
         Debug.Print "Connection not found: Query - SyncDataSync"
     End If
@@ -138,4 +161,3 @@ Public Sub RunDataSyncAndRefresh()
         Set conn = Nothing
     Next i
 End Sub
-

@@ -15,7 +15,8 @@ let
     CachedData = try 
         let
             cached = Excel.CurrentWorkbook(){[Name="AllWireOffsets"]}[Content],
-            validated = if Table.RowCount(cached) > 0 then cached else null
+            selected = Table.SelectColumns(cached, {"traceability_no", "Temp", "Offset", "wire_type"}, MissingField.Error),
+            validated = if Table.RowCount(selected) > 0 then selected else null
         in validated
     otherwise null,
     

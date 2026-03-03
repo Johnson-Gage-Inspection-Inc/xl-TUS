@@ -6,15 +6,9 @@ let
         let
             response = Web.Contents(
                 "https://jgiapi.com",
-                [
-                    RelativePath = "daqbook-service-records/latest/",
-                    Timeout      = #duration(0, 0, 0, 30),
-                    ManualStatusHandling = {400, 401, 403, 404, 500, 502, 503, 504}
-                ]
+                [ RelativePath = "daqbook-service-records/latest/" ]
             ),
-            responseMeta = Value.Metadata(response),
-            status = responseMeta[Response.Status],
-            json   = if status = 200 then Json.Document(response) else error "HTTP " & Text.From(status),
+            json = Json.Document(response),
             #"Converted to Table" = Table.FromList(json, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
             #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"asset_id", "certificate_tn", "due_date", "service_date"}, {"asset_id", "certificate_tn", "due_date", "service_date"}),
             #"Changed Type" = Table.TransformColumnTypes(#"Expanded Column1",{{"service_date", type datetime}, {"due_date", type datetime}, {"asset_id", Int64.Type}, {"certificate_tn", type text}}),

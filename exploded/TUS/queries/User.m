@@ -8,8 +8,7 @@ let
             let
                 resp  = Web.Contents(
                     "https://jgiapi.com",
-                    [ RelativePath = "whoami",
-                      ManualStatusHandling = {400,401,403,404,500,502,503,504} ]
+                    [ RelativePath = "whoami" ]
                 ),
                 js    = Json.Document(resp),
                 email = Record.FieldOrDefault(js, "user", null)
