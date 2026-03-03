@@ -2,7 +2,8 @@
 //   BackgroundQuery:       True
 //   RefreshOnFileOpen:     True
 //   RefreshPeriod:         0
-//   RefreshWithRefreshAll: False
+//   RefreshWithRefreshAll: True
+//   EnableFastDataLoad:    True
 
 let
     // Try to get fresh data from API

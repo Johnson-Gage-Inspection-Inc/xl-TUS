@@ -3,6 +3,7 @@
 //   RefreshOnFileOpen:     False
 //   RefreshPeriod:         0
 //   RefreshWithRefreshAll: True
+//   EnableFastDataLoad:    False
 
 let
     schema = {"asset_tag", "asset_id", "certificate_tn", "due_date", "service_date"},

@@ -1,8 +1,9 @@
 // Connection Properties (Usage tab)
 //   BackgroundQuery:       True
-//   RefreshOnFileOpen:     False
+//   RefreshOnFileOpen:     True
 //   RefreshPeriod:         0
 //   RefreshWithRefreshAll: True
+//   EnableFastDataLoad:    False
 
 let
     Source = AllWireOffsets,

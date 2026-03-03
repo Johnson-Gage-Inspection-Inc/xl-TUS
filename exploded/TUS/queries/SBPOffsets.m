@@ -3,6 +3,7 @@
 //   RefreshOnFileOpen:     False
 //   RefreshPeriod:         0
 //   RefreshWithRefreshAll: True
+//   EnableFastDataLoad:    False
 
 let
     // Try to get fresh data from API
