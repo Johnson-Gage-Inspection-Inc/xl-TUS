@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import sys
 import csv
 import struct
@@ -137,7 +139,11 @@ def patch_m_files_with_fast_data_load(
         enabled = fast_data_load[query_name]
         fdl_line = f"//   EnableFastDataLoad:    {enabled}\n"
 
-        content = m_file.read_text(encoding="utf-8")
+        # VBA CreateTextFile writes system ANSI; try UTF-8 first, fall back
+        try:
+            content = m_file.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            content = m_file.read_text(encoding="cp1252")
 
         # Replace existing EnableFastDataLoad line if present
         if "//   EnableFastDataLoad:" in content:
