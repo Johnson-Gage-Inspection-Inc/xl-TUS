@@ -129,7 +129,7 @@
   (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
   Survey[Time],
   """")"
-,,,,,,,,,Scope,"=_xlfn._xlws.FILTER(CMCs[CMC],CMCs[MatchingRow])",,7,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+,,,,,,,,,Scope,"=_xlfn.XLOOKUP(TRUE, CMCs[MatchingRow], CMCs[CMC], """", 0, -1)",,7,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
     IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
         Alerts[[#Headers],[High]:[Out Of Tolerance]],
         """")
