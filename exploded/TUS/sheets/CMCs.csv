@@ -1,8 +1,13 @@
-Source:,(A2LA Cert. No. 2820.01) Revised 06/03/2025,
-,,
-Min,Max,CMC
--100,392,1.6
-392,752,4
-752,1200,3
-1200,2000,4.1
-1800,2200,4.1
+Source:,(A2LA Cert. No. 2820.01) Revised 06/03/2025,,,
+,,,,
+Min,Max,CMC,Unit,MatchingRow
+-100,392,1.6,°F,"=1=(NominalTemp>=CMCs[[#This Row],[Min]])*(NominalTemp<CMCs[[#This Row],[Max]])*(CMCs[[#This Row],[Unit]]=Unit)"
+392,752,4,°F,"=1=(NominalTemp>=CMCs[[#This Row],[Min]])*(NominalTemp<CMCs[[#This Row],[Max]])*(CMCs[[#This Row],[Unit]]=Unit)"
+752,1200,3,°F,"=1=(NominalTemp>=CMCs[[#This Row],[Min]])*(NominalTemp<CMCs[[#This Row],[Max]])*(CMCs[[#This Row],[Unit]]=Unit)"
+1200,2000,4.1,°F,"=1=(NominalTemp>=CMCs[[#This Row],[Min]])*(NominalTemp<CMCs[[#This Row],[Max]])*(CMCs[[#This Row],[Unit]]=Unit)"
+1800,2200,4.1,°F,"=1=(NominalTemp>=CMCs[[#This Row],[Min]])*(NominalTemp<CMCs[[#This Row],[Max]])*(CMCs[[#This Row],[Unit]]=Unit)"
+-73.33333333333333,200,0.8888888888888888,°C,"=1=(NominalTemp>=CMCs[[#This Row],[Min]])*(NominalTemp<CMCs[[#This Row],[Max]])*(CMCs[[#This Row],[Unit]]=Unit)"
+200,400,2.2222222222222223,°C,"=1=(NominalTemp>=CMCs[[#This Row],[Min]])*(NominalTemp<CMCs[[#This Row],[Max]])*(CMCs[[#This Row],[Unit]]=Unit)"
+400,648.8888888888889,1.6666666666666667,°C,"=1=(NominalTemp>=CMCs[[#This Row],[Min]])*(NominalTemp<CMCs[[#This Row],[Max]])*(CMCs[[#This Row],[Unit]]=Unit)"
+648.8888888888889,1093.3333333333333,2.2777777777777777,°C,"=1=(NominalTemp>=CMCs[[#This Row],[Min]])*(NominalTemp<CMCs[[#This Row],[Max]])*(CMCs[[#This Row],[Unit]]=Unit)"
+982.2222222222222,1204.4444444444443,2.2777777777777777,°C,"=1=(NominalTemp>=CMCs[[#This Row],[Min]])*(NominalTemp<CMCs[[#This Row],[Max]])*(CMCs[[#This Row],[Unit]]=Unit)"

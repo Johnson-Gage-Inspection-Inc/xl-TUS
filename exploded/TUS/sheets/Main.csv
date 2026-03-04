@@ -20,7 +20,7 @@ Ver. 03.03.26,,TUS Worksheet for,,,,"=GetFormattedWorkItemNumber(K14, D24)",,,,,
 ,,DaqBook Date Due,"=_xlfn.XLOOKUP(DaqbookAssetTag,DaqbookServiceRecords[asset_tag],DaqbookServiceRecords[due_date],"""")",,,"=IF(IF(COUNTIFS(DataForChannels15to28[],"">""&B2,DataForChannels15to28[],""<""&(B2+200))>0,1,0)=1,""!!!!! OVEN OVERSHOT IN POINTS 15-28 !!!!!"","""")",,,PO (if any):,"=IFERROR(VLOOKUP(""PoNumber"",WorkItemDetails[],2,FALSE),"""")",,,9,,,,#VALUE!,,,,,,
 ,,DaqBook Traceability No:,"=_xlfn.XLOOKUP(DaqbookAssetTag,DaqbookServiceRecords[asset_tag],DaqbookServiceRecords[certificate_tn],"""")",,,"=IF(IF(COUNTIFS(DataForChannels29to40[],"">""&B2,DataForChannels29to40[],""<""&(B2+200))>0,1,0)=1,""!!!!! OVEN OVERSHOT IN POINTS 29-40 !!!!!"","""")",,,JGI Order #:,,,,10,,,,#VALUE!,,,,,,
 ,,Set Point:,,,,,True,,Load Type:,,,,11,,,,#VALUE!,,,,,,
-,,Test Temperature:,,,Overshoot:,NONE OBSERVED,,,# Seconds (Sim Load Hot):,,,,12,,,,#VALUE!,,,,,,
+,,Test Temperature:,100,,Overshoot:,NONE OBSERVED,,,# Seconds (Sim Load Hot):,,,,12,,,,#VALUE!,,,,,,
 ,,# of Test Points:,,,Equip Load:,"=IF(ISBLANK(Load),"""",Load)",,,Load Entry (Sim Load Hot):,,"=IF(K15=""SIM Load Hot"",TEXT(D26,""hh:mm""),"""")",,13,,,,#VALUE!,,,,,,
 ,,Comp Interval:,,,Results:,ACCEPTED,,,,,,,14,,,,#VALUE!,,,,,,
 ,,Tolerance:,"=_xlfn.LET(
