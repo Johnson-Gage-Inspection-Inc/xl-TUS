@@ -1,3 +1,10 @@
+// Connection Properties (Usage tab)
+//   BackgroundQuery:       True
+//   RefreshOnFileOpen:     False
+//   RefreshPeriod:         0
+//   RefreshWithRefreshAll: True
+//   EnableFastDataLoad:    True
+
 let
     schema = {"asset_tag", "asset_id", "certificate_tn", "due_date", "service_date"},
 

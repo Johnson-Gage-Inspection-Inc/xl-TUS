@@ -1,3 +1,10 @@
+// Connection Properties (Usage tab)
+//   BackgroundQuery:       True
+//   RefreshOnFileOpen:     True
+//   RefreshPeriod:         0
+//   RefreshWithRefreshAll: True
+//   EnableFastDataLoad:    True
+
 let
     Source = AllWireOffsets,
     Grouped = Table.Group(

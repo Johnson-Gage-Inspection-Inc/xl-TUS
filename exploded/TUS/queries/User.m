@@ -1,3 +1,10 @@
+// Connection Properties (Usage tab)
+//   BackgroundQuery:       True
+//   RefreshOnFileOpen:     False
+//   RefreshPeriod:         0
+//   RefreshWithRefreshAll: True
+//   EnableFastDataLoad:    True
+
 let
     required = {"User"},
     empty    = #table(required, {}),

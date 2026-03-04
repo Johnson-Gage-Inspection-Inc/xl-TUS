@@ -1,3 +1,10 @@
+// Connection Properties (Usage tab)
+//   BackgroundQuery:       True
+//   RefreshOnFileOpen:     False
+//   RefreshPeriod:         0
+//   RefreshWithRefreshAll: True
+//   EnableFastDataLoad:    True
+
 let
     WorkItemNumber = try Text.From(Excel.CurrentWorkbook(){[Name="WorkItemNumber"]}[Content][Column1]{0}) otherwise "",
     
