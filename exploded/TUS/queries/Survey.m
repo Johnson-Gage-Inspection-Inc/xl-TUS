@@ -40,6 +40,18 @@ let
     #"Merged with CF" = Table.NestedJoin(#"Changed Type1", {"TestPoint"}, #"Changed Type2", {"point"}, "CF", JoinKind.LeftOuter),
     #"Expanded CF" = try Table.ExpandTableColumn(#"Merged with CF", "CF", {"CummulativeOffset"}) otherwise Table.AddColumn(#"Merged with CF", "CummulativeOffset", each null, type number),
 
+    // -- Unit conversion ------------------------------------------------
+    DisplayUnit = try Text.From(Excel.CurrentWorkbook(){[Name="Unit"]}[Content]{0}[Column1]) otherwise "°F",
+    #"Unit Converted" = if DisplayUnit = "°C" then
+        Table.TransformColumns(#"Expanded CF", {
+            {"RawTemp",           each if _ = null then null
+                                       else (_ - 32) * 5 / 9, type number},
+            {"CummulativeOffset", each if _ = null then null
+                                       else _ * 5 / 9,        type number}
+        })
+    else
+        #"Expanded CF",
+
     // Define empty fallback with correct column types and names
     EmptySchema = #table(
         {"Time", "TestPoint", "RawTemp", "CummulativeOffset"},
@@ -47,7 +59,7 @@ let
     ),
 
     // Force final structure even if no data remains
-    Final = Table.Combine({EmptySchema, #"Expanded CF"}),
+    Final = Table.Combine({EmptySchema, #"Unit Converted"}),
     #"Changed Type3" = Table.TransformColumnTypes(Final,{{"Time", type time}, {"TestPoint", Int64.Type}, {"RawTemp", type number}, {"CummulativeOffset", type number}})
 in
     #"Changed Type3"

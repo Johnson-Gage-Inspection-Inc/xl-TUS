@@ -62,7 +62,11 @@
   (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
   Survey[Time],
   """")"
-,,,,,,,,,Fixed Bias (Base₂),"=VLOOKUP(NominalTemp,_xlfn._xlws.FILTER(MUG[],MUG[Meas Units]=""°F""),8,TRUE)",,4,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+,,,,,,,,,Fixed Bias (Base₂),"=LOOKUP(
+  NominalTemp,
+  _xlfn._xlws.FILTER(MUG[Range Lo], MUG[Meas Units]=Unit),
+  _xlfn._xlws.FILTER(MUG[Base 2],      MUG[Meas Units]=Unit)
+)",,4,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
     IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
         Alerts[[#Headers],[High]:[Out Of Tolerance]],
         """")
@@ -125,7 +129,7 @@
   (Survey[TestPoint]=Alerts[[#This Row],[TestPoint]])*Survey[OutOfTolerance],
   Survey[Time],
   """")"
-,,,,,,,,,Scope,"=VLOOKUP(NominalTemp,CMCs[],3,TRUE)",,7,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
+,,,,,,,,,Scope,"=_xlfn.XLOOKUP(TRUE, CMCs[MatchingRow], CMCs[CMC], """", 0, -1)",,7,"=_xlfn.TEXTJOIN(""; "", TRUE, IF(Alerts[[#This Row],[Dropped]],""DROPPED"",""""),
     IF(Alerts[[#This Row],[High]:[Out Of Tolerance]] <> """",
         Alerts[[#Headers],[High]:[Out Of Tolerance]],
         """")
