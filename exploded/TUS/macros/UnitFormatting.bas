@@ -4,37 +4,42 @@ Option Explicit
 ' ---------------------------------------------------------------------------
 ' UnitFormatting.bas
 '
-' Swaps temperature-unit number formats between °F and °C to match the
-' workbook's "Unit" named range ("°F" or "°C").
+' Swaps temperature-unit number formats between ï¿½F and ï¿½C to match the
+' workbook's "Unit" named range ("ï¿½F" or "ï¿½C").
 '
-' Called from Workbook_Open and whenever the Unit value changes.
+' Triggered by Workbook_SheetChange when the Unit column on UUTRangeTol
+' changes (manual edit or Power Query refresh).
 '
 ' Format codes affected (5 unique patterns found by find_unit_formats.py):
-'   0\°\F                                          ->  0\°\C
-'   0.0\°\F                                        ->  0.0\°\C
-'   0.0\ \°\F                                      ->  0.0\ \°\C
-'   \±0.0\°\F                                      ->  \±0.0\°\C
-'   [>0]\+0.0\°\F;[<0]\-0.0\°\F;\ 0.0\°\F        ->  [>0]\+0.0\°\C;...
+'   0\ï¿½\F                                          ->  0\ï¿½\C
+'   0.0\ï¿½\F                                        ->  0.0\ï¿½\C
+'   0.0\ \ï¿½\F                                      ->  0.0\ \ï¿½\C
+'   \ï¿½0.0\ï¿½\F                                      ->  \ï¿½0.0\ï¿½\C
+'   [>0]\+0.0\ï¿½\F;[<0]\-0.0\ï¿½\F;\ 0.0\ï¿½\F        ->  [>0]\+0.0\ï¿½\C;...
 '
-' All patterns contain the literal substring °F (or °C), so a single
+' All patterns contain the literal substring ï¿½F (or ï¿½C), so a single
 ' Replace() call handles every variation.
+'
+' Current formatting state is detected from Main!D15.NumberFormat rather
+' than a module-level variable, so it survives VBA project resets.
 ' ---------------------------------------------------------------------------
-
-' Cached last-applied unit letter so we can detect redundant calls
-Public LastAppliedUnit As String
 
 ' ---------------------------------------------------------------------------
 ' ApplyUnitFormats
 '
-' Reads the "Unit" named range and replaces °F<->°C in the NumberFormat
+' Reads the "Unit" named range and replaces ï¿½F<->ï¿½C in the NumberFormat
 ' property of every cell that carries a degree-symbol format code.
 '
 ' For large data sheets (Data_Sheet*) where only a single cell (J6) uses
 ' the degree format, we target that cell directly instead of iterating
 ' ~14 000 cells per sheet.
+'
+' The current formatting state is detected from Main!D15.NumberFormat
+' (a cell with format 0\?\F or 0\?\C).  This avoids a module-level
+' variable that would reset on VBA project reset / unhandled error.
 ' ---------------------------------------------------------------------------
 Public Sub ApplyUnitFormats()
-    Dim deg As String:  deg = ChrW$(176)  ' °
+    Dim deg As String:  deg = ChrW$(176)  ' ï¿½
 
     ' Read the current unit from the named range
     Dim unitStr As String
@@ -45,9 +50,13 @@ Public Sub ApplyUnitFormats()
 
     Dim unitLetter As String: unitLetter = Right$(unitStr, 1)  ' "F" or "C"
 
-    ' Skip if formats already match
-    If LastAppliedUnit = unitLetter Then Exit Sub
-    LastAppliedUnit = unitLetter
+    ' Detect current formatting state from a known cell rather than a
+    ' module-level variable (survives VBA project resets)
+    Dim probeFmt As String
+    probeFmt = ThisWorkbook.Sheets("Main").Range("D15").NumberFormat
+    If InStr(1, probeFmt, deg & unitLetter, vbBinaryCompare) > 0 Then
+        Exit Sub  ' formats already match the target unit
+    End If
 
     ' Determine source -> target substrings for replacement
     Dim targetDeg As String
@@ -108,4 +117,3 @@ NextSheet:
     Application.EnableEvents = True
     Application.ScreenUpdating = True
 End Sub
-

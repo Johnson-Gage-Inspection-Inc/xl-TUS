@@ -1,14 +1,14 @@
 Attribute VB_Name = "SheetGuards"
 Option Explicit
-Public Sub EnforceSheetIsViewOnly(sh As Worksheet)
+Public Sub EnforceSheetIsViewOnly(Sh As Worksheet)
     Exit Sub ' Uncomment this line for development mode
     Dim msg As String
     On Error Resume Next
 
     If Not Application.UserName Like "*Admin*" Then
-        msg = "The sheet '" & sh.Name & "' is protected. Use the interface on the Main sheet."
+        msg = "The sheet '" & Sh.Name & "' is protected. Use the interface on the Main sheet."
         Application.EnableEvents = False
-        sh.Range("A1").Select
+        Sh.Range("A1").Select
         MsgBox msg, vbInformation
         Application.EnableEvents = True
     End If

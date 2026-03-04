@@ -13,9 +13,6 @@ Private Sub Workbook_Open()
     ' Protect sheets with UserInterfaceOnly:=True
     ProtectAllSheets
 
-    ' Apply unit-specific number formats (deg F or deg C) based on the Unit range
-    ApplyUnitFormats
-
     ' Prevent SyncDataSync from running during Refresh All or on open.
     ' It should only run when the user explicitly clicks "Refresh Server Data".
     Dim syncConn As WorkbookConnection
@@ -27,6 +24,15 @@ Private Sub Workbook_Open()
         syncConn.RefreshWithRefreshAll = False
     End If
     On Error GoTo 0
+End Sub
+Private Sub Workbook_SheetChange(ByVal Sh As Object, ByVal Target As Range)
+    ' When the Unit column (U) on UUTRangeTol changes, swap degree-symbol
+    ' number formats between �F and �C across all formatted sheets.
+    If Sh.Name = "UUTRangeTol" Then
+        If Not Intersect(Target, Sh.Columns("U")) Is Nothing Then
+            ApplyUnitFormats
+        End If
+    End If
 End Sub
 Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
     On Error GoTo ErrorHandler
@@ -164,3 +170,4 @@ SyncDataSync_After:
         Set conn = Nothing
     Next i
 End Sub
+
