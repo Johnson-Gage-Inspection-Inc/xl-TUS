@@ -13,6 +13,9 @@ Private Sub Workbook_Open()
     ' Protect sheets with UserInterfaceOnly:=True
     ProtectAllSheets
 
+    ' Apply unit-specific number formats (deg F or deg C) based on the Unit range
+    ApplyUnitFormats
+
     ' Prevent SyncDataSync from running during Refresh All or on open.
     ' It should only run when the user explicitly clicks "Refresh Server Data".
     Dim syncConn As WorkbookConnection

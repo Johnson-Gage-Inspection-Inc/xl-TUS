@@ -4,66 +4,92 @@ Option Explicit
 ' ---------------------------------------------------------------------------
 ' UnitFormatting.bas
 '
-' Applies temperature-unit number formats (°F or °C) to all cells that use
-' degree-symbol format codes. Called from Workbook_Open and whenever the
-' Unit named range changes value.
+' Swaps temperature-unit number formats between ï¿½F and ï¿½C to match the
+' workbook's "Unit" named range ("ï¿½F" or "ï¿½C").
 '
-' The workbook's "Unit" named range returns "°F" or "°C".
-' The "_unit" named range returns just "F" or "C" (no degree symbol).
+' Called from Workbook_Open and whenever the Unit value changes.
 '
-' Format codes affected (7 unique patterns):
-'   0°F          ?  0°C
-'   0.0°F        ?  0.0°C
-'   0.0 °F       ?  0.0 °C
-'   #°F          ?  #°C
-'   ±0°F         ?  ±0°C
-'   ±0.0°F       ?  ±0.0°C
-'   [>0]+0.0°F;[<0]-0.0°F; 0.0°F  ?  [>0]+0.0°C;[<0]-0.0°C; 0.0°C
+' Format codes affected (5 unique patterns found by find_unit_formats.py):
+'   0\ï¿½\F                                          ->  0\ï¿½\C
+'   0.0\ï¿½\F                                        ->  0.0\ï¿½\C
+'   0.0\ \ï¿½\F                                      ->  0.0\ \ï¿½\C
+'   \ï¿½0.0\ï¿½\F                                      ->  \ï¿½0.0\ï¿½\C
+'   [>0]\+0.0\ï¿½\F;[<0]\-0.0\ï¿½\F;\ 0.0\ï¿½\F        ->  [>0]\+0.0\ï¿½\C;...
+'
+' All patterns contain the literal substring ï¿½F (or ï¿½C), so a single
+' Replace() call handles every variation.
 ' ---------------------------------------------------------------------------
 
-' Cached last-applied unit letter so we can detect changes
+' Cached last-applied unit letter so we can detect redundant calls
 Public LastAppliedUnit As String
 
+' ---------------------------------------------------------------------------
+' ApplyUnitFormats
+'
+' Reads the "Unit" named range and replaces ï¿½F<->ï¿½C in the NumberFormat
+' property of every cell that carries a degree-symbol format code.
+'
+' For large data sheets (Data_Sheet*) where only a single cell (J6) uses
+' the degree format, we target that cell directly instead of iterating
+' ~14 000 cells per sheet.
+' ---------------------------------------------------------------------------
 Public Sub ApplyUnitFormats()
-    Dim deg As String:      deg = ChrW$(176)            ' °
-    
+    Dim deg As String:  deg = ChrW$(176)  ' ï¿½
+
     ' Read the current unit from the named range
     Dim unitStr As String
     On Error Resume Next
-    unitStr = Range("Unit").value   ' "°F" or "°C"
+    unitStr = Range("Unit").value
     On Error GoTo 0
     If unitStr = "" Then unitStr = deg & "F"
 
-    Dim unitLetter As String:   unitLetter = Right$(unitStr, 1)   ' "F" or "C"
+    Dim unitLetter As String: unitLetter = Right$(unitStr, 1)  ' "F" or "C"
 
     ' Skip if formats already match
     If LastAppliedUnit = unitLetter Then Exit Sub
     LastAppliedUnit = unitLetter
 
-    ' Determine target and source substrings for replacement
-    Dim targetDeg As String     ' what we want in format codes
-    Dim sourceDeg As String     ' what we want to replace
+    ' Determine source -> target substrings for replacement
+    Dim targetDeg As String
+    Dim sourceDeg As String
     targetDeg = deg & unitLetter
     sourceDeg = deg & IIf(unitLetter = "F", "C", "F")
 
     Application.ScreenUpdating = False
     Application.EnableEvents = False
 
-    ' Iterate only sheets known to have degree-formatted cells.
-    ' If a sheet doesn't exist (e.g., in a trimmed workbook), skip it.
-    Dim sheetNames As Variant
-    sheetNames = Array("CMCs", "Main", "CERT", "Data_Sheet", "Data_Sheet_15_28", _
-                       "Data_Sheet_29_40", "Comparison_Report", "TUS_Worksheet", _
-                       "Interp")
+    ' ---- Large sheets: target only the known cell (J6) ------------------
+    Dim bigSheets As Variant
+    bigSheets = Array("Data_Sheet", "Data_Sheet_15_28", "Data_Sheet_29_40")
 
-    Dim i As Long
     Dim ws As Worksheet
-    Dim cell As Range
+    Dim i As Long
     Dim fmt As String
 
-    For i = LBound(sheetNames) To UBound(sheetNames)
+    For i = LBound(bigSheets) To UBound(bigSheets)
+        Set ws = Nothing
         On Error Resume Next
-        Set ws = ThisWorkbook.Sheets(sheetNames(i))
+        Set ws = ThisWorkbook.Sheets(bigSheets(i))
+        On Error GoTo 0
+        If Not ws Is Nothing Then
+            fmt = ws.Range("J6").NumberFormat
+            If InStr(1, fmt, sourceDeg, vbBinaryCompare) > 0 Then
+                ws.Range("J6").NumberFormat = Replace(fmt, sourceDeg, targetDeg)
+            End If
+        End If
+    Next i
+
+    ' ---- Smaller sheets: iterate UsedRange ------------------------------
+    Dim smallSheets As Variant
+    smallSheets = Array("Main", "CERT", "Comparison_Report", _
+                        "TUS_Worksheet", "Interp")
+
+    Dim cell As Range
+
+    For i = LBound(smallSheets) To UBound(smallSheets)
+        Set ws = Nothing
+        On Error Resume Next
+        Set ws = ThisWorkbook.Sheets(smallSheets(i))
         On Error GoTo 0
         If ws Is Nothing Then GoTo NextSheet
 
