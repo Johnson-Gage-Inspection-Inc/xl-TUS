@@ -7,8 +7,7 @@ Option Explicit
 ' Swaps temperature-unit number formats between �F and �C to match the
 ' workbook's "Unit" named range ("�F" or "�C").
 '
-' Triggered by Workbook_SheetChange when the Unit column on UUTRangeTol
-' changes (manual edit or Power Query refresh).
+' Triggered by Worksheet_Calculate on UUTRangeTol (Sheet17.cls)
 '
 ' Format codes affected (5 unique patterns found by find_unit_formats.py):
 '   0\�\F                                          ->  0\�\C

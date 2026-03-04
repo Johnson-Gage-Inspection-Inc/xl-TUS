@@ -1,6 +1,6 @@
 // Connection Properties (Usage tab)
 //   BackgroundQuery:       True
-//   RefreshOnFileOpen:     True
+//   RefreshOnFileOpen:     False
 //   RefreshPeriod:         0
 //   RefreshWithRefreshAll: True
 //   EnableFastDataLoad:    True

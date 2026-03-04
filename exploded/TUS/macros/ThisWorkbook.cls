@@ -25,15 +25,6 @@ Private Sub Workbook_Open()
     End If
     On Error GoTo 0
 End Sub
-Private Sub Workbook_SheetChange(ByVal Sh As Object, ByVal Target As Range)
-    ' When the Unit column (U) on UUTRangeTol changes, swap degree-symbol
-    ' number formats between �F and �C across all formatted sheets.
-    If Sh.Name = "UUTRangeTol" Then
-        If Not Intersect(Target, Sh.Columns("U")) Is Nothing Then
-            ApplyUnitFormats
-        End If
-    End If
-End Sub
 Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
     On Error GoTo ErrorHandler
     
