@@ -1,16 +1,5 @@
 Attribute VB_Name = "modMainLogic"
 Option Explicit
-Sub OkEvents()
-    Application.EnableEvents = True
-End Sub
-'Get Info for Drive
-Function GetRootDrive(Optional aPath As String) As String
-    GetRootDrive = CreateObject("Scripting.FileSystemObject").GetDriveName(aPath)
-End Function
-Function IsInArray(valueToFind As Variant, arr As Variant) As Boolean
-  On Error Resume Next
-  IsInArray = Not IsError(Application.Match(valueToFind, arr, 0))
-End Function
 Function GetUniqueValues(ByRef inputArray() As String) As Collection
     Dim dict As Object
     Dim i As Long
@@ -66,9 +55,3 @@ Public Sub ShowUserWarningSettings()
     
     MsgBox message, vbInformation, "Current Warning Settings"
 End Sub
-
-
-
-
-
-

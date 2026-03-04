@@ -15,12 +15,6 @@ Public Sub UpdateWorkItemDetails()
     ThisWorkbook.Connections("Query - WorkItemDetails").Refresh
     Me.Calculate
 End Sub
-Private Sub TruncateWorkItemDetailsTable()
-    Dim lo As ListObject
-    Set lo = Me.ListObjects("WorkItemDetails")
-    If lo.DataBodyRange Is Nothing Then Exit Sub ' Already empty
-    lo.DataBodyRange.Rows.Delete
-End Sub
 Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     Call EnforceSheetIsViewOnly(Me)
 End Sub
