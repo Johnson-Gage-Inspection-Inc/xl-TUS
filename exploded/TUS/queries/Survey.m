@@ -40,9 +40,9 @@ let
     #"Merged with CF" = Table.NestedJoin(#"Changed Type1", {"TestPoint"}, #"Changed Type2", {"point"}, "CF", JoinKind.LeftOuter),
     #"Expanded CF" = try Table.ExpandTableColumn(#"Merged with CF", "CF", {"CummulativeOffset"}) otherwise Table.AddColumn(#"Merged with CF", "CummulativeOffset", each null, type number),
 
-    // -- Unit conversion ------------------------------------------------
-    DisplayUnit = try Text.From(Excel.CurrentWorkbook(){[Name="Unit"]}[Content]{0}[Column1]) otherwise "�F",
-    #"Unit Converted" = if DisplayUnit = "�C" then
+    // ── Unit conversion ────────────────────────────────────────────────
+    DisplayUnit = try Text.From(Excel.CurrentWorkbook(){[Name="Unit"]}[Content]{0}[Column1]) otherwise "°F",
+    #"Unit Converted" = if DisplayUnit = "°C" then
         Table.TransformColumns(#"Expanded CF", {
             {"RawTemp",           each if _ = null then null
                                        else (_ - 32) * 5 / 9, type number},

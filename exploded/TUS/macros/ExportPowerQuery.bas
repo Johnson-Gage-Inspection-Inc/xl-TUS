@@ -3,7 +3,7 @@ Option Explicit
 
 Sub ExportAllQueryMCode()
     Dim q As WorkbookQuery
-    Dim fso As Object, f As Object, regEx As Object
+    Dim regEx As Object
     Dim exportPath As String, mCode As String, redactedLine As String
     Dim pattern As String, fileBaseName As String
     fileBaseName = Left(ThisWorkbook.Name, InStrRev(ThisWorkbook.Name, ".") - 1)
@@ -11,7 +11,6 @@ Sub ExportAllQueryMCode()
     exportPath = ThisWorkbook.path & "\exploded\" & fileBaseName & "\queries"
     If Dir(exportPath, vbDirectory) = "" Then MkDir exportPath
 
-    Set fso = CreateObject("Scripting.FileSystemObject")
     Set regEx = CreateObject("VBScript.RegExp")
     regEx.Global = True
     regEx.IgnoreCase = True
@@ -52,9 +51,29 @@ Sub ExportAllQueryMCode()
             connHeader = connHeader & vbLf
         End If
 
-        Set f = fso.CreateTextFile(exportPath & "\" & q.Name & ".m", True, False)
-        f.Write connHeader & mCode
-        f.Close
+        ' Write as UTF-8 (no BOM) via ADODB.Stream
+        Dim stm As Object
+        Set stm = CreateObject("ADODB.Stream")
+        stm.Type = 2          ' adTypeText
+        stm.Charset = "utf-8"
+        stm.Open
+        stm.WriteText connHeader & mCode
+
+        ' ADODB.Stream prepends a 3-byte BOM; strip it
+        stm.Position = 0
+        stm.Type = 1          ' adTypeBinary
+        stm.Position = 3      ' skip BOM
+        Dim fileBody() As Byte
+        fileBody = stm.Read
+        stm.Close
+
+        Set stm = CreateObject("ADODB.Stream")
+        stm.Type = 1
+        stm.Open
+        stm.Write fileBody
+        stm.SaveToFile exportPath & "\" & q.Name & ".m", 2  ' adSaveCreateOverWrite
+        stm.Close
+
         Debug.Print q.Name & " exported"
     Next q
 End Sub
@@ -223,7 +242,4 @@ Private Function ReadUInt32LE(buf() As Byte, ByVal pos As Long) As Long
                  + CLng(buf(pos + 2)) * &H10000 _
                  + CLng(buf(pos + 3)) * &H1000000
 End Function
-
-
-
 
