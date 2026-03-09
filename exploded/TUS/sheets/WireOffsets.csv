@@ -23,4 +23,3 @@
 ,,,,,,,,,,,,,,"=IFERROR(LEFT(AllWireRollCerts[[#This Row],[traceability_no]],6),"""")","=IFERROR(SUBSTITUTE(AllWireRollCerts[[#This Row],[traceability_no]],AllWireRollCerts[[#This Row],[sort1]],""""),"""")",,
 ,,,,,,,,,,,,,,"=IFERROR(LEFT(AllWireRollCerts[[#This Row],[traceability_no]],6),"""")","=IFERROR(SUBSTITUTE(AllWireRollCerts[[#This Row],[traceability_no]],AllWireRollCerts[[#This Row],[sort1]],""""),"""")",,
 ,,,,,,,,,,,,,,"=IFERROR(LEFT(AllWireRollCerts[[#This Row],[traceability_no]],6),"""")","=IFERROR(SUBSTITUTE(AllWireRollCerts[[#This Row],[traceability_no]],AllWireRollCerts[[#This Row],[sort1]],""""),"""")",,
-,,,,,,,,,,,,,,"=IFERROR(LEFT(AllWireRollCerts[[#This Row],[traceability_no]],6),"""")","=IFERROR(SUBSTITUTE(AllWireRollCerts[[#This Row],[traceability_no]],AllWireRollCerts[[#This Row],[sort1]],""""),"""")",,
