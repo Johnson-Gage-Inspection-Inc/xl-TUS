@@ -4,8 +4,7 @@ Option Explicit
 Sub ExportAllQueryMCode()
     Dim q As WorkbookQuery
     Dim regEx As Object
-    Dim exportPath As String, mCode As String, redactedLine As String
-    Dim pattern As String, fileBaseName As String
+    Dim exportPath As String, mCode As String, fileBaseName As String
     fileBaseName = Left(ThisWorkbook.Name, InStrRev(ThisWorkbook.Name, ".") - 1)
 
     exportPath = ThisWorkbook.path & "\exploded\" & fileBaseName & "\queries"

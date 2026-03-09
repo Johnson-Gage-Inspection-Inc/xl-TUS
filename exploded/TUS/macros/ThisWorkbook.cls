@@ -98,6 +98,7 @@ Private Sub ProtectAllSheets()
             'ws.Visible = xlSheetVeryHidden  ' Debug
             ws.Visible = xlSheetHidden
         Else
+            ' DrawingObjects:=False allows Autofill on unprotected ranges
             ws.Protect Password:="JGIPyro", _
                         DrawingObjects:=False, _
                         UserInterfaceOnly:=True, _
