@@ -99,6 +99,7 @@ Private Sub ProtectAllSheets()
             ws.Visible = xlSheetHidden
         Else
             ws.Protect Password:="JGIPyro", _
+                        DrawingObjects:=False, _
                         UserInterfaceOnly:=True, _
                         AllowFiltering:=True, _
                         AllowSorting:=False, _
@@ -161,4 +162,3 @@ SyncDataSync_After:
         Set conn = Nothing
     Next i
 End Sub
-
