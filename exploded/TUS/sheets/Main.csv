@@ -13,7 +13,7 @@ Ver. 03.11.26,,TUS Worksheet for,,,,"=GetFormattedWorkItemNumber(K14, D24)",,,,,
     _xlfn._xlws.FILTER(AssetPool[AssetId], AssetPool[RootCategoryName]= ""DAQ Modules"")
   ),
   """"
-)","=IF($S$48, ""Class "" & _xlfn.REGEXEXTRACT(TRIM(Class), ""(?<=[0-9])[AC]"") & "" Oven: Check Hot/Cold Sensor Analysis"", """")",,,,,,,,5,,,,#VALUE!,,,,,,
+)","=IF($S$48, ""Class "" & RIGHT(_xlfn.REGEXEXTRACT(TRIM(Class), ""(?<=[0-9])[AC]""), 1) & "" Oven: Check Hot/Cold Sensor Analysis"", """")",,,,,,,,5,,,,#VALUE!,,,,,,
 ,,,,,,"=IFERROR(IF(OR(Survey[OutOfTolerance]),""!!!!! OVEN IS OOT !!!!!"",""""),"""")",,,,,,,6,,,,#VALUE!,,,,,,
 ,,Daqbook SN:,"=_xlfn.XLOOKUP(1,(DaqbookAssetTag=AssetPool[AssetTag])*(AssetPool[RootCategoryName]=""DAQ Modules""),AssetPool[SerialNumber],"""")",,,"=IF(OR(ISBLANK(D3),ISBLANK(D13)),"""",IF(D13<D3,""!!!!! DAQBOOK IS OUT OF CERTIFICATION !!!!!"",""""))",,,,,,,7,,,,#VALUE!,,,,,,
 ,,DaqBook Date Tested:,"=_xlfn.XLOOKUP(DaqbookAssetTag,DaqbookServiceRecords[asset_tag],DaqbookServiceRecords[service_date],"""")",,,"=IF(IF(COUNTIFS(DataForChannels1to14[],"">""&B2,DataForChannels1to14[],""<""&(B2+200))>0,1,0)=1,""!!!!! OVEN OVERSHOT IN POINTS 1-14 !!!!!"","""")",,,,,,,8,,,,#VALUE!,,,,,,
