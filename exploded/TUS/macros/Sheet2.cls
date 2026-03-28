@@ -22,7 +22,7 @@ Private Sub Worksheet_Calculate()
     Dim i As Long
     For i = 0 To UBound(iCells)
         With Range(rRanges(i))
-            .NumberFormat = IIf(Range(iCells(i)).value = 0, "0°F", "0.0°F")
+            .NumberFormat = IIf(Range(iCells(i)).value = 0, "0Â°F", "0.0Â°F")
         End With
     Next i
 

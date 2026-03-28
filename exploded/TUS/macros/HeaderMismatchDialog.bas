@@ -10,9 +10,9 @@ Public Function ShowHeaderMismatchWarning(title As String, message As String) As
     result = MsgBox(message & vbCrLf & vbCrLf & _
                    "Would you like to hide this type of warning in the future?" & vbCrLf & _
                    "(You can still see mapping info in the immediate window)" & vbCrLf & vbCrLf & _
-                   "• Click YES to hide future warnings" & vbCrLf & _
-                   "• Click NO to continue showing warnings" & vbCrLf & _
-                   "• Click CANCEL to skip this operation", _
+                   "â€¢ Click YES to hide future warnings" & vbCrLf & _
+                   "â€¢ Click NO to continue showing warnings" & vbCrLf & _
+                   "â€¢ Click CANCEL to skip this operation", _
                    vbYesNoCancel + vbExclamation, title)
     
     Select Case result

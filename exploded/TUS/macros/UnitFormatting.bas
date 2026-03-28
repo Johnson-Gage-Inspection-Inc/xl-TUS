@@ -4,19 +4,19 @@ Option Explicit
 ' ---------------------------------------------------------------------------
 ' UnitFormatting.bas
 '
-' Swaps temperature-unit number formats between °F and °C to match the
-' workbook's "Unit" named range ("°F" or "°C").
+' Swaps temperature-unit number formats between Â°F and Â°C to match the
+' workbook's "Unit" named range ("Â°F" or "Â°C").
 '
 ' Triggered by Worksheet_Calculate on UUTRangeTol (Sheet17.cls)
 '
 ' Format codes affected (5 unique patterns found by find_unit_formats.py):
-'   0\°\F                                          ->  0\°\C
-'   0.0\°\F                                        ->  0.0\°\C
-'   0.0\ \°\F                                      ->  0.0\ \°\C
-'   \±0.0\°\F                                      ->  \±0.0\°\C
-'   [>0]\+0.0\°\F;[<0]\-0.0\°\F;\ 0.0\°\F        ->  [>0]\+0.0\°\C;...
+'   0\Â°\F                                          ->  0\Â°\C
+'   0.0\Â°\F                                        ->  0.0\Â°\C
+'   0.0\ \Â°\F                                      ->  0.0\ \Â°\C
+'   \Â±0.0\Â°\F                                      ->  \Â±0.0\Â°\C
+'   [>0]\+0.0\Â°\F;[<0]\-0.0\Â°\F;\ 0.0\Â°\F        ->  [>0]\+0.0\Â°\C;...
 '
-' All patterns contain the literal substring °F (or °C), so a single
+' All patterns contain the literal substring Â°F (or Â°C), so a single
 ' Replace() call handles every variation.
 '
 ' Current formatting state is detected from Main!D15.NumberFormat rather
@@ -26,7 +26,7 @@ Option Explicit
 ' ---------------------------------------------------------------------------
 ' ApplyUnitFormats
 '
-' Reads the "Unit" named range and replaces °F<->°C in the NumberFormat
+' Reads the "Unit" named range and replaces Â°F<->Â°C in the NumberFormat
 ' property of every cell that carries a degree-symbol format code.
 '
 ' For large data sheets (Data_Sheet*) where only a single cell (J6) uses
@@ -38,7 +38,7 @@ Option Explicit
 ' variable that would reset on VBA project reset / unhandled error.
 ' ---------------------------------------------------------------------------
 Public Sub ApplyUnitFormats()
-    Dim deg As String:  deg = ChrW$(176)  ' °
+    Dim deg As String:  deg = ChrW$(176)  ' Â°
 
     ' Read the current unit from the named range
     Dim unitStr As String
