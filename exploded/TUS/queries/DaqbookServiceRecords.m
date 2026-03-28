@@ -21,9 +21,10 @@ let
             #"Changed Type" = Table.TransformColumnTypes(#"Expanded Column1",{{"service_date", type datetime}, {"due_date", type datetime}, {"asset_id", Int64.Type}, {"certificate_tn", type text}}),
             #"Inserted Text Before Delimiter" = Table.AddColumn(#"Changed Type", "asset_tag", each try Text.BeforeDelimiter([certificate_tn], "_") otherwise [certificate_tn], type text),
             #"Reordered Columns" = Table.ReorderColumns(#"Inserted Text Before Delimiter", schema),
-            #"Changed Type1" = Table.TransformColumnTypes(#"Reordered Columns",{{"service_date", type date}, {"due_date", type date}})
+            #"Changed Type1" = Table.TransformColumnTypes(#"Reordered Columns",{{"service_date", type date}, {"due_date", type date}}),
+            #"Replaced Value" = Table.ReplaceValue(#"Changed Type1","_","",Replacer.ReplaceText,{"certificate_tn"})
         in
-            #"Changed Type1"
+            #"Replaced Value"
     otherwise null,
 
     // --- Fallback: cached data from workbook table ---
