@@ -61,9 +61,12 @@ Public Sub ExportVisualBasicCode()
             If Err.Number <> 0 Then
                 MsgBox "Exported but UTF-8 conversion failed for " & VBComponent.Name & ": " & Err.Description, vbExclamation
                 Err.Clear
+            ElseIf Not fso.FileExists(path) Then
+                MsgBox "Exported but UTF-8 conversion failed for " & VBComponent.Name & ": output file missing after conversion.", vbExclamation
+            Else
+                count = count + 1
+                Debug.Print "Exported " & Left$(VBComponent.Name & ":" & Space(Padding), Padding) & path
             End If
-            count = count + 1
-            Debug.Print "Exported " & Left$(VBComponent.Name & ":" & Space(Padding), Padding) & path
         End If
 
         On Error GoTo 0
@@ -123,9 +126,14 @@ Private Sub ConvertAnsiFileToUTF8(filePath As String)
     binStream.Close
 
     ' 4. Replace the original only after a successful write
+    '    Move original to backup first so a MoveFile failure can't lose both files.
+    Dim backupPath As String
+    backupPath = filePath & ".bak"
     If fso.FileExists(tempPath) Then
-        fso.DeleteFile filePath
+        If fso.FileExists(backupPath) Then fso.DeleteFile backupPath
+        fso.MoveFile filePath, backupPath
         fso.MoveFile tempPath, filePath
+        fso.DeleteFile backupPath
     End If
 
     Set txtStream = Nothing
@@ -134,18 +142,32 @@ Private Sub ConvertAnsiFileToUTF8(filePath As String)
     Exit Sub
 
 ConvertFailed:
+    ' Capture the original error before cleanup can overwrite it
+    Dim origErrNum As Long
+    Dim origErrDesc As String
+    origErrNum = Err.Number
+    origErrDesc = Err.Description
+
     ' Clean up the temp file if it was partially written
     On Error Resume Next
     If Not txtStream Is Nothing Then txtStream.Close
     If Not binStream Is Nothing Then binStream.Close
     If Not fso Is Nothing Then
         If fso.FileExists(tempPath) Then fso.DeleteFile tempPath
+        ' Restore the original file from backup if it exists
+        Dim backupExists As Boolean
+        backupExists = fso.FileExists(filePath & ".bak")
+        If backupExists And Not fso.FileExists(filePath) Then
+            fso.MoveFile filePath & ".bak", filePath
+        ElseIf backupExists Then
+            fso.DeleteFile filePath & ".bak"
+        End If
     End If
     Set txtStream = Nothing
     Set binStream = Nothing
     Set fso = Nothing
     On Error GoTo 0
     Err.Raise vbObjectError + 1, "ConvertAnsiFileToUTF8", _
-        "UTF-8 conversion failed for " & filePath & ": " & Err.Description
+        "UTF-8 conversion failed for " & filePath & ": " & origErrDesc
 End Sub
 
