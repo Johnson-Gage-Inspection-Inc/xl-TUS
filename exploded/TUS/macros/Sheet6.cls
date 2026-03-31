@@ -10,23 +10,23 @@ Attribute VB_Exposed = True
 Option Explicit
 
 Dim lastRadioVal As Variant
-Dim lastWorkItemKey As Variant
+Dim lastWorkOrderKey As Variant
 
 Private Sub Worksheet_Calculate()
 
-    ' Watch G1 for GetFormattedWorkItemNumber(K14, D24)
+    ' Watch G2 for GetFormattedWorkItemNumber(K14)
     Dim currentKey As Variant
-    currentKey = Me.Range("G1").value
+    currentKey = Me.Range("G2").value
     
-    ' If G1 is an error, bail
+    ' If G2 is an error, bail
     If IsError(currentKey) Then GoTo CleanAfterCalc
     
     ' If our last cached value was an error (e.g., from a prior calc), reset it
-    If VarType(lastWorkItemKey) = vbError Then lastWorkItemKey = vbNullString
+    If VarType(lastWorkOrderKey) = vbError Then lastWorkOrderKey = vbNullString
     
     ' Safe compare
-    If CStr(currentKey) <> CStr(lastWorkItemKey) Then
-        lastWorkItemKey = currentKey
+    If CStr(currentKey) <> CStr(lastWorkOrderKey) Then
+        lastWorkOrderKey = currentKey
         On Error GoTo CleanAfterCalc
         Application.EnableEvents = False
         Sheet25.UpdateWorkItemDetails
@@ -44,9 +44,9 @@ Private Sub Worksheet_Activate()
     If IsError(v) Then v = vbNullString
     lastRadioVal = v
 
-    v = Me.Range("G1").Value2
+    v = Me.Range("G2").Value2
     If IsError(v) Then v = vbNullString
-    lastWorkItemKey = v
+    lastWorkOrderKey = v
 End Sub
 
 Private Sub Worksheet_Change(ByVal Target As Range)

@@ -1,5 +1,5 @@
 Attribute VB_Name = "QualerFormatting"
-Public Function GetFormattedWorkItemNumber(OrderInput As String, ItemInput As String) As String
+Public Function GetFormattedWorkItemNumber(OrderInput As String, Optional ItemInput As String = "") As String
     Dim prefix As String: prefix = "56561-"
     Dim rawOrder As String
 
@@ -25,6 +25,11 @@ Public Function GetFormattedWorkItemNumber(OrderInput As String, ItemInput As St
         childOrder = ""
     End If
 
+    If Len(Trim$(ItemInput)) = 0 Then
+        GetFormattedWorkItemNumber = prefix & mainOrder & childOrder
+        Exit Function
+    End If
+
     ' Parse ItemInput
     Dim itemMain As String, itemRev As String
     Dim rPos As Long: rPos = InStr(1, ItemInput, "R", vbTextCompare)
@@ -42,4 +47,3 @@ Public Function GetFormattedWorkItemNumber(OrderInput As String, ItemInput As St
     ' Return final formatted string
     GetFormattedWorkItemNumber = prefix & mainOrder & childOrder & "-" & paddedItem
 End Function
-
