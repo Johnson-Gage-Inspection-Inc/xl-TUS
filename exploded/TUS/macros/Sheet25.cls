@@ -11,15 +11,32 @@ Option Explicit
 Public Sub UpdateWorkItemDetails()
     Application.ScreenUpdating = False
 
+    ' Force synchronous refresh so data is available before Me.Calculate.
+    ' The connection's BackgroundQuery property stays True for manual/RefreshAll use,
+    ' but we temporarily override it here to avoid a race condition.
     If ConnectionExists("Query - WorkItemsCache") Then
-        ThisWorkbook.Connections("Query - WorkItemsCache").Refresh
+        SyncRefresh ThisWorkbook.Connections("Query - WorkItemsCache")
     ElseIf ConnectionExists("Query - WorkItemDetails") Then
         ' Backward-compatibility fallback for older workbook snapshots.
-        ThisWorkbook.Connections("Query - WorkItemDetails").Refresh
+        SyncRefresh ThisWorkbook.Connections("Query - WorkItemDetails")
     End If
 
     Me.Calculate
     Application.ScreenUpdating = True
+End Sub
+
+Private Sub SyncRefresh(ByVal conn As WorkbookConnection)
+    Dim wasBg As Boolean
+    On Error Resume Next
+    wasBg = conn.OLEDBConnection.BackgroundQuery
+    conn.OLEDBConnection.BackgroundQuery = False
+    On Error GoTo 0
+
+    conn.Refresh
+
+    On Error Resume Next
+    conn.OLEDBConnection.BackgroundQuery = wasBg
+    On Error GoTo 0
 End Sub
 
 Private Function ConnectionExists(ByVal connectionName As String) As Boolean
