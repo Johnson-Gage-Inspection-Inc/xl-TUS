@@ -1,0 +1,13 @@
+,"Johnson Gage and Inspection, Inc.",,,,,password: jgi,,
+,Thermocouple wire correction factor,,,,,,,
+,Ref. Report Number:,,,,,,,
+,In °F,,,,,,,-50.1
+,Lo Rdg,200,,Hi Rdg,450,,,-49.6
+,cf,-0.5,,cf,-1.4,,,=AVERAGE(I4:I5)
+,,,,,,,,
+,Interp Rdg,305,,,,,,
+,Interp cf,"=ROUND(C6+(C8-C5)*C13,1)",,,,,,
+,,,,,,,,
+,range Rdgs,=F5-C5,,,,,,
+,Range cfs,=F6-C6,,,,,,
+,factor,=C12/C11,,,,,,
