@@ -115,4 +115,30 @@ Public Sub GetFormattedWorkItemNumber_ExplicitExpectations()
 
 End Sub
 
+'@TestMethod
+Public Sub GetFormattedWorkItemNumber_InvalidNumericInputs_ReturnsBlank()
+
+    Dim cases As Variant
+    cases = Array( _
+        Array("ABC", "1"), _
+        Array("12345.A", "1"), _
+        Array("12345", "A1"), _
+        Array("56561-12345", "1X") _
+    )
+
+    Dim i As Long
+    For i = LBound(cases) To UBound(cases)
+        Dim rawOrder As String: rawOrder = cases(i)(0)
+        Dim rawItem As String: rawItem = cases(i)(1)
+
+        Dim actual As String
+        actual = GetFormattedWorkItemNumber(rawOrder, rawItem)
+
+        If Len(actual) <> 0 Then
+            Assert.Fail "FAILED invalid-input guard: OrderInput='" & rawOrder & "', ItemInput='" & rawItem & "'" & vbCrLf & _
+                        "Expected blank result, got: '" & actual & "'"
+        End If
+    Next i
+
+End Sub
 
