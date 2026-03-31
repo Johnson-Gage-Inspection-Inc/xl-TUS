@@ -16,6 +16,42 @@ Private Sub ModuleInitialize()
     Set Fakes = CreateObject("Rubberduck.FakesProvider")
 End Sub
 
+'@TestMethod
+Public Sub GetFormattedWorkItemNumber_OptionalItemInput_OmittedOrBlank()
+
+    Dim cases As Variant
+    cases = Array( _
+        Array("79123", "56561-079123"), _
+        Array("079123", "56561-079123"), _
+        Array("56561-079123", "56561-079123"), _
+        Array("79123.01", "56561-079123.01"), _
+        Array("56561-079123.01", "56561-079123.01") _
+    )
+
+    Dim i As Long
+    For i = LBound(cases) To UBound(cases)
+        Dim rawOrder As String: rawOrder = cases(i)(0)
+        Dim expected As String: expected = cases(i)(1)
+
+        Dim actualOmitted As String
+        actualOmitted = GetFormattedWorkItemNumber(rawOrder)
+        If Trim(actualOmitted) <> Trim(expected) Then
+            Assert.Fail "FAILED (omitted item): OrderInput='" & rawOrder & "'" & vbCrLf & _
+                        "Expected: '" & expected & "'" & vbCrLf & _
+                        "Actual:   '" & actualOmitted & "'"
+        End If
+
+        Dim actualBlank As String
+        actualBlank = GetFormattedWorkItemNumber(rawOrder, "")
+        If Trim(actualBlank) <> Trim(expected) Then
+            Assert.Fail "FAILED (blank item): OrderInput='" & rawOrder & "'" & vbCrLf & _
+                        "Expected: '" & expected & "'" & vbCrLf & _
+                        "Actual:   '" & actualBlank & "'"
+        End If
+    Next i
+
+End Sub
+
 '@ModuleCleanup
 Private Sub ModuleCleanup()
     'this method runs once per module.
@@ -79,4 +115,30 @@ Public Sub GetFormattedWorkItemNumber_ExplicitExpectations()
 
 End Sub
 
+'@TestMethod
+Public Sub GetFormattedWorkItemNumber_InvalidNumericInputs_ReturnsBlank()
+
+    Dim cases As Variant
+    cases = Array( _
+        Array("ABC", "1"), _
+        Array("12345.A", "1"), _
+        Array("12345", "A1"), _
+        Array("56561-12345", "1X") _
+    )
+
+    Dim i As Long
+    For i = LBound(cases) To UBound(cases)
+        Dim rawOrder As String: rawOrder = cases(i)(0)
+        Dim rawItem As String: rawItem = cases(i)(1)
+
+        Dim actual As String
+        actual = GetFormattedWorkItemNumber(rawOrder, rawItem)
+
+        If Len(actual) <> 0 Then
+            Assert.Fail "FAILED invalid-input guard: OrderInput='" & rawOrder & "', ItemInput='" & rawItem & "'" & vbCrLf & _
+                        "Expected blank result, got: '" & actual & "'"
+        End If
+    Next i
+
+End Sub
 

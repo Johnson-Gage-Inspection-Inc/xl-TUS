@@ -18,6 +18,12 @@ Public Function IsViewOnlySheet(ws As Worksheet) As Boolean
 
     On Error Resume Next
 
+    ' Keep these operational query sheets visible for user workflows.
+    If ws.Name = "Wire Sets" Or ws.Name = "Alerts" Then
+        IsViewOnlySheet = False
+        Exit Function
+    End If
+
     For Each lo In ws.ListObjects
         If lo.SourceType <> xlSrcRange Then
             IsViewOnlySheet = True

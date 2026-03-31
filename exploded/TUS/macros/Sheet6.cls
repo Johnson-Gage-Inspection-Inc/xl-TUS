@@ -10,30 +10,10 @@ Attribute VB_Exposed = True
 Option Explicit
 
 Dim lastRadioVal As Variant
-Dim lastWorkItemKey As Variant
 
 Private Sub Worksheet_Calculate()
-
-    ' Watch G1 for GetFormattedWorkItemNumber(K14, D24)
-    Dim currentKey As Variant
-    currentKey = Me.Range("G1").value
-    
-    ' If G1 is an error, bail
-    If IsError(currentKey) Then GoTo CleanAfterCalc
-    
-    ' If our last cached value was an error (e.g., from a prior calc), reset it
-    If VarType(lastWorkItemKey) = vbError Then lastWorkItemKey = vbNullString
-    
-    ' Safe compare
-    If CStr(currentKey) <> CStr(lastWorkItemKey) Then
-        lastWorkItemKey = currentKey
-        On Error GoTo CleanAfterCalc
-        Application.EnableEvents = False
-        Sheet25.UpdateWorkItemDetails
-    End If
-
-CleanAfterCalc:
-    Application.EnableEvents = True
+    ' Intentionally empty - K14 trigger moved to Worksheet_Change
+    ' to avoid calc-event suppression after synchronous PQ refresh.
 End Sub
 
 Private Sub Worksheet_Activate()
@@ -43,16 +23,21 @@ Private Sub Worksheet_Activate()
     v = Me.Range("L20").Value2
     If IsError(v) Then v = vbNullString
     lastRadioVal = v
-
-    v = Me.Range("G1").Value2
-    If IsError(v) Then v = vbNullString
-    lastWorkItemKey = v
 End Sub
 
 Private Sub Worksheet_Change(ByVal Target As Range)
 
+    ' K14 (JGI Order #) changed ? refresh WorkItemsCache
+    If Not Intersect(Target, Me.Range("K14")) Is Nothing Then
+        On Error GoTo HandleError
+        Application.EnableEvents = False
+        Application.ScreenUpdating = False
+        Sheet25.UpdateWorkItemDetails
+        GoTo CleanExit
+    End If
+
     'Setup Worksheet
-    ' On Error GoTo HandleError
+    On Error GoTo HandleError
 
     'Initialize variables
     Dim r, aCell As Range, wireSetForSF(6) As Range, searchedSFId(6) As Range
