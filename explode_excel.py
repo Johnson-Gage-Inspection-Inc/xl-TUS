@@ -58,7 +58,10 @@ def export_named_ranges(wb: openpyxl.Workbook, output_dir: Path):
         else:
             scope = "Workbook"
         comment = defn.comment or ""
-        rows.append([defn.name, defn.value, scope, comment])
+        refers_to = defn.value or ""
+        if refers_to and not refers_to.lstrip().startswith("="):
+            refers_to = f"={refers_to}"
+        rows.append([defn.name, refers_to, scope, comment])
 
     # Excel tables (ListObjects) also appear in Name Manager, but are not
     # included in wb.defined_names by openpyxl.
