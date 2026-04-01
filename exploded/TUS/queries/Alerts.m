@@ -49,7 +49,7 @@ let
     CachedData =
         try
             let
-                Existing = Excel.CurrentWorkbook(){[Name="Alerts"]}[Content],
+                Existing = Excel.CurrentWorkbook(){[Name="ServerAlerts"]}[Content],
                 NormalizedCached = Table.SelectColumns(Existing, RequiredColumns, MissingField.UseNull)
             in
                 NormalizedCached

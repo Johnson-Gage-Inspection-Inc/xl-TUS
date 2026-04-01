@@ -2,7 +2,6 @@ Name	Refers To	Scope	Comment
 _unit	UUTRangeTol!$V$2	Workbook	
 _xlnm.Recorder	Header_Info!$BG$2	Workbook	
 Alerts	='Survey'!$M$1:$T$41	Workbook	
-Alerts_1	='Alerts'!$A$3:$J$5	Workbook	
 AllDaqbookOffsets	='AllDaqbookOffsets'!$A$1:$F$1537	Workbook	
 AllWireOffsets	='WireOffsets'!$A$1:$D$176	Workbook	
 AllWireRollCerts	='WireOffsets'!$K$1:$P$35	Workbook	
@@ -76,6 +75,7 @@ SAT_Tolerance	Main!$D$20	Workbook
 SAT_Tolerance_Lookup	='Main'!$E$65:$H$77	Workbook	
 SBPOffsets	='SBPOffsets'!$A$1:$E$64	Workbook	
 SerialNumber	Header_Info!$AU$2	Workbook	
+ServerAlerts	='Alerts'!$A$3:$J$5	Workbook	
 Set_Point	Main!$D$15	Workbook	
 sns_empty	WireSets!#REF!	Workbook	
 sns_ok	WireSets!#REF!	Workbook	
