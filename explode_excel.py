@@ -5,6 +5,7 @@ import csv
 from pathlib import Path
 import openpyxl
 from openpyxl.cell.cell import Cell, MergedCell
+from openpyxl.utils.cell import absolute_coordinate
 
 
 def export_sheets_with_formulas(wb: openpyxl.Workbook, output_dir: Path):
@@ -40,7 +41,7 @@ def export_sheets_with_formulas(wb: openpyxl.Workbook, output_dir: Path):
 
 
 def export_named_ranges(wb: openpyxl.Workbook, output_dir: Path):
-    """Export all defined names (Name Manager) to a TSV file."""
+    """Export Name Manager-visible names (defined names + table names) to TSV."""
     tsv_path = output_dir / "names.tsv"
     sheet_names = wb.sheetnames
 
@@ -59,12 +60,27 @@ def export_named_ranges(wb: openpyxl.Workbook, output_dir: Path):
         comment = defn.comment or ""
         rows.append([defn.name, defn.value, scope, comment])
 
+    # Excel tables (ListObjects) also appear in Name Manager, but are not
+    # included in wb.defined_names by openpyxl.
+    for sheet in wb.worksheets:
+        sheet_escaped = sheet.title.replace("'", "''")
+        for table in sorted(sheet.tables.values(), key=lambda t: t.name.lower()):
+            if ":" in table.ref:
+                start, end = table.ref.split(":", 1)
+                abs_ref = f"{absolute_coordinate(start)}:{absolute_coordinate(end)}"
+            else:
+                abs_ref = absolute_coordinate(table.ref)
+            refers_to = f"='{sheet_escaped}'!{abs_ref}"
+            rows.append([table.name, refers_to, "Workbook", ""])
+
+    rows.sort(key=lambda row: row[0].lower())
+
     with open(tsv_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f, delimiter="\t")
         writer.writerow(["Name", "Refers To", "Scope", "Comment"])
         writer.writerows(rows)
 
-    print(f"    Exported {len(rows)} named ranges to {tsv_path}")
+    print(f"    Exported {len(rows)} Name Manager entries to {tsv_path}")
 
 
 def delete_existing():
