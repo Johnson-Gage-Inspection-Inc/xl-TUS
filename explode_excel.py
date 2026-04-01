@@ -7,8 +7,7 @@ import openpyxl
 from openpyxl.cell.cell import Cell, MergedCell
 
 
-def export_sheets_with_formulas(xlsx_path: Path, output_dir: Path):
-    wb = openpyxl.load_workbook(xlsx_path, data_only=False, keep_links=False)
+def export_sheets_with_formulas(wb: openpyxl.Workbook, output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     for sheet in wb.worksheets:
@@ -40,6 +39,34 @@ def export_sheets_with_formulas(xlsx_path: Path, output_dir: Path):
             writer.writerows(rows)
 
 
+def export_named_ranges(wb: openpyxl.Workbook, output_dir: Path):
+    """Export all defined names (Name Manager) to a TSV file."""
+    tsv_path = output_dir / "names.tsv"
+    sheet_names = wb.sheetnames
+
+    # Skip Excel internal names (_xlpm.* = LET/LAMBDA params,
+    # _xleta.* = internal function aliases)
+    INTERNAL_PREFIXES = ("_xlpm.", "_xleta.")
+
+    rows: list[list[str]] = []
+    for defn in sorted(wb.defined_names.values(), key=lambda d: d.name.lower()):
+        if any(defn.name.startswith(p) for p in INTERNAL_PREFIXES):
+            continue
+        if defn.localSheetId is not None:
+            scope = sheet_names[defn.localSheetId]
+        else:
+            scope = "Workbook"
+        comment = defn.comment or ""
+        rows.append([defn.name, defn.value, scope, comment])
+
+    with open(tsv_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f, delimiter="\t")
+        writer.writerow(["Name", "Refers To", "Scope", "Comment"])
+        writer.writerows(rows)
+
+    print(f"    Exported {len(rows)} named ranges to {tsv_path}")
+
+
 def delete_existing():
     path = "exploded/00 TUS cert/sheets"
     for child in Path(path).glob("*"):
@@ -63,7 +90,9 @@ def main():
         sheets_dir = exploded_root / "sheets"
 
         print(f"[+] Processing: {path.name}")
-        export_sheets_with_formulas(path, sheets_dir)
+        wb = openpyxl.load_workbook(path, data_only=False, keep_links=False)
+        export_sheets_with_formulas(wb, sheets_dir)
+        export_named_ranges(wb, exploded_root)
 
 
 if __name__ == "__main__":
