@@ -24,21 +24,16 @@ let
     FreshData =
         try
             let
-                Response = Web.Contents(
+                Source = Json.Document(Web.Contents(
                     "https://jgiapi.com",
                     [
                         RelativePath = "data-sync/alerts",
-                        Query = [limit = "250"],
-                        ManualStatusHandling = {200, 204, 400, 401, 403, 404, 409, 422, 500},
-                        Timeout = #duration(0, 0, 0, 30)
+                        Query = [limit = "250"]
                     ]
-                ),
-                Status = try Value.Metadata(Response)[Response.Status] otherwise 200,
-                ParsedJson = try Json.Document(Response) otherwise null,
-                Json = if Status = 200 then ParsedJson else null,
+                )),
                 AsTable =
-                    if Json <> null and Value.Is(Json, type list) then
-                        try Table.FromRecords(Json) otherwise null
+                    if Value.Is(Source, type list) then
+                        try Table.FromRecords(Source) otherwise null
                     else
                         null,
                 Normalized =
@@ -54,10 +49,10 @@ let
     CachedData =
         try
             let
-                cached = Excel.CurrentWorkbook(){[Name="SyncAlerts"]}[Content],
-                normalized = Table.SelectColumns(cached, RequiredColumns, MissingField.UseNull)
+                Existing = Excel.CurrentWorkbook(){[Name="ServerAlerts"]}[Content],
+                NormalizedCached = Table.SelectColumns(Existing, RequiredColumns, MissingField.UseNull)
             in
-                if Table.RowCount(normalized) > 0 then normalized else null
+                NormalizedCached
         otherwise
             null,
 

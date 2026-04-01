@@ -97,6 +97,10 @@ Private Sub ProtectAllSheets()
         If IsViewOnlySheet(ws) Then
             'ws.Visible = xlSheetVeryHidden  ' Debug
             ws.Visible = xlSheetHidden
+        ElseIf ws.Name = "Alerts" Or ws.Name = "Wire Sets" Then
+            ' PQ writes from a separate process; sheet protection blocks refresh
+            ' even with UserInterfaceOnly:=True.
+            ws.Visible = xlSheetVisible
         Else
             ' DrawingObjects:=False allows Autofill on unprotected ranges
             ws.Protect Password:="JGIPyro", _
@@ -110,6 +114,7 @@ Private Sub ProtectAllSheets()
 
     Application.EnableEvents = True
     Application.ScreenUpdating = True
+    
 End Sub
 Public Sub RunDataSyncAndRefresh()
     Dim conn As WorkbookConnection
@@ -163,3 +168,4 @@ SyncDataSync_After:
         Set conn = Nothing
     Next i
 End Sub
+

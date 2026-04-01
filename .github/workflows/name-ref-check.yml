@@ -1,0 +1,33 @@
+name: Name Reference Check
+
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+            - dev
+    workflow_dispatch:
+
+jobs:
+    check-broken-name-refs:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.13"
+
+            - name: Install dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install -r requirements.txt
+
+            - name: Regenerate exploded workbook artifacts
+              run: python explode_excel.py TUS.xltm
+
+            - name: Fail on broken Name Manager references
+              run: python check_broken_name_refs.py exploded/TUS/names.tsv

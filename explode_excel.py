@@ -5,10 +5,10 @@ import csv
 from pathlib import Path
 import openpyxl
 from openpyxl.cell.cell import Cell, MergedCell
+from openpyxl.utils.cell import absolute_coordinate
 
 
-def export_sheets_with_formulas(xlsx_path: Path, output_dir: Path):
-    wb = openpyxl.load_workbook(xlsx_path, data_only=False, keep_links=False)
+def export_sheets_with_formulas(wb: openpyxl.Workbook, output_dir: Path):
     output_dir.mkdir(parents=True, exist_ok=True)
 
     for sheet in wb.worksheets:
@@ -40,6 +40,52 @@ def export_sheets_with_formulas(xlsx_path: Path, output_dir: Path):
             writer.writerows(rows)
 
 
+def export_named_ranges(wb: openpyxl.Workbook, output_dir: Path):
+    """Export Name Manager-visible names (defined names + table names) to TSV."""
+    tsv_path = output_dir / "names.tsv"
+    sheet_names = wb.sheetnames
+
+    # Skip Excel internal names (_xlpm.* = LET/LAMBDA params,
+    # _xleta.* = internal function aliases)
+    INTERNAL_PREFIXES = ("_xlpm.", "_xleta.")
+
+    rows: list[list[str]] = []
+    for defn in sorted(wb.defined_names.values(), key=lambda d: d.name.lower()):
+        if any(defn.name.startswith(p) for p in INTERNAL_PREFIXES):
+            continue
+        if defn.localSheetId is not None:
+            scope = sheet_names[defn.localSheetId]
+        else:
+            scope = "Workbook"
+        comment = defn.comment or ""
+        refers_to = defn.value or ""
+        if refers_to and not refers_to.lstrip().startswith("="):
+            refers_to = f"={refers_to}"
+        rows.append([defn.name, refers_to, scope, comment])
+
+    # Excel tables (ListObjects) also appear in Name Manager, but are not
+    # included in wb.defined_names by openpyxl.
+    for sheet in wb.worksheets:
+        sheet_escaped = sheet.title.replace("'", "''")
+        for table in sorted(sheet.tables.values(), key=lambda t: t.name.lower()):
+            if ":" in table.ref:
+                start, end = table.ref.split(":", 1)
+                abs_ref = f"{absolute_coordinate(start)}:{absolute_coordinate(end)}"
+            else:
+                abs_ref = absolute_coordinate(table.ref)
+            refers_to = f"='{sheet_escaped}'!{abs_ref}"
+            rows.append([table.name, refers_to, "Workbook", ""])
+
+    rows.sort(key=lambda row: row[0].lower())
+
+    with open(tsv_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f, delimiter="\t")
+        writer.writerow(["Name", "Refers To", "Scope", "Comment"])
+        writer.writerows(rows)
+
+    print(f"    Exported {len(rows)} Name Manager entries to {tsv_path}")
+
+
 def delete_existing():
     path = "exploded/00 TUS cert/sheets"
     for child in Path(path).glob("*"):
@@ -63,7 +109,9 @@ def main():
         sheets_dir = exploded_root / "sheets"
 
         print(f"[+] Processing: {path.name}")
-        export_sheets_with_formulas(path, sheets_dir)
+        wb = openpyxl.load_workbook(path, data_only=False, keep_links=False)
+        export_sheets_with_formulas(wb, sheets_dir)
+        export_named_ranges(wb, exploded_root)
 
 
 if __name__ == "__main__":
