@@ -35,7 +35,6 @@ Derivative	Header_Info!$BO$2	Workbook
 DoF	Survey!$K$2	Workbook	
 Employees	='Employees'!$A$1:$D$53	Workbook	
 ExpendableWireData	Main!$C$47:$I$57	Workbook	
-Flags	UUTRangeTol!#REF!	Workbook	
 FormNumber	Header_Info!$AP$2	Workbook	
 Furnace	Header_Info!$AO$2	Workbook	
 FurnaceSpecificComments	Header_Info!$BJ$2	Workbook	
@@ -77,8 +76,6 @@ SBPOffsets	='SBPOffsets'!$A$1:$E$64	Workbook
 SerialNumber	Header_Info!$AU$2	Workbook	
 ServerAlerts	='Alerts'!$A$3:$J$5	Workbook	
 Set_Point	Main!$D$15	Workbook	
-sns_empty	WireSets!#REF!	Workbook	
-sns_ok	WireSets!#REF!	Workbook	
 Spec_Class	Standards_Info!$S$2:$S$4	Workbook	
 sp²	Survey!$K$4	Workbook	
 Survey	='Survey'!$A$1:$H$2	Workbook	
@@ -93,12 +90,10 @@ TestTemp	Main!$D$16	Workbook
 TN	Main!$D$14	Workbook	
 TolMax	UUTRangeTol!$P$7	Workbook	
 TolMin	UUTRangeTol!$P$6	Workbook	
-TolResolution	UUTRangeTol!#REF!	Workbook	
 TolSource	Header_Info!$AR$2	Workbook	
 Tracability	Standards_Info!$K$2:$K$6	Workbook	
 TUS_Start_Time	Main!$D$30	Workbook	
 types	Main!$D$47:$I$47	Workbook	
-types_empty	WireSets!#REF!	Workbook	
 Unit	UUTRangeTol!$U$2	Workbook	
 UnitNumber	Header_Info!$AV$2	Workbook	
 UsedWireSNs	Main!$O$5:$O$44	Workbook	
