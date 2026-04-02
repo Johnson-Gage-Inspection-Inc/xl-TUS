@@ -6,7 +6,7 @@
 ,cf,,,cf,
 ,,,,,
 ,Interp Rdg,=NominalTemp,,,
-,Interp cf,"=ROUND(C6+(C8-C5)*C13,1)",,,
+,Interp cf,=QRound(C6+(C8-C5)*C13),,,
 ,,,,,
 ,range Rdgs,=F5-C5,,,
 ,Range cfs,=F6-C6,,,
