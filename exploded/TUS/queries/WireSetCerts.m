@@ -7,7 +7,7 @@
 
 let
   // Force Sync to run first
-  _ = try Table.RowCount(SyncWireSetCerts) otherwise null,
+  _ = try Table.RowCount(Sync) otherwise null,
 
   // Then do the GET
   Source = Json.Document(Web.Contents("https://jgiapi.com", [RelativePath="wire-set-certs/"])),

@@ -108,5 +108,5 @@ WireSetSNs	=Main!$D$48:$I$48	Workbook
 WireSNs	='AllDaqbookOffsets'!$W$1:$X$293	Workbook	
 WorkingZoneSize	=Header_Info!$AY$2	Workbook	
 WorkItemNumber	=Main!$G$1	Workbook	Filter by CustomOrderNumber or CertificateNumber
-WorkItemsCache	='WorkItemDetails'!$E$1:$BO$2	Workbook	
+WorkItemsCache	='WorkItemDetails'!$E$1:$BP$2	Workbook	
 WorkOrderNumber	=Main!$G$2	Workbook	
