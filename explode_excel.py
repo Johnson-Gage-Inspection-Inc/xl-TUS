@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 import csv
+import time
 from pathlib import Path
 import openpyxl
 from openpyxl.cell.cell import Cell, MergedCell
@@ -109,7 +110,16 @@ def main():
         sheets_dir = exploded_root / "sheets"
 
         print(f"[+] Processing: {path.name}")
-        wb = openpyxl.load_workbook(path, data_only=False, keep_links=False)
+        for attempt in range(3):
+            try:
+                wb = openpyxl.load_workbook(path, data_only=False, keep_links=False)
+                break
+            except KeyboardInterrupt:
+                if attempt < 2:
+                    print(f"    File busy (attempt {attempt + 1}/3), retrying in 2s...")
+                    time.sleep(2)
+                else:
+                    raise
         export_sheets_with_formulas(wb, sheets_dir)
         export_named_ranges(wb, exploded_root)
 
