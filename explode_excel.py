@@ -99,6 +99,27 @@ def delete_existing():
             child.rmdir()
 
 
+def load_workbook_with_retry(path: Path, attempts: int = 3, delay_seconds: int = 2):
+    for attempt in range(1, attempts + 1):
+        try:
+            return openpyxl.load_workbook(path, data_only=False, keep_links=False)
+        except PermissionError:
+            if attempt >= attempts:
+                raise
+            print(
+                f"    File busy (attempt {attempt}/{attempts}), retrying in {delay_seconds}s..."
+            )
+            time.sleep(delay_seconds)
+        except OSError as exc:
+            # Windows lock/share violations can surface as OSError.
+            if getattr(exc, "winerror", None) not in {32, 33} or attempt >= attempts:
+                raise
+            print(
+                f"    File busy (attempt {attempt}/{attempts}), retrying in {delay_seconds}s..."
+            )
+            time.sleep(delay_seconds)
+
+
 def main():
     delete_existing()
     for path_str in sys.argv[1:]:
@@ -110,16 +131,7 @@ def main():
         sheets_dir = exploded_root / "sheets"
 
         print(f"[+] Processing: {path.name}")
-        for attempt in range(3):
-            try:
-                wb = openpyxl.load_workbook(path, data_only=False, keep_links=False)
-                break
-            except KeyboardInterrupt:
-                if attempt < 2:
-                    print(f"    File busy (attempt {attempt + 1}/3), retrying in 2s...")
-                    time.sleep(2)
-                else:
-                    raise
+        wb = load_workbook_with_retry(path)
         export_sheets_with_formulas(wb, sheets_dir)
         export_named_ranges(wb, exploded_root)
 
