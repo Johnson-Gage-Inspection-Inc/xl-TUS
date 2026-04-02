@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 import csv
+import time
 from pathlib import Path
 import openpyxl
 from openpyxl.cell.cell import Cell, MergedCell
@@ -98,6 +99,27 @@ def delete_existing():
             child.rmdir()
 
 
+def load_workbook_with_retry(path: Path, attempts: int = 3, delay_seconds: int = 2):
+    for attempt in range(1, attempts + 1):
+        try:
+            return openpyxl.load_workbook(path, data_only=False, keep_links=False)
+        except PermissionError:
+            if attempt >= attempts:
+                raise
+            print(
+                f"    File busy (attempt {attempt}/{attempts}), retrying in {delay_seconds}s..."
+            )
+            time.sleep(delay_seconds)
+        except OSError as exc:
+            # Windows lock/share violations can surface as OSError.
+            if getattr(exc, "winerror", None) not in {32, 33} or attempt >= attempts:
+                raise
+            print(
+                f"    File busy (attempt {attempt}/{attempts}), retrying in {delay_seconds}s..."
+            )
+            time.sleep(delay_seconds)
+
+
 def main():
     delete_existing()
     for path_str in sys.argv[1:]:
@@ -109,7 +131,7 @@ def main():
         sheets_dir = exploded_root / "sheets"
 
         print(f"[+] Processing: {path.name}")
-        wb = openpyxl.load_workbook(path, data_only=False, keep_links=False)
+        wb = load_workbook_with_retry(path)
         export_sheets_with_formulas(wb, sheets_dir)
         export_named_ranges(wb, exploded_root)
 

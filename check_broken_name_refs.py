@@ -6,7 +6,9 @@ from pathlib import Path
 
 
 def main() -> int:
-    names_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("exploded/TUS/names.tsv")
+    names_path = (
+        Path(sys.argv[1]) if len(sys.argv) > 1 else Path("exploded/TUS/names.tsv")
+    )
 
     if not names_path.exists():
         print(f"ERROR: names file not found: {names_path}")
