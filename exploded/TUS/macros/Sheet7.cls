@@ -83,63 +83,80 @@ Public Sub PasteChannelBlock(sheetName As String, startCellAddress As String, ch
     For i = LBound(lines) To UBound(lines)
         If Trim(lines(i)) <> "" Then cleanLines.Add lines(i)
     Next i
-    If cleanLines.count < 3 Then
-        MsgBox "Not enough non-empty lines in data. Expected at least header + spacer + one row.", vbCritical
+    If cleanLines.count < 1 Then
+        MsgBox "No data found in clipboard.", vbCritical
         Exit Sub
     End If
 
-    ' Parse header
-    pastedHeader = Split(Replace(cleanLines(1), vbTab, ","), ",")
-    If UBound(pastedHeader) + 1 > colCount Then
-        MsgBox "Header column count mismatch for " & label & ". Expected " & colCount & " columns.", vbCritical
-        Exit Sub
-    End If
+    ' Only treat row 1 as a header if its first cell is "Time"
+    Dim isHeaderRow As Boolean
+    isHeaderRow = (LCase(Trim(Split(Replace(cleanLines(1), vbTab, ","), ",")(0))) = "time")
 
-    headerMismatch = False
-    For j = 0 To Application.Min(UBound(expectedHeader), UBound(pastedHeader))
-        If j = 0 Then
-            If LCase(Trim(pastedHeader(0))) <> "time" Then
+    If isHeaderRow Then
+        ' Parse header
+        pastedHeader = Split(Replace(cleanLines(1), vbTab, ","), ",")
+        If UBound(pastedHeader) + 1 > colCount Then
+            MsgBox "Header column count mismatch for " & label & ". Expected " & colCount & " columns.", vbCritical
+            Exit Sub
+        End If
+
+        headerMismatch = False
+        For j = 0 To Application.Min(UBound(expectedHeader), UBound(pastedHeader))
+            If j = 0 Then
+                If LCase(Trim(pastedHeader(0))) <> "time" Then
+                    headerMismatch = True
+                    msg = msg & "Time <- " & pastedHeader(0) & vbCrLf
+                End If
+            ElseIf val(pastedHeader(j)) <> val(expectedHeader(j)) Then
                 headerMismatch = True
-                msg = msg & "Time <- " & pastedHeader(0) & vbCrLf
+                msg = msg & expectedHeader(j) & " <- " & pastedHeader(j) & vbCrLf
             End If
-        ElseIf val(pastedHeader(j)) <> val(expectedHeader(j)) Then
-            headerMismatch = True
-            msg = msg & expectedHeader(j) & " <- " & pastedHeader(j) & vbCrLf
-        End If
-    Next j
-    If headerMismatch Then
-        ' Check user setting to see if warnings should be hidden
-        If Not UserSettings.GetHideHeaderMismatchWarning() Then
-            Dim fullMessage As String
-            fullMessage = label & ": Header mismatch detected. Using existing headers." & vbCrLf & vbCrLf & "Mapping (Worksheet) <- (Clipboard):" & vbCrLf & msg
-            Dim userResponse As Boolean
-            userResponse = HeaderMismatchDialog.ShowHeaderMismatchWarning("Header Diff for " & label, fullMessage)
-            If Not userResponse Then Exit Sub
-        Else
-            ' Still log the information to immediate window for debugging
-            Debug.Print "Header mismatch for " & label & " (warning suppressed by user setting)"
-            Debug.Print "Mapping (Worksheet) <- (Clipboard):"
-            Debug.Print msg
+        Next j
+        If headerMismatch Then
+            ' Check user setting to see if warnings should be hidden
+            If Not UserSettings.GetHideHeaderMismatchWarning() Then
+                Dim fullMessage As String
+                fullMessage = label & ": Header mismatch detected. Using existing headers." & vbCrLf & vbCrLf & "Mapping (Worksheet) <- (Clipboard):" & vbCrLf & msg
+                Dim userResponse As Boolean
+                userResponse = HeaderMismatchDialog.ShowHeaderMismatchWarning("Header Diff for " & label, fullMessage)
+                If Not userResponse Then Exit Sub
+            Else
+                ' Still log the information to immediate window for debugging
+                Debug.Print "Header mismatch for " & label & " (warning suppressed by user setting)"
+                Debug.Print "Mapping (Worksheet) <- (Clipboard):"
+                Debug.Print msg
+            End If
         End If
     End If
 
-    ' Check if row 2 is a blank spacer row (optional)
+    ' Only skip row 2 as a blank spacer if row 1 was a header AND row 2 is blank
     Dim hasSpacerRow As Boolean
     hasSpacerRow = False
-    fields = Split(Replace(cleanLines(2), vbTab, ","), ",")
-    Dim isBlankRow As Boolean
-    isBlankRow = True
-    For j = LBound(fields) To UBound(fields)
-        If Trim(fields(j)) <> "" Then
-            isBlankRow = False
-            Exit For
-        End If
-    Next j
-    hasSpacerRow = isBlankRow
+    If isHeaderRow And cleanLines.count >= 2 Then
+        Dim isBlankRow As Boolean
+        isBlankRow = True
+        Dim spacerFields As Variant
+        spacerFields = Split(Replace(cleanLines(2), vbTab, ","), ",")
+        For j = LBound(spacerFields) To UBound(spacerFields)
+            If Trim(spacerFields(j)) <> "" Then
+                isBlankRow = False
+                Exit For
+            End If
+        Next j
+        hasSpacerRow = isBlankRow
+    End If
 
-    ' Validate all data rows (start from row 3 if spacer exists, row 2 if not)
+    ' Data starts after header (if present) and blank spacer (if present)
     Dim dataStartIndex As Long
-    dataStartIndex = IIf(hasSpacerRow, 3, 2)
+    dataStartIndex = 1
+    If isHeaderRow Then dataStartIndex = IIf(hasSpacerRow, 3, 2)
+
+    If cleanLines.count < dataStartIndex Then
+        MsgBox "No data rows found after header.", vbCritical
+        Exit Sub
+    End If
+
+    ' Validate all data rows
     
     For i = dataStartIndex To cleanLines.count
         fields = Split(Replace(cleanLines(i), vbTab, ","), ",")
@@ -167,12 +184,12 @@ Public Sub PasteChannelBlock(sheetName As String, startCellAddress As String, ch
     Set ws = ThisWorkbook.Sheets(sheetName)
     Set startCell = ws.Range(startCellAddress)
 
-    Dim numRows As Long: numRows = cleanLines.count - (IIf(hasSpacerRow, 2, 1))
+    Dim numRows As Long: numRows = cleanLines.count - (dataStartIndex - 1)
     Dim numCols As Long: numCols = colCount
     Dim data() As Variant: ReDim data(1 To numRows, 1 To numCols)
 
     For i = 1 To numRows
-        fields = Split(Replace(cleanLines(i + (IIf(hasSpacerRow, 2, 1))), vbTab, ","), ",")
+        fields = Split(Replace(cleanLines(i + (dataStartIndex - 1)), vbTab, ","), ",")
         For j = 0 To UBound(fields)
             data(i, j + 1) = Trim(fields(j))
         Next j
