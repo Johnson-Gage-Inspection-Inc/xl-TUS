@@ -49,6 +49,7 @@ let
         if Text.Length(WorkOrderNumber) = 0 then EmptyCache
         else if FreshData <> null then FreshData
         else if CachedData <> null then CachedData
-        else EmptyCache
+        else EmptyCache,
+    #"Filtered Rows" = Table.SelectRows(FinalData, each ([ServiceType] = "TUS Calibration"))
 in
-    FinalData
+    #"Filtered Rows"
