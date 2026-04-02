@@ -9,6 +9,8 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Option Explicit
 Public Sub UpdateWorkItemDetails()
+    On Error GoTo CleanFail
+
     Application.ScreenUpdating = False
 
     ' Force synchronous refresh so data is available before Me.Calculate.
@@ -22,11 +24,19 @@ Public Sub UpdateWorkItemDetails()
     End If
 
     Me.Calculate
+
+CleanExit:
     Application.ScreenUpdating = True
+    Exit Sub
+
+CleanFail:
+    Resume CleanExit
 End Sub
 
 Private Sub SyncRefresh(ByVal conn As WorkbookConnection)
     Dim wasBg As Boolean
+    On Error GoTo CleanUp
+
     On Error Resume Next
     wasBg = conn.OLEDBConnection.BackgroundQuery
     conn.OLEDBConnection.BackgroundQuery = False
@@ -34,9 +44,14 @@ Private Sub SyncRefresh(ByVal conn As WorkbookConnection)
 
     conn.Refresh
 
+CleanUp:
     On Error Resume Next
     conn.OLEDBConnection.BackgroundQuery = wasBg
     On Error GoTo 0
+
+    If Err.Number <> 0 Then
+        Err.Raise Err.Number, Err.Source, Err.Description
+    End If
 End Sub
 
 Private Function ConnectionExists(ByVal connectionName As String) As Boolean

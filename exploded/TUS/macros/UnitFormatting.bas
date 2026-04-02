@@ -63,7 +63,7 @@ Public Sub ApplyUnitFormats()
     targetDeg = deg & unitLetter
     sourceDeg = deg & IIf(unitLetter = "F", "C", "F")
 
-    On Error GoTo Cleanup
+    On Error GoTo CleanUp
     Application.ScreenUpdating = False
     Application.EnableEvents = False
 
@@ -79,7 +79,7 @@ Public Sub ApplyUnitFormats()
         Set ws = Nothing
         On Error Resume Next
         Set ws = ThisWorkbook.Sheets(bigSheets(i))
-        On Error GoTo Cleanup
+        On Error GoTo CleanUp
         If Not ws Is Nothing Then
             fmt = ws.Range("J6").NumberFormat
             If InStr(1, fmt, sourceDeg, vbBinaryCompare) > 0 Then
@@ -99,7 +99,7 @@ Public Sub ApplyUnitFormats()
         Set ws = Nothing
         On Error Resume Next
         Set ws = ThisWorkbook.Sheets(smallSheets(i))
-        On Error GoTo Cleanup
+        On Error GoTo CleanUp
         If ws Is Nothing Then GoTo NextSheet
 
         For Each cell In ws.UsedRange
@@ -114,7 +114,7 @@ NextSheet:
         Set ws = Nothing
     Next i
 
-Cleanup:
+CleanUp:
     Application.EnableEvents = True
     Application.ScreenUpdating = True
 End Sub

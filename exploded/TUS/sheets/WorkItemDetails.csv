@@ -1,2 +1,2 @@
 assetId,clientCompanyId,dropdown,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-"=_xlfn.XLOOKUP(Main!$D$24,WorkItemsCache[OrderItemNumber],WorkItemsCache[AssetId])","=_xlfn.XLOOKUP(Main!$D$24,WorkItemsCache[OrderItemNumber],WorkItemsCache[ClientCompanyId])","=WorkItemsCache[[#This Row],[OrderItemNumber]]",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+"=_xlfn.XLOOKUP(Main!$D$24,WorkItemsCache[OrderItemNumber],WorkItemsCache[AssetId])","=_xlfn.XLOOKUP(Main!$D$24,WorkItemsCache[OrderItemNumber],WorkItemsCache[ClientCompanyId])","=WorkItemsCache[OrderItemNumber]",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
