@@ -127,12 +127,14 @@ def main():
         if path.suffix.lower() not in {".xlsx", ".xltm", ".xlsm", ".xltx", ".xlsb"}:
             continue
 
-        exploded_root = Path("exploded") / path.stem
-        sheets_dir = exploded_root / "sheets"
-
         print(f"[+] Processing: {path.name}")
         wb = load_workbook_with_retry(path)
-        export_sheets_with_formulas(wb, sheets_dir)
+        if wb is None:
+            print(f"    Failed to load workbook after multiple attempts: {path}")
+            continue
+
+        exploded_root = Path("exploded") / path.stem
+        export_sheets_with_formulas(wb, exploded_root / "sheets")
         export_named_ranges(wb, exploded_root)
 
 
