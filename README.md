@@ -3,17 +3,16 @@
 
 This is the official repository for tracking and maintaining the Excel workbook for TUS certificates.  This repository houses [Usage instructions](#usage-instructions), [releases](https://github.com/Johnson-Gage-Inspection-Inc/xl-TUS/releases), [changes](https://github.com/Johnson-Gage-Inspection-Inc/xl-TUS/compare), and other [Documentation](#documentation).
 
-<!-- TOC -->
+<!-- TOC tocDepth:2..4 -->
 
-- [Temperature Uniformity Survey Workbook](#temperature-uniformity-survey-workbook)
-    - [Usage instructions](#usage-instructions)
-        - [Minimum Excel version](#minimum-excel-version)
-        - [Initialization One time per user, per machine](#initialization-one-time-per-user-per-machine)
-            - [Trust settings](#trust-settings)
-            - [Sharepoint Authentication](#sharepoint-authentication)
-            - [JGI server authentication](#jgi-server-authentication)
-        - [Core Workflow Once per calibration](#core-workflow-once-per-calibration)
-    - [Documentation](#documentation)
+- [Usage instructions](#usage-instructions)
+   - [Minimum Excel version](#minimum-excel-version)
+   - [Initialization (One time per user, per machine)](#initialization-one-time-per-user-per-machine)
+      - [Trust settings](#trust-settings)
+      - [Sharepoint Authentication](#sharepoint-authentication)
+      - [JGI server authentication](#jgi-server-authentication)
+   - [**Core Workflow** (Once per calibration)](#core-workflow-once-per-calibration)
+- [**Documentation**](#documentation)
 
 <!-- /TOC -->
 ---
