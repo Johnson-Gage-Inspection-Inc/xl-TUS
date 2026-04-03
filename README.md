@@ -7,6 +7,7 @@ This is the official repository for tracking and maintaining the Excel workbook 
 
 - [Temperature Uniformity Survey Workbook](#temperature-uniformity-survey-workbook)
     - [Usage instructions](#usage-instructions)
+        - [Minimum Excel version](#minimum-excel-version)
         - [Initialization One time per user, per machine](#initialization-one-time-per-user-per-machine)
             - [Trust settings](#trust-settings)
             - [Sharepoint Authentication](#sharepoint-authentication)
