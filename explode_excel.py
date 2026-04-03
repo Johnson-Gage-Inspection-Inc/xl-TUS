@@ -99,7 +99,9 @@ def delete_existing():
             child.rmdir()
 
 
-def load_workbook_with_retry(path: Path, attempts: int = 3, delay_seconds: int = 2):
+def load_workbook_with_retry(
+    path: Path, attempts: int = 3, delay_seconds: int = 2
+) -> openpyxl.Workbook:
     for attempt in range(1, attempts + 1):
         try:
             return openpyxl.load_workbook(path, data_only=False, keep_links=False)
@@ -118,6 +120,7 @@ def load_workbook_with_retry(path: Path, attempts: int = 3, delay_seconds: int =
                 f"    File busy (attempt {attempt}/{attempts}), retrying in {delay_seconds}s..."
             )
             time.sleep(delay_seconds)
+    raise RuntimeError(f"Failed to load workbook after {attempts} attempts: {path}")
 
 
 def main():
@@ -129,9 +132,6 @@ def main():
 
         print(f"[+] Processing: {path.name}")
         wb = load_workbook_with_retry(path)
-        if wb is None:
-            print(f"    Failed to load workbook after multiple attempts: {path}")
-            continue
 
         exploded_root = Path("exploded") / path.stem
         export_sheets_with_formulas(wb, exploded_root / "sheets")
