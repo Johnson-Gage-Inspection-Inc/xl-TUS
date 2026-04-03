@@ -7,6 +7,7 @@ This is the official repository for tracking and maintaining the Excel workbook 
 
 - [Temperature Uniformity Survey Workbook](#temperature-uniformity-survey-workbook)
     - [Usage instructions](#usage-instructions)
+        - [Minimum Excel version](#minimum-excel-version)
         - [Initialization One time per user, per machine](#initialization-one-time-per-user-per-machine)
             - [Trust settings](#trust-settings)
             - [Sharepoint Authentication](#sharepoint-authentication)
@@ -18,6 +19,20 @@ This is the official repository for tracking and maintaining the Excel workbook 
 ---
 
 ## Usage instructions
+
+### Minimum Excel version
+
+This workbook uses modern Excel formula features, including TRIMRANGE and trim references such as `:.`.
+
+- Minimum known requirement: Microsoft 365 Excel with support for TRIMRANGE/trim references.
+- Microsoft announced initial availability in Beta Channel Version 2409 (Build 18020.2000) or later.
+- For JGI use, standardize all machines to the same Microsoft 365 update channel and a validated build.
+
+Quick compatibility check (on each machine):
+
+1. In a blank workbook, enter `=SUM(A1:.A10)`.
+2. If the formula parses and evaluates, trim references are supported.
+3. If Excel returns a parse error or `#NAME?`, update Excel before using this workbook.
 
 ### Initialization (One time per user, per machine)
 
