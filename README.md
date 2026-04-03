@@ -30,7 +30,7 @@ This workbook uses modern Excel formula features, including TRIMRANGE and trim r
 
 Quick compatibility check (on each machine):
 
-1. In a blank workbook, enter `=SUM(A1:.$A10)`.
+1. In a blank workbook, enter `=SUM(A1:.A10)`.
 2. If the formula parses and evaluates, trim references are supported.
 3. If Excel returns a parse error or `#NAME?`, update Excel before using this workbook.
 
