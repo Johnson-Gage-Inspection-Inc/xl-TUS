@@ -15,7 +15,7 @@
   _xlfn.BYCOL(_xlpm.tbl, _xlfn.LAMBDA(_xlpm.col, IF(COUNTA(_xlpm.col)>0, INDEX(_xlpm.hdrs, 1, COLUMN(_xlpm.col) - COLUMN(INDEX(_xlpm.tbl,1,1)) + 1), """")))
 )",,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,
-"=TEXT(B14:B903, ""h:mm"")",=DataForChannels1to14[],0,0,0,0,0,0,0,0,0,0,0,0,0,0,,
+"=TEXT(B14:B903, ""h:mm"")",=DataForChannels1to14[Time],"=_xlfn.MAP(DataForChannels1to14[[1]:[14]], _xlfn.LAMBDA(_xlpm.cell, IF(_xlpm.cell="""", """", CONVERT(_xlpm.cell, ""F"", _unit))))",,,,,,,,,,,,,,,
 0:00,,,,,,,,,,,,,,,,,
 0:00,,,,,,,,,,,,,,,,,
 0:00,,,,,,,,,,,,,,,,,

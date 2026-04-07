@@ -14,8 +14,8 @@
   _xlpm.hdrs, DataForChannels15to28[#Headers],
   _xlfn.BYCOL(_xlpm.tbl, _xlfn.LAMBDA(_xlpm.col, IF(COUNTA(_xlpm.col)>0, INDEX(_xlpm.hdrs, 1, COLUMN(_xlpm.col) - COLUMN(INDEX(_xlpm.tbl,1,1)) + 1), """")))
 )",,,,,,,,,,,,,,,
-,,,,,,,,,,,,"=IF(ISBLANK(DaqBook_RAW_Data!AB3),"""",DaqBook_RAW_Data!AB3)","=IF(ISBLANK(DaqBook_RAW_Data!AC3),"""",DaqBook_RAW_Data!AC3)","=IF(ISBLANK(DaqBook_RAW_Data!AD3),"""",DaqBook_RAW_Data!AD3)",,
-"=TEXT(B14:B903, ""h:mm"")",=DataForChannels15to28[],0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+,,,,,,,,,,,,,,,,
+"=TEXT(B14:B903, ""h:mm"")",=DataForChannels15to28[Time],"=_xlfn.MAP(DataForChannels15to28[[15]:[28]], _xlfn.LAMBDA(_xlpm.cell, IF(_xlpm.cell="""", """", CONVERT(_xlpm.cell, ""F"", _unit))))",,,,,,,,,,,,,,
 0:00,,,,,,,,,,,,,,,,
 0:00,,,,,,,,,,,,,,,,
 0:00,,,,,,,,,,,,,,,,
