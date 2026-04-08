@@ -23,8 +23,9 @@ Private Sub Worksheet_Calculate()
     deg = ChrW$(176)
     On Error Resume Next
     unitStr = CStr(ThisWorkbook.names("Unit").RefersToRange.value)
-    If unitStr = "" Then unitStr = CStr(Application.Range("Unit").value)
+    If unitStr = "" Then unitStr = Trim$(CStr(ThisWorkbook.names("Unit").RefersToRange.value))
     On Error GoTo HandleError
+    unitStr = Trim$(unitStr)
     If unitStr = "" Then unitStr = deg & "F"
     unitLetter = Right$(unitStr, 1)
     If unitLetter <> "F" And unitLetter <> "C" Then unitLetter = "F"
