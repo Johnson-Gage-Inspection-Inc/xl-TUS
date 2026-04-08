@@ -1,5 +1,6 @@
+# Renewing Authentication in Excel
 
-This document serves as a guide to help you recognize when you need to refresh your authentication token, and how to do it.
+This document serves as a guide to help you recognize when you need to refresh your authentication token, and how to do so.
 
 ## Symptom
 
@@ -41,4 +42,7 @@ To resolve this, you'll need to clear out the old tokens.  Once the old tokens a
 <img width="570" height="167" alt="image" src="https://github.com/user-attachments/assets/5409b9c6-12b6-476b-acdc-20c7dec00935" />
 
 
-4.  Follow the usual steps for authentication.
+4.  Follow the [usual steps](AuthenticationSOP.md) for authentication.
+    - **4.1** Select `Organizational Account`
+    - **4.2** Sign in with your work account (you@jgiquality.com)
+    - **4.3** Click `Connect`
