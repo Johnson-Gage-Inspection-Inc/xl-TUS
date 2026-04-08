@@ -47,7 +47,6 @@ Quick compatibility check (on each machine):
 
    ![image](https://github.com/user-attachments/assets/13446558-20d6-4e32-9b2b-14473747c75c)
 
-
 3. Select your work account (you@jgiquality.com)
 
    ![image](https://github.com/user-attachments/assets/a09f10c1-6549-4cf8-857e-487315c2a98a)
@@ -58,19 +57,9 @@ Quick compatibility check (on each machine):
 
 #### JGI server authentication
 
-6. When prompted for `https://jgiapi.com`, just click `Connect`.
+When prompted for `https://jgiapi.com`, follow the same steps as the SharePoint authentication above (select `Organizational Account`, sign in with your work account, and click `Connect`).
 
-   ![image](https://github.com/user-attachments/assets/f9cd3763-809f-4b31-9823-90032e1669d8)
-
-   > This will return a warning "We couldn't authenticate with the credentials provided. Please try again". This is expected.
-
-   ![image](https://github.com/user-attachments/assets/b59042bd-ea69-4f31-97d7-525936571f6c)
-
-7. Now, you'll by asked to authenticate to `https://jgiapi.com/wire-offsets`.  Repeat steps 2-4 for this endpoint.
-
-   ![image](https://github.com/user-attachments/assets/0b0a41b2-5ece-40a6-aa43-c30a7775962d)
-
-   ![image](https://github.com/user-attachments/assets/29da3139-63ea-459f-b5dd-39557ae92e1b)
+For complete authentication instructions with screenshots, see [Authentication SOP](docs/AuthenticationSOP.md).
 
 
 ### **Core Workflow** (Once per calibration)
