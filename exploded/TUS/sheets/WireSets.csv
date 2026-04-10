@@ -1,8 +1,8 @@
 ,,,,,,,,,,Daqbook Type,,,,,TC Type,Daqbook Type
 ,,,,,,,,,,"=IF(DaqbookAssetTag<>"""",LEFT(DaqbookAssetTag,1),NA())",,,,,ENV,J
 ,,,,,,,,,,,,,,,J,J
-,,,,,,,,Daqbook Compatibility,,daqbook_ok,,,,,K,K
-,,,,,,,,"=_xlfn.XLOOKUP(WireSets[[#This Row],[type]],Table6[TC Type],Table6[Daqbook Type],NA())",,"=IF(ISNA($K$2), TRUE, $K$2=WireSets[[#This Row],[Daqbook Compatibility]])",,,"=_xlfn._xlws.FILTER(WireSets[serial_number],WireSets[daqbook_ok])","=_xlfn.UNIQUE(_xlfn._xlws.FILTER(WireSets[type],WireSets[daqbook_ok]))",N,N
+,,,,,,,,Daqbook Compatibility,,daqbook_ok,,,Wire Set S/Ns:,Wire Type,K,K
+,,,,,,,,"=_xlfn.XLOOKUP(WireSets[[#This Row],[type]],Table6[TC Type],Table6[Daqbook Type],NA())",,"=IF(ISNA($K$2), TRUE, $K$2=WireSets[[#This Row],[Daqbook Compatibility]])",,,"=IF(Main!K47=1, _xlfn._xlws.FILTER(WireSets[serial_number],WireSets[daqbook_ok]), ""1-""&_xlfn.SEQUENCE(39,1,2,1))","=_xlfn.UNIQUE(_xlfn._xlws.FILTER(WireSets[type],WireSets[daqbook_ok]))",N,N
 ,,,,,,,,"=_xlfn.XLOOKUP(WireSets[[#This Row],[type]],Table6[TC Type],Table6[Daqbook Type],NA())",,"=IF(ISNA($K$2), TRUE, $K$2=WireSets[[#This Row],[Daqbook Compatibility]])",,,J01-J24,J,SBP,N
 ,,,,,,,,"=_xlfn.XLOOKUP(WireSets[[#This Row],[type]],Table6[TC Type],Table6[Daqbook Type],NA())",,"=IF(ISNA($K$2), TRUE, $K$2=WireSets[[#This Row],[Daqbook Compatibility]])",,,J101-J110,K,,
 ,,,,,,,,"=_xlfn.XLOOKUP(WireSets[[#This Row],[type]],Table6[TC Type],Table6[Daqbook Type],NA())",,"=IF(ISNA($K$2), TRUE, $K$2=WireSets[[#This Row],[Daqbook Compatibility]])",,,J111-J120,N,,
