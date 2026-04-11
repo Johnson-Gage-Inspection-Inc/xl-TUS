@@ -28,7 +28,6 @@ Private Sub LoadTestChannelBlock(tableName As String, startCell As String, chann
     With wsMain
         .Range("D26:D28").value = "9:04:00 AM"
         .Range("D30").value = "9:40:00 AM"
-        .Range("D32").value = "30"
     End With
     Dim rawText As String
     rawText = CreateObject("Scripting.FileSystemObject").OpenTextFile(tsvPath).ReadAll
@@ -97,7 +96,7 @@ End Sub
 
 Private Sub ClearMainSheetInputs()
     With wsMain
-        .Range("D3,D9,D22,D23,D30,D32,D48,D51,D52,D56,D57").ClearContents
+        .Range("D3,D9,D22,D23,D30,D48,D51,D52,D56,D57").ClearContents
         .Range("D15:D18").ClearContents
         .Range("D26:D28").ClearContents
         .Range("K14:L14").ClearContents

@@ -1,12 +1,12 @@
-,,,,,,"Johnson Gage & Inspection, Inc.",,,,,,Form 4010-5,,,,,"=IF(T1=0, 0, IF(T1 > SAT_Tolerance + (1-D19)*0.4, 1, """"))",,"=IFERROR(MAX(ABS(E10:E18)),0)","=IFERROR(MAX(ABS(H10:H18)),0)",,,,,,,,
-,,,,,,,Temperature Uniformity Survey Comparison Readings Summary,,,,,Orig. 8-2-12,,,,,"=IF(U1=0, 0, IF(U1 > SAT_Tolerance + (1-D31)*0.4, 1, """"))",,"=IFERROR(MAX(ABS(K10:K18)),0)","=IFERROR(MAX(ABS(N10:N18)),0)",,,,,,,,
-,,,Date:,=Main!D3,,,,,Customer:,=Main!D5,,,,,,,"=IF(T2=0, 0, IF(T2 > SAT_Tolerance + (1-G19)*0.4, 1, """"))",,"=IFERROR(MAX(ABS(E22:E30)),0)","=IFERROR(MAX(ABS(H22:H30)),0)",,,,,,,,
-,,,Unit:,=Main!D6,,,,,Temperature:,=NominalTemp&Unit,,,,,,,"=IF(U2=0, 0, IF(U2 > SAT_Tolerance + (1-G31)*0.4, 1, """"))",,"=IFERROR(MAX(ABS(K22:K30)),0)","=IFERROR(MAX(ABS(N22:N30)),0)",,,,,,,,
-,,,Operator:,=Main!D7,,,,,Comparison Interval:,=Main!D18,,,,,,,"=IF(T3=0, 0, IF(T3 > SAT_Tolerance + (1-J19)*0.4, 1, """"))",,,,,,,,,,,
-,,,Tolerance:,"=IF(SAT_Tolerance=0,"""",TEXT(SAT_Tolerance,""0.0"")&Unit)",,"=IF(OR(R1:R8),""CHECK READINGS!!!"","""")",,,,,,,,,,,"=IF(U3=0, 0, IF(U3 > SAT_Tolerance + (1-J31)*0.4, 1, """"))",,,,,,,,,,,
-,,,,,Test readings shown include all  correction factors.,,,,,,,,,,,,"=IF(T4=0, 0, IF(T4 > SAT_Tolerance + (1-M19)*0.4, 1, """"))",,,,,,,,,,,
-Time Abs ,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,,,,"=IF(U4=0, 0, IF(U4 > SAT_Tolerance + (1-M31)*0.4, 1, """"))",,,,,,,,,,,
-Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B37:$C37),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!B38:C38),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B39:$C39),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B40:$C40),"""")",,Deviation,,,,,,,,,,,,,,,
+,,,,,,"Johnson Gage & Inspection, Inc.",,,,,,Form 4010-5,,,,,"=IF(T1=0, 0, IF(T1 > SAT_Tolerance + (1-D19)*0.4, 1, """"))",,"=IFERROR(MAX(ABS(E10:E18)),0)","=IFERROR(MAX(ABS(H10:H18)),0)",,
+,,,,,,,Temperature Uniformity Survey Comparison Readings Summary,,,,,Orig. 8-2-12,,,,,"=IF(U1=0, 0, IF(U1 > SAT_Tolerance + (1-D31)*0.4, 1, """"))",,"=IFERROR(MAX(ABS(K10:K18)),0)","=IFERROR(MAX(ABS(N10:N18)),0)",,
+,,,Date:,=Main!D3,,,,,Customer:,=Main!D5,,,,,,,"=IF(T2=0, 0, IF(T2 > SAT_Tolerance + (1-G19)*0.4, 1, """"))",,"=IFERROR(MAX(ABS(E22:E30)),0)","=IFERROR(MAX(ABS(H22:H30)),0)",,
+,,,Unit:,=Main!D6,,,,,Temperature:,=NominalTemp&Unit,,,,,,,"=IF(U2=0, 0, IF(U2 > SAT_Tolerance + (1-G31)*0.4, 1, """"))",,"=IFERROR(MAX(ABS(K22:K30)),0)","=IFERROR(MAX(ABS(N22:N30)),0)",,
+,,,Operator:,=Main!D7,,,,,Comparison Interval:,=Main!D18,,,,,,,"=IF(T3=0, 0, IF(T3 > SAT_Tolerance + (1-J19)*0.4, 1, """"))",,,,,
+,,,Tolerance:,"=IF(SAT_Tolerance=0,"""",TEXT(SAT_Tolerance,""0.0"")&Unit)",,"=IF(OR(R1:R8),""CHECK READINGS!!!"","""")",,,,,,,,,,,"=IF(U3=0, 0, IF(U3 > SAT_Tolerance + (1-J31)*0.4, 1, """"))",,,,,
+,,,,,Test readings shown include all  correction factors.,,,,,,,,,,,,"=IF(T4=0, 0, IF(T4 > SAT_Tolerance + (1-M19)*0.4, 1, """"))",,,,,
+Time Abs ,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,,,,"=IF(U4=0, 0, IF(U4 > SAT_Tolerance + (1-M31)*0.4, 1, """"))",,,,,
+Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B37:$C37),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!B38:C38),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B39:$C39),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B40:$C40),"""")",,Deviation,,,,,,,,,
 =TRANSPOSE(_xlfn._TRO_TRAILING(Main!D36:L36)),,"=_xlfn.MAP(_xlfn.ANCHORARRAY($A10),
   _xlfn.LAMBDA(_xlpm.t,
     IF(OR(C9="""",_xlpm.t=""""),"""",
@@ -19,7 +19,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B37:$C37),"""")",,Deviation,"=IFERROR(
       )
     )
   )
-)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D37:$L37),""""))","=IF(C10="""","""",D10-C10)","=_xlfn.MAP(_xlfn.ANCHORARRAY($A10),
+)","=IFERROR(TEXT(TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D37:$L37)),""0""&IF(D19>0,"".""&REPT(""0"",D19),""""))&Unit,"""")","=IF(_xlfn.ANCHORARRAY(C10)="""","""",TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D37:$L37))-_xlfn.ANCHORARRAY(C10))","=_xlfn.MAP(_xlfn.ANCHORARRAY($A10),
   _xlfn.LAMBDA(_xlpm.t,
     IF(OR(F9="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
@@ -31,7 +31,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B37:$C37),"""")",,Deviation,"=IFERROR(
       )
     )
   )
-)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D38:$L38),""""))","=IF(F10="""","""",G10-F10)","=_xlfn.MAP(_xlfn.ANCHORARRAY($A10),
+)","=IFERROR(TEXT(TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D38:$L38)),""0""&IF(G19>0,"".""&REPT(""0"",G19),""""))&Unit,"""")","=IF(_xlfn.ANCHORARRAY(F10)="""","""",TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D38:$L38))-_xlfn.ANCHORARRAY(F10))","=_xlfn.MAP(_xlfn.ANCHORARRAY($A10),
   _xlfn.LAMBDA(_xlpm.t,
     IF(OR(I9="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
@@ -43,7 +43,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B37:$C37),"""")",,Deviation,"=IFERROR(
       )
     )
   )
-)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D39:$L39),""""))","=IF(I10="""","""",J10-I10)","=_xlfn.MAP(_xlfn.ANCHORARRAY($A10),
+)","=IFERROR(TEXT(TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D39:$L39)),""0""&IF(J19>0,"".""&REPT(""0"",J19),""""))&Unit,"""")","=IF(_xlfn.ANCHORARRAY(I10)="""","""",TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D39:$L39))-_xlfn.ANCHORARRAY(I10))","=_xlfn.MAP(_xlfn.ANCHORARRAY($A10),
   _xlfn.LAMBDA(_xlpm.t,
     IF(OR(L9="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
@@ -55,18 +55,18 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B37:$C37),"""")",,Deviation,"=IFERROR(
       )
     )
   )
-)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D40:$L40),""""))","=IF(L10="""","""",M10-L10)","=IF(R1,D9 & "" IS OOT!!!"","""")",,,,,,,,,,,,,,
-,,,,"=IF(C11="""","""",D11-C11)",,,"=IF(F11="""","""",G11-F11)",,,"=IF(I11="""","""",J11-I11)",,,"=IF(L11="""","""",M11-L11)","=IF(R2, G9 & "" IS OOT!!!"","""")",,,,,Compensation Interval:,4,10,,,,,,,
-,,,,"=IF(C12="""","""",D12-C12)",,,"=IF(F12="""","""",G12-F12)",,,"=IF(I12="""","""",J12-I12)",,,"=IF(L12="""","""",M12-L12)","=IF(R3, J9 & "" IS OOT!!!"","""")",,,,"=_xlfn.XLOOKUP(TRIM(LEFT(K5,2)),Table7[#Headers],Table7[],"""")",,2,2,,,,,,,
-,,,,"=IF(C13="""","""",D13-C13)",,,"=IF(F13="""","""",G13-F13)",,,"=IF(I13="""","""",J13-I13)",,,"=IF(L13="""","""",M13-L13)","=IF(R4, M9 &"" IS OOT!!!"","""")",,,,,,4,7,,,,,,,
-,,,,"=IF(C14="""","""",D14-C14)",,,"=IF(F14="""","""",G14-F14)",,,"=IF(I14="""","""",J14-I14)",,,"=IF(L14="""","""",M14-L14)",,,,,,,6,12,,,,,,,
-,,,,"=IF(C15="""","""",D15-C15)",,,"=IF(F15="""","""",G15-F15)",,,"=IF(I15="""","""",J15-I15)",,,"=IF(L15="""","""",M15-L15)",,,,,,,8,17,,,,,,,
-,,,,"=IF(C16="""","""",D16-C16)",,,"=IF(F16="""","""",G16-F16)",,,"=IF(I16="""","""",J16-I16)",,,"=IF(L16="""","""",M16-L16)",,,,,,,10,22,,,,,,,
-,,,,"=IF(C17="""","""",D17-C17)",,,"=IF(F17="""","""",G17-F17)",,,"=IF(I17="""","""",J17-I17)",,,"=IF(L17="""","""",M17-L17)",,,,,,,12,,,,,,,,
-,,,,"=IF(C18="""","""",D18-C18)",,,"=IF(F18="""","""",G18-F18)",,,"=IF(I18="""","""",J18-I18)",,,"=IF(L18="""","""",M18-L18)",,,,,,,14,,,,,,,,
-,,,"=IF(Main!A37="""","""",-LOG10(Main!A37))","=IF(OR(P16:P23=1),""CHECK READINGS!!!"","""")",,"=IF(Main!A38="""","""",-LOG10(Main!A38))","=IF(OR(S16:S23=1),""CHECK READINGS!!!"","""")",,"=IF(Main!A39="""","""",-LOG10(Main!A39))","=IF(ISNUMBER(SEARCH(""."",K10)),""."","""")",,"=IF(Main!A40="""","""",-LOG10(Main!A40))","=IF(ISNUMBER(SEARCH(""."",N10)),""."","""")",,,,,,,16,,,,,,,,
-,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,,,,,,,17,,,,,,,,
-Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B41:$C41),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B42:$C42),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B43:$C43),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B44:$C44),"""")",,Deviation,,,,,,,21,,,,,,,,
+)","=IFERROR(TEXT(TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D40:$L40)),""0""&IF(M19>0,"".""&REPT(""0"",M19),""""))&Unit,"""")","=IF(_xlfn.ANCHORARRAY(L10)="""","""",TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D40:$L40))-_xlfn.ANCHORARRAY(L10))","=IF(R1,D9 & "" IS OOT!!!"","""")",,,,,,,,
+,,,,,,,,,,,,,,"=IF(R2, G9 & "" IS OOT!!!"","""")",,,,,Compensation Interval:,4,10,
+,,,,,,,,,,,,,,"=IF(R3, J9 & "" IS OOT!!!"","""")",,,,"=_xlfn.XLOOKUP(TRIM(LEFT(K5,2)),Table7[#Headers],Table7[],"""")",,2,2,
+,,,,,,,,,,,,,,"=IF(R4, M9 &"" IS OOT!!!"","""")",,,,,,4,7,
+,,,,,,,,,,,,,,,,,,,,6,12,
+,,,,,,,,,,,,,,,,,,,,8,17,
+,,,,,,,,,,,,,,,,,,,,10,22,
+,,,,,,,,,,,,,,,,,,,,12,,
+,,,,,,,,,,,,,,,,,,,,14,,
+,,,"=IF(Main!A37="""","""",-LOG10(Main!A37))",,,"=IF(Main!A38="""","""",-LOG10(Main!A38))",,,"=IF(Main!A39="""","""",-LOG10(Main!A39))",,,"=IF(Main!A40="""","""",-LOG10(Main!A40))",,,,,,,,16,,
+,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,TUS Point #,Item Probed:,,,,,,,,17,,
+Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B41:$C41),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B42:$C42),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B43:$C43),"""")",,Deviation,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B44:$C44),"""")",,Deviation,,,,,,,21,,
 =TRANSPOSE(Main!D36:L36),,"=_xlfn.MAP(_xlfn.ANCHORARRAY($A22),
   _xlfn.LAMBDA(_xlpm.t,
     IF(OR(C21="""",_xlpm.t=""""),"""",
@@ -79,7 +79,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B41:$C41),"""")",,Deviation,"=IFERROR(
       )
     )
   )
-)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D41:$L41),""""))","=IF(C22="""","""",D22-C22)","=_xlfn.MAP(_xlfn.ANCHORARRAY($A22),
+)","=IFERROR(TEXT(TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D41:$L41)),""0""&IF(D31>0,"".""&REPT(""0"",D31),""""))&Unit,"""")","=IF(_xlfn.ANCHORARRAY(C22)="""","""",TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D41:$L41))-_xlfn.ANCHORARRAY(C22))","=_xlfn.MAP(_xlfn.ANCHORARRAY($A22),
   _xlfn.LAMBDA(_xlpm.t,
     IF(OR(F21="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
@@ -91,7 +91,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B41:$C41),"""")",,Deviation,"=IFERROR(
       )
     )
   )
-)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D42:$L42),""""))","=IF(F22="""","""",G22-F22)","=_xlfn.MAP(_xlfn.ANCHORARRAY($A22),
+)","=IFERROR(TEXT(TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D42:$L42)),""0""&IF(G31>0,"".""&REPT(""0"",G31),""""))&Unit,"""")","=IF(_xlfn.ANCHORARRAY(F22)="""","""",TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D42:$L42))-_xlfn.ANCHORARRAY(F22))","=_xlfn.MAP(_xlfn.ANCHORARRAY($A22),
   _xlfn.LAMBDA(_xlpm.t,
     IF(OR(I21="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
@@ -103,7 +103,7 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B41:$C41),"""")",,Deviation,"=IFERROR(
       )
     )
   )
-)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D43:$L43),""""))","=IF(I22="""","""",J22-I22)","=_xlfn.MAP(_xlfn.ANCHORARRAY($A22),
+)","=IFERROR(TEXT(TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D43:$L43)),""0""&IF(J31>0,"".""&REPT(""0"",J31),""""))&Unit,"""")","=IF(_xlfn.ANCHORARRAY(I22)="""","""",TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D43:$L43))-_xlfn.ANCHORARRAY(I22))","=_xlfn.MAP(_xlfn.ANCHORARRAY($A22),
   _xlfn.LAMBDA(_xlpm.t,
     IF(OR(L21="""",_xlpm.t=""""),"""",
       _xlfn.XLOOKUP(
@@ -115,19 +115,19 @@ Time,,"=IFERROR(_xlfn._TRO_TRAILING(Main!$B41:$C41),"""")",,Deviation,"=IFERROR(
       )
     )
   )
-)","=TRANSPOSE(IFERROR(_xlfn._TRO_TRAILING(Main!$D44:$L44),""""))","=IF(L22="""","""",M22-L22)","=IF(R5, D21 &"" IS OOT!!!"","""")",,,,,,,,,,,,,,
-,,,,"=IF(C23="""","""",D23-C23)",,,"=IF(F23="""","""",G23-F23)",,,"=IF(I23="""","""",J23-I23)",,,"=IF(L23="""","""",M23-L23)","=IF(R6, G21 &"" IS OOT!!!"","""")",,,,,,,,,,,,,,
-,,,,"=IF(C24="""","""",D24-C24)",,,"=IF(F24="""","""",G24-F24)",,,"=IF(I24="""","""",J24-I24)",,,"=IF(L24="""","""",M24-L24)","=IF(R7, J21 & "" IS OOT!!!"","""")",,,,,,,,,,,,,,
-,,,,"=IF(C25="""","""",D25-C25)",,,"=IF(F25="""","""",G25-F25)",,,"=IF(I25="""","""",J25-I25)",,,"=IF(L25="""","""",M25-L25)","=IF(R8, M21 & "" IS OOT!!!"","""")",,,,,,,,,,,,,,
-,,,,"=IF(C26="""","""",D26-C26)",,,"=IF(F26="""","""",G26-F26)",,,"=IF(I26="""","""",J26-I26)",,,"=IF(L26="""","""",M26-L26)",,,,,,,,,,,,,,,
-,,,,"=IF(C27="""","""",D27-C27)",,,"=IF(F27="""","""",G27-F27)",,,"=IF(I27="""","""",J27-I27)",,,"=IF(L27="""","""",M27-L27)",,,,,,,,,,,,,,,
-,,,,"=IF(C28="""","""",D28-C28)",,,"=IF(F28="""","""",G28-F28)",,,"=IF(I28="""","""",J28-I28)",,,"=IF(L28="""","""",M28-L28)",,,,,,,,,,,,,,,
-,,,,"=IF(C29="""","""",D29-C29)",,,"=IF(F29="""","""",G29-F29)",,,"=IF(I29="""","""",J29-I29)",,,"=IF(L29="""","""",M29-L29)",,,,,,,,,,,,,,,
-,,,,"=IF(C30="""","""",D30-C30)",,,"=IF(F30="""","""",G30-F30)",,,"=IF(I30="""","""",J30-I30)",,,"=IF(L30="""","""",M30-L30)",,,,,,,,,,,,,,,
-,,,"=IF(Main!A41="""","""",-LOG10(Main!A41))",,,"=IF(Main!A42="""","""",-LOG10(Main!A42))",,,"=IF(Main!A43="""","""",-LOG10(Main!A43))",,,"=IF(Main!A44="""","""",-LOG10(Main!A44))",,,,,,,,,,,,,,,,
-,,COMMENTS:  ,None.,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,,RESULTS:  ,ACCEPTED,,,,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-,,The information shown above is derived from data collected during the Temperature Uniformity Survey along with process sensor readings recorded by the TUS inspector. The purpose of this summary is to provide objective evidence of comparison between process sensors and the adjacent test sensors and a statement of whether these results conform to the specified tolerances.  This summary shall be considered part of the accompanying  TUS report.,,,,,,,,,,,,,,,,,,,,,,,,,,
+)","=IFERROR(TEXT(TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D44:$L44)),""0""&IF(M31>0,"".""&REPT(""0"",M31),""""))&Unit,"""")","=IF(_xlfn.ANCHORARRAY(L22)="""","""",TRANSPOSE(_xlfn._TRO_TRAILING(Main!$D44:$L44))-_xlfn.ANCHORARRAY(L22))","=IF(R5, D21 &"" IS OOT!!!"","""")",,,,,,,,
+,,,,,,,,,,,,,,"=IF(R6, G21 &"" IS OOT!!!"","""")",,,,,,,,
+,,,,,,,,,,,,,,"=IF(R7, J21 & "" IS OOT!!!"","""")",,,,,,,,
+,,,,,,,,,,,,,,"=IF(R8, M21 & "" IS OOT!!!"","""")",,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,"=IF(Main!A41="""","""",-LOG10(Main!A41))",,,"=IF(Main!A42="""","""",-LOG10(Main!A42))",,,"=IF(Main!A43="""","""",-LOG10(Main!A43))",,,"=IF(Main!A44="""","""",-LOG10(Main!A44))",,,,,,,,,,
+,,COMMENTS:  ,None.,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,RESULTS:  ,ACCEPTED,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,The information shown above is derived from data collected during the Temperature Uniformity Survey along with process sensor readings recorded by the TUS inspector. The purpose of this summary is to provide objective evidence of comparison between process sensors and the adjacent test sensors and a statement of whether these results conform to the specified tolerances.  This summary shall be considered part of the accompanying  TUS report.,,,,,,,,,,,,,,,,,,,,
